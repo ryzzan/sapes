@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'md.scss';
+html, body, material-app, md-sidenav-container, .my-content {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+md-sidenav { 
+  width: 300px;
+ }
+md-sidenav md-card{
+  color:white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent),
+  url("http://cssslider.com/sliders/demo-10/data1/images/3.jpg") no-repeat center center;
+}
+md-sidenav md-card md-card-subtitle{
+    color: white;
+}
+.app-content{
+    margin: 20px;
+}

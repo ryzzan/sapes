@@ -1,0 +1,15 @@
+
+.example-full-width {
+  width: 98%;
+  margin-right: 10px;
+}
+
+.example-section {
+  width: 100%;
+  align-content: left;
+  align-items: left;
+  
+}
+.md-tab {
+  padding: 10px;
+}

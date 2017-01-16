@@ -6,10 +6,12 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import 'hammerjs';
+import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,

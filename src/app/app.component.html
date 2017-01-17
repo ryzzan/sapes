@@ -1,6 +1,6 @@
 <md-sidenav-container class="example-sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true">
-    <md-card class="example-card">
+    <md-card class="menu-card">
       <md-card-header>
         <md-card-title>Leonardo Victor</md-card-title>
         <md-card-subtitle>Administrador</md-card-subtitle>
@@ -36,5 +36,31 @@
     <md-card>
       <app-formulario></app-formulario>
     </md-card>
+
+    <md-card>
+      <button md-icon-button>
+      <md-icon class="md-24">favorite</md-icon>
+      </button>
+      <button md-fab>
+    <md-icon class="md-24">add</md-icon>
+      </button>
+      <button md-mini-fab>
+      <md-icon class="md-24">add</md-icon>
+      </button>
+    </md-card>
+    <md-card>
+      <button md-raised-button color="primary">PRIMARY</button>
+      <button md-raised-button color="accent">ACCENT</button>
+      <button md-raised-button color="warn">WARN</button>
+    </md-card>
+    <md-card>
+      <button md-button disabled>OFF</button>
+      <button md-raised-button disabled>OFF</button>
+      <button md-mini-fab disabled><md-icon>check</md-icon></button>
+    </md-card>
+    <md-card>
+      <data></data>
+    </md-card>
+
   </div>
 </md-sidenav-container>

@@ -3,19 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+
+import 'hammerjs';
+import { TextMaskModule } from 'angular2-text-mask';
+import { DataComponent } from './data/data.component'
 
 import { AppComponent } from './app.component';
-import 'hammerjs';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,6 +13,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { DataComponent } from './data/data.component'
 
 import { AppComponent } from './app.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { AppComponent } from './app.component';
 
     FormularioComponent,
 
-    DataComponent
+    DataComponent,
+
+    SidenavComponent
 
   ],
   imports: [

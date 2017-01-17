@@ -1,66 +1,11 @@
 <md-sidenav-container class="example-sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true">
-    <md-card class="menu-card">
-      <md-card-header>
-        <md-card-title>Leonardo Victor</md-card-title>
-        <md-card-subtitle>Administrador</md-card-subtitle>
-      </md-card-header>
-      <md-card-actions>
-        <button md-icon-button><md-icon>exit_to_app</md-icon></button>
-        <button md-icon-button><md-icon>settings</md-icon></button>
-      </md-card-actions>
-    </md-card>
-    <md-list>
-      <md-list-item>
-        <md-icon md-list-avatar>person</md-icon>
-        <h4 md-line>Concluintes</h4>
-        <p md-line>Fase 1</p>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list-item>
-        <md-icon md-list-avatar>supervisor_account</md-icon>
-        <h4 md-line>Acomp. de Egressos</h4>
-        <p md-line>Fase 2</p>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list-item>
-        <md-icon md-list-avatar>business_center</md-icon>
-        <h4 md-line>Avaliação do Egresso</h4>
-        <p md-line>Fase 3</p>
-      </md-list-item>
-    </md-list>
+    <app-sidenav></app-sidenav>
   </md-sidenav>
-
   <!-- primary content -->
   <div class="app-content">
     <md-card>
       <app-formulario></app-formulario>
     </md-card>
-
-    <md-card>
-      <button md-icon-button>
-      <md-icon class="md-24">favorite</md-icon>
-      </button>
-      <button md-fab>
-    <md-icon class="md-24">add</md-icon>
-      </button>
-      <button md-mini-fab>
-      <md-icon class="md-24">add</md-icon>
-      </button>
-    </md-card>
-    <md-card>
-      <button md-raised-button color="primary">PRIMARY</button>
-      <button md-raised-button color="accent">ACCENT</button>
-      <button md-raised-button color="warn">WARN</button>
-    </md-card>
-    <md-card>
-      <button md-button disabled>OFF</button>
-      <button md-raised-button disabled>OFF</button>
-      <button md-mini-fab disabled><md-icon>check</md-icon></button>
-    </md-card>
-    <md-card>
-      <data></data>
-    </md-card>
-
   </div>
 </md-sidenav-container>

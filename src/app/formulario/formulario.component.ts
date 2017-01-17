@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioComponent implements OnInit {
 
-  constructor() { }
-
+  colours = [];
+  constructor() {
+      this.colours = ['Branca', 'Preta', 'Amarela', 'Indígena','Parda'];
+  }
   ngOnInit() {
   }
+  
 
 }
-
 

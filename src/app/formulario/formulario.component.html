@@ -17,9 +17,9 @@
           </md-input-container>
         </md-grid-tile>
       <md-grid-tile [colspan]="1">
-          <md-input-container class="example-full-width">
-            <input md-input placeholder="Data de nascimento">
-          </md-input-container>
+        
+      <data class="example-full-width"></data>
+    
         </md-grid-tile>
       <md-grid-tile [colspan]="1">
         <md-select class="example-full-width" placeholder="Selecione seu gênero">
@@ -29,11 +29,7 @@
       </md-grid-tile>
         <md-grid-tile [colspan]="1">
           <md-select class="example-full-width" placeholder="Cor / Etnia">
-            <md-option>Branca</md-option>
-            <md-option>Preta</md-option>
-            <md-option>Amarela</md-option>
-            <md-option>Indígena</md-option>
-            <md-option>Parda</md-option>
+            <md-option *ngFor="let colour of colours">{{colour}}</md-option>
           </md-select>
         </md-grid-tile>
         <md-grid-tile [colspan]="1">
@@ -45,7 +41,7 @@
         <md-grid-tile [colspan]="1">
           <md-card-content class="example-section">
             Possui alguma deficiência (PcD)?
-            <section class="example-section">
+              <section class="example-section">
               <md-checkbox class="example-margin" [(ngModel)]="checked">Checked</md-checkbox>
               <md-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</md-checkbox>
             </section>

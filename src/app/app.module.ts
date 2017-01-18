@@ -15,7 +15,8 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
-import { ListComponent } from './list/list.component'
+import { ListComponent } from './list/list.component';
+import { DatapickerComponent } from './datapicker/datapicker.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListComponent } from './list/list.component'
     FormularioComponent,
     SidenavComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    DatapickerComponent
   ],
   imports: [
     BrowserModule,

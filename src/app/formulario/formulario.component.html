@@ -1,55 +1,55 @@
 <md-tab-group>
   <md-tab label="ALUNO">
-    <md-grid-list cols="2" rowHeight="100px">
-      <md-grid-tile [colspan]="1">
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Digite seu CPF">
+          <input md-input placeholder="Informe o CPF">
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Digite seu RG">
+          <input md-input placeholder="Informe o RG">
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
           <md-input-container class="example-full-width">
             <input md-input placeholder="Nome do aluno">
+
+
           </md-input-container>
         </md-grid-tile>
-      <md-grid-tile [colspan]="1">
-          <md-input-container class="example-full-width">
-            <input md-input placeholder="Data de nascimento">
-          </md-input-container>
+      <md-grid-tile [colspan]="2">
+      <i class="material-icons">date_range</i>  
+      <datapicker class="example-full-width"></datapicker>
+    
         </md-grid-tile>
-      <md-grid-tile [colspan]="1">
-        <md-select class="example-full-width" placeholder="Selecione seu gênero">
-          <md-option>Feminino</md-option>
-          <md-option>Masculino</md-option>
-        </md-select>
-      </md-grid-tile>
-        <md-grid-tile [colspan]="1">
+        <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
           <md-select class="example-full-width" placeholder="Cor / Etnia">
-            <md-option>Branca</md-option>
-            <md-option>Preta</md-option>
-            <md-option>Amarela</md-option>
-            <md-option>Indígena</md-option>
-            <md-option>Parda</md-option>
+            <md-option *ngFor="let colour of colours">{{colour}}</md-option>
           </md-select>
         </md-grid-tile>
-        <md-grid-tile [colspan]="1">
-          <md-select class="example-full-width" placeholder="Estudou/estuda em que tipo de escola?">
-            <md-option>Escola pública</md-option>
-            <md-option>Escola particular</md-option>
-          </md-select>
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="example-section-genero"><i class="material-icons">wc</i>
+          Selecione seu gênero<br>
+  <md-radio-button value="1">Masculino</md-radio-button><br>
+  <md-radio-button value="2">Feminino</md-radio-button>
+</md-radio-group>
+
+      </md-grid-tile>
+        
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">school</i>
+          Estudou/estuda em que tipo de escola? <br>
+  <md-radio-button value="1">Escola Particular</md-radio-button><br>
+  <md-radio-button value="2">Escola Pública</md-radio-button>
+</md-radio-group>
         </md-grid-tile>
-        <md-grid-tile [colspan]="1">
-          <md-card-content class="example-section">
-            Possui alguma deficiência (PcD)?
-            <section class="example-section">
-              <md-checkbox class="example-margin" [(ngModel)]="checked">Checked</md-checkbox>
-              <md-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</md-checkbox>
-            </section>
-          </md-card-content>
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">wc</i>
+          Selecione seu gênero<br>
+  <md-radio-button value="1">Masculino</md-radio-button><br>
+  <md-radio-button value="2">Feminino</md-radio-button>
+</md-radio-group>
         </md-grid-tile>
     </md-grid-list>
   </md-tab>

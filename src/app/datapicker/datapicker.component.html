@@ -1,0 +1,3 @@
+<md-input-container>
+  <input md-input [textMask]="{mask: mask, pipe: autoCorrectedDatePipe}" placeholder="Data de nascimento" [(ngModel)]="date" (blur)="changeDate()">
+</md-input-container>

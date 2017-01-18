@@ -26,6 +26,7 @@ a{
   cursor: pointer;
   text-decoration: none;
 }
-a:hover md-list-item{
+a:hover md-list-item,
+a.sidenav--active md-list-item{
   background:#e8e8e8;
 }

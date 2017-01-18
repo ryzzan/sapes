@@ -1,0 +1,46 @@
+<md-card class="menu-card">
+  <md-card-header>
+    <md-card-title>Leonardo Victor</md-card-title>
+    <md-card-subtitle>Administrador</md-card-subtitle>
+  </md-card-header>
+  <md-card-actions>
+    <button md-icon-button><md-icon>exit_to_app</md-icon></button>
+    <button md-icon-button [mdMenuTriggerFor]="menu"><md-icon>settings</md-icon></button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item>
+        <md-icon>person</md-icon>
+        <span>Minha Conta</span>
+      </button>
+      <button md-menu-item>
+        <md-icon>build</md-icon>
+        <span>Configuração do Sistema</span>
+      </button>
+    </md-menu>
+  </md-card-actions>
+</md-card>
+<md-list>
+  <a router="students">
+    <md-list-item>
+      <md-icon md-list-avatar>business_center</md-icon>
+      <h4 md-line>Avaliação do Egresso</h4>
+      <p md-line>Fase 3</p>
+    </md-list-item>
+  </a>
+  <md-divider></md-divider>
+  <a href="">
+    <md-list-item>
+      <md-icon md-list-avatar>supervisor_account</md-icon>
+      <h4 md-line>Acomp. de Egressos</h4>
+      <p md-line>Fase 2</p>
+    </md-list-item>
+  </a>
+  <md-divider></md-divider>
+  <a href="">
+    <md-list-item>
+      <md-icon md-list-avatar>business_center</md-icon>
+      <h4 md-line>Avaliação do Egresso</h4>
+      <p md-line>Fase 3</p>
+    </md-list-item>
+  </a>
+</md-list>
+

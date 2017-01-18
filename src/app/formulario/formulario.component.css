@@ -1,15 +1,30 @@
 
 .example-full-width {
   width: 98%;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 .example-section {
   width: 100%;
   align-content: left;
   align-items: left;
+  color: gray;
+  
+}
+
+.example-section-genero {
+  width: 100%;
+  align-content: left;
+  align-items: left;
+  color: gray;
+  padding-left: 60px
   
 }
 .md-tab {
   padding: 10px;
+}
+
+.material-icons {
+  color: black;
 }

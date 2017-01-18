@@ -1,0 +1,31 @@
+md-sidenav {
+  width: 300px;
+ }
+md-card.menu-card{
+  color:white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent),
+  url("http://cssslider.com/sliders/demo-10/data1/images/3.jpg") no-repeat center center;
+  padding-left: 20px;
+  padding-top: 69px;
+}
+md-card.menu-card md-card-header{
+  margin-bottom: 0;
+}
+md-card.menu-card md-card-subtitle{
+  color: white;
+}
+md-card.menu-card md-card-title{
+  font-weight: bolder;
+}
+md-card.menu-card md-card-actions{
+  padding-left: 5px;
+}
+
+a{
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover md-list-item{
+  background:#e8e8e8;
+}

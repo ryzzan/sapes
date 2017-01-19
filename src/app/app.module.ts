@@ -9,31 +9,26 @@ import 'hammerjs';
 
 import { FormularioComponent } from './formulario/formulario.component';
 
-import { TextMaskModule } from 'angular2-text-mask';
-
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { routing } from './app.routing';
+import { AppRoutingModule } from './app.routing.module';
+import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
-import { ListComponent } from './list/list.component';
-import { DatapickerComponent } from './datapicker/datapicker.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     FormularioComponent,
     SidenavComponent,
-    HomeComponent,
-    ListComponent,
-    DatapickerComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    TextMaskModule,
-    routing
+    StudentsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

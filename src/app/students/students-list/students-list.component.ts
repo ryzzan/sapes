@@ -1,6 +1,8 @@
 import { StudentsService } from '../students.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 // import { TableData } from './table-data';
+// import
+
 
 @Component({
   selector: 'app-students-list',
@@ -8,14 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
-  private students: any[] = [];
+
+  public editClick(row: any) {
+    alert("editou");
+      // this.eventService.editRow(row);
+  }
+
+  public viewClick(row: any) {
+      // this.eventService.viewRow(row);
+  }
+
+  public linkClick(row: any, col: any) {
+      // this.eventService.linkClick(row);
+  }
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'id', name: 'id'},
+    {title: 'id', name: 'id', sort: false},
     {
       title: 'Nome',
       name: 'name',
-      sort: false,
       filtering: {filterString: '', placeholder: 'Buscar por nome'}
     },
     {
@@ -25,6 +38,12 @@ export class StudentsListComponent implements OnInit {
       sort: 'asc',
       filtering: { placeholder: 'Buscar por nome'}
     },
+    {
+      title: 'Ação',
+      name: 'acao',
+      sort: false,
+      className: ['actions']
+    }
   ];
   public page:number = 1;
   public itemsPerPage:number = 2;
@@ -43,15 +62,15 @@ export class StudentsListComponent implements OnInit {
 
   public constructor(private studentsService: StudentsService) {;
     this.length = this.data.length;
-    this.data = this.studentsService.getStudents();
-    // this.data = this.students;
-    console.log(this.data);
+    // this.data = this.studentsService.getStudents();
   }
 
   public ngOnInit():void {
     console.log(this.data);
     this.onChangeTable(this.config);
     this.studentsService.getList().subscribe(students => {
+      students.data.forEach(value => {value.acao = `<button md-raised-button (click)="editClick(row)" routerLink routerLink=".">Editar</button>
+        <a md-raised-button routerLink=".">Excluir</a>`})
       this.data = students.data;
       this.length = students.total;
       this.onChangeTable(this.config);
@@ -100,7 +119,8 @@ export class StudentsListComponent implements OnInit {
     this.columns.forEach((column:any) => {
       if (column.filtering) {
         filteredData = filteredData.filter((item:any) => {
-          return item[column.name].match(column.filtering.filterString);
+          if(typeof(column.filtering.filterString)==="undefined") return true;
+          return item[column.name].toLowerCase().match(column.filtering.filterString.toLowerCase());
         });
       }
     });

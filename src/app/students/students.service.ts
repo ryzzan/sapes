@@ -14,7 +14,7 @@ export class StudentsService {
   getList(){
     let headers      = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
     let options       = new RequestOptions({ headers: headers });
-    return this.http.get('http://10.83.3.190:81/api/students',options).map(res => res.json());
+    return this.http.get('http://10.83.3.190:81/api/students?noPaginete=1',options).map(res => res.json());
   }
   constructor(private http: Http) {}
 

@@ -13,10 +13,8 @@ export class FormularioComponent implements OnInit {
       this.colours = ['Branca', 'Preta', 'Amarela', 'Indígena','Parda'];
       this.disabilities = ['Auditiva', 'Intelectual', 'Física', 'Condutas típicas', 'Visual', 'Múltiplas', 'Altas habilidades', 'Outro (s)'];
   }
-  
   ngOnInit() {
   }
-     
+
 
 }
-

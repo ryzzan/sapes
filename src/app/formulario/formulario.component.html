@@ -7,13 +7,31 @@
         </md-input-container>
       </md-grid-tile>
     </md-grid-list>
-
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
         <md-input-container class="example-full-width">
           <input md-input placeholder="Nome do aluno">
         </md-input-container>
       </md-grid-tile>
+      <md-grid-tile [colspan]="2">
+        <md-radio-group class="example-section"><i class="material-icons">wc</i>Selecione seu gênero<br>
+          <md-radio-button class="radio-before" value="1">Masculino</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Feminino</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <i class="material-icons">date_range</i>  
+      <datapicker class="example-full-width"></datapicker>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Informe o RG">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="2">
 
       <md-grid-tile [colspan]="2">
         <md-radio-group class="example-section"><i class="material-icons">wc</i>Selecione seu gênero<br>
@@ -66,7 +84,7 @@
           <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
         </md-select>
       </md-grid-tile>
-
+      
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
         <md-select class="example-full-width" placeholder="Ano de inicio do curso">
           <md-option style="padding-right:20px" *ngFor="let debility of disabilities">{{debility}}</md-option>
@@ -78,7 +96,7 @@
           <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
         </md-select>
       </md-grid-tile>
-
+      
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
         <md-select class="example-full-width" placeholder="Ano de término do curso">
           <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>

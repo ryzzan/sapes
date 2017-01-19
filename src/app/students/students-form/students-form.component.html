@@ -7,12 +7,14 @@
         </md-input-container>
       </md-grid-tile>
     </md-grid-list>
+
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
         <md-input-container class="example-full-width">
           <input md-input placeholder="Nome do aluno">
         </md-input-container>
       </md-grid-tile>
+
       <md-grid-tile [colspan]="2">
         <md-radio-group class="example-section"><i class="material-icons">wc</i>Selecione seu gênero<br>
           <md-radio-button class="radio-before" value="1">Masculino</md-radio-button>
@@ -37,6 +39,7 @@
           <md-radio-button class="radio-after" value="2">Escola Pública</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
+      
       <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
           <md-select class="example-full-width" placeholder="Cor / Etnia">
           <md-option *ngFor="let colour of colours">{{colour}}</md-option>
@@ -126,15 +129,161 @@
         </md-select>
       </md-grid-tile>
 
+      <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
+         <md-select class="example-full-width" placeholder="Educação à distância - EAD?">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">monetization_on</i>
+         <md-select class="example-full-width" placeholder="Gratuidade regimental?">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="example-section"><i class="material-icons">location_city</i>Convênio?<br>
+          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_city</i>
+        <md-input-container class="example-full-width">
+          <input disabled md-input placeholder="Qual convênio?">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="example-section"><i class="material-icons">school</i>Pronatec?<br>
+          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
+         <md-select disabled class="example-full-width" placeholder="Qual Pronatec?">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
     </md-grid-list>
   </md-tab>
   <md-tab label="CONTATO">
-  <h1>Some more tab content</h1>
-  <p>...</p>
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Endereço">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Número">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Complemento">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Bairro">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Cidade">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="UF">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="CEP">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Telefone residencial">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Telefone celular">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Telefone recado">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Telefone recado">
+        </md-input-container>
+      </md-grid-tile>
+
+
+    </md-grid-list>
+
   </md-tab>
   <md-tab label="SITUAÇÃO PROFISSIONAL">
-  <h1>Some more tab content</h1>
-  <p>...</p>
+    <md-grid-list cols="2" rowHeight="100px">
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
+            <md-radio-button value="1">Sim</md-radio-button>
+            <md-radio-button value="2">Não</md-radio-button>
+          </md-radio-group>
+        </md-grid-tile>
+
+        <md-grid-tile [colspan]="1">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Especifique abaixo sua situação profissional:<br>
+            <md-radio-button value="">Estágio</md-radio-button><br>
+            <md-radio-button value="">Aluno Cotista/Aprendiz</md-radio-button><br>
+            <md-radio-button value="">Empresário/Sócio proprietário</md-radio-button><br>
+            <md-radio-button value="">Empregado com carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado sem carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado temporário com carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado temporário sem carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Profissional liberal (dentista, advogado...)</md-radio-button><br>
+            <md-radio-button value="">Autônomo (por conta própria)</md-radio-button><br>
+            <md-radio-button value="">Funcionário público/militar</md-radio-button><br>
+            <md-radio-button value="">Outra situação? Qual?</md-radio-button><br>
+          </md-radio-group>
+        </md-grid-tile>
+
+        <md-grid-tile [colspan]="1">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Especifique abaixo sua situação profissional:<br>
+            <md-radio-button value="">Estágio</md-radio-button><br>
+            <md-radio-button value="">Aluno Cotista/Aprendiz</md-radio-button><br>
+            <md-radio-button value="">Empresário/Sócio proprietário</md-radio-button><br>
+            <md-radio-button value="">Empregado com carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado sem carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado temporário com carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Empregado temporário sem carteira assinada</md-radio-button><br>
+            <md-radio-button value="">Profissional liberal (dentista, advogado...)</md-radio-button><br>
+            <md-radio-button value="">Autônomo (por conta própria)</md-radio-button><br>
+            <md-radio-button value="">Funcionário público/militar</md-radio-button><br>
+            <md-radio-button value="">Outra situação? Qual?</md-radio-button><br>
+          </md-radio-group>
+        </md-grid-tile>
+
+    </md-grid-list>
+
   </md-tab>
   <md-tab label="AVALIAÇÃO DO SENAI">
   <h1>Some more tab content</h1>

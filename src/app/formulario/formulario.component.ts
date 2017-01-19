@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'formulario',
+  selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
 
-  constructor() { }
+  colours = [];
+  disabilities = [];
+  constructor() {
+      this.colours = ['Branca', 'Preta', 'Amarela', 'Indígena','Parda'];
+      this.disabilities = ['Auditiva', 'Intelectual', 'Física', 'Condutas típicas', 'Visual', 'Múltiplas', 'Altas habilidades', 'Outro (s)'];
+  }
 
   ngOnInit() {
   }
 
+
 }
-
-

@@ -1,8 +1,8 @@
-students works!
-<a md-mini-fab routerLink="add"><md-icon>add</md-icon></a>
+<h3><a md-mini-fab routerLink="add"><md-icon>add</md-icon></a> Adicionar Egressos</h3>
+<br>
 <div class="row">
   <div class="col-md-4">
-    <input *ngIf="config.filtering" placeholder="Filter all columns"
+    <input *ngIf="config.filtering" placeholder="Buscar"
            [ngTableFiltering]="config.filtering"
            class="form-control"
            (tableChanged)="onChangeTable(config)"/>
@@ -13,9 +13,33 @@ students works!
           (tableChanged)="onChangeTable(config)"
           (cellClicked)="onCellClick($event)"
           [rows]="rows" [columns]="columns">
+          <td *ngIf="view || edit || delete" >
+  <div>
+    <button
+            type="button"
+            class="btn btn-xs btn-default"
+            (click)="viewClick(row)">
+            <i class="fa fa-eye"></i> View
+     </button>
+
+     <button *ngIf="edit"
+             type="button"
+             class="btn btn-xs btn-default"
+             (click)="editClick(row)">
+             <i class="fa fa-edit"></i> Edit
+      </button>
+
+      <button *ngIf="delete"
+            type="button"
+            class="btn btn-xs btn-default"
+            (click)="deleteClick(row)">
+            <i class="fa fa-trash-o"></i> Delete
+      </button>
+  </div>
+</td>
 </ng-table>
-<pre class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
-<pagination *ngIf="config.paging"
+<pre class="card card-block card-header">Página: {{page}} de {{numPages}}</pre>
+<pagination nextText="Próximo" previousText="Anterior" firstText="Primeira" lastText="Ultima" *ngIf="config.paging"
             class="pagination-sm"
             [(ngModel)]="page"
             [totalItems]="length"

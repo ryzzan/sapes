@@ -16,9 +16,15 @@ export class StudentsListComponent implements OnInit {
       title: 'Nome',
       name: 'name',
       sort: false,
-      filtering: { placeholder: 'Filter by position'}
+      filtering: {filterString: '', placeholder: 'Buscar por nome'}
     },
-    {title: 'Email', className: ['office-header', 'text-success'], name: 'email', sort: 'asc'},
+    {
+      title: 'Email',
+      className: ['office-header', 'text-success'],
+      name: 'email',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por nome'}
+    },
   ];
   public page:number = 1;
   public itemsPerPage:number = 2;

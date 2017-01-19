@@ -1,71 +1,143 @@
 <md-tab-group>
   <md-tab label="ALUNO">
     <md-grid-list cols="4" rowHeight="100px">
-      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
+      <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width">
           <input md-input placeholder="Informe o CPF">
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
+    </md-grid-list>
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="Nome do aluno">
+        </md-input-container>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="2">
+        <md-radio-group class="example-section"><i class="material-icons">wc</i>Selecione seu gênero<br>
+          <md-radio-button class="radio-before" value="1">Masculino</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Feminino</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <i class="material-icons">date_range</i>
+      <datapicker class="example-full-width"></datapicker>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
         <md-input-container class="example-full-width">
           <input md-input placeholder="Informe o RG">
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
-          <md-input-container class="example-full-width">
-            <input md-input placeholder="Nome do aluno">
 
-
-          </md-input-container>
-        </md-grid-tile>
       <md-grid-tile [colspan]="2">
-      <i class="material-icons">date_range</i>
-
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
+        <md-radio-group class="example-section"><i class="material-icons">school</i>Estudou/estuda em que tipo de escola?<br>
+          <md-radio-button class="radio-before" value="1">Escola Particular</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Escola Pública</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
           <md-select class="example-full-width" placeholder="Cor / Etnia">
-            <md-option *ngFor="let colour of colours">{{colour}}</md-option>
-          </md-select>
-        </md-grid-tile>
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
       <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section-genero"><i class="material-icons">wc</i>
-          Selecione seu gênero<br>
-  <md-radio-button value="1">Masculino</md-radio-button><br>
-  <md-radio-button value="2">Feminino</md-radio-button>
-</md-radio-group>
-
+        <md-radio-group class="example-section"><i class="material-icons">accessible</i>Possui alguma deficiência (PcD)?<br>
+          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
+        </md-radio-group>
       </md-grid-tile>
 
-        <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">school</i>
-          Estudou/estuda em que tipo de escola? <br>
-  <md-radio-button value="1">Escola Particular</md-radio-button><br>
-  <md-radio-button value="2">Escola Pública</md-radio-button>
-</md-radio-group>
-        </md-grid-tile>
-        <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">wc</i>
-          Selecione seu gênero<br>
-  <md-radio-button value="1">Masculino</md-radio-button><br>
-  <md-radio-button value="2">Feminino</md-radio-button>
-</md-radio-group>
-        </md-grid-tile>
+      <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
+          <md-select disabled class="example-full-width" placeholder="Qual deficiência?">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
     </md-grid-list>
   </md-tab>
+
   <md-tab label="TURMA">
-    <h1>Some more tab content</h1>
-    <p>...</p>
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
+        <md-select class="example-full-width" placeholder="Mês de inicio do curso">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
+        <md-select class="example-full-width" placeholder="Ano de inicio do curso">
+          <md-option style="padding-right:20px" *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
+        <md-select class="example-full-width" placeholder="Mês de término do curso">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
+        <md-select class="example-full-width" placeholder="Ano de término do curso">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">class</i>
+        <md-select class="example-full-width" placeholder="Nome do curso">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-select class="example-full-width" placeholder="Selecione o DR">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">business</i>
+        <md-select class="example-full-width" placeholder="Unidade SENAI">
+          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">list</i>
+         <md-select class="example-full-width" placeholder="Modalide">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">language</i>
+         <md-select class="example-full-width" placeholder="Área tecnológica">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">work</i>
+         <md-select class="example-full-width" placeholder="Ocupação">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">people_outline</i>
+         <md-select class="example-full-width" placeholder="Código da turma">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+    </md-grid-list>
   </md-tab>
   <md-tab label="CONTATO">
-    <h1>Some more tab content</h1>
-    <p>...</p>
+  <h1>Some more tab content</h1>
+  <p>...</p>
   </md-tab>
   <md-tab label="SITUAÇÃO PROFISSIONAL">
-    <h1>Some more tab content</h1>
-    <p>...</p>
+  <h1>Some more tab content</h1>
+  <p>...</p>
   </md-tab>
   <md-tab label="AVALIAÇÃO DO SENAI">
-    <h1>Some more tab content</h1>
-    <p>...</p>
+  <h1>Some more tab content</h1>
+  <p>...</p>
   </md-tab>
 </md-tab-group>

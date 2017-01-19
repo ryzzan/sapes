@@ -1,29 +1,35 @@
- .example-full-width {
+
+.example-full-width {
   width: 98%;
   margin-right: 5px;
-  margin-left: 10px;
+  font-size: 15px;
+}
+
+.cpf {
+  margin: auto;
 }
 
 .example-section {
   width: 100%;
-  align-content: left;
-  align-items: left;
   color: gray;
+  margin-left: 20px;
+  font-size: 15px;
 
 }
 
-.example-section-genero {
-  width: 100%;
-  align-content: left;
-  align-items: left;
-  color: gray;
-  padding-left: 60px
-
-}
 .md-tab {
   padding: 10px;
 }
 
 .material-icons {
   color: black;
+  padding-right: 10px;
+}
+
+.radio-before {
+  padding-left: 35px;
+}
+
+.radio-after {
+  padding-left: 15px;
 }

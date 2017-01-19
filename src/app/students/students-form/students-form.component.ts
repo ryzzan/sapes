@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsFormComponent implements OnInit {
 
-  constructor() { }
+  colours = [];
+  disabilities = [];
+  constructor() {
+      this.colours = ['Branca', 'Preta', 'Amarela', 'Indígena','Parda'];
+      this.disabilities = ['Auditiva', 'Intelectual', 'Física', 'Condutas típicas', 'Visual', 'Múltiplas', 'Altas habilidades', 'Outro (s)'];
+  }
 
   ngOnInit() {
   }

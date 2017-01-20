@@ -2,7 +2,7 @@
 <br>
 <div class="row">
   <div class="col-md-4">
-    <input *ngIf="config.filtering" placeholder="Buscar"
+    <input *ngIf="config.filtering" placeholder="Buscar em todos os campos"
            [ngTableFiltering]="config.filtering"
            class="form-control"
            (tableChanged)="onChangeTable(config)"/>

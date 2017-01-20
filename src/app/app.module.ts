@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import { MdDataTableModule } from 'ng2-md-datatable';
 
 import 'hammerjs';
 
@@ -12,12 +13,18 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AppRoutingModule } from './app.routing.module';
 import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
+import { TesteComponent } from './teste/teste.component';
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Teste2Component } from './teste/teste2/teste2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    TesteComponent,
+    Teste2Component,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,9 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     MaterialModule.forRoot(),
     StudentsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SmartTableModule,
+    MdDataTableModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -36,7 +36,7 @@ export class StudentsListComponent implements OnInit {
       className: ['office-header', 'text-success'],
       name: 'email',
       sort: 'asc',
-      filtering: { placeholder: 'Buscar por nome'}
+      filtering: { placeholder: 'Buscar por email'}
     },
     {
       title: 'Ação',
@@ -69,7 +69,7 @@ export class StudentsListComponent implements OnInit {
     console.log(this.data);
     this.onChangeTable(this.config);
     this.studentsService.getList().subscribe(students => {
-      students.data.forEach(value => {value.acao = `<button md-raised-button (click)="editClick(row)" routerLink routerLink=".">Editar</button>
+      students.data.forEach(value => {value.acao = `<a md-raised-button routerLink="/add">Editar</a>
         <a md-raised-button routerLink=".">Excluir</a>`})
       this.data = students.data;
       this.length = students.total;

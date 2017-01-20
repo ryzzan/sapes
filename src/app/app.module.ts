@@ -15,8 +15,6 @@ import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
 import { TesteComponent } from './teste/teste.component';
 
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { Teste2Component } from './teste/teste2/teste2.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +22,6 @@ import { Teste2Component } from './teste/teste2/teste2.component';
     SidenavComponent,
     HomeComponent,
     TesteComponent,
-    Teste2Component,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +30,6 @@ import { Teste2Component } from './teste/teste2/teste2.component';
     MaterialModule.forRoot(),
     StudentsModule,
     AppRoutingModule,
-    Ng2SmartTableModule,
     MdDataTableModule.forRoot()
   ],
   providers: [],

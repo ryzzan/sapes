@@ -1,12 +1,11 @@
-md-sidenav {
-  width: 300px;
- }
 md-card.menu-card{
   color:white;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent),
-  url("http://cssslider.com/sliders/demo-10/data1/images/3.jpg") no-repeat center center;
+  url("/assets/qualquercoisa2.jpg") no-repeat center center;
   padding-left: 20px;
   padding-top: 69px;
+  background-size: cover;
+  box-shadow: none;
 }
 md-card.menu-card md-card-header{
   margin-bottom: 0;
@@ -20,13 +19,33 @@ md-card.menu-card md-card-title{
 md-card.menu-card md-card-actions{
   padding-left: 5px;
 }
-
+md-list{
+  padding-top: 0;
+}
+md-list md-list-item{
+  color:white;
+}
+md-list-item .material-icons{
+  height: auto;
+}
+md-list-item .md-list-text{
+  font-size: 14px;
+}
 a{
   width: 100%;
   cursor: pointer;
   text-decoration: none;
 }
+a md-list-item{
+  border-left:5px solid transparent;
+}
 a:hover md-list-item,
 a.sidenav--active md-list-item{
   background:#e8e8e8;
+  color: #1b5e20;
+  border-left-color:#1b5e20;
+}
+
+.md-list-text h4{
+  font-size:  14px;
 }

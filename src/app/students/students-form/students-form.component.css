@@ -2,7 +2,7 @@
 .example-full-width {
   width: 98%;
   margin-right: 5px;
-  font-size: 15px;
+  
 }
 
 .cpf {
@@ -13,8 +13,6 @@
   width: 100%;
   color: gray;
   margin-left: 20px;
-  font-size: 15px;
-
 }
 
 .md-tab {

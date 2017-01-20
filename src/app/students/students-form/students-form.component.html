@@ -11,12 +11,12 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Nome do aluno">
+          <input md-input placeholder="1.1 - Nome do aluno">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
-        <md-radio-group class="example-section"><i class="material-icons">wc</i>Selecione seu gênero<br>
+        <md-radio-group class="example-section"><i class="material-icons">wc</i>1.2 - Selecione seu gênero<br>
           <md-radio-button class="radio-before" value="1">Masculino</md-radio-button>
           <md-radio-button class="radio-after" value="2">Feminino</md-radio-button>
         </md-radio-group>
@@ -29,31 +29,31 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Informe o RG">
+          <input md-input placeholder="1.4 - Informe o RG">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
-        <md-radio-group class="example-section"><i class="material-icons">school</i>Estudou/estuda em que tipo de escola?<br>
+        <md-radio-group class="example-section"><i class="material-icons">school</i>1.5 - Estudou/estuda em que tipo de escola?<br>
           <md-radio-button class="radio-before" value="1">Escola Particular</md-radio-button>
           <md-radio-button class="radio-after" value="2">Escola Pública</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
       
       <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
-          <md-select class="example-full-width" placeholder="Cor / Etnia">
+          <md-select class="example-full-width" placeholder="1.6 - Cor / Etnia">
           <md-option *ngFor="let colour of colours">{{colour}}</md-option>
         </md-select>
       </md-grid-tile>
       <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">accessible</i>Possui alguma deficiência (PcD)?<br>
+        <md-radio-group class="example-section"><i class="material-icons">accessible</i>1.7 - Possui alguma deficiência (PcD)?<br>
           <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
           <md-radio-button class="radio-after" value="2">Não</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
-          <md-select disabled class="example-full-width" placeholder="Qual deficiência?">
+          <md-select disabled class="example-full-width" placeholder="1.8 - Qual deficiência?">
           <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
         </md-select>
       </md-grid-tile>
@@ -64,85 +64,85 @@
   <md-tab label="TURMA">
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="Mês de inicio do curso">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.1 - Mês de inicio do curso">
+          <md-option *ngFor="let mes of meses">{{mes}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="Ano de inicio do curso">
-          <md-option style="padding-right:20px" *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.2 - Ano de inicio do curso">
+          <md-option style="padding-right:20px" *ngFor="let ano of anos">{{ano}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="Mês de término do curso">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.3 - Mês de término do curso">
+          <md-option *ngFor="let mes of meses">{{mes}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="Ano de término do curso">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.4 - Ano de término do curso">
+          <md-option>2017</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">class</i>
-        <md-select class="example-full-width" placeholder="Nome do curso">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.5 - Nome do curso">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-select class="example-full-width" placeholder="Selecione o DR">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.6 - Selecione o DR">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">business</i>
-        <md-select class="example-full-width" placeholder="Unidade SENAI">
-          <md-option *ngFor="let debility of disabilities">{{debility}}</md-option>
+        <md-select class="example-full-width" placeholder="2.7 - Unidade SENAI">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">list</i>
-         <md-select class="example-full-width" placeholder="Modalide">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.8 - Modalide">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">language</i>
-         <md-select class="example-full-width" placeholder="Área tecnológica">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.8 - Área tecnológica">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">work</i>
-         <md-select class="example-full-width" placeholder="Ocupação">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.9 - Ocupação">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">people_outline</i>
-         <md-select class="example-full-width" placeholder="Código da turma">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.10 - Código da turma">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
-         <md-select class="example-full-width" placeholder="Educação à distância - EAD?">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.11 - Educação à distância - EAD?">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">monetization_on</i>
-         <md-select class="example-full-width" placeholder="Gratuidade regimental?">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="example-full-width" placeholder="2.12 - Gratuidade regimental?">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">location_city</i>Convênio?<br>
+        <md-radio-group class="example-section"><i class="material-icons">location_city</i>2.13 - Convênio?<br>
           <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
           <md-radio-button class="radio-after" value="2">Não</md-radio-button>
         </md-radio-group>
@@ -150,19 +150,19 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_city</i>
         <md-input-container class="example-full-width">
-          <input disabled md-input placeholder="Qual convênio?">
+          <input disabled md-input placeholder="2.14 - Qual convênio?">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">school</i>Pronatec?<br>
+        <md-radio-group class="example-section"><i class="material-icons">school</i>2.15 - Pronatec?<br>
           <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
           <md-radio-button class="radio-after" value="2">Não</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
-         <md-select disabled class="example-full-width" placeholder="Qual Pronatec?">
+         <md-select disabled class="example-full-width" placeholder="2.16 - Qual Pronatec?">
           <md-option *ngFor="let colour of colours">{{colour}}</md-option>
         </md-select>
       </md-grid-tile>
@@ -173,67 +173,67 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Endereço">
+          <input md-input placeholder="3.1 - Endereço">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Número">
+          <input md-input placeholder="3.2 - Número">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Complemento">
+          <input md-input placeholder="3.3 - Complemento">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Bairro">
+          <input md-input placeholder="3.4 - Bairro">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Cidade">
+          <input md-input placeholder="3.5 - Cidade">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="UF">
+          <input md-input placeholder="3.6 - UF">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="CEP">
+          <input md-input placeholder="3.7 - CEP">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Telefone residencial">
+          <input md-input placeholder="3.8 - Telefone residencial">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Telefone celular">
+          <input md-input placeholder="3.9 - Telefone celular">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Telefone recado">
+          <input md-input placeholder="3.10 - Telefone recado">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
         <md-input-container class="example-full-width">
-          <input md-input placeholder="Telefone recado">
+          <input md-input placeholder="3.11 - Telefone recado">
         </md-input-container>
       </md-grid-tile>
 
@@ -244,14 +244,15 @@
   <md-tab label="SITUAÇÃO PROFISSIONAL">
     <md-grid-list cols="2" rowHeight="100px">
         <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
             <md-radio-button value="1">Sim</md-radio-button>
             <md-radio-button value="2">Não</md-radio-button>
           </md-radio-group>
         </md-grid-tile>
-
+    </md-grid-list>
+    <md-grid-list cols="2" rowHeight="360px">
         <md-grid-tile [colspan]="1">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Especifique abaixo sua situação profissional:<br>
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.2 - Especifique abaixo sua situação profissional:<br>
             <md-radio-button value="">Estágio</md-radio-button><br>
             <md-radio-button value="">Aluno Cotista/Aprendiz</md-radio-button><br>
             <md-radio-button value="">Empresário/Sócio proprietário</md-radio-button><br>
@@ -267,18 +268,17 @@
         </md-grid-tile>
 
         <md-grid-tile [colspan]="1">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>Especifique abaixo sua situação profissional:<br>
-            <md-radio-button value="">Estágio</md-radio-button><br>
-            <md-radio-button value="">Aluno Cotista/Aprendiz</md-radio-button><br>
-            <md-radio-button value="">Empresário/Sócio proprietário</md-radio-button><br>
-            <md-radio-button value="">Empregado com carteira assinada</md-radio-button><br>
-            <md-radio-button value="">Empregado sem carteira assinada</md-radio-button><br>
-            <md-radio-button value="">Empregado temporário com carteira assinada</md-radio-button><br>
-            <md-radio-button value="">Empregado temporário sem carteira assinada</md-radio-button><br>
-            <md-radio-button value="">Profissional liberal (dentista, advogado...)</md-radio-button><br>
-            <md-radio-button value="">Autônomo (por conta própria)</md-radio-button><br>
-            <md-radio-button value="">Funcionário público/militar</md-radio-button><br>
-            <md-radio-button value="">Outra situação? Qual?</md-radio-button><br>
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.3 - Especifique abaixo sua situação profissional:<br>
+            <md-radio-button value="">Menos de 1 SM</md-radio-button><br>
+            <md-radio-button value="">1 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 1 a 2 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 2 a 3 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 3 a 5 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 5 a 7 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 7 a 10 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 10 a 15 SM</md-radio-button><br>
+            <md-radio-button value="">Mais 5 a 20 SM</md-radio-button><br>
+            <md-radio-button value="">Mais de 20 SM</md-radio-button><br>
           </md-radio-group>
         </md-grid-tile>
 
@@ -286,7 +286,22 @@
 
   </md-tab>
   <md-tab label="AVALIAÇÃO DO SENAI">
-  <h1>Some more tab content</h1>
-  <p>...</p>
+    <md-grid-list cols="2" rowHeight="100px">
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+            <md-radio-button class="radio-before" value="">0</md-radio-button>
+            <md-radio-button class="radio-before" value="">1</md-radio-button>
+            <md-radio-button class="radio-before" value="">2</md-radio-button>
+            <md-radio-button class="radio-before" value="">3</md-radio-button>
+            <md-radio-button class="radio-before" value="">4</md-radio-button>
+            <md-radio-button class="radio-before" value="">5</md-radio-button>
+            <md-radio-button class="radio-before" value="">6</md-radio-button>
+            <md-radio-button class="radio-before" value="">7</md-radio-button>
+            <md-radio-button class="radio-before" value="">8</md-radio-button>
+            <md-radio-button class="radio-before" value="">9</md-radio-button>
+            <md-radio-button class="radio-before" value="">10</md-radio-button>
+          </md-radio-group>
+        </md-grid-tile>
+    </md-grid-list>
   </md-tab>
 </md-tab-group>

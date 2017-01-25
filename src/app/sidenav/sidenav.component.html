@@ -4,6 +4,7 @@
     <md-card-subtitle>Administrador</md-card-subtitle>
   </md-card-header>
   <md-card-actions>
+    <button md-icon-button><md-icon>home</md-icon></button>
     <button md-icon-button><md-icon>exit_to_app</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="menu"><md-icon>settings</md-icon></button>
     <md-menu #menu="mdMenu">
@@ -22,8 +23,8 @@
   <a routerLinkActive="sidenav--active" routerLink="students">
     <md-list-item>
       <md-icon md-list-avatar>business_center</md-icon>
-      <h5 md-line>Avaliação do Egresso</h5>
-      <p md-line>Fase 3</p>
+      <h5 md-line>Avaliação do Concluinte</h5>
+      <p md-line><span class="md-label">Fase 1</span></p>
     </md-list-item>
   </a>
   <md-divider></md-divider>
@@ -31,15 +32,15 @@
     <md-list-item>
       <md-icon md-list-avatar>supervisor_account</md-icon>
       <h4 md-line>Acomp. de Egressos</h4>
-      <p md-line>Fase 2</p>
+      <p md-line><span class="md-label">Fase 2</span></p>
     </md-list-item>
   </a>
   <md-divider></md-divider>
   <a routerLinkActive="sidenav--active" routerLink="teste">
     <md-list-item>
       <md-icon md-list-avatar>business_center</md-icon>
-      <h4 md-line>Avaliação do Egresso</h4>
-      <p md-line>Fase 3</p>
+      <h4 md-line>Avaliação da Empresa</h4>
+      <p md-line><span class="md-label">Fase 3</span></p>
     </md-list-item>
   </a>
 </md-list>

@@ -30,3 +30,25 @@ label.md-radio-label
     font-weight: normal;
 }
 
+.md-label{
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 80%;
+  font-weight: 700;
+  line-height: 1;
+  background-color: #1b5e20;
+  color: #f9f9f9;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.md-label-white{  
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}

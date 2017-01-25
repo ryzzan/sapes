@@ -41,11 +41,25 @@ a md-list-item{
 }
 a:hover md-list-item,
 a.sidenav--active md-list-item{
-  background:#e8e8e8;
+  background:#f9f9f9;
   color: #1b5e20;
   border-left-color:#1b5e20;
 }
 
 .md-list-text h4{
   font-size:  14px;
+}
+
+.md-label{
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 80%;
+  font-weight: 700;
+  line-height: 1;
+  background-color: #1b5e20;
+  color: #f9f9f9;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }

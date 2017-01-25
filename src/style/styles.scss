@@ -12,10 +12,17 @@ md-card.menu-card .md-card-header-text{
   margin-left: 0;
   color: white;
 }
-md-sidenav {
+md-toolbar{
+  background: #f9f9f9; 
+  border-bottom : 1px solid #ddd; 
+}
+md-toolbar h2{
+  font-size: 14px;
+  color: #999;
+}
+md-sidenav{
   background: #4caf50;
 }
-
 
 label.md-input-placeholder,
 label.md-radio-label

@@ -1,13 +1,23 @@
 <md-card class="menu-card">
   <md-card-header>
-    <md-card-title>Leonardo Victor</md-card-title>
+    <md-card-title>Leonardo Victor <span class="md-label md-label-white">DR / AL</span></md-card-title>
     <md-card-subtitle>Administrador</md-card-subtitle>
   </md-card-header>
   <md-card-actions>
-    <button md-icon-button><md-icon>home</md-icon></button>
-    <button md-icon-button><md-icon>exit_to_app</md-icon></button>
-    <button md-icon-button [mdMenuTriggerFor]="menu"><md-icon>settings</md-icon></button>
-    <md-menu #menu="mdMenu">
+    <button md-icon-button mdTooltip="Página inicial"><md-icon>home</md-icon></button>    
+    <button md-icon-button [mdMenuTriggerFor]="menudate" mdTooltip="Alterar Ano Base!"><md-icon>date_range</md-icon></button>
+    <md-menu #menudate="mdMenu">
+      <button md-menu-item>
+        <md-icon>date_range</md-icon>
+        <span>2016</span>
+      </button>
+      <button md-menu-item>
+        <md-icon>date_range</md-icon>
+        <span>2018</span>
+      </button>
+    </md-menu>
+    <button md-icon-button [mdMenuTriggerFor]="menuconfig" mdTooltip="Minhas Configurações"><md-icon>settings</md-icon></button>  
+    <md-menu #menuconfig="mdMenu">
       <button md-menu-item>
         <md-icon>person</md-icon>
         <span>Minha Conta</span>
@@ -16,7 +26,10 @@
         <md-icon>build</md-icon>
         <span>Sistema</span>
       </button>
-    </md-menu>
+    </md-menu>    
+
+    <button md-icon-button mdTooltip="Sair do Sistema"><md-icon>exit_to_app</md-icon></button>
+
   </md-card-actions>
 </md-card>
 <md-list>

@@ -11,7 +11,7 @@ import { DatapickerComponent } from '../datapicker/datapicker.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2TableModule,NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { StudentsService } from './students.service'
+import { StudentsService } from './shared/students.service'
 import { StudentsListComponent } from './students-list/students-list.component';
 
 

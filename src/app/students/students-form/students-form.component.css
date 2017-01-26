@@ -2,7 +2,7 @@
 .example-full-width {
   width: 98%;
   margin-right: 5px;
-  
+
 }
 
 .cpf {
@@ -30,4 +30,8 @@
 
 .radio-after {
   padding-left: 15px;
+}
+
+.md-teste{
+  padding: 0 20px;
 }

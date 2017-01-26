@@ -1,4 +1,4 @@
-import { StudentsService } from '../students.service';
+import { StudentsService } from '../shared/students.service';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 // import { TableData } from './table-data';
 // import

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions  } from '@angular/http';
-
+import { Student } from  './student';
 @Injectable()
 export class StudentsService {
-  private students: any[] = [];
+  private students: Student[] = [];
   getStudents(){
     return this.students
   }

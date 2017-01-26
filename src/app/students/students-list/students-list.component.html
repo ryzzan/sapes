@@ -1,5 +1,3 @@
-<h3><a md-mini-fab routerLink="add"><md-icon>add</md-icon></a> Adicionar Egressos</h3>
-<br>
 <div class="row">
   <div class="col-md-4">
     <input *ngIf="config.filtering" placeholder="Buscar em todos os campos"
@@ -38,8 +36,8 @@
   </div>
 </td>
 </ng-table>
-<pre class="card card-block card-header">Página: {{page}} de {{numPages}}</pre>
-<pagination nextText="Próximo" previousText="Anterior" firstText="Primeira" lastText="Ultima" *ngIf="config.paging"
+<md-toolbar color="transparent">
+  <pagination nextText="Próximo" previousText="Anterior" firstText="Primeira" lastText="Ultima" *ngIf="config.paging"
             class="pagination-sm"
             [(ngModel)]="page"
             [totalItems]="length"
@@ -49,4 +47,5 @@
             [rotate]="false"
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
-</pagination>
+  </pagination>
+</md-toolbar>

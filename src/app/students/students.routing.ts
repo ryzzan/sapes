@@ -9,10 +9,9 @@ import { StudentsListComponent } from './students-list/students-list.component';
 
 const studentsRoutes: Routes = [{
   path: 'students', component: StudentsComponent, children: [
-    { path: '', component: StudentsListComponent },
+    { path: '', component: StudentsListComponent,  pathMatch: 'full'},
     { path: 'add', component: StudentsFormComponent },
-    { path: ':id', component: StudentsComponent },
-    { path: ':id/edit', component: StudentsComponent }
+    { path: ':id', component: StudentsFormComponent }
   ]
 }];
 

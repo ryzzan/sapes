@@ -1,6 +1,6 @@
 import { NgModule} from '@angular/core';
 import { CommonModule} from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
@@ -20,6 +20,7 @@ import { StudentsListComponent } from './students-list/students-list.component';
     CommonModule,
     StudentsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     TextMaskModule,
     Ng2TableModule,
@@ -29,7 +30,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
   exports: [    NgTableComponent,
     NgTableFilteringDirective,
     NgTablePagingDirective,
-    NgTableSortingDirective
+    NgTableSortingDirective,
+    MaterialModule
   ],
   declarations: [
     DatapickerComponent,

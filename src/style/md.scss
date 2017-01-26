@@ -21,3 +21,7 @@
 @import '~ng2-md-datatable/md-datatable-theme';
 
 @include md-datatable-theme($theme);
+
+.md-tab-body-content{
+  padding: 10px 25px;
+}

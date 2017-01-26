@@ -1,5 +1,6 @@
 import { StudentsService } from '../shared/students.service';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Router } from '@angular/router';
 // import { TableData } from './table-data';
 // import
 
@@ -39,8 +40,14 @@ export class StudentsListComponent implements OnInit {
       filtering: { placeholder: 'Buscar por email'}
     },
     {
-      title: 'Ação',
-      name: 'acao',
+      title: '',
+      name: 'editar',
+      sort: false,
+      className: ['actions']
+    },
+    {
+      title: '',
+      name: 'excluir',
       sort: false,
       className: ['actions']
     }
@@ -60,18 +67,41 @@ export class StudentsListComponent implements OnInit {
 
   private data:Array<any> = [];
 
-  public constructor(private studentsService: StudentsService) {;
+  public constructor(
+    private router: Router,
+    private studentsService: StudentsService
+  ) {
     this.length = this.data.length;
-    // this.data = this.studentsService.getStudents();
   }
 
+  deleteStudent(student){
+    if (confirm("Are you sure you want to delete " + student.name + "?")) {
+      var index = this.data.indexOf(student);
+      this.data.splice(index, 1);
+
+      this.studentsService.deleteStudent(student.id)
+        .subscribe(
+          ()=>{
+            this.length = this.data.length;
+            this.onChangeTable(this.config);
+          },
+          err => {
+            alert("Could not delete student.");
+            // Revert the view back to its original state
+            this.data.splice(index, 0, student);
+          });
+      }
+  }
   public ngOnInit():void {
     console.log(this.data);
     this.onChangeTable(this.config);
     this.studentsService.getList().subscribe(students => {
-      students.data.forEach(value => {value.acao = `<a md-raised-button routerLink="/add">Editar</a>
-        <a md-raised-button routerLink=".">Excluir</a>`})
+
       this.data = students.data;
+      students.data.forEach(value => {
+        value.excluir = `<a md-raised-button routerLink="excluir">Excluir</a>`;
+        value.editar = `<a md-raised-button routerLink="edit">Editar</a>`;
+      })
       this.length = students.total;
       this.onChangeTable(this.config);
    });
@@ -138,8 +168,10 @@ export class StudentsListComponent implements OnInit {
     filteredData.forEach((item:any) => {
       let flag = false;
       this.columns.forEach((column:any) => {
-        if (item[column.name].toString().match(this.config.filtering.filterString)) {
-          flag = true;
+        if(item[column.name] != null){
+          if (item[column.name].toString().match(this.config.filtering.filterString)) {
+            flag = true;
+          }
         }
       });
       if (flag) {
@@ -168,6 +200,13 @@ export class StudentsListComponent implements OnInit {
 
   public onCellClick(data: any): any {
     console.log(data);
+    if(data.column == "excluir"){
+      return this.deleteStudent(data.row);
+    }
+    if(data.column == "editar"){
+      return  this.router.navigate(['/students', data.row.id]);
+    }
+
   }
 
 }

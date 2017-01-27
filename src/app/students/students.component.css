@@ -1,0 +1,11 @@
+.card-content{
+  padding: 0;
+}
+.md-sidenav-content{
+  padding: 20px;
+}
+.add{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+}

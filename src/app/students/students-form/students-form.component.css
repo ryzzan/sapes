@@ -2,13 +2,18 @@
 .example-full-width {
   width: 98%;
   margin-right: 5px;
-  
+
 }
 
 .cpf {
   margin: auto;
 }
-
+.invalido{
+  display: none;
+}
+.invalid{
+  display: block;
+}
 .example-section {
   width: 100%;
   color: gray;
@@ -31,3 +36,4 @@
 .radio-after {
   padding-left: 15px;
 }
+

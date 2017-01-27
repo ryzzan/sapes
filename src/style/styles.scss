@@ -52,3 +52,9 @@ label.md-radio-label
   vertical-align: baseline;
   border-radius: .25em;
 }
+.validation .md-hint{
+  display: none;
+}
+.invalid .md-hint{
+  display: block;
+}

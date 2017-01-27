@@ -1,6 +1,6 @@
 import { NgModule} from '@angular/core';
 import { CommonModule} from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
@@ -11,7 +11,7 @@ import { DatapickerComponent } from '../datapicker/datapicker.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2TableModule,NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { StudentsService } from './students.service'
+import { StudentsService } from './shared/students.service'
 import { StudentsListComponent } from './students-list/students-list.component';
 
 
@@ -20,6 +20,7 @@ import { StudentsListComponent } from './students-list/students-list.component';
     CommonModule,
     StudentsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     TextMaskModule,
     Ng2TableModule,
@@ -29,7 +30,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
   exports: [    NgTableComponent,
     NgTableFilteringDirective,
     NgTablePagingDirective,
-    NgTableSortingDirective
+    NgTableSortingDirective,
+    MaterialModule
   ],
   declarations: [
     DatapickerComponent,

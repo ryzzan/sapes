@@ -15,6 +15,8 @@
 }
 // Import a pre-built theme
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+$primary: #ccc;
+
 
 // Using the $theme variable from the pre-built theme you can call the theming function
 @include candy-carousel-theme($theme);

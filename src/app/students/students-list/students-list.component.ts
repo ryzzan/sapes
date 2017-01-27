@@ -37,7 +37,7 @@ export class StudentsListComponent implements OnInit {
       className: ['office-header'],
       name: 'email',
       sort: 'asc',
-      filtering: { placeholder: 'Buscar por email'}
+      filtering: { placeholder: 'Buscar por e-mail'}
     },
     {
       title: '',

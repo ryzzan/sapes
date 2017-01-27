@@ -49,7 +49,10 @@ export class StudentsFormComponent implements OnInit {
       cpf_number: [null,
         Validators.required
       ],
-      name: [],
+      name: [
+        '',
+        Validators.required
+      ],
       rg_number: [null,
         Validators.required
       ],

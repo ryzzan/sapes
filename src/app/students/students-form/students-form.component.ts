@@ -62,7 +62,8 @@ export class StudentsFormComponent implements OnInit {
       gender: [],
       distance_education: [],
       ethnicity_id: [],
-      disability_id: [this.student.disability_id]
+      disability_id: [this.student.disability_id],
+      birth_date: [],
     });
       var id = this.route.params.subscribe(params => {
       var id = params['id'];

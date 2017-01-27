@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
 
@@ -11,7 +11,8 @@ const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 })
 export class DatapickerComponent implements OnInit {
 
-  date: any;
+  @Input() date: any;
+  @Input() placeholder: string;
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   mask: any;
 

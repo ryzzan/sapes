@@ -8,7 +8,12 @@
 .cpf {
   margin: auto;
 }
-
+.invalido{
+  display: none;
+}
+.invalid{
+  display: block;
+}
 .example-section {
   width: 100%;
   color: gray;

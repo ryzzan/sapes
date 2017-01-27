@@ -44,14 +44,13 @@
         </md-select>
       </md-grid-tile>
       <md-grid-tile [colspan]="1">
-        <md-radio-group [(ngModel)]="student.disability" formControlName="disability" class="example-section">
+        <md-radio-group [value]="disabilityFlag" (change)="disabilityFlag = $event.value" class="example-section">
           <i class="material-icons">accessible</i>1.7 - Possui alguma deficiência (PcD)?<br>
           <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
           <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
         </md-radio-group>
-
       </md-grid-tile>
-      <md-grid-tile  *ngIf="student.disability" [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
+      <md-grid-tile  *ngIf="disabilityFlag" [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
         <md-select [(ngModel)]="student.disability_id"  formControlName="disability_id" class="example-full-width" placeholder="1.8 - Qual deficiência?">
           <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
         </md-select>

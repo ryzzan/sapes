@@ -25,7 +25,6 @@ export class Student {
   cpf_number: number;
   rg_number: number;
   origin_id: number;
-  disability: boolean;
   disability_id: number;
   city_id: number;
   // constructor(values: Object = {}){

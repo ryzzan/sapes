@@ -17,7 +17,7 @@ export class StudentsFormComponent implements OnInit {
   title: string;
   student: Student = new Student();
 
-
+  disabilityFlag: boolean;
   ethnicities = [];
   disabilities = [];
   meses = [];
@@ -62,7 +62,6 @@ export class StudentsFormComponent implements OnInit {
       gender: [],
       distance_education: [],
       ethnicity_id: [],
-      disability: [this.student.disability],
       disability_id: [this.student.disability_id]
     });
       var id = this.route.params.subscribe(params => {
@@ -74,7 +73,10 @@ export class StudentsFormComponent implements OnInit {
 
       this.studentsService.getStudent(id)
         .subscribe(
-          student => {console.log(student);this.student = student},
+          student => {
+            this.student = student;
+            this.disabilityFlag = this.student.disability_id>0;
+          },
           response => {
             if (response.status == 404) {
               this.router.navigate(['NotFound']);
@@ -103,6 +105,9 @@ export class StudentsFormComponent implements OnInit {
     userValue.city_id = 2;
     userValue.modality_id = 3;
     userValue.start_month = 3;
+    if(!this.disabilityFlag){
+      userValue.disability_id = null;
+    }
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);

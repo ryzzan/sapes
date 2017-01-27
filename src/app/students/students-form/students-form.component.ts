@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
+const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
+
 import { Student } from '../shared/student';
 import { StudentsService } from '../shared/students.service';
 import { BasicValidators } from '../../shared/basic-validators';
@@ -16,6 +19,9 @@ export class StudentsFormComponent implements OnInit {
   form: FormGroup;
   title: string;
   student: Student = new Student();
+
+  autoCorrectedDatePipe = autoCorrectedDatePipe;
+  mask: any;
 
   disabilityFlag: boolean;
   ethnicities = [];
@@ -32,6 +38,8 @@ export class StudentsFormComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService
   ) {
+    this.mask = [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/];
+
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
     this.estagios = ['Estágio','Aluno Cotista/Aprendiz','Empresário/Sócio proprietário','Empregado com carteira assinada','Empregado sem carteira assinada','Empregado temporário com carteira assinada','Empregado temporário sem carteira assinada','Profissional liberal (dentista, advogado...)','Autônomo (por conta própria)','Funcionário público/militar','Outra situação? Qual?'];

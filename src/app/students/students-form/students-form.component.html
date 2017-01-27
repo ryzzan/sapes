@@ -3,16 +3,20 @@
   <md-tab label="ALUNO">
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
-        <md-input-container class="example-full-width">
-          <input formControlName="cpf_number"  md-input placeholder="Informe o CPF">
+        <md-input-container class="example-full-width validation" [class.invalid]="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid">
+          <input md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask, pipe: autoCorrectedDatePipe}" placeholder="Informe o CPF *">
+          <md-hint class="valid-msg" *ngIf="form.controls['name'].touched && !form.controls['name'].valid" minlength="5" maxlength="100" align="start">Valor invalido (000.000.000-00)</md-hint>
+          <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
     </md-grid-list>
 
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
-        <md-input-container hintLabel="Digite um campo valido" class="validation example-full-width" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
-          <input md-input formControlName="name" placeholder="1.1 - Nome do aluno" type="text">
+        <md-input-container class="example-full-width" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
+          <input #name md-input formControlName="name" minlength="5" maxlength="100" placeholder="1.1 - Nome do aluno" type="text">
+          <md-hint class="valid-msg" *ngIf="form.controls['name'].touched && !form.controls['name'].valid" minlength="5" maxlength="100" align="start">Valor invalido (5 até 100 caracteres)</md-hint>
+          <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -292,7 +296,7 @@
 <md-toolbar color="transparent">
 
     <button md-raised-button type="submit"
-            [disabled]="!form.valid">Salvar <md-icon>send</md-icon>
+            [disabled]="!form.valid" (click)="teste($event);">Salvar <md-icon>send</md-icon>
     </button>
     <button md-raised-button type="reset">Limpar <md-icon>restore</md-icon>
     </button>

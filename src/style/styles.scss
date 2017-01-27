@@ -13,8 +13,8 @@ md-card.menu-card .md-card-header-text{
   color: white;
 }
 md-toolbar{
-  background: #f9f9f9; 
-  border-bottom : 1px solid #ddd; 
+  background: #f9f9f9;
+  border-bottom : 1px solid #ddd;
 }
 md-toolbar h2{
   font-size: 14px;
@@ -44,7 +44,7 @@ label.md-radio-label
   border-radius: .25em;
 }
 
-.md-label-white{  
+.md-label-white{
   background-color: #fff;
   color: #333;
   text-align: center;
@@ -52,9 +52,7 @@ label.md-radio-label
   vertical-align: baseline;
   border-radius: .25em;
 }
-.validation .md-hint{
-  display: none;
-}
-.invalid .md-hint{
-  display: block;
+
+.invalid .valid-msg{
+  color: red;
 }

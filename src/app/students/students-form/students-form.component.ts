@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Student } from '../shared/student';
@@ -62,8 +62,7 @@ export class StudentsFormComponent implements OnInit {
       gender: [],
       distance_education: [],
       ethnicity_id: [],
-      disability_id: [this.student.disability_id],
-      birth_date: [],
+      disability_id: [this.student.disability_id]
     });
       var id = this.route.params.subscribe(params => {
       var id = params['id'];
@@ -77,6 +76,7 @@ export class StudentsFormComponent implements OnInit {
           student => {
             this.student = student;
             this.disabilityFlag = this.student.disability_id>0;
+              (<FormGroup>this.form).patchValue(this.student, { onlySelf: true });
           },
           response => {
             if (response.status == 404) {

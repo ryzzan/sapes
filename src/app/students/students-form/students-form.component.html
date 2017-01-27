@@ -4,7 +4,7 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width">
-          <input formControlName="cpf_number" [(ngModel)]="student.cpf_number" md-input placeholder="Informe o CPF">
+          <input formControlName="cpf_number"  md-input placeholder="Informe o CPF">
         </md-input-container>
       </md-grid-tile>
     </md-grid-list>
@@ -12,12 +12,12 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
         <md-input-container class="example-full-width">
-          <input md-input formControlName="name" placeholder="1.1 - Nome do aluno" [(ngModel)]="student.name" type="text" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
+          <input md-input formControlName="name" placeholder="1.1 - Nome do aluno" type="text" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
-        <md-radio-group [(ngModel)]="student.gender"  formControlName="gender" class="example-section"><i class="material-icons">wc</i>1.2 - Selecione seu gênero<br>
+        <md-radio-group formControlName="gender" class="example-section"><i class="material-icons">wc</i>1.2 - Selecione seu gênero<br>
           <md-radio-button *ngFor="let gender of genders" class="radio-before" [value]="gender.id">{{gender.value}}</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
@@ -28,18 +28,18 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
         <md-input-container class="example-full-width">
-          <input md-input [(ngModel)]="student.rg_number" formControlName="rg_number" placeholder="1.4 - Informe o RG">
+          <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
-        <md-radio-group class="example-section" formControlName="distance_education" [(ngModel)]="student.distance_education"><i class="material-icons">school</i>1.5 - Estudou/estuda em que tipo de escola?<br>
+        <md-radio-group class="example-section" formControlName="distance_education"><i class="material-icons">school</i>1.5 - Estudou/estuda em que tipo de escola?<br>
           <md-radio-button *ngFor="let education of distance_education" class="radio-before" [value]="education.id">{{education.value}}</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
-        <md-select class="example-full-width" formControlName="ethnicity_id" [(ngModel)]="student.ethnicity_id" placeholder="1.6 - Cor / Etnia">
+        <md-select class="example-full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia">
           <md-option *ngFor="let ethnicity of ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
         </md-select>
       </md-grid-tile>
@@ -51,7 +51,7 @@
         </md-radio-group>
       </md-grid-tile>
       <md-grid-tile  *ngIf="disabilityFlag" [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
-        <md-select [(ngModel)]="student.disability_id"  formControlName="disability_id" class="example-full-width" placeholder="1.8 - Qual deficiência?">
+        <md-select formControlName="disability_id" class="example-full-width" placeholder="1.8 - Qual deficiência?">
           <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
         </md-select>
       </md-grid-tile>
@@ -167,7 +167,7 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="example-full-width">
-          <input  [(ngModel)]="student.address" formControlName="address" md-input placeholder="3.1 - Endereço">
+          <input formControlName="address" md-input placeholder="3.1 - Endereço">
         </md-input-container>
       </md-grid-tile>
 
@@ -209,7 +209,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="example-full-width">
-          <input [(ngModel)]="student.cell_phone" formControlName="cell_phone" md-input placeholder="3.8 - Telefone residencial">
+          <input formControlName="cell_phone" md-input placeholder="3.8 - Telefone residencial">
         </md-input-container>
       </md-grid-tile>
 

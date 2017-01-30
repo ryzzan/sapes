@@ -4,7 +4,7 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width validation" [class.invalid]="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid">
-          <input md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask, pipe: autoCorrectedDatePipe}" placeholder="Informe o CPF *">
+          <input md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask.cpf}" placeholder="Informe o CPF *">
           <md-hint class="valid-msg" *ngIf="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid" minlength="5" maxlength="100" align="start">Valor invalido (000.000.000-00)</md-hint>
           <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
@@ -27,7 +27,9 @@
       </md-grid-tile>
       <md-grid-tile [colspan]="1">
         <i class="material-icons">date_range</i>
-        <datapicker [date]="student.birth_date" placeholder="1.3 - Data de nascimento" class="example-full-width"></datapicker>
+        <md-input-container style="width:100%">
+          <input md-input class="example-full-width" [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}" placeholder="1.3 - Data de nascimento" (blur)="'OI'">
+        </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>

@@ -88,6 +88,10 @@ export class StudentsFormComponent implements OnInit {
             this.student = student;
             this.disabilityFlag = this.student.disability_id>0;
               (<FormGroup>this.form).patchValue(this.student, { onlySelf: true });
+            let el = document.querySelectorAll('input[formcontrolname]');
+            for(let indice = el.length; indice>0; indice--){
+              el[indice-1].dispatchEvent(new Event('input'));
+            }
           },
           response => {
             if (response.status == 404) {

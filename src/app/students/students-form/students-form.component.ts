@@ -16,14 +16,19 @@ import { BasicValidators } from '../../shared/basic-validators';
   styleUrls: ['./students-form.component.css']
 })
 export class StudentsFormComponent implements OnInit {
-  form: FormGroup;
   title: string;
+  form: FormGroup;
   student: Student = new Student();
-
+  mask: any = {
+      cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
+      date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
-  mask: any;
+  triedSend: boolean = false;
+  canSave: boolean = false;
 
   disabilityFlag: boolean;
+
   ethnicities = [];
   disabilities = [];
   meses = [];
@@ -32,16 +37,13 @@ export class StudentsFormComponent implements OnInit {
   estagios = [];
   genders = [];
   distance_education = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService
   ) {
-    this.mask = {
-      cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
-      date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
-    }
 
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
@@ -70,6 +72,9 @@ export class StudentsFormComponent implements OnInit {
       cell_phone: ['',
         Validators.required
       ],
+      birth_date: ['',
+        Validators.required
+      ],
       address: ['',[
         Validators.required
       ]],
@@ -82,19 +87,17 @@ export class StudentsFormComponent implements OnInit {
       var id = params['id'];
 
       this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
-      if (!id)
-        return;
+      if (!id) return this.canSave = true;
 
       this.studentsService.getStudent(id)
         .subscribe(
           student => {
             this.student = student;
             this.disabilityFlag = this.student.disability_id>0;
-              (<FormGroup>this.form).patchValue(this.student, { onlySelf: true });
-            let el = document.querySelectorAll('input[formcontrolname]');
-            for(let indice = el.length; indice>0; indice--){
-              el[indice-1].dispatchEvent(new Event('input'));
-            }
+            this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
+            this.canSave = true;
+              (<FormGroup>this.form).patchValue(this.student);
+            setTimeout(()=>this.bugFixPlaceholder(), 200);
           },
           response => {
             if (response.status == 404) {
@@ -104,7 +107,22 @@ export class StudentsFormComponent implements OnInit {
     });
 
   }
-   save() {
+  bugFixPlaceholder(info = null){
+    if(info != null){
+      if(info.index==1) return false;
+    }
+    let el = document.querySelectorAll('input[formControlName]');
+    for(let indice = el.length; indice>0; indice--){
+      el[indice-1].dispatchEvent(new Event('input'));
+    }
+  }
+  getNumber(cpf){
+    return cpf.replace(/[/_.-]/g, '');
+  }
+  save() {
+    if(!this.form.valid) return this.triedSend = true;
+    this.canSave = false;
+    console.log(this.form.value.birth_date);
     var result,
     userValue = this.form.value;
     userValue.user_id=1;
@@ -127,14 +145,27 @@ export class StudentsFormComponent implements OnInit {
     if(!this.disabilityFlag){
       userValue.disability_id = null;
     }
+    if(userValue){
+      let data = userValue['birth_date'].split('/');
+      userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
+    }
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);
+
     } else {
       result = this.studentsService.addStudent(userValue);
     }
 
-    result.subscribe(data => this.router.navigate(['students']));
+    result.subscribe(data => {
+      this.canSave = true;
+      console.log("entrou");
+      this.router.navigate(['students']);
+    });
   }
 
+  transformDateBR(date){
+      let data = date.split('-');
+      return data[2]+"/"+data[1]+"/"+data[0];
+  }
 }

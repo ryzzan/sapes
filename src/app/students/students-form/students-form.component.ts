@@ -38,7 +38,10 @@ export class StudentsFormComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService
   ) {
-    this.mask = [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/];
+    this.mask = {
+      cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
+      date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+    }
 
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
@@ -88,6 +91,10 @@ export class StudentsFormComponent implements OnInit {
             this.student = student;
             this.disabilityFlag = this.student.disability_id>0;
               (<FormGroup>this.form).patchValue(this.student, { onlySelf: true });
+            let el = document.querySelectorAll('input[formcontrolname]');
+            for(let indice = el.length; indice>0; indice--){
+              el[indice-1].dispatchEvent(new Event('input'));
+            }
           },
           response => {
             if (response.status == 404) {

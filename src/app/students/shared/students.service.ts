@@ -17,14 +17,14 @@ export class StudentsService {
   getList(){
     let headers      = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
     let options       = new RequestOptions({ headers: headers });
-    return this.http.get('http://10.83.3.190:81/api/students?noPaginete=1',options).map(res => res.json());
+    return this.http.get(this.url,options).map(res => res.json());
   }
   constructor(private http: Http) {}
 
   //Novo
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
   private options = new RequestOptions({ headers: this.headers });
-  private url: string = "http://10.83.3.190:81/api/students";
+  private url: string = "http://sapesapi.nitrofull.com.br/api/students";
 
   getStudents(){
     return this.http.get(this.url, this.options)

@@ -54,5 +54,24 @@ label.md-radio-label
 }
 
 .invalid .valid-msg{
-  color: red;
+  color: #f6847c;
+}
+
+
+button.md-button--disabled{
+  background: #dedede;
+  box-shadow: none;
+}
+button.md-button--valid{
+  background: #48a8f4;
+}
+button.md-button--cancel{
+  background: #f6847c;
+}
+button.md-button--valid,
+button.md-button--cancel{
+  color:white;
+  .material-icons{
+    color:white;
+  }
 }

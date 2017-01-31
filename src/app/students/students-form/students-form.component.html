@@ -1,21 +1,22 @@
-<form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()">
-<md-tab-group>
+<form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
+<md-tab-group (selectChange)="bugFixPlaceholder($event)">
   <md-tab label="ALUNO">
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
         <md-input-container class="example-full-width validation" [class.invalid]="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid">
-          <input md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask.cpf}" placeholder="Informe o CPF *">
+          <input #cpf md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask.cpf}" placeholder="Informe o CPF *">
           <md-hint class="valid-msg" *ngIf="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid" minlength="5" maxlength="100" align="start">Valor invalido (000.000.000-00)</md-hint>
-          <md-hint align="end">{{name.value.length}} / 100</md-hint>
+          <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
     </md-grid-list>
-
     <md-grid-list cols="4" rowHeight="100px">
+
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
         <md-input-container class="example-full-width" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
-          <input #name md-input formControlName="name" minlength="5" maxlength="100" placeholder="1.1 - Nome do aluno" type="text">
-          <md-hint class="valid-msg" *ngIf="form.controls['name'].touched && !form.controls['name'].valid" minlength="5" maxlength="100" align="start">Valor invalido (5 até 100 caracteres)</md-hint>
+          <input #name md-input formControlName="name" minlength="5" maxlength="100" placeholder="1.1 - Nome do aluno*" type="text">
+          <md-hint *ngIf="form.controls['name'].hasError('required') && (form.controls['name'].touched || triedSend)" (ngSubmit)="save()">Esse campo é obrigatorio</md-hint>
+          <md-hint class="valid-msg" *ngIf="form.controls['name'].touched && !form.controls['name'].valid && !form.controls['name'].hasError('required')" minlength="5" maxlength="100" align="start">Valor invalido (5 até 100 caracteres)</md-hint>
           <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -28,7 +29,9 @@
       <md-grid-tile [colspan]="1">
         <i class="material-icons">date_range</i>
         <md-input-container style="width:100%">
-          <input md-input class="example-full-width" [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}" placeholder="1.3 - Data de nascimento" (blur)="'OI'">
+          <input md-input #dateRange class="example-full-width"
+           [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}"
+           placeholder="1.3 - Data de nascimento" formControlName="birth_date" (blur)="'OI'">
         </md-input-container>
       </md-grid-tile>
 
@@ -295,14 +298,14 @@
   </md-tab>
 </md-tab-group>
 
-<md-toolbar color="transparent">
-
+<md-toolbar class="formActions" color="transparent">
     <button md-raised-button type="submit"
-            [disabled]="!form.valid" (click)="teste($event);">Salvar <md-icon>send</md-icon>
+            [disabled]="!canSave" [class.md-button--disabled]="!form.valid"
+            [class.md-button--valid]="form.valid">Salvar <md-icon>send</md-icon>
+    </button>
+    <button md-raised-button class="md-button--cancel" routerLink="../" type="button">Cancelar <md-icon>close</md-icon>
     </button>
     <button md-raised-button type="reset">Limpar <md-icon>restore</md-icon>
-    </button>
-    <button md-raised-button type="button">Cancelar <md-icon>close</md-icon>
     </button>
 </md-toolbar>
 </form>

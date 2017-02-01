@@ -1,5 +1,4 @@
-
-.example-full-width {
+.full-width {
   width: 98%;
   margin-right: 5px;
 
@@ -8,12 +7,7 @@
 .cpf {
   margin: auto;
 }
-.invalido{
-  display: none;
-}
-.invalid{
-  display: block;
-}
+
 .example-section {
   width: 100%;
   color: gray;
@@ -30,7 +24,7 @@
 }
 
 .radio-before {
-  padding-left: 35px;
+  padding-left: 15px;
 }
 
 .radio-after {
@@ -39,4 +33,9 @@
 
 .formActions button{
   margin-right: 5px;
+}
+
+.teste{
+  float: left;
+  width: 65%;
 }

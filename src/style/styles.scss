@@ -53,11 +53,16 @@ label.md-radio-label
   border-radius: .25em;
 }
 
-.invalid .valid-msg{
+.valid-msg{
   color: #f6847c;
 }
 
+/* gambis - for use mdHint in select */
+.selectHint div.md-input-underline{
+  display: none;
+}
 
+/* buttons actions of form */
 button.md-button--disabled{
   background: #dedede;
   box-shadow: none;

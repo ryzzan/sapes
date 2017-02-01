@@ -15,7 +15,7 @@ export class BasicValidators {
   static date (control: FormControl){
 
     let DATE_REGEXP = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-
+    if(!control.value) return null;
     return DATE_REGEXP.test(control.value) ? null : {
       validateDate: {
         valid: false
@@ -23,14 +23,27 @@ export class BasicValidators {
     };
   }
 
-  static name (control: FormControl){
+  static nameStr (control: FormControl){
 
-    let DATE_REGEXP = /^[A-Z]'?[- a-zA-Z]( [a-zA-Z])*$/;
-
-    return DATE_REGEXP.test(control.value) ? null : {
-      validateDate: {
+    let NAMESTR_REGEXP = /^[\\p{L} .'-]+$/;
+    if(!control.value) return null;
+    return NAMESTR_REGEXP.test(control.value) ? null : {
+      validateNameStr: {
         valid: false
       }
     };
   }
+
+
+  static cpf (control: FormControl){
+
+    let CPF_REGEXP = /^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/;
+    if(!control.value) return null;
+    return CPF_REGEXP.test(control.value) ? null : {
+      validateCpf: {
+        valid: false
+      }
+    };
+  }
+
 }

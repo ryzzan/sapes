@@ -1,300 +1,128 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
 <md-tab-group (selectChange)="bugFixPlaceholder($event)">
-  <md-tab label="ALUNO">
-    <md-grid-list cols="4" rowHeight="100px">
-      <md-grid-tile [colspan]="1"><i class="material-icons">credit_card</i>
-        <md-input-container class="example-full-width validation" [class.invalid]="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid">
-          <input #cpf md-input minlength="14" formControlName="cpf_number" [textMask]="{mask: mask.cpf}" placeholder="Informe o CPF *">
-          <md-hint class="valid-msg" *ngIf="form.controls['cpf_number'].touched && !form.controls['cpf_number'].valid" minlength="5" maxlength="100" align="start">Valor invalido (000.000.000-00)</md-hint>
+  <md-tab label="ALUNO" formGroupName="aluno">
+    <md-grid-list cols="5" rowHeight="110px">
+
+      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
+        <md-input-container align="start" class="full-width">
+          <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
+              [textMask]="{mask: mask.cpf}">
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[0].controls['cpf_number'].valid  && (steps[0].controls['cpf_number'].touched || triedSend)">
+              <span *ngIf="steps[0].controls['cpf_number'].hasError('required')">Esse campo é obrigatorio</span>
+              <span *ngIf="steps[0].controls['cpf_number'].hasError('validateCpf')">CPF em formato incorreto</span>
+          </md-hint>
           <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
-    </md-grid-list>
-    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="3"></md-grid-tile>
 
       <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
-        <md-input-container class="example-full-width" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
-          <input #name md-input formControlName="name" minlength="5" maxlength="100" placeholder="1.1 - Nome do aluno*" type="text">
-          <md-hint *ngIf="form.controls['name'].hasError('required') && (form.controls['name'].touched || triedSend)" (ngSubmit)="save()">Esse campo é obrigatorio</md-hint>
-          <md-hint class="valid-msg" *ngIf="form.controls['name'].touched && !form.controls['name'].valid && !form.controls['name'].hasError('required')" minlength="5" maxlength="100" align="start">Valor invalido (5 até 100 caracteres)</md-hint>
+        <md-input-container class="full-width">
+          <input #name md-input
+                (input)="teste(steps[0].controls['name'].errors)" formControlName="name"
+                placeholder="1.1 - Nome do aluno *">
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[0].controls['name'].valid  && (steps[0].controls['name'].touched || triedSend)">
+              <span *ngIf="steps[0].controls['name'].hasError('required')">Esse campo é obrigatorio</span>
+              <span *ngIf="steps[0].controls['name'].hasError('minlength')">Esse campo tem ter mais de 5 caracteres</span>
+              <span *ngIf="steps[0].controls['name'].hasError('maxlength')">Esse campo tem ter mens de 100 caracteres</span>
+          </md-hint>
           <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2">
-        <md-radio-group formControlName="gender" class="example-section"><i class="material-icons">wc</i>1.2 - Selecione seu gênero<br>
-          <md-radio-button *ngFor="let gender of genders" class="radio-before" [value]="gender.id">{{gender.value}}</md-radio-button>
-        </md-radio-group>
+      <md-grid-tile [colspan]="3">
+        <md-input-container class="full-width selectHint example-section">
+          <i class="material-icons">wc</i>1.2 - Selecione O gênero<br>
+          <input style="display:none" md-input>
+          <md-radio-group formControlName="gender">
+            <md-radio-button *ngFor="let gender of genders" class="radio-before"
+                              [value]="gender.id">{{gender.value}}</md-radio-button>
+          </md-radio-group>
+          <md-hint class="valid-msg" align="start"
+            *ngIf="!steps[0].controls['gender'].valid  && (steps[0].controls['gender'].touched || triedSend)">
+            <span *ngIf="steps[0].controls['gender'].hasError('required')">Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
+
       <md-grid-tile [colspan]="1">
         <i class="material-icons">date_range</i>
         <md-input-container style="width:100%">
-          <input md-input #dateRange class="example-full-width"
+          <input md-input #birth class="full-width"
            [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}"
-           placeholder="1.3 - Data de nascimento" formControlName="birth_date" (blur)="'OI'">
+           placeholder="1.3 - Data de nascimento *" formControlName="birth_date" (blur)="'OI'">
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[0].controls['birth_date'].valid  && (steps[0].controls['birth_date'].touched || triedSend)">
+              <span *ngIf="steps[0].controls['birth_date'].hasError('required')">Esse campo é obrigatorio</span>
+              <span *ngIf="steps[0].controls['birth_date'].hasError('validateDate')">Formato de data incorreta.</span>
+          </md-hint>
+          <md-hint align="end">{{getNumber(birth.value).length}} / 8</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2">
+      <md-grid-tile [colspan]="3">
         <md-radio-group class="example-section" formControlName="distance_education"><i class="material-icons">school</i>1.5 - Estudou/estuda em que tipo de escola?<br>
           <md-radio-button *ngFor="let education of distance_education" class="radio-before" [value]="education.id">{{education.value}}</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
-        <md-select class="example-full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia">
-          <md-option *ngFor="let ethnicity of ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
-        </md-select>
+        <md-input-container class="full-width selectHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia">
+            <md-option *ngFor="let ethnicity of ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[0].controls['ethnicity_id'].valid  && (steps[0].controls['ethnicity_id'].touched || triedSend)">
+              <span *ngIf="steps[0].controls['ethnicity_id'].hasError('required')">Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1">
-        <md-radio-group [value]="disabilityFlag" (change)="disabilityFlag = $event.value" class="example-section">
+
+      <md-grid-tile [colspan]="3">
+        <md-input-container class="full-width selectHint example-section">
+          <input style="display:none" md-input>
           <i class="material-icons">accessible</i>1.7 - Possui alguma deficiência (PcD)?<br>
-          <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
-          <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
-        </md-radio-group>
-      </md-grid-tile>
-      <md-grid-tile  *ngIf="disabilityFlag" [colspan]="1"><i class="material-icons" style="padding-left:20px">accessible</i>
-        <md-select formControlName="disability_id" class="example-full-width" placeholder="1.8 - Qual deficiência?">
-          <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
-        </md-select>
+          <md-radio-group required formControlName="disability" [value]="disabilityFlag" (change)="disabilityFlag = $event.value" class="example-section">
+            <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
+            <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
+          </md-radio-group>
+          <md-hint class="valid-msg" align="start"
+            *ngIf="!steps[0].controls['disability'].valid && triedSend">
+            <span *ngIf="steps[0].controls['disability'].hasError('required')">Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
+
+        <md-input-container *ngIf="disabilityFlag" class="full-width selectHint example-section">
+          <input style="display:none" md-input>
+          <md-select required class="full-width" formControlName="disability_id" placeholder="1.8 - Qual deficiência?">
+            <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+            *ngIf="!steps[0].controls['disability_id'].valid && triedSend">
+            <span *ngIf="steps[0].controls['disability_id'].hasError('required')">Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
     </md-grid-list>
   </md-tab>
 
   <md-tab label="TURMA">
-    <md-grid-list cols="4" rowHeight="100px">
 
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select  class="example-full-width" placeholder="2.2 - Ano de inicio do curso">
-          <md-option style="padding-right:20px" *ngFor="let ano of anos">{{ano}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="2.3 - Mês de término do curso">
-          <md-option *ngFor="let mes of meses">{{mes}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">date_range</i>
-        <md-select class="example-full-width" placeholder="2.4 - Ano de término do curso">
-          <md-option>2017</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">class</i>
-        <md-select class="example-full-width" placeholder="2.5 - Nome do curso">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-select class="example-full-width" placeholder="2.6 - Selecione o DR">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">business</i>
-        <md-select class="example-full-width" placeholder="2.7 - Unidade SENAI">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">list</i>
-         <md-select class="example-full-width" placeholder="2.8 - Modalide">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">language</i>
-         <md-select class="example-full-width" placeholder="2.8 - Área tecnológica">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">work</i>
-         <md-select class="example-full-width" placeholder="2.9 - Ocupação">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">people_outline</i>
-         <md-select class="example-full-width" placeholder="2.10 - Código da turma">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
-         <md-select class="example-full-width" placeholder="2.11 - Educação à distância - EAD?">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">monetization_on</i>
-         <md-select class="example-full-width" placeholder="2.12 - Gratuidade regimental?">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">location_city</i>2.13 - Convênio?<br>
-          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
-          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
-        </md-radio-group>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_city</i>
-        <md-input-container class="example-full-width">
-          <input disabled md-input placeholder="2.14 - Qual convênio?">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">school</i>2.15 - Pronatec?<br>
-          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
-          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
-        </md-radio-group>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">school</i>
-         <md-select disabled class="example-full-width" placeholder="2.16 - Qual Pronatec?">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
-        </md-select>
-      </md-grid-tile>
-
-    </md-grid-list>
   </md-tab>
   <md-tab label="CONTATO">
-    <md-grid-list cols="4" rowHeight="100px">
-      <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
-        <md-input-container class="example-full-width">
-          <input formControlName="address" md-input placeholder="3.1 - Endereço">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.2 - Número">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.3 - Complemento">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.4 - Bairro">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.5 - Cidade">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.6 - UF">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.7 - CEP">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
-        <md-input-container class="example-full-width">
-          <input formControlName="cell_phone" md-input placeholder="3.8 - Telefone residencial">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.9 - Telefone celular">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.10 - Telefone recado">
-        </md-input-container>
-      </md-grid-tile>
-      <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
-        <md-input-container class="example-full-width">
-          <input md-input placeholder="3.11 - Telefone recado">
-        </md-input-container>
-      </md-grid-tile>
-
-
-    </md-grid-list>
 
   </md-tab>
   <md-tab class="teste" label="SITUAÇÃO PROFISSIONAL">
-    <md-grid-list cols="2" rowHeight="100px">
-        <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
-            <md-radio-button value="1">Sim</md-radio-button>
-            <md-radio-button value="2">Não</md-radio-button>
-          </md-radio-group>
-        </md-grid-tile>
-    </md-grid-list>
-    <md-grid-list cols="2" rowHeight="360px">
-        <md-grid-tile [colspan]="1">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.2 - Especifique abaixo sua situação profissional:<br>
-            <div *ngFor="let estagio of estagios"><md-radio-button value="{{estagio}}">{{estagio}}</md-radio-button><br></div>
-          </md-radio-group>
-        </md-grid-tile>
-
-        <md-grid-tile [colspan]="1">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.3 - Especifique abaixo sua situação profissional:<br>
-            <md-radio-button value="1">Menos de 1 SM</md-radio-button><br>
-            <md-radio-button value="2">1 SM</md-radio-button><br>
-            <md-radio-button value="3">Mais 1 a 2 SM</md-radio-button><br>
-            <md-radio-button value="4">Mais 2 a 3 SM</md-radio-button><br>
-            <md-radio-button value="5">Mais 3 a 5 SM</md-radio-button><br>
-            <md-radio-button value="6">Mais 5 a 7 SM</md-radio-button><br>
-            <md-radio-button value="7">Mais 7 a 10 SM</md-radio-button><br>
-            <md-radio-button value="8">Mais 10 a 15 SM</md-radio-button><br>
-            <md-radio-button value="9">Mais 5 a 20 SM</md-radio-button><br>
-            <md-radio-button value="10">Mais de 20 SM</md-radio-button><br>
-          </md-radio-group>
-        </md-grid-tile>
-
-    </md-grid-list>
-
-  </md-tab>
-  <md-tab label="AVALIAÇÃO DO SENAI">
-    <md-grid-list cols="2" rowHeight="100px">
-        <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
-            <md-radio-button class="radio-before" value="0">0</md-radio-button>
-            <md-radio-button class="radio-before" value="1">1</md-radio-button>
-            <md-radio-button class="radio-before" value="2">2</md-radio-button>
-            <md-radio-button class="radio-before" value="3">3</md-radio-button>
-            <md-radio-button class="radio-before" value="4">4</md-radio-button>
-            <md-radio-button class="radio-before" value="5">5</md-radio-button>
-            <md-radio-button class="radio-before" value="6">6</md-radio-button>
-            <md-radio-button class="radio-before" value="7">7</md-radio-button>
-            <md-radio-button class="radio-before" value="8">8</md-radio-button>
-            <md-radio-button class="radio-before" value="9">9</md-radio-button>
-            <md-radio-button class="radio-before" value="10">10</md-radio-button>
-          </md-radio-group>
-        </md-grid-tile>
-    </md-grid-list>
   </md-tab>
 </md-tab-group>
 

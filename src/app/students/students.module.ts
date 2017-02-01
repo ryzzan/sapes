@@ -11,8 +11,9 @@ import { DatapickerComponent } from '../datapicker/datapicker.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2TableModule,NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { StudentsService } from './shared/students.service'
+import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
+import { InputErrorComponent } from '../component/input-error/input-error-component'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
     PaginationModule.forRoot(),
     HttpModule
   ],
-  exports: [    NgTableComponent,
+  exports: [
+    NgTableComponent,
     NgTableFilteringDirective,
     NgTablePagingDirective,
     NgTableSortingDirective,
@@ -37,7 +39,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
     DatapickerComponent,
     StudentsComponent,
     StudentsFormComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    InputErrorComponent
   ],
   providers: [StudentsService],
 })

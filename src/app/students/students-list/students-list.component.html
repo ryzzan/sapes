@@ -36,7 +36,7 @@
   </div>
 </td>
 </ng-table>
-<md-toolbar color="transparent">
+<md-toolbar color="transparent" class="toolbar-bottom">
 <pagination nextText="Próxima" previousText="Anterior" firstText="Primeira" lastText="Última" *ngIf="config.paging"
             class="pagination-sm"
             [(ngModel)]="page"
@@ -48,6 +48,5 @@
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
   </pagination>
-  <span class="example-spacer"></span>
-  Página: {{page}} de {{numPages}}
+  <span class="pagination-info">Página: {{page}} de {{numPages}}</span>
 </md-toolbar>

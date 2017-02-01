@@ -25,3 +25,20 @@
 .md-tab-body-content{
   padding: 10px 25px;
 }
+.dataTable {
+  width: 90%;
+  border-collapse: collapse;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.dataTable th {
+  border-bottom: 1px solid #999;     
+  color: #999;
+  height: 25px;  
+}
+
+.dataTable td {
+  border-bottom: 1px solid #666;  
+  color: black;  
+}

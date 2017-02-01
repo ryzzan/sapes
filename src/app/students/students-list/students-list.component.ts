@@ -62,7 +62,7 @@ export class StudentsListComponent implements OnInit {
     paging: true,
     sorting: {columns: this.columns},
     filtering: {filterString: ''},
-    className: ['table-striped', 'table-bordered']
+    className: ['dataTable']
   };
 
   private data:Array<any> = [];

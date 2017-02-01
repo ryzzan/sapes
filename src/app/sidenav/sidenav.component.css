@@ -49,3 +49,29 @@ a.sidenav--active md-list-item{
 .md-list-text h4{
   font-size:  14px;
 }
+
+.tagInfo{
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 80%;
+  font-weight: 700;
+  line-height: 1;
+  background-color: #1b5e20;
+  color: #f9f9f9;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.tagRegional{
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+p.tagFase{
+  line-height: 1.5;
+}

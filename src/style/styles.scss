@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'md.scss';
+@import 'reset.scss';   
 html, body, material-app, md-sidenav-container, .my-content {
   margin: 0;
   width: 100%;
@@ -28,29 +29,6 @@ label.md-input-placeholder,
 label.md-radio-label
  {
     font-weight: normal;
-}
-
-.md-label{
-  display: inline;
-  padding: .2em .6em .3em;
-  font-size: 80%;
-  font-weight: 700;
-  line-height: 1;
-  background-color: #1b5e20;
-  color: #f9f9f9;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
-}
-
-.md-label-white{
-  background-color: #fff;
-  color: #333;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
 }
 
 .invalid .valid-msg{

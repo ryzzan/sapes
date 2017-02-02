@@ -57,6 +57,16 @@ export class StudentsListComponent implements OnInit {
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
+  public arrayPagination = [0,5,10,15,20,25,30,35,40,45,50];
+
+  teste(e){
+    console.log(e);
+  }
+
+  changeNumberPerPage(index){
+    this.itemsPerPage = index;
+    this.onChangeTable(this.config);
+  }
 
   public config:any = {
     paging: true,

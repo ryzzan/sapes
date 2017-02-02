@@ -164,9 +164,7 @@ export class StudentsFormComponent implements OnInit {
     userValue.start_month = 3;
     // delete userValue.disability;
     console.log(userValue);
-    if(!this.disabilityFlag){
-      userValue.disability_id = null;
-    }
+
     if(userValue){
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
@@ -174,7 +172,6 @@ export class StudentsFormComponent implements OnInit {
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);
-
     } else {
       result = this.studentsService.addStudent(userValue);
     }

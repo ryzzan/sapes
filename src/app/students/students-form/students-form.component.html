@@ -77,7 +77,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           1.5 - Estudou/estuda em que tipo de escola?<br>
-          <md-radio-group class="example-section" formControlName="distance_education">
+          <md-radio-group formControlName="distance_education">
             <md-radio-button *ngFor="let education of distance_education" class="radio-before" [value]="education.id">{{education.value}}</md-radio-button>
           </md-radio-group>
           <md-hint class="valid-msg" align="start"
@@ -105,7 +105,8 @@
         <md-icon>accessible</md-icon>
         <md-input-container align="left" class="fakeHint disability">
           <input style="display:none" md-input>
-          <md-radio-group required formControlName="disability" [value]="disabilityFlag" (change)="disabilityFlag = $event.value" class="example-section">
+          <md-radio-group required formControlName="disability" [value]="disabilityFlag"
+           (change)="disabilityFlag = $event.value;">
             1.7 - Possui alguma deficiência (PcD)?<br>
             <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
             <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
@@ -118,7 +119,7 @@
 
         <md-input-container align="left" *ngIf="disabilityFlag" class="fakeHint disability disabilitySelect">
           <input style="display:none" md-input>
-          <md-select required class="full-width" formControlName="disability_id" placeholder="1.8 - Qual deficiência?">
+          <md-select [required]="disabilityFlag" class="full-width" formControlName="disability_id" placeholder="1.8 - Qual deficiência?">
             <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"

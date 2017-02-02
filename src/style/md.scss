@@ -31,10 +31,15 @@ table.dataTable {
   font-size: 12px;
 }
 .dataTable th {
-  border-bottom: 1px solid #999;     
-  color: #999;
+  border-top: 1px solid #000;   
+  border-bottom: 1px solid #000;     
+  color: #757575;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
 }
 .dataTable td {
-  border-bottom: 1px solid #666;  
-  color: black;  
+  border-bottom: 1px solid #dfdfdf;  
+  color: black;
+  height: 30px;  
 }

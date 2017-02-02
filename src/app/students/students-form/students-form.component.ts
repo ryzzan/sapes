@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MdSnackBar} from '@angular/material';
 
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
 const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
@@ -8,7 +9,6 @@ const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 import { Student } from '../shared/student';
 import { StudentsService } from '../shared/students.service';
 import { BasicValidators } from '../../shared/basic-validators';
-
 
 @Component({
   selector: 'app-students-form',
@@ -38,11 +38,14 @@ export class StudentsFormComponent implements OnInit {
   genders = [];
   distance_education = [];
 
+  steps: any = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private studentsService: StudentsService
+    private studentsService: StudentsService,
+    public snackBar: MdSnackBar
   ) {
 
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
@@ -58,52 +61,67 @@ export class StudentsFormComponent implements OnInit {
     console.log(event)
   }
   ngOnInit() {
-    this.form = this.formBuilder.group({
+    this.steps[0] = this.formBuilder.group({
       cpf_number: [null,
-        Validators.required
+        Validators.compose([
+          Validators.required,
+          BasicValidators.cpf
+        ])
       ],
       name: [
-        '',
-        Validators.required
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ])
       ],
       rg_number: [null,
         Validators.required
       ],
-      cell_phone: ['',
-        Validators.required
-      ],
       birth_date: ['',
-        Validators.required
+        Validators.compose([
+          Validators.required,
+          BasicValidators.date
+        ])
       ],
-      address: ['',[
+      gender: [null,[
         Validators.required
       ]],
-      gender: [],
       distance_education: [],
-      ethnicity_id: [],
-      disability_id: [this.student.disability_id]
+      ethnicity_id: [null,[
+        Validators.required
+      ]],
+      disability: [null],
+      disability_id: [null]
+    })
+    this.steps[1] = this.formBuilder.group({
+
     });
-      var id = this.route.params.subscribe(params => {
-      var id = params['id'];
+    this.form = this.formBuilder.group({
+      aluno: this.steps[0]
+    });
+    var id = this.route.params.subscribe(params => {
+    var id = params['id'];
 
-      this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
-      if (!id) return this.canSave = true;
+    this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
+    if (!id) return this.canSave = true;
 
-      this.studentsService.getStudent(id)
-        .subscribe(
-          student => {
-            this.student = student;
-            this.disabilityFlag = this.student.disability_id>0;
-            this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
-            this.canSave = true;
-              (<FormGroup>this.form).patchValue(this.student);
-            setTimeout(()=>this.bugFixPlaceholder(), 200);
-          },
-          response => {
-            if (response.status == 404) {
-              this.router.navigate(['NotFound']);
-            }
-          });
+    this.studentsService.getStudent(id)
+      .subscribe(
+        student => {
+          this.student = student;
+          this.disabilityFlag = this.student.disability_id>0;
+          this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
+          this.canSave = true;
+            (<FormGroup>this.steps[0]).patchValue(this.student);
+          setTimeout(()=>this.bugFixPlaceholder(), 200);
+        },
+        response => {
+          if (response.status == 404) {
+            this.router.navigate(['NotFound']);
+          }
+        });
     });
 
   }
@@ -111,20 +129,22 @@ export class StudentsFormComponent implements OnInit {
     if(info != null){
       if(info.index==1) return false;
     }
-    let el = document.querySelectorAll('input[formControlName]');
+    let el = document.querySelectorAll('input[formControlName], input.md-radio-input:checked');
     for(let indice = el.length; indice>0; indice--){
       el[indice-1].dispatchEvent(new Event('input'));
+      el[indice-1].dispatchEvent(new Event('change'));
     }
   }
   getNumber(cpf){
     return cpf.replace(/[/_.-]/g, '');
   }
   save() {
+
+    console.log(this.steps[0].value);
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;
-    console.log(this.form.value.birth_date);
     var result,
-    userValue = this.form.value;
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.start_year = 2016;
     userValue.end_month = 2;
@@ -142,6 +162,8 @@ export class StudentsFormComponent implements OnInit {
     userValue.city_id = 2;
     userValue.modality_id = 3;
     userValue.start_month = 3;
+    // delete userValue.disability;
+    console.log(userValue);
     if(!this.disabilityFlag){
       userValue.disability_id = null;
     }
@@ -160,11 +182,16 @@ export class StudentsFormComponent implements OnInit {
     result.subscribe(data => {
       this.canSave = true;
       console.log("entrou");
-      this.router.navigate(['students']);
+      this.snackBar.open('Salvo com sucesso!', '', {
+          duration: 4000,
+      });
+      // this.router.navigate(['students']);
     });
   }
 
   transformDateBR(date){
+      if(!date) return '';
+      if(date.length!=10) return '';
       let data = date.split('-');
       return data[2]+"/"+data[1]+"/"+data[0];
   }

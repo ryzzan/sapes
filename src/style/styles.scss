@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'md.scss';
-@import 'reset.scss';   
+@import 'reset.scss';
 html, body, material-app, md-sidenav-container, .my-content {
   margin: 0;
   width: 100%;
@@ -36,10 +36,22 @@ label.md-radio-label
     font-weight: normal;
 }
 
-.invalid .valid-msg{
+.valid-msg{
   color: #f6847c;
 }
 
+/* gambis - for use mdHint in select */
+.fakeHint div.md-input-underline{
+  display: none;
+}
+
+
+/*form inputs*/
+md-grid-tile.disability-cell figure{
+  justify-content: flex-start;
+}
+
+/* buttons actions of form */
 button.md-button--disabled{
   background: #dedede;
   box-shadow: none;

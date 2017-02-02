@@ -36,8 +36,14 @@ label.md-radio-label
 }
 
 /* gambis - for use mdHint in select */
-.selectHint div.md-input-underline{
+.fakeHint div.md-input-underline{
   display: none;
+}
+
+
+/*form inputs*/
+md-grid-tile.disability-cell figure{
+  justify-content: flex-start;
 }
 
 /* buttons actions of form */

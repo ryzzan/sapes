@@ -1,9 +1,10 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
 <md-tab-group (selectChange)="bugFixPlaceholder($event)">
   <md-tab label="ALUNO" formGroupName="aluno">
-    <md-grid-list cols="5" rowHeight="110px">
+    <md-grid-list cols="4" rowHeight="110px">
 
-      <md-grid-tile [colspan]="2"><i class="material-icons">credit_card</i>
+      <md-grid-tile [colspan]="2">
+        <md-icon>credit_card</md-icon>
         <md-input-container align="start" class="full-width">
           <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
               [textMask]="{mask: mask.cpf}">
@@ -15,9 +16,10 @@
           <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="3"></md-grid-tile>
+      <md-grid-tile [colspan]="2"></md-grid-tile>
 
-      <md-grid-tile [colspan]="2"><i class="material-icons">account_box</i>
+      <md-grid-tile [colspan]="2">
+        <md-icon>account_box</md-icon>
         <md-input-container class="full-width">
           <input #name md-input
                 (input)="teste(steps[0].controls['name'].errors)" formControlName="name"
@@ -32,11 +34,12 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3">
-        <md-input-container class="full-width selectHint example-section">
-          <i class="material-icons">wc</i>1.2 - Selecione O gênero<br>
+      <md-grid-tile class="input-space" [colspan]="2">
+        <md-icon>wc</md-icon>
+        <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-radio-group formControlName="gender">
+            1.2 - Selecione o gênero<br>
             <md-radio-button *ngFor="let gender of genders" class="radio-before"
                               [value]="gender.id">{{gender.value}}</md-radio-button>
           </md-radio-group>
@@ -47,8 +50,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
-        <i class="material-icons">date_range</i>
+      <md-grid-tile [colspan]="2">
+        <md-icon>date_range</md-icon>
         <md-input-container style="width:100%">
           <input md-input #birth class="full-width"
            [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}"
@@ -62,20 +65,31 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons" style="padding-left:20px">fingerprint</i>
+      <md-grid-tile [colspan]="2" class="input-space">
+        <md-icon>fingerprint</md-icon>
         <md-input-container class="full-width">
-          <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG">
+          <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG *">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3">
-        <md-radio-group class="example-section" formControlName="distance_education"><i class="material-icons">school</i>1.5 - Estudou/estuda em que tipo de escola?<br>
-          <md-radio-button *ngFor="let education of distance_education" class="radio-before" [value]="education.id">{{education.value}}</md-radio-button>
-        </md-radio-group>
+      <md-grid-tile [colspan]="2">
+        <md-icon>school</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          1.5 - Estudou/estuda em que tipo de escola?<br>
+          <md-radio-group class="example-section" formControlName="distance_education">
+            <md-radio-button *ngFor="let education of distance_education" class="radio-before" [value]="education.id">{{education.value}}</md-radio-button>
+          </md-radio-group>
+          <md-hint class="valid-msg" align="start"
+            *ngIf="!steps[0].controls['distance_education'].valid  && (steps[0].controls['distance_education'].touched || triedSend)">
+            <span *ngIf="steps[0].controls['distance_education'].hasError('required')">Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">face</i>
-        <md-input-container class="full-width selectHint">
+      <md-grid-tile [colspan]="2" class="input-space">
+        <md-icon>face</md-icon>
+        <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia">
             <md-option *ngFor="let ethnicity of ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
@@ -87,11 +101,12 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3">
-        <md-input-container class="full-width selectHint example-section">
+      <md-grid-tile class="disability-cell" [colspan]="3">
+        <md-icon>accessible</md-icon>
+        <md-input-container align="left" class="fakeHint disability">
           <input style="display:none" md-input>
-          <i class="material-icons">accessible</i>1.7 - Possui alguma deficiência (PcD)?<br>
           <md-radio-group required formControlName="disability" [value]="disabilityFlag" (change)="disabilityFlag = $event.value" class="example-section">
+            1.7 - Possui alguma deficiência (PcD)?<br>
             <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
             <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
           </md-radio-group>
@@ -101,7 +116,7 @@
           </md-hint>
         </md-input-container>
 
-        <md-input-container *ngIf="disabilityFlag" class="full-width selectHint example-section">
+        <md-input-container align="left" *ngIf="disabilityFlag" class="fakeHint disability disabilitySelect">
           <input style="display:none" md-input>
           <md-select required class="full-width" formControlName="disability_id" placeholder="1.8 - Qual deficiência?">
             <md-option *ngFor="let disability of disabilities" [value]="disability.id">{{disability.value}}</md-option>
@@ -122,7 +137,7 @@
   <md-tab label="CONTATO">
 
   </md-tab>
-  <md-tab class="teste" label="SITUAÇÃO PROFISSIONAL">
+  <md-tab label="SITUAÇÃO PROFISSIONAL">
   </md-tab>
 </md-tab-group>
 

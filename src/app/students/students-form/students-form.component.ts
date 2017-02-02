@@ -88,7 +88,11 @@ export class StudentsFormComponent implements OnInit {
       gender: [null,[
         Validators.required
       ]],
-      distance_education: [],
+      distance_education: [
+        null,
+        Validators.required
+      ],
+
       ethnicity_id: [null,[
         Validators.required
       ]],
@@ -140,9 +144,9 @@ export class StudentsFormComponent implements OnInit {
   }
   save() {
 
-    console.log(this.steps[0].value);
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;
+
     var result,
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
@@ -162,26 +166,24 @@ export class StudentsFormComponent implements OnInit {
     userValue.city_id = 2;
     userValue.modality_id = 3;
     userValue.start_month = 3;
-    // delete userValue.disability;
+    delete userValue['disability'];
+
     console.log(userValue);
-    if(!this.disabilityFlag){
-      userValue.disability_id = null;
-    }
+
     if(userValue){
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
+
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);
-
     } else {
       result = this.studentsService.addStudent(userValue);
     }
 
     result.subscribe(data => {
       this.canSave = true;
-      console.log("entrou");
       this.snackBar.open('Salvo com sucesso!', '', {
           duration: 4000,
       });

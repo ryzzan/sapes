@@ -166,7 +166,7 @@ export class StudentsFormComponent implements OnInit {
     userValue.city_id = 2;
     userValue.modality_id = 3;
     userValue.start_month = 3;
-    delete userValue.disability;
+    delete userValue['disability'];
 
     console.log(userValue);
 

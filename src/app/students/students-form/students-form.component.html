@@ -1,8 +1,14 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
 <md-tab-group (selectChange)="bugFixPlaceholder($event)">
   <md-tab label="ALUNO" formGroupName="aluno">
-    <md-grid-list cols="4" rowHeight="110px">
 
+    <template color="transparent"  md-tab-label>
+      <md-icon *ngIf="steps[0].valid">thumb_up</md-icon>
+      <md-icon *ngIf="!steps[0].valid">thumb_down</md-icon>
+      Aluno
+    </template>
+
+    <md-grid-list cols="4" rowHeight="110px">
       <md-grid-tile [colspan]="2">
         <md-icon>credit_card</md-icon>
         <md-input-container align="start" class="full-width">
@@ -140,13 +146,194 @@
     </md-grid-list>
   </md-tab>
 
-  <md-tab label="TURMA">
+  <md-tab formGroupName="turma">
+    <template color="transparent"  md-tab-label>
+      <md-icon *ngIf="steps[1].valid">thumb_up</md-icon>
+      <md-icon *ngIf="!steps[1].valid">thumb_down</md-icon>
+      Turma
+    </template>
+     <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="1">
+        <md-icon>date_range</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início do curso *">
+            <md-option *ngFor="let year of years" [value]="year">{{year}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[1].controls['start_year'].valid  && (steps[1].controls['start_year'].touched || triedSend)">
+              <span>Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
+      </md-grid-tile>
 
-  </md-tab>
-  <md-tab label="CONTATO">
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>date_range</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início do curso *">
+            <md-option *ngFor="let month of months" [value]="month.id">{{month.valueView}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[1].controls['start_month'].valid  && (steps[1].controls['start_month'].touched || triedSend)">
+              <span>Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
+      </md-grid-tile>
 
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>date_range</md-icon>
+        <md-input-container class="full-width">
+          <input md-input disabled value="2017" placeholder="2.3 - Ano de término do curso">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>date_range</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término do curso *">
+            <md-option *ngFor="let month of months" [value]="month.id">{{month.valueView}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="!steps[1].controls['end_month'].valid  && (steps[1].controls['end_month'].touched || triedSend)">
+              <span>Esse campo é obrigatorio</span>
+          </md-hint>
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-icon>class</md-icon>
+        <md-select class="full-width" placeholder="2.5 - Nome do curso">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>location_on</md-icon>
+        <md-select class="full-width" placeholder="2.6 - Selecione o DR">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>business</md-icon>
+        <md-select class="full-width" placeholder="2.7 - Unidade SENAI">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>list</md-icon>
+         <md-select class="full-width" placeholder="2.8 - Modalide">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>language</md-icon>
+         <md-select class="full-width" placeholder="2.8 - Área tecnológica">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-icon>work</md-icon>
+         <md-select class="full-width" placeholder="2.9 - Ocupação">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>people_outline</md-icon>
+         <md-select class="full-width" placeholder="2.10 - Código da turma">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>school</md-icon>
+         <md-select class="full-width" placeholder="2.11 - Educação à distância - EAD?">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>monetization_on</md-icon>
+         <md-select class="full-width" placeholder="2.12 - Gratuidade regimental?">
+          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="full-width">
+          <md-icon>location_city</md-icon>2.13 - Convênio?<br>
+          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-icon>location_city</md-icon>
+        <md-input-container class="full-width">
+          <input disabled md-input placeholder="2.14 - Qual convênio?">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-icon>school</md-icon>
+        <md-radio-group class="full-width">
+          2.15 - Pronatec?<br>
+          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
+          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
+        </md-radio-group>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1">
+        <md-icon>school</md-icon>
+         <md-select disabled class="full-width" placeholder="2.16 - Qual Pronatec?">
+          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+        </md-select>
+      </md-grid-tile>
+
+    </md-grid-list>
   </md-tab>
-  <md-tab label="SITUAÇÃO PROFISSIONAL">
+  <md-tab>
+    <template color="transparent"  md-tab-label>
+      <md-icon *ngIf="steps[2].valid">thumb_up</md-icon>
+      <md-icon *ngIf="!steps[2].valid">thumb_down</md-icon>
+      CONTATO
+    </template>
+  </md-tab>
+  <md-tab>
+    <template color="transparent"  md-tab-label>
+      <md-icon *ngIf="steps[3].valid">thumb_up</md-icon>
+      <md-icon *ngIf="!steps[3].valid">thumb_down</md-icon>
+      SITUAÇÃO PROFISSIONAL
+    </template>
+  </md-tab>
+  <md-tab>
+    <template color="transparent"  md-tab-label>
+      <md-icon *ngIf="steps[4].valid">thumb_up</md-icon>
+      <md-icon *ngIf="!steps[4].valid">thumb_down</md-icon>
+      AVAL. DO SENAI
+    </template>
+    <md-grid-list cols="2" rowHeight="100px">
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+            <md-radio-button class="radio-before" value="0">0</md-radio-button>
+            <md-radio-button class="radio-before" value="1">1</md-radio-button>
+            <md-radio-button class="radio-before" value="2">2</md-radio-button>
+            <md-radio-button class="radio-before" value="3">3</md-radio-button>
+            <md-radio-button class="radio-before" value="4">4</md-radio-button>
+            <md-radio-button class="radio-before" value="5">5</md-radio-button>
+            <md-radio-button class="radio-before" value="6">6</md-radio-button>
+            <md-radio-button class="radio-before" value="7">7</md-radio-button>
+            <md-radio-button class="radio-before" value="8">8</md-radio-button>
+            <md-radio-button class="radio-before" value="9">9</md-radio-button>
+            <md-radio-button class="radio-before" value="10">10</md-radio-button>
+          </md-radio-group>
+        </md-grid-tile>
+    </md-grid-list>
   </md-tab>
 </md-tab-group>
 

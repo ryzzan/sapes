@@ -26,13 +26,13 @@ export class StudentsFormComponent implements OnInit {
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
-
+  bdInfo : any = {};
   disabilityFlag: boolean;
 
   ethnicities = [];
   disabilities = [];
-  meses = [];
-  anos = [];
+  months = [];
+  years = [];
   bancos = [];
   estagios = [];
   genders = [];
@@ -47,14 +47,16 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar
   ) {
+    this.bdInfo = {
 
+    }
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
     this.estagios = ['Estágio','Aluno Cotista/Aprendiz','Empresário/Sócio proprietário','Empregado com carteira assinada','Empregado sem carteira assinada','Empregado temporário com carteira assinada','Empregado temporário sem carteira assinada','Profissional liberal (dentista, advogado...)','Autônomo (por conta própria)','Funcionário público/militar','Outra situação? Qual?'];
     this.ethnicities = [{id:1,value:'Branca'}, {id:2,value:'Preta'}, {id:3,value:'Amarela'}, {id:4,value:'Indígena'},{id:5,value:'Parda'}];
     this.disabilities = [{id:1, value: 'Auditiva'}, {id:2, value: 'Intelectual'}, {id:3, value: 'Física'}, {id:4, value: 'Condutas típicas'}, {id:5, value: 'Visual'}, {id:6, value: 'Múltiplas'}, {id:7, value: 'Altas habilidades'}, {id:8, value: 'Outro (s)'}];
-    this.meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',];
-    this.anos = ['2017', '2016', '2015', '2014','2013'];
+    this.months = [{id: 1,valueView:'Janeiro'}, {id: 1,valueView:'Fevereiro'}, {id: 1,valueView:'Março'}, {id: 1,valueView:'Abril'}, {id: 1,valueView:'Maio'}, {id: 1,valueView:'Junho'}, {id: 1,valueView:'Julho'}, {id: 1,valueView:'Agosto'}, {id: 1,valueView:'Setembro'}, {id: 1,valueView:'Outubro'}, {id: 1,valueView:'Novembro'}, {id: 1,valueView:'Dezembro'}];
+    this.years = [2016, 2015, 2014,2013];
     this.bancos = ['Virá do banco'];
   }
   teste(event){
@@ -76,34 +78,37 @@ export class StudentsFormComponent implements OnInit {
           Validators.maxLength(100),
         ])
       ],
-      rg_number: [null,
-        Validators.required
-      ],
+      rg_number: [null, Validators.required],
       birth_date: ['',
         Validators.compose([
           Validators.required,
           BasicValidators.date
         ])
       ],
-      gender: [null,[
-        Validators.required
-      ]],
-      distance_education: [
-        null,
-        Validators.required
-      ],
-
-      ethnicity_id: [null,[
-        Validators.required
-      ]],
+      gender: [null, [Validators.required]],
+      distance_education: [null,Validators.required],
+      ethnicity_id: [null,[Validators.required]],
       disability: [null],
       disability_id: [null]
     })
     this.steps[1] = this.formBuilder.group({
-
+      start_year: [null, [Validators.required]],
+      start_month: [null, [Validators.required]],
+      end_month: [null, [Validators.required]],
     });
+
+    this.steps[2] = this.formBuilder.group({
+    });
+
+    this.steps[3] = this.formBuilder.group({
+    });
+
+    this.steps[4] = this.formBuilder.group({
+    });
+
     this.form = this.formBuilder.group({
-      aluno: this.steps[0]
+      aluno: this.steps[0],
+      turma: this.steps[1]
     });
     var id = this.route.params.subscribe(params => {
     var id = params['id'];
@@ -119,6 +124,7 @@ export class StudentsFormComponent implements OnInit {
           this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
           this.canSave = true;
             (<FormGroup>this.steps[0]).patchValue(this.student);
+            (<FormGroup>this.steps[1]).patchValue(this.student);
           setTimeout(()=>this.bugFixPlaceholder(), 200);
         },
         response => {
@@ -150,9 +156,8 @@ export class StudentsFormComponent implements OnInit {
     var result,
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
-    userValue.start_year = 2016;
     userValue.end_month = 2;
-    userValue.end_year = 2011;
+    userValue.end_year = 2017;
     userValue.course_id = 1;
     userValue.regional = 3;
     userValue.unit_id = 4;
@@ -165,7 +170,6 @@ export class StudentsFormComponent implements OnInit {
     userValue.origin_id = 2;
     userValue.city_id = 2;
     userValue.modality_id = 3;
-    userValue.start_month = 3;
     delete userValue['disability'];
 
     console.log(userValue);

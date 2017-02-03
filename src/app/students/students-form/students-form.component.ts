@@ -23,6 +23,7 @@ export class StudentsFormComponent implements OnInit {
       cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
       date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
   };
+  formPagination: any = {};
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
@@ -47,8 +48,11 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar
   ) {
-    this.bdInfo = {
+    this.formPagination.total = 4;
+    this.formPagination.index = 0;
 
+
+    this.bdInfo = {
     }
     this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
@@ -134,6 +138,10 @@ export class StudentsFormComponent implements OnInit {
         });
     });
 
+  }
+  changedTabIndex(event){
+    this.bugFixPlaceholder(event);
+    this.formPagination.index = event.index
   }
   bugFixPlaceholder(info = null){
     if(info != null){

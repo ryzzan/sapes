@@ -1,5 +1,5 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
-<md-tab-group (selectChange)="bugFixPlaceholder($event)">
+<md-tab-group [selectedIndex]="formPagination.index" (selectChange)="changedTabIndex($event)">
   <md-tab label="ALUNO" formGroupName="aluno">
 
     <template color="transparent"  md-tab-label>
@@ -229,14 +229,14 @@
           <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="1">
         <md-icon>language</md-icon>
          <md-select class="full-width" placeholder="2.8 - Área tecnológica">
           <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>work</md-icon>
          <md-select class="full-width" placeholder="2.9 - Ocupação">
           <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
@@ -257,29 +257,29 @@
         </md-select>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="1">
         <md-icon>monetization_on</md-icon>
          <md-select class="full-width" placeholder="2.12 - Gratuidade regimental?">
           <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>location_city</md-icon>2.13 - Convênio?<br>
         <md-radio-group class="full-width">
-          <md-icon>location_city</md-icon>2.13 - Convênio?<br>
           <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
           <md-radio-button class="radio-after" value="2">Não</md-radio-button>
         </md-radio-group>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>location_city</md-icon>
         <md-input-container class="full-width">
           <input disabled md-input placeholder="2.14 - Qual convênio?">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>school</md-icon>
         <md-radio-group class="full-width">
           2.15 - Pronatec?<br>
@@ -298,20 +298,119 @@
     </md-grid-list>
   </md-tab>
   <md-tab>
-    <template color="transparent"  md-tab-label>
+    <template color="transparent" md-tab-label>
       <md-icon *ngIf="steps[2].valid">thumb_up</md-icon>
       <md-icon *ngIf="!steps[2].valid">thumb_down</md-icon>
       CONTATO
     </template>
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.1 - Endereço">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.2 - Número">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.3 - Complemento">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.4 - Bairro">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.5 - Cidade">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.6 - UF">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.7 - CEP">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.8 - Telefone residencial">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.9 - Telefone celular">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.10 - Telefone recado">
+        </md-input-container>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
+        <md-input-container class="example-full-width">
+          <input md-input placeholder="3.11 - Tele1.7 - Possui alguma deficiência (PcD)?fone recado">
+        </md-input-container>
+      </md-grid-tile>
+
+
+    </md-grid-list>
   </md-tab>
+
   <md-tab>
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[3].valid">thumb_up</md-icon>
       <md-icon *ngIf="!steps[3].valid">thumb_down</md-icon>
       SITUAÇÃO PROFISSIONAL
     </template>
+    <md-grid-list cols="2" rowHeight="100px">
+        <md-grid-tile [colspan]="2">
+          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
+            <md-radio-button value="1">Sim</md-radio-button>
+            <md-radio-button value="2">Não</md-radio-button>
+          </md-radio-group>
+        </md-grid-tile>
+    </md-grid-list>
+    <md-grid-list cols="2" rowHeight="360px">
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.2 - Especifique abaixo sua situação profissional:<br>
+          <div *ngFor="let estagio of estagios"><md-radio-button value="{{estagio}}">{{estagio}}</md-radio-button><br></div>
+        </md-radio-group>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1">
+        <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.3 - Especifique abaixo sua situação profissional:<br>
+          <md-radio-button value="1">Menos de 1 SM</md-radio-button><br>
+          <md-radio-button value="2">1 SM</md-radio-button><br>
+          <md-radio-button value="3">Mais 1 a 2 SM</md-radio-button><br>
+          <md-radio-button value="4">Mais 2 a 3 SM</md-radio-button><br>
+          <md-radio-button value="5">Mais 3 a 5 SM</md-radio-button><br>
+          <md-radio-button value="6">Mais 5 a 7 SM</md-radio-button><br>
+          <md-radio-button value="7">Mais 7 a 10 SM</md-radio-button><br>
+          <md-radio-button value="8">Mais 10 a 15 SM</md-radio-button><br>
+          <md-radio-button value="9">Mais 5 a 20 SM</md-radio-button><br>
+          <md-radio-button value="10">Mais de 20 SM</md-radio-button><br>
+        </md-radio-group>
+      </md-grid-tile>
+    </md-grid-list>
   </md-tab>
-  <md-tab>
+
+  <md-tab>5 de 1
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[4].valid">thumb_up</md-icon>
       <md-icon *ngIf="!steps[4].valid">thumb_down</md-icon>
@@ -346,5 +445,8 @@
     </button>
     <button md-raised-button type="reset">Limpar <md-icon>restore</md-icon>
     </button>
+    <span class="toolbar-spacer"></span>
+    <button (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_before</md-icon></button>
+    <button (click)="changedTabIndex({index: this.formPagination.index+changedTabIndex1})" type="button"*ngIf="formPagination.index!=formPagination.total" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_next</md-icon></button>
 </md-toolbar>
 </form>

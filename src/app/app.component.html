@@ -1,19 +1,18 @@
-
-
 <md-sidenav-container class="example-sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true">
     <app-sidenav></app-sidenav>
   </md-sidenav>
 
-  <md-toolbar class="md-toolbar">    
+  <md-toolbar class="md-toolbar">
       <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
-      <h1>SAPES v2.0 - Sistema de Acompanhamento Permanente de Egressos do SENAI</h1>    
+      <h1>SAPES v2.0 - Sistema de Acompanhamento Permanente de Egressos do SENAI</h1>
       <span class="toolbar-spacer"></span>
       <span class="md-toolbar date">Ano Base: 2017</span>
-      <button md-icon-button [mdMenuTriggerFor]="menudate" mdTooltip="Alterar Ano Base!"><md-icon class="md-toolbar grey">date_range</md-icon></button>
-      
+      <button md-icon-button [mdMenuTriggerFor]="menudate" mdTooltip="Alterar Ano Base!">
+        <md-icon class="md-toolbar grey">date_range</md-icon>
+      </button>
       <md-menu #menudate="mdMenu">
-        <button md-menu-item>          
+        <button md-menu-item>
           <md-icon>date_range</md-icon>
           <span>2016</span>
         </button>

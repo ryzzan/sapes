@@ -305,66 +305,66 @@
     </template>
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.1 - Endereço">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.2 - Número">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.3 - Complemento">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.4 - Bairro">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.5 - Cidade">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.6 - UF">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.7 - CEP">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.8 - Telefone residencial">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.9 - Telefone celular">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.10 - Telefone recado">
         </md-input-container>
       </md-grid-tile>
       <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
-        <md-input-container class="example-full-width">
+        <md-input-container class="full-width">
           <input md-input placeholder="3.11 - Tele1.7 - Possui alguma deficiência (PcD)?fone recado">
         </md-input-container>
       </md-grid-tile>
@@ -381,7 +381,8 @@
     </template>
     <md-grid-list cols="2" rowHeight="100px">
         <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
+          <md-radio-group class="full-width input-space">
+            <i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
             <md-radio-button value="1">Sim</md-radio-button>
             <md-radio-button value="2">Não</md-radio-button>
           </md-radio-group>
@@ -410,7 +411,7 @@
     </md-grid-list>
   </md-tab>
 
-  <md-tab>5 de 1
+  <md-tab>
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[4].valid">thumb_up</md-icon>
       <md-icon *ngIf="!steps[4].valid">thumb_down</md-icon>
@@ -447,6 +448,6 @@
     </button>
     <span class="toolbar-spacer"></span>
     <button (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_before</md-icon></button>
-    <button (click)="changedTabIndex({index: this.formPagination.index+changedTabIndex1})" type="button"*ngIf="formPagination.index!=formPagination.total" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_next</md-icon></button>
+    <button (click)="changedTabIndex({index: this.formPagination.index+1})" type="button"*ngIf="formPagination.index!=formPagination.total" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_next</md-icon></button>
 </md-toolbar>
 </form>

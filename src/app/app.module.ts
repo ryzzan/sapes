@@ -15,6 +15,7 @@ import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
 import { TesteComponent } from './teste/teste.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SidenavComponent,
     HomeComponent,
     TesteComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

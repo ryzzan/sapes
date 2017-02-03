@@ -4,5 +4,7 @@ th:last-child{
 .office-header{
   color: blue;
 }
-
+.list-content {
+  padding: 10px;
+}
 

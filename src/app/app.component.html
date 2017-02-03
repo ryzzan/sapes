@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<md-sidenav-container class="example-sidenav-fab-container">
-=======
-
-<md-sidenav-container *ngIf="2==1" class="example-sidenav-fab-container">
->>>>>>> 8f660cb6c25a509261a9de4f48e94243ad1335a6
+<md-sidenav-container *ngIf="true" class="example-sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true">
     <app-sidenav></app-sidenav>
   </md-sidenav>
@@ -33,5 +28,4 @@
     <router-outlet></router-outlet>
   </div>
 </md-sidenav-container>
-
-<router-outlet *ngIf="true"></router-outlet>
+<router-outlet *ngIf="false"></router-outlet>

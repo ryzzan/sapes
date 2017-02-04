@@ -20,6 +20,8 @@ h1 {
     width: 30%;
     height: 30%;
     background-color: rgba(255,255,255,0.5);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .md-card {
     width: 100%;
@@ -35,6 +37,23 @@ button {
     background-color: rgba(255,255,255,0.34);
     color: #0068b3;
 }
+.buttonLogin {
+    background-color: #0068b3;
+    color: #fff;
+    margin-top: 20px;
+}
+.buttonPasswd {
+    background-color: #656a77;
+    color: #fff;
+    margin-top: 20px;
+}
 .boxForm {
-    top: 50px;
+    margin: 20px 20px 0 20px;
+    width: 90%;
+    text-align: center;
+    padding-top: 20px;
+    line-height: 45px;
+}
+md-input-container {
+    width: 70%;
 }

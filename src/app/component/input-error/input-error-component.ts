@@ -37,8 +37,12 @@ export class InputErrorComponent implements OnChanges {
     if(key == 'maxlength'){
      message = message.replace('@maxValue', this.errors.maxlength.requiredLength);
     }
+<<<<<<< HEAD
 
 
+=======
+    
+>>>>>>> 7dc76b29c590b54f88f58618ae2edeafa37905da
     return message;
   }
 

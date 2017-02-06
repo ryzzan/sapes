@@ -83,7 +83,7 @@
           <input style="display:none" md-input>
           1.5 - Estudou/estuda em que tipo de escola? *<br>
           <md-radio-group formControlName="origin_id">
-            <md-radio-button *ngFor="let origin of origins" class="radio-before" [value]="origin.id">{{origin.value}}</md-radio-button>
+            <md-radio-button *ngFor="let origin of bdInfo.origins" class="radio-before" [value]="origin.id">{{origin.value}}</md-radio-button>
           </md-radio-group>
           <md-hint class="valid-msg" align="start"
             *ngIf="steps[0].controls['origin_id'].touched || triedSend">
@@ -97,7 +97,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia *">
-            <md-option *ngFor="let ethnicity of ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
+            <md-option *ngFor="let ethnicity of bdInfo.ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="!steps[0].controls['ethnicity_id'].valid  && (steps[0].controls['ethnicity_id'].touched || triedSend)">
@@ -128,7 +128,7 @@
                     formControlName="disability_id"
                     [required]="disabilityFlag"
                     [disabled]="!disabilityFlag">
-            <md-option *ngFor="let disability of disabilities"
+            <md-option *ngFor="let disability of bdInfo.disabilities"
                         [value]="disability.id">{{disability.value}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
@@ -153,7 +153,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início do curso *">
-            <md-option *ngFor="let year of years" [value]="year">{{year}}</md-option>
+            <md-option *ngFor="let year of bdInfo.years" [value]="year">{{year}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="!steps[1].controls['start_year'].valid  && (steps[1].controls['start_year'].touched || triedSend)">
@@ -167,7 +167,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início do curso *">
-            <md-option *ngFor="let month of months" [value]="month.id">{{month.valueView}}</md-option>
+            <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="!steps[1].controls['start_month'].valid  && (steps[1].controls['start_month'].touched || triedSend)">
@@ -188,7 +188,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término do curso *">
-            <md-option *ngFor="let month of months" [value]="month.id">{{month.valueView}}</md-option>
+            <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="!steps[1].controls['end_month'].valid  && (steps[1].controls['end_month'].touched || triedSend)">
@@ -199,63 +199,63 @@
 
       <md-grid-tile [colspan]="1">
         <md-icon>class</md-icon>
-        <md-select class="full-width" placeholder="2.5 - Nome do curso">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+        <md-select formControlName="course_id" class="full-width" placeholder="2.5 - Nome do curso">
+          <md-option *ngFor="let course of bdInfo.courses" [value]="course.id">{{course.description}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>location_on</md-icon>
         <md-select class="full-width" placeholder="2.6 - Selecione o DR">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>business</md-icon>
         <md-select class="full-width" placeholder="2.7 - Unidade SENAI">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>list</md-icon>
          <md-select class="full-width" placeholder="2.8 - Modalide">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
       <md-grid-tile [colspan]="1">
         <md-icon>language</md-icon>
          <md-select class="full-width" placeholder="2.8 - Área tecnológica">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>work</md-icon>
          <md-select class="full-width" placeholder="2.9 - Ocupação">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>people_outline</md-icon>
          <md-select class="full-width" placeholder="2.10 - Código da turma">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>school</md-icon>
          <md-select class="full-width" placeholder="2.11 - Educação à distância - EAD?">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1">
         <md-icon>monetization_on</md-icon>
          <md-select class="full-width" placeholder="2.12 - Gratuidade regimental?">
-          <md-option *ngFor="let banco of bancos">{{banco}}</md-option>
+          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
         </md-select>
       </md-grid-tile>
 
@@ -443,6 +443,6 @@
     </button>
     <span class="toolbar-spacer"></span>
     <button (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_before</md-icon></button>
-    <button (click)="changedTabIndex({index: this.formPagination.index+1})" type="button"*ngIf="formPagination.index!=formPagination.total" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_next</md-icon></button>
+    <button (click)="changedTabIndex({index: this.formPagination.index+1})" type="button"*ngIf="formPagination.index!=formPagination.maxIndex" style="background:#ced8df;color:white;" md-mini-fab routerLink="."><md-icon>navigate_next</md-icon></button>
 </md-toolbar>
 </form>

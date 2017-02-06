@@ -9,21 +9,16 @@ export class InputErrorComponent implements OnChanges {
   @Input() validators:any = {};
   @Input() errors:any;
   @Input() title:string;
-  @Input() triedSend: boolean = false;
   private messages:any;
   private messageError: string = "";
 
   constructor() {
   }
 
-  ngOnInit(){
-    this.setMessages(this.validators);
-  }
-
   ngOnChanges(){
-    if(this.messages!=undefined){
-      this.messageError = this.getMessage(this.errors,this.messages);
-    }
+
+    this.setMessages(this.validators);
+    this.messageError = this.getMessage(this.errors,this.messages);
   }
 
   getMessage(errors = {}, messages){

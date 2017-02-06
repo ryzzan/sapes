@@ -1,5 +1,1 @@
-<md-hint *ngIf="control.hasError('required') && (control.touched )">Esse campo é obrigatorio</md-hint>
-<md-hint class="valid-msg"
-  *ngIf="control.touched && !control.valid && !control.hasError('required')"
-  align="start">Campo nome é inválido (5 até 100 caracteres)</md-hint>
-
+<span>{{messageError}}</span>

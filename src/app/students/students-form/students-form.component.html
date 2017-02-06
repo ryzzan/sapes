@@ -14,10 +14,9 @@
         <md-input-container align="start" class="full-width">
           <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
               [textMask]="{mask: mask.cpf}">
-          <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[0].controls['cpf_number'].valid  && (steps[0].controls['cpf_number'].touched || triedSend)">
-              <span *ngIf="steps[0].controls['cpf_number'].hasError('required')">Esse campo é obrigatorio</span>
-              <span *ngIf="steps[0].controls['cpf_number'].hasError('validateCpf')">CPF em formato incorreto</span>
+          <md-hint class="valid-msg" align="start">
+              <input-error [errors]="steps[0].controls['cpf_number'].errors"
+              [triedSend]="triedSend" title="CPF"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>

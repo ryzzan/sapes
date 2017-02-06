@@ -33,6 +33,7 @@ export class StudentsFormComponent implements OnInit {
   bdInfo : any = {};
   disabilityFlag: boolean;
 
+
   ethnicities = [];
   disabilities = [];
   months = [];
@@ -51,17 +52,37 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar
   ) {
-
     this.bdInfo = {
+      courses: [{id: 1, description: "Gestão ambiental"}],
+      distance_education: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
+      genders: [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}],
+      estagios: [
+        'Estágio',
+        'Aluno Cotista/Aprendiz',
+        'Empresário/Sócio proprietário',
+        'Empregado com carteira assinada',
+        'Empregado sem carteira assinada',
+        'Empregado temporário com carteira assinada',
+        'Empregado temporário sem carteira assinada',
+        'Profissional liberal (dentista, advogado...)',
+        'Autônomo (por conta própria)',
+        'Funcionário público/militar',
+        'Outra situação? Qual?'
+      ],
+      ethnicities: [{id:1,value:'Branca'}, {id:2,value:'Preta'}, {id:3,value:'Amarela'}, {id:4,value:'Indígena'},{id:5,value:'Parda'}],
+      disabilities: [
+        {id:1, value: 'Auditiva'}, {id:2, value: 'Intelectual'}, {id:3, value: 'Física'},{id:4, value: 'Condutas típicas'},
+        {id:5, value: 'Visual'}, {id:6, value: 'Múltiplas'},{id:7, value: 'Altas habilidades'}, {id:8, value: 'Outro (s)'}
+      ],
+      months: [
+        {id: 1,valueView:'Janeiro'}, {id: 2,valueView:'Fevereiro'}, {id: 3,valueView:'Março'},
+        {id: 4,valueView:'Abril'}, {id: 5,valueView:'Maio'}, {id: 6,valueView:'Junho'},
+        {id: 7,valueView:'Julho'}, {id: 8,valueView:'Agosto'}, {id: 9,valueView:'Setembro'},
+        {id: 10,valueView:'Outubro'}, {id: 11,valueView:'Novembro'}, {id: 12,valueView:'Dezembro'}
+      ],
+      years: [2016, 2015, 2014,2013],
+      bancos: ['Virá do banco']
     }
-    this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
-    this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
-    this.estagios = ['Estágio','Aluno Cotista/Aprendiz','Empresário/Sócio proprietário','Empregado com carteira assinada','Empregado sem carteira assinada','Empregado temporário com carteira assinada','Empregado temporário sem carteira assinada','Profissional liberal (dentista, advogado...)','Autônomo (por conta própria)','Funcionário público/militar','Outra situação? Qual?'];
-    this.ethnicities = [{id:1,value:'Branca'}, {id:2,value:'Preta'}, {id:3,value:'Amarela'}, {id:4,value:'Indígena'},{id:5,value:'Parda'}];
-    this.disabilities = [{id:1, value: 'Auditiva'}, {id:2, value: 'Intelectual'}, {id:3, value: 'Física'}, {id:4, value: 'Condutas típicas'}, {id:5, value: 'Visual'}, {id:6, value: 'Múltiplas'}, {id:7, value: 'Altas habilidades'}, {id:8, value: 'Outro (s)'}];
-    this.months = [{id: 1,valueView:'Janeiro'}, {id: 1,valueView:'Fevereiro'}, {id: 1,valueView:'Março'}, {id: 1,valueView:'Abril'}, {id: 1,valueView:'Maio'}, {id: 1,valueView:'Junho'}, {id: 1,valueView:'Julho'}, {id: 1,valueView:'Agosto'}, {id: 1,valueView:'Setembro'}, {id: 1,valueView:'Outubro'}, {id: 1,valueView:'Novembro'}, {id: 1,valueView:'Dezembro'}];
-    this.years = [2016, 2015, 2014,2013];
-    this.bancos = ['Virá do banco'];
   }
   teste(event){
     console.log(event)
@@ -99,6 +120,7 @@ export class StudentsFormComponent implements OnInit {
       start_year: [null, [Validators.required]],
       start_month: [null, [Validators.required]],
       end_month: [null, [Validators.required]],
+      course_id: [null, [Validators.required]],
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -164,9 +186,7 @@ export class StudentsFormComponent implements OnInit {
     var result,
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
-    userValue.end_month = 2;
     userValue.end_year = 2017;
-    userValue.course_id = 1;
     userValue.regional = 3;
     userValue.unit_id = 4;
     userValue.area_id = 2;

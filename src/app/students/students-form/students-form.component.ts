@@ -20,10 +20,13 @@ export class StudentsFormComponent implements OnInit {
   form: FormGroup;
   student: Student = new Student();
   mask: any = {
-      cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
-      date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+    cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
+    date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
   };
-  formPagination: any = {};
+  formPagination: any = {
+    maxIndex: 4,
+    index: 1
+  };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
@@ -48,9 +51,6 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar
   ) {
-    this.formPagination.total = 4;
-    this.formPagination.index = 0;
-
 
     this.bdInfo = {
     }

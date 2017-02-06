@@ -27,7 +27,7 @@ export class InputErrorComponent implements OnChanges {
 
     let key = this.getError(errors);
     if(key == "") return '';
-   
+
     let message =  messages[key].replace('@field', this.title);
 
     if(key == 'minlength'){
@@ -37,13 +37,13 @@ export class InputErrorComponent implements OnChanges {
     if(key == 'maxlength'){
      message = message.replace('@maxValue', this.errors.maxlength.requiredLength);
     }
-    
-    
+
+
     return message;
   }
 
   getError(errors){
-    /* Get de name of error*/ 
+    /* Get de name of error*/
     if(typeof(errors.required)!="undefined")
       return 'required';
 
@@ -64,6 +64,7 @@ export class InputErrorComponent implements OnChanges {
       required = 'O campo @field é obrigatório',
       defaultInvalid = 'O valor do campo @field é inválido',
       validateCpf = 'CPF em formato incorreto',
+      validateDate = "Data no formato incorreto",
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres'
   } = {}){
@@ -71,6 +72,7 @@ export class InputErrorComponent implements OnChanges {
         required: required,
         defaultInvalid: defaultInvalid,
         validateCpf: validateCpf,
+        validateDate: validateDate,
         minlength: minlength,
         maxlength: maxlength
       }

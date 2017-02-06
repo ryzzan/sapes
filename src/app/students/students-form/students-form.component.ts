@@ -37,7 +37,7 @@ export class StudentsFormComponent implements OnInit {
   bancos = [];
   estagios = [];
   genders = [];
-  distance_education = [];
+  origins = [];
 
   steps: any = [];
 
@@ -54,7 +54,7 @@ export class StudentsFormComponent implements OnInit {
 
     this.bdInfo = {
     }
-    this.distance_education = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
+    this.origins = [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}];
     this.genders = [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}];
     this.estagios = ['Estágio','Aluno Cotista/Aprendiz','Empresário/Sócio proprietário','Empregado com carteira assinada','Empregado sem carteira assinada','Empregado temporário com carteira assinada','Empregado temporário sem carteira assinada','Profissional liberal (dentista, advogado...)','Autônomo (por conta própria)','Funcionário público/militar','Outra situação? Qual?'];
     this.ethnicities = [{id:1,value:'Branca'}, {id:2,value:'Preta'}, {id:3,value:'Amarela'}, {id:4,value:'Indígena'},{id:5,value:'Parda'}];
@@ -90,7 +90,7 @@ export class StudentsFormComponent implements OnInit {
         ])
       ],
       gender: [null, [Validators.required]],
-      distance_education: [null,Validators.required],
+      origin_id: [null,Validators.required],
       ethnicity_id: [null,[Validators.required]],
       disability: [null],
       disability_id: [null]

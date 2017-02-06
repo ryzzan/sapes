@@ -22,20 +22,33 @@ export class InputErrorComponent implements OnChanges {
   }
 
   getMessage(errors = {}, messages){
+    /* get the message for error*/
     if(errors == null) return '';
 
     let key = this.getError(errors);
     if(key == "") return '';
-    return messages[key].replace('@field', this.title);
+   
+    let message =  messages[key].replace('@field', this.title);
+
+    if(key == 'minlength'){
+     message = message.replace('@minValue', this.errors.minlength.requiredLength);
+    }
+
+    if(key == 'maxlength'){
+     message = message.replace('@maxValue', this.errors.maxlength.requiredLength);
+    }
+    
+    return message;
   }
 
   getError(errors){
+    /* Get de name of error*/ 
     if(typeof(errors.required)!="undefined")
       return 'required';
 
     let keys = Object.keys(errors);
     if(keys.length === 0) '';
-
+    console.log(errors);
     let key = null;
     keys.forEach(function(value){
       if(value != "required"){
@@ -49,12 +62,16 @@ export class InputErrorComponent implements OnChanges {
   setMessages({
       required = 'O campo @field é obrigatório',
       defaultInvalid = 'O valor do campo @field é inválido',
-      validateCpf = 'CPF em formato incorreto'
+      validateCpf = 'CPF em formato incorreto',
+      minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
+      maxlength = 'O campo @field deve ter no máximo @maxValue caracteres'
   } = {}){
       this.messages = {
         required: required,
         defaultInvalid: defaultInvalid,
-        validateCpf: validateCpf
+        validateCpf: validateCpf,
+        minlength: minlength,
+        maxlength: maxlength
       }
   }
 }

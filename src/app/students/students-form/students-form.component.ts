@@ -79,7 +79,7 @@ export class StudentsFormComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(100),
+          Validators.maxLength(100)
         ])
       ],
       rg_number: [null, Validators.required],

@@ -29,10 +29,8 @@
                 (input)="teste(steps[0].controls['name'].errors)" formControlName="name"
                 placeholder="1.1 - Nome do aluno *">
           <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[0].controls['name'].valid  && (steps[0].controls['name'].touched || triedSend)">
-              <span *ngIf="steps[0].controls['name'].hasError('required')">Esse campo é obrigatorio</span>
-              <span *ngIf="steps[0].controls['name'].hasError('minlength')">Esse campo tem ter mais de 5 caracteres</span>
-              <span *ngIf="steps[0].controls['name'].hasError('maxlength')">Esse campo tem ter mens de 100 caracteres</span>
+              *ngIf="steps[0].controls['name'].touched || triedSend">
+              <input-error [errors]="steps[0].controls['name'].errors" title="Nome do Aluno"></input-error>
           </md-hint>
           <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>

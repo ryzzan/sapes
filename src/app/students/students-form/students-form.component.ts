@@ -89,9 +89,11 @@ export class StudentsFormComponent implements OnInit {
       ],
       areas: [
         {'id':2,description: "ALIMENTOS E BEBIDAS"},
+      ],
+      occupations: [
+        {'id':2,description: "OFICIAL GENERAL DO EXÉRCITO"},
       ]
     }
-
   }
   teste(event){
     console.log(event)
@@ -134,6 +136,7 @@ export class StudentsFormComponent implements OnInit {
       unit_id: [null, [Validators.required]],
       modality_id: [null, [Validators.required]],
       area_id: [null, [Validators.required]],
+      occupation_id: [null, [Validators.required]]
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -200,7 +203,6 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.occupation_id = 2;
     userValue.class = 2;
     userValue.regimental_gratuity = 2;
     userValue.agreement = 2;

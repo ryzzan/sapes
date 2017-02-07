@@ -147,8 +147,8 @@
       <md-icon *ngIf="!steps[1].valid">thumb_down</md-icon>
       Turma
     </template>
-     <md-grid-list cols="4" rowHeight="100px">
-      <md-grid-tile [colspan]="1">
+     <md-grid-list cols="8" rowHeight="90px">
+      <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -162,7 +162,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -177,14 +177,14 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
           <input md-input disabled value="2017" placeholder="2.3 - Ano de término do curso">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -198,7 +198,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="3">
         <md-icon>class</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -212,7 +212,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>location_on</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -226,7 +226,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2" class="input-space">
+      <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>business</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -240,7 +240,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2">
+      <md-grid-tile [colspan]="5">
         <md-icon>list</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -254,7 +254,7 @@
           </md-hint>
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="2" class="input-space">
+      <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -268,7 +268,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2">
+      <md-grid-tile [colspan]="3">
         <md-icon>work</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
@@ -283,66 +283,69 @@
 
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>people_outline</md-icon>
-         <md-select class="full-width" placeholder="2.10 - Código da turma">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <md-input-container  align="start" class="full-width">
+          <input type="number" md-input #class formControlName="class" placeholder="2.10 Código da turma *">
+          <md-hint class="valid-msg" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
+              <input-error [errors]="steps[1].controls['class'].errors" title="Código da turma"></input-error>
+          </md-hint>
+          <md-hint align="end">{{getNumber(class.value).length}} / 11</md-hint>
+        </md-input-container>
       </md-grid-tile>
-
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="3" class="disability-cell input-space">
         <md-icon>school</md-icon>
-        <section class="flagInput">
+        <section class="full-width" class="flagInput">
           <p>2.11 - Educação à distância - EAD?</p><br>
           <span>Não</span>
-          <md-slide-toggle
-              class="example-margin"
-              [color]="color"
-              [checked]="checked"
-              [disabled]="disabled">
+          <md-slide-toggle formControlName="distance_education">
             Sim
           </md-slide-toggle>
         </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="disability-cell">
         <md-icon>monetization_on</md-icon>
-         <md-select class="full-width" placeholder="2.12 - Gratuidade regimental?">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <section class="full-width" class="flagInput">
+          <p>2.12 - Gratuidade regimental?</p><br>
+          <span>Não</span>
+          <md-slide-toggle formControlName="regimental_gratuity">
+            Sim
+          </md-slide-toggle>
+        </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
-        <md-icon>location_city</md-icon>2.13 - Convênio?<br>
-        <md-radio-group class="full-width">
-          <md-radio-button class="radio-before" value="1">Sim</md-radio-button>
-          <md-radio-button class="radio-after" value="2">Não</md-radio-button>
-        </md-radio-group>
+
+      <md-grid-tile [colspan]="2" class="disability-cell input-space">
+        <md-icon>location_city</md-icon>
+        <section class="full-width" class="flagInput">
+          <p>2.13 - Convênio?</p><br>
+          <span>Não</span>
+          <md-slide-toggle>
+            Sim
+          </md-slide-toggle>
+        </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>location_city</md-icon>
         <md-input-container class="full-width">
           <input disabled md-input placeholder="2.14 - Qual convênio?">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="disability-cell">
         <md-icon>school</md-icon>
         <section class="flagInput">
           <p>2.15 - Pronatec?</p><br>
           <span>Não</span>
-          <md-slide-toggle
-              class="example-margin"
-              [color]="color"
-              [checked]="checked"
-              [disabled]="disabled">
+          <md-slide-toggle>
             Sim
           </md-slide-toggle>
         </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="3">
         <md-icon>school</md-icon>
          <md-select disabled class="full-width" placeholder="2.16 - Qual Pronatec?">
           <md-option *ngFor="let colour of colours">{{colour}}</md-option>

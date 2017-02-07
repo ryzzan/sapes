@@ -136,7 +136,14 @@ export class StudentsFormComponent implements OnInit {
       unit_id: [null, [Validators.required]],
       modality_id: [null, [Validators.required]],
       area_id: [null, [Validators.required]],
-      occupation_id: [null, [Validators.required]]
+      occupation_id: [null, [Validators.required]],
+      class: [null, [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]],
+      distance_education: [null],
+      regimental_gratuity: [null]
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -203,8 +210,6 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.class = 2;
-    userValue.regimental_gratuity = 2;
     userValue.agreement = 2;
     userValue.pronatec = 2;
     userValue.city_id = 2;
@@ -222,6 +227,11 @@ export class StudentsFormComponent implements OnInit {
       result = this.studentsService.updateStudent(userValue);
     } else {
       result = this.studentsService.addStudent(userValue);
+    }
+
+    if(userValue){
+      let data = userValue['birth_date'].split('-');
+      userValue['birth_date'] = data[2]+"/"+data[1]+"/"+data[0];
     }
 
     result.subscribe(data => {

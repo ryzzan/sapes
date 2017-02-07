@@ -42,7 +42,7 @@
           <input style="display:none" md-input>
           <md-radio-group formControlName="gender">
             1.2 - Selecione o gênero *<br>
-            <md-radio-button *ngFor="let gender of genders" class="radio-before"
+            <md-radio-button *ngFor="let gender of bdInfo.genders" class="radio-before"
                               [value]="gender.id">{{gender.value}}</md-radio-button>
           </md-radio-group>
           <md-hint class="valid-msg" align="start"

@@ -72,7 +72,7 @@ export class StudentsFormComponent implements OnInit {
       ],
       years: [2016, 2015, 2014,2013],
       bancos: ['Virá do banco'],
-      regional: [
+      regionals: [
         {description:'Acre',sigla:'AC'},{description:'Alagoas',sigla:'AL'},{description:'Amapá',sigla:'AP'},{description:'Amazonas',sigla:'AM'},
         {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},{description:'Distrito Federal',sigla:'DF'},{description:'Espírito Santo',sigla:'ES'},
         {description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},{description:'Mato Grosso do Sul',sigla:'MS'},
@@ -80,8 +80,16 @@ export class StudentsFormComponent implements OnInit {
         {description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},{description:'Rio Grande do Norte',sigla:'RN'},
         {description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},{description:'Santa Catarina',sigla:'SC'},
         {description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
+      ],
+      units: [
+        {'id':4,description: "UNIDADE MÓVEL ELETROELETRÔNICA"},
+      ],
+      modalities: [
+        {id:2, description: 'QUALIFICAÇÃO PROFISSIONAL'}, {'id':4,description: "APRENDIZAGEM INDUSTRIAL TÉCNICA DE NÍVEL MÉDIO"},
+      ],
+      areas: [
+        {'id':2,description: "ALIMENTOS E BEBIDAS"},
       ]
-
     }
 
   }
@@ -123,6 +131,9 @@ export class StudentsFormComponent implements OnInit {
       end_month: [null, [Validators.required]],
       course_id: [null, [Validators.required]],
       regional: [null, [Validators.required]],
+      unit_id: [null, [Validators.required]],
+      modality_id: [null, [Validators.required]],
+      area_id: [null, [Validators.required]],
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -189,16 +200,12 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.unit_id = 4;
-    userValue.area_id = 2;
     userValue.occupation_id = 2;
     userValue.class = 2;
     userValue.regimental_gratuity = 2;
     userValue.agreement = 2;
     userValue.pronatec = 2;
-    userValue.origin_id = 2;
     userValue.city_id = 2;
-    userValue.modality_id = 3;
     delete userValue['disability'];
 
     console.log(userValue);

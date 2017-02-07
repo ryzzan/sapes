@@ -157,7 +157,7 @@
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="steps[1].controls['start_year'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Ano de início do curso"></input-error>
+              <input-error [errors]="steps[1].controls['start_year'].errors" title="Ano de início do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -171,7 +171,8 @@
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="steps[1].controls['start_month'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Mês de início do curso"></input-error>
+              <input-error [errors]="steps[1].controls['start_month'].errors"
+                           title="Início do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -192,7 +193,7 @@
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="steps[1].controls['end_month'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Mês de término do curso"></input-error>
+              <input-error [errors]="steps[1].controls['end_month'].errors" title="Mês de término do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -215,8 +216,8 @@
         <md-icon>location_on</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="regional" placeholder="2.6 - Selecione o DR *">
-            <md-option *ngFor="let regional of bdInfo.regional" [value]="regional.sigla">{{regional.sigla}} - {{regional.description}}</md-option>
+          <md-select formControlName="regional" class="full-width" placeholder="2.6 - Selecione o DR *">
+            <md-option *ngFor="let regional of bdInfo.regionals" [value]="regional.sigla">{{regional.sigla}} - {{regional.description}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
               *ngIf="steps[1].controls['regional'].touched || triedSend">
@@ -225,27 +226,49 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>business</md-icon>
-        <md-select class="full-width" placeholder="2.7 - Unidade SENAI">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Unidade SENAI">
+            <md-option *ngFor="let unit of bdInfo.units" [value]="unit.id">{{unit.description}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="steps[1].controls['unit_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['unit_id'].errors" title="Unidade"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="2">
         <md-icon>list</md-icon>
-         <md-select class="full-width" placeholder="2.8 - Modalide">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide">
+            <md-option *ngFor="let modality of bdInfo.modalities" [value]="modality.id">{{modality.description}}</md-option>
+          </md-select>
+
+          <md-hint class="valid-msg" align="start"
+              *ngIf="steps[1].controls['modality_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['modality_id'].errors" title="Modalidade"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>language</md-icon>
-         <md-select class="full-width" placeholder="2.8 - Área tecnológica">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="area_id" placeholder="2.8 - Área tecnológica">
+            <md-option *ngFor="let area of bdInfo.areas" [value]="area.id">{{area.description}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="steps[1].controls['area_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['area_id'].errors" title="Area"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="1">
         <md-icon>work</md-icon>
          <md-select class="full-width" placeholder="2.9 - Ocupação">
           <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
@@ -266,7 +289,7 @@
         </md-select>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1">
+      <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>monetization_on</md-icon>
          <md-select class="full-width" placeholder="2.12 - Gratuidade regimental?">
           <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
@@ -288,7 +311,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1" class="input-space">
+      <md-grid-tile [colspan]="1">
         <md-icon>school</md-icon>
         <md-radio-group class="full-width">
           2.15 - Pronatec?<br>

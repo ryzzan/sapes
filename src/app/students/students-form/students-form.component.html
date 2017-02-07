@@ -200,16 +200,30 @@
 
       <md-grid-tile [colspan]="1">
         <md-icon>class</md-icon>
-        <md-select formControlName="course_id" class="full-width" placeholder="2.5 - Nome do curso">
-          <md-option *ngFor="let course of bdInfo.courses" [value]="course.id">{{course.description}}</md-option>
-        </md-select>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select formControlName="course_id" class="full-width" placeholder="2.5 - Selecione o curso *">
+            <md-option *ngFor="let course of bdInfo.courses" [value]="course.id">{{course.description}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="steps[1].controls['course_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['course_id'].errors" title="Curso"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>location_on</md-icon>
-        <md-select class="full-width" placeholder="2.6 - Selecione o DR">
-          <md-option *ngFor="let banco of bdInfo.bancos">{{banco}}</md-option>
-        </md-select>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="regional" placeholder="2.6 - Selecione o DR *">
+            <md-option *ngFor="let regional of bdInfo.regional" [value]="regional.sigla">{{regional.sigla}} - {{regional.description}}</md-option>
+          </md-select>
+          <md-hint class="valid-msg" align="start"
+              *ngIf="steps[1].controls['regional'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['regional'].errors" title="DR"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1" class="input-space">

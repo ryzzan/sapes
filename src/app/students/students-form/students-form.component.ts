@@ -81,7 +81,17 @@ export class StudentsFormComponent implements OnInit {
         {id: 10,valueView:'Outubro'}, {id: 11,valueView:'Novembro'}, {id: 12,valueView:'Dezembro'}
       ],
       years: [2016, 2015, 2014,2013],
-      bancos: ['Virá do banco']
+      bancos: ['Virá do banco'],
+      regional: [
+        {description:'Acre',sigla:'AC'},{description:'Alagoas',sigla:'AL'},{description:'Amapá',sigla:'AP'},{description:'Amazonas',sigla:'AM'},
+        {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},{description:'Distrito Federal',sigla:'DF'},{description:'Espírito Santo',sigla:'ES'},
+        {description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},{description:'Mato Grosso do Sul',sigla:'MS'},
+        {description:'Minas Gerais',sigla:'MG'},{description:'Pará',sigla:'PA'},{description:'Paraíba',sigla:'PB'},{description:'Paraná',sigla:'PR'},
+        {description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},{description:'Rio Grande do Norte',sigla:'RN'},
+        {description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},{description:'Santa Catarina',sigla:'SC'},
+        {description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
+      ]
+
     }
   }
   teste(event){
@@ -121,6 +131,7 @@ export class StudentsFormComponent implements OnInit {
       start_month: [null, [Validators.required]],
       end_month: [null, [Validators.required]],
       course_id: [null, [Validators.required]],
+      regional: [null, [Validators.required]],
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -187,7 +198,6 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.regional = 3;
     userValue.unit_id = 4;
     userValue.area_id = 2;
     userValue.occupation_id = 2;

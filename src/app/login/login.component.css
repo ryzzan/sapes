@@ -14,11 +14,10 @@ h1 {
 .boxLogin {
     margin: 0 auto;
     position: relative;
-    padding: 0;
+    padding-bottom: 40px;
     top: 50%;
     transform: translateY(-50%);
-    width: 30%;
-    height: 30%;
+    width: 50%;
     background-color: rgba(255,255,255,0.5);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -41,11 +40,13 @@ button {
     background-color: #0068b3;
     color: #fff;
     margin-top: 20px;
+    width: 100px;
 }
 .buttonPasswd {
     background-color: #656a77;
     color: #fff;
     margin-top: 20px;
+    width: 200px;
 }
 .boxForm {
     margin: 20px 20px 0 20px;

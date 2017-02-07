@@ -33,16 +33,6 @@ export class StudentsFormComponent implements OnInit {
   bdInfo : any = {};
   disabilityFlag: boolean;
 
-
-  ethnicities = [];
-  disabilities = [];
-  months = [];
-  years = [];
-  bancos = [];
-  estagios = [];
-  genders = [];
-  distance_education = [];
-
   steps: any = [];
 
   constructor(
@@ -54,7 +44,7 @@ export class StudentsFormComponent implements OnInit {
   ) {
     this.bdInfo = {
       courses: [{id: 1, description: "Gestão ambiental"}],
-      distance_education: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
+      origins: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
       genders: [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}],
       estagios: [
         'Estágio',
@@ -93,6 +83,7 @@ export class StudentsFormComponent implements OnInit {
       ]
 
     }
+
   }
   teste(event){
     console.log(event)
@@ -121,7 +112,7 @@ export class StudentsFormComponent implements OnInit {
         ])
       ],
       gender: [null, [Validators.required]],
-      distance_education: [null,Validators.required],
+      origin_id: [null,Validators.required],
       ethnicity_id: [null,[Validators.required]],
       disability: [null],
       disability_id: [null]

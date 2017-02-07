@@ -8,7 +8,7 @@
       Aluno
     </template>
 
-    <md-grid-list cols="4" rowHeight="110px">
+    <md-grid-list cols="4" rowHeight="95px">
       <md-grid-tile [colspan]="2">
         <md-icon>credit_card</md-icon>
         <md-input-container align="start" class="full-width">
@@ -147,7 +147,7 @@
       <md-icon *ngIf="!steps[1].valid">thumb_down</md-icon>
       Turma
     </template>
-     <md-grid-list cols="8" rowHeight="90px">
+     <md-grid-list cols="8" rowHeight="95px">
       <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
@@ -304,7 +304,7 @@
         </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2" class="disability-cell">
+      <md-grid-tile [colspan]="3" class="disability-cell">
         <md-icon>monetization_on</md-icon>
         <section class="full-width" class="flagInput">
           <p>2.12 - Gratuidade regimental?</p><br>
@@ -316,25 +316,22 @@
       </md-grid-tile>
 
 
-      <md-grid-tile [colspan]="2" class="disability-cell input-space">
+      <md-grid-tile [colspan]="4" class="disability-cell input-space">
         <md-icon>location_city</md-icon>
         <section class="full-width" class="flagInput">
           <p>2.13 - Convênio?</p><br>
           <span>Não</span>
-          <md-slide-toggle>
+          <md-slide-toggle #agreement formControlName="agreement">
             Sim
           </md-slide-toggle>
         </section>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="3" class="input-space">
-        <md-icon>location_city</md-icon>
-        <md-input-container class="full-width">
-          <input disabled md-input placeholder="2.14 - Qual convênio?">
+        <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
+          <input [required]="agreement.checked" [disabled]="agreement.checked"
+                formControlName="agreement_name" md-input placeholder="2.14 - Qual convênio?">
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2" class="disability-cell">
+      <md-grid-tile [colspan]="3" class="disability-cell ">
         <md-icon>school</md-icon>
         <section class="flagInput">
           <p>2.15 - Pronatec?</p><br>
@@ -343,11 +340,7 @@
             Sim
           </md-slide-toggle>
         </section>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="3">
-        <md-icon>school</md-icon>
-         <md-select disabled class="full-width" placeholder="2.16 - Qual Pronatec?">
+         <md-select disabled class="disabilitySelect" placeholder="2.16 - Qual Pronatec?">
           <md-option *ngFor="let colour of colours">{{colour}}</md-option>
         </md-select>
       </md-grid-tile>
@@ -448,7 +441,7 @@
     <md-grid-list cols="2" rowHeight="360px">
       <md-grid-tile [colspan]="1">
         <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.2 - Especifique abaixo sua situação profissional:<br>
-          <div *ngFor="let estagio of estagios"><md-radio-button value="{{estagio}}">{{estagio}}</md-radio-button><br></div>
+          <div *ngFor="let estagio of bdInfo.estagios"><md-radio-button value="{{estagio}}">{{estagio}}</md-radio-button><br></div>
         </md-radio-group>
       </md-grid-tile>
       <md-grid-tile [colspan]="1">

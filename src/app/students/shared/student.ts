@@ -19,6 +19,7 @@ export class Student {
   distance_education: number;
   regimental_gratuity: number;
   agreement: number;
+  agreement_name: number;
   pronatec: number;
   gender: number;
   ethnicity_id: number;

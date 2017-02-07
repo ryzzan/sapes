@@ -25,7 +25,7 @@ export class StudentsFormComponent implements OnInit {
   };
   formPagination: any = {
     maxIndex: 4,
-    index: 1
+    index: 0
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -143,7 +143,9 @@ export class StudentsFormComponent implements OnInit {
         Validators.maxLength(10)
       ]],
       distance_education: [null],
-      regimental_gratuity: [null]
+      regimental_gratuity: [null],
+      agreement: [null],
+      agreement_name: [null]
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -210,7 +212,6 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.agreement = 2;
     userValue.pronatec = 2;
     userValue.city_id = 2;
     delete userValue['disability'];

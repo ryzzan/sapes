@@ -44,7 +44,7 @@ export class StudentsFormComponent implements OnInit {
   ) {
     this.bdInfo = {
       courses: [{id: 1, description: "Gestão ambiental"}],
-      oringins: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
+      origins: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
       genders: [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}],
       estagios: [
         'Estágio',

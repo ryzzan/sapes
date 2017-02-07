@@ -42,7 +42,7 @@
           <input style="display:none" md-input>
           <md-radio-group formControlName="gender">
             1.2 - Selecione o sexo *<br>
-            <md-radio-button *ngFor="let gender of genders" class="radio-before"
+            <md-radio-button *ngFor="let gender of bdInfo.genders" class="radio-before"
                               [value]="gender.id">{{gender.value}}</md-radio-button>
           </md-radio-group>
           <md-hint class="valid-msg" align="start"
@@ -100,8 +100,8 @@
             <md-option *ngFor="let ethnicity of bdInfo.ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[0].controls['ethnicity_id'].valid  && (steps[0].controls['ethnicity_id'].touched || triedSend)">
-              <span *ngIf="steps[0].controls['ethnicity_id'].hasError('required')">Esse campo é obrigatorio</span>
+              *ngIf="steps[0].controls['ethnicity_id'].touched || triedSend">
+              <input-error [errors]="steps[0].controls['ethnicity_id'].errors" title="Cor/Etnia"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -117,8 +117,8 @@
             <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
           </md-radio-group>
           <md-hint class="valid-msg" align="start"
-            *ngIf="!steps[0].controls['disability'].valid && triedSend">
-            <span *ngIf="steps[0].controls['disability'].hasError('required')">Esse campo é obrigatorio</span>
+            *ngIf="triedSend">
+            <input-error [errors]="steps[0].controls['disability'].errors" title="Deficiência"></input-error>
           </md-hint>
         </md-input-container>
 
@@ -132,8 +132,8 @@
                         [value]="disability.id">{{disability.value}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
-            *ngIf="!steps[0].controls['disability_id'].valid && triedSend">
-            <span *ngIf="steps[0].controls['disability_id'].hasError('required')">Esse campo é obrigatorio</span>
+            *ngIf="triedSend">
+            <input-error [errors]="steps[0].controls['disability_id'].errors" title="Deficiência"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -156,8 +156,8 @@
             <md-option *ngFor="let year of bdInfo.years" [value]="year">{{year}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[1].controls['start_year'].valid  && (steps[1].controls['start_year'].touched || triedSend)">
-              <span>Esse campo é obrigatorio</span>
+              *ngIf="steps[1].controls['start_year'].touched || triedSend">
+              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Ano de início do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -170,8 +170,8 @@
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[1].controls['start_month'].valid  && (steps[1].controls['start_month'].touched || triedSend)">
-              <span>Esse campo é obrigatorio</span>
+              *ngIf="steps[1].controls['start_month'].touched || triedSend">
+              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Mês de início do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -191,8 +191,8 @@
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="valid-msg" align="start"
-              *ngIf="!steps[1].controls['end_month'].valid  && (steps[1].controls['end_month'].touched || triedSend)">
-              <span>Esse campo é obrigatorio</span>
+              *ngIf="steps[1].controls['end_month'].touched || triedSend">
+              <input-error [errors]="steps[0].controls['disability_id'].errors" title="Mês de término do curso"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>

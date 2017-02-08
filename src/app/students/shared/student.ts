@@ -20,7 +20,7 @@ export class Student {
   regimental_gratuity: number;
   agreement: number;
   agreement_name: number;
-  pronatec: number;
+  pronatec_id: number;
   gender: number;
   ethnicity_id: number;
   cpf_number: number;

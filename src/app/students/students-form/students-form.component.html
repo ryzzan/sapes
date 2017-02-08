@@ -108,26 +108,20 @@
 
       <md-grid-tile class="disability-cell" [colspan]="4">
         <md-icon>accessible</md-icon>
-        <md-input-container align="left" class="fakeHint disability">
+        <section class="flagInput">
+          <p>1.7 - Possui alguma deficiência (PcD)? *</p><br>
+          <span>Não</span>
+          <md-slide-toggle #disabilty [checked]="student.disability_id>0"
+            (change)="changeDisabled(steps[0], 'disability_id', $event.checked)">
+            Sim
+          </md-slide-toggle>
+        </section>
+        <md-input-container align="left" class="fakeHint disability disabilitySelect"
+          [class.hidden]="!disabilty.checked" >
           <input style="display:none" md-input>
-          <md-radio-group required formControlName="disability" [value]="disabilityFlag"
-           (change)="disabilityFlag = $event.value==1;">
-            1.7 - Possui alguma deficiência (PcD)? *<br>
-            <md-radio-button class="radio-before" [value]="1">Sim</md-radio-button>
-            <md-radio-button class="radio-before" [value]="0">Não</md-radio-button>
-          </md-radio-group>
-          <md-hint class="valid-msg" align="start"
-            *ngIf="triedSend">
-            <input-error [errors]="steps[0].controls['disability'].errors" title="Deficiência"></input-error>
-          </md-hint>
-        </md-input-container>
-
-        <md-input-container [class.hidden]="!disabilityFlag" align="left" class="fakeHint disability disabilitySelect">
-          <input style="display:none" md-input>
-          <md-select class="full-width" placeholder="1.8 - Qual deficiência?"
+          <md-select placeholder="1.8 - Qual deficiência?"
                     formControlName="disability_id"
-                    [required]="disabilityFlag"
-                    [disabled]="!disabilityFlag">
+                    [required]="disabilty.checked">
             <md-option *ngFor="let disability of bdInfo.disabilities"
                         [value]="disability.id">{{disability.value}}</md-option>
           </md-select>
@@ -321,13 +315,13 @@
         <section class="full-width" class="flagInput">
           <p>2.13 - Convênio?</p><br>
           <span>Não</span>
-          <md-slide-toggle #agreement formControlName="agreement">
+          <md-slide-toggle #agreement formControlName="agreement"
+              (change)="changeDisabled(steps[1], 'agreement_name', $event.checked)">
             Sim
           </md-slide-toggle>
         </section>
         <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
-          <input [required]="agreement.checked" [disabled]="agreement.checked"
-                formControlName="agreement_name" md-input placeholder="2.14 - Qual convênio?">
+          <input [required]="agreement.checked" formControlName="agreement_name" md-input placeholder="2.14 - Qual convênio?">
         </md-input-container>
       </md-grid-tile>
 
@@ -336,12 +330,14 @@
         <section class="flagInput">
           <p>2.15 - Pronatec?</p><br>
           <span>Não</span>
-          <md-slide-toggle>
+          <md-slide-toggle #pronatec [checked]="student.pronatec_id>0"
+            (change)="changeDisabled(steps[1], 'pronatec_id', $event.checked)">
             Sim
           </md-slide-toggle>
         </section>
-         <md-select disabled class="disabilitySelect" placeholder="2.16 - Qual Pronatec?">
-          <md-option *ngFor="let colour of colours">{{colour}}</md-option>
+         <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
+            [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
+          <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
         </md-select>
       </md-grid-tile>
 

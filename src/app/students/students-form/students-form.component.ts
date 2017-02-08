@@ -31,7 +31,6 @@ export class StudentsFormComponent implements OnInit {
   triedSend: boolean = false;
   canSave: boolean = false;
   bdInfo : any = {};
-  disabilityFlag: boolean;
 
   steps: any = [];
 
@@ -92,11 +91,25 @@ export class StudentsFormComponent implements OnInit {
       ],
       occupations: [
         {'id':2,description: "OFICIAL GENERAL DO EXÉRCITO"},
+      ],
+      pronatec: [
+        {'id':2,description: "Teste Pronatec"},
       ]
     }
   }
   teste(event){
-    console.log(event)
+    console.log(event);
+  }
+  changeDisabled(form, formName, checked){
+    if(checked){
+      return form.controls[formName].enable();
+    }
+
+    form.controls[formName].disable();
+
+    let obj = {};
+    obj[formName] = null;
+    form.patchValue(obj);
   }
   ngOnInit() {
     this.steps[0] = this.formBuilder.group({
@@ -124,7 +137,6 @@ export class StudentsFormComponent implements OnInit {
       gender: [null, [Validators.required]],
       origin_id: [null,Validators.required],
       ethnicity_id: [null,[Validators.required]],
-      disability: [null],
       disability_id: [null]
     })
     this.steps[1] = this.formBuilder.group({
@@ -145,7 +157,8 @@ export class StudentsFormComponent implements OnInit {
       distance_education: [null],
       regimental_gratuity: [null],
       agreement: [null],
-      agreement_name: [null]
+      agreement_name: [null],
+      pronatec_id : [null]
     });
 
     this.steps[2] = this.formBuilder.group({
@@ -171,7 +184,6 @@ export class StudentsFormComponent implements OnInit {
       .subscribe(
         student => {
           this.student = student;
-          this.disabilityFlag = this.student.disability_id>0;
           this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
           this.canSave = true;
             (<FormGroup>this.steps[0]).patchValue(this.student);
@@ -212,9 +224,7 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.pronatec = 2;
     userValue.city_id = 2;
-    delete userValue['disability'];
 
     console.log(userValue);
 

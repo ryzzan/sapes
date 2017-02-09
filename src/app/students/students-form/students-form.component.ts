@@ -73,12 +73,12 @@ export class StudentsFormComponent implements OnInit {
       bancos: ['Virá do banco'],
       regionals: [
         {description:'Acre',sigla:'AC'},{description:'Alagoas',sigla:'AL'},{description:'Amapá',sigla:'AP'},{description:'Amazonas',sigla:'AM'},
-        {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},{description:'Distrito Federal',sigla:'DF'},{description:'Espírito Santo',sigla:'ES'},
-        {description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},{description:'Mato Grosso do Sul',sigla:'MS'},
-        {description:'Minas Gerais',sigla:'MG'},{description:'Pará',sigla:'PA'},{description:'Paraíba',sigla:'PB'},{description:'Paraná',sigla:'PR'},
-        {description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},{description:'Rio Grande do Norte',sigla:'RN'},
-        {description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},{description:'Santa Catarina',sigla:'SC'},
-        {description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
+        {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},,{description:'CETIQT',sigla:'CT'},{description:'Distrito Federal',sigla:'DF'},
+        {description:'Espírito Santo',sigla:'ES'},{description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},
+        {description:'Mato Grosso do Sul',sigla:'MS'},{description:'Minas Gerais',sigla:'MG'},{description:'Pará',sigla:'PA'},{description:'Paraíba',sigla:'PB'},
+        {description:'Paraná',sigla:'PR'},{description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},
+        {description:'Rio Grande do Norte',sigla:'RN'},{description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},
+        {description:'Santa Catarina',sigla:'SC'},{description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
       ],
       units: [
         {'id':4,description: "UNIDADE MÓVEL ELETROELETRÔNICA"},
@@ -163,9 +163,9 @@ export class StudentsFormComponent implements OnInit {
 
     this.steps[2] = this.formBuilder.group({
       address: [null, [Validators.required]],
-      number: [null, [Validators.required]],
-      district: [null, [Validators.required]],
-      city: [null, [Validators.required]],
+      address_number: [null, [Validators.required]],
+      address_district: [null, [Validators.required]],
+      city_id: [null, [Validators.required]],
       state: [null, [Validators.required]],
       email: [null, [Validators.required]]
     });

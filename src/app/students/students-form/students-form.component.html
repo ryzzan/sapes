@@ -370,9 +370,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="full-width">
-          <input formControlName="number" md-input placeholder="3.2 - Número *">
-          <md-hint class="warn" align="start" *ngIf="steps[2].controls['number'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['number'].errors" title="Número"></input-error>
+          <input formControlName="address_number" md-input placeholder="3.2 - Número *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_number'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['address_number'].errors" title="Número"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -385,9 +385,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input formControlName="district" md-input placeholder="3.4 - Bairro *">
-          <md-hint class="warn" align="start" *ngIf="steps[2].controls['district'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['district'].errors" title="Bairro"></input-error>
+          <input formControlName="address_district" md-input placeholder="3.4 - Bairro *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_district'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['address_district'].errors" title="Bairro"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -400,9 +400,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input formControlName="city" md-input placeholder="3.6 - Cidade *">
-          <md-hint class="warn" align="start" *ngIf="steps[2].controls['city'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['city'].errors" title="Cidade"></input-error>
+          <input formControlName="city_id" md-input placeholder="3.6 - Cidade *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['city_id'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['city_id'].errors" title="Cidade"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>

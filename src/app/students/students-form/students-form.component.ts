@@ -46,17 +46,17 @@ export class StudentsFormComponent implements OnInit {
       origins: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
       genders: [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}],
       estagios: [
-        'Estágio',
-        'Aluno Cotista/Aprendiz',
-        'Empresário/Sócio proprietário',
-        'Empregado com carteira assinada',
-        'Empregado sem carteira assinada',
-        'Empregado temporário com carteira assinada',
-        'Empregado temporário sem carteira assinada',
-        'Profissional liberal (dentista, advogado...)',
-        'Autônomo (por conta própria)',
-        'Funcionário público/militar',
-        'Outra situação? Qual?'
+        {id: 1, description: 'Estágio'},
+        {id: 2, description: 'Aluno Cotista/Aprendiz'},
+        {id: 3, description: 'Empresário/Sócio proprietário'},
+        {id: 4, description: 'Empregado com carteira assinada'},
+        {id: 5, description: 'Empregado sem carteira assinada'},
+        {id: 6, description: 'Empregado temporário com carteira assinada'},
+        {id: 7, description: 'Empregado temporário sem carteira assinada'},
+        {id: 8, description: 'Profissional liberal (dentista, advogado...)'},
+        {id: 9, description: 'Autônomo (por conta própria)'},
+        {id: 10, description: 'Funcionário público/militar'},
+        {id: 11, description: 'Outra situação? Qual?'}
       ],
       ethnicities: [{id:1,value:'Branca'}, {id:2,value:'Preta'}, {id:3,value:'Amarela'}, {id:4,value:'Indígena'},{id:5,value:'Parda'}],
       disabilities: [

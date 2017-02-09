@@ -426,33 +426,38 @@
       SITUAÇÃO PROFISSIONAL
     </template>
     <md-grid-list cols="2" rowHeight="100px">
-        <md-grid-tile [colspan]="2">
-          <md-radio-group class="full-width input-space">
-            <i class="material-icons">check_box</i>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?<br>
-            <md-radio-button value="1">Sim</md-radio-button>
-            <md-radio-button value="2">Não</md-radio-button>
-          </md-radio-group>
+        <md-grid-tile [colspan]="1">
+          <md-icon>check_box</md-icon>
+          <section class="flagInput">
+            <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?</p><br>
+            <span>Não</span>
+            <md-slide-toggle #pronatec >
+              Sim
+            </md-slide-toggle>
+          </section>
         </md-grid-tile>
     </md-grid-list>
-    <md-grid-list cols="2" rowHeight="360px">
+    <md-grid-list cols="2" rowHeight="100px">
       <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.2 - Especifique abaixo sua situação profissional:<br>
-          <div *ngFor="let estagio of bdInfo.estagios"><md-radio-button value="{{estagio}}">{{estagio}}</md-radio-button><br></div>
-        </md-radio-group>
+        <md-icon class="material-icons">check_box</md-icon>
+        <md-select placeholder="4.2 - Especifique abaixo sua situação profissional:" class="full-width">
+          <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
+        </md-select>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1">
-        <md-radio-group class="example-section"><i class="material-icons">check_box</i>4.3 - Especifique abaixo sua situação profissional:<br>
-          <md-radio-button value="1">Menos de 1 SM</md-radio-button><br>
-          <md-radio-button value="2">1 SM</md-radio-button><br>
-          <md-radio-button value="3">Mais 1 a 2 SM</md-radio-button><br>
-          <md-radio-button value="4">Mais 2 a 3 SM</md-radio-button><br>
-          <md-radio-button value="5">Mais 3 a 5 SM</md-radio-button><br>
-          <md-radio-button value="6">Mais 5 a 7 SM</md-radio-button><br>
-          <md-radio-button value="7">Mais 7 a 10 SM</md-radio-button><br>
-          <md-radio-button value="8">Mais 10 a 15 SM</md-radio-button><br>
-          <md-radio-button value="9">Mais 5 a 20 SM</md-radio-button><br>
-          <md-radio-button value="10">Mais de 20 SM</md-radio-button><br>
-        </md-radio-group>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>check_box</md-icon>
+        <md-select class="full-width" placeholder="4.3 - Especifique abaixo sua situação profissional">
+          <md-option value="1">Menos de 1 SM</md-option><br>
+          <md-option value="2">1 SM</md-option><br>
+          <md-option value="3">Mais 1 a 2 SM</md-option><br>
+          <md-option value="4">Mais 2 a 3 SM</md-option><br>
+          <md-option value="5">Mais 3 a 5 SM</md-option><br>
+          <md-option value="6">Mais 5 a 7 SM</md-option><br>
+          <md-option value="7">Mais 7 a 10 SM</md-option><br>
+          <md-option value="8">Mais 10 a 15 SM</md-option><br>
+          <md-option value="9">Mais 5 a 20 SM</md-option><br>
+          <md-option value="10">Mais de 20 SM</md-option><br>
+        </md-select>
       </md-grid-tile>
     </md-grid-list>
   </md-tab>

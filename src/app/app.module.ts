@@ -19,7 +19,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
-import { WebStorageModule, LocalStorageService } from "angular2-localstorage";
 
 @NgModule({
   declarations: [

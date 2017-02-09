@@ -2,7 +2,7 @@
 <md-tab-group [selectedIndex]="formPagination.index" (selectChange)="changedTabIndex($event)">
   <md-tab label="ALUNO" formGroupName="aluno">
 
-    <template color="transparent"  md-tab-label>
+    <template color="transparent" md-tab-label>
       <md-icon *ngIf="steps[0].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[0].valid" class="warn">thumb_down</md-icon>
       Aluno

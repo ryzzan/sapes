@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { MdDataTableModule } from 'ng2-md-datatable';
+import { RTModule } from 'right-angled';
 
 import 'hammerjs';
 
@@ -16,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { TesteComponent } from './teste/teste.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
+import { DatagridComponent } from './datagrid/datagrid.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     TesteComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    DatagridComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { LoginComponent } from './login/login.component';
     MaterialModule.forRoot(),
     StudentsModule,
     AppRoutingModule,
-    MdDataTableModule.forRoot()
+    MdDataTableModule.forRoot(),
+    RTModule
   ],
   providers: [],
   bootstrap: [AppComponent]

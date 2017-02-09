@@ -352,7 +352,7 @@
   <!-- Second tab: end -->
 
   <!-- Third tab: begin -->
-  <md-tab>
+  <md-tab formGroupName="contato">
     <template color="transparent" md-tab-label>
       <md-icon *ngIf="steps[2].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[2].valid" class="warn">thumb_down</md-icon>
@@ -362,7 +362,7 @@
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="full-width">
           <input formControlName="address" md-input placeholder="3.1 - Endereço *">
-          <md-hint class="valid-msg" align="start" *ngIf="steps[2].controls['class'].touched || triedSend" >
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['address'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address'].errors" title="Endereço"></input-error>
           </md-hint>
         </md-input-container>
@@ -371,7 +371,7 @@
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="full-width">
           <input formControlName="number" md-input placeholder="3.2 - Número *">
-          <md-hint class="valid-msg" align="start" *ngIf="steps[2].controls['class'].touched || triedSend" >
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['number'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['number'].errors" title="Número"></input-error>
           </md-hint>
         </md-input-container>
@@ -385,7 +385,10 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.4 - Bairro *">
+          <input formControlName="district" md-input placeholder="3.4 - Bairro *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['district'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['district'].errors" title="Bairro"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -397,13 +400,19 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.6 - Cidade *">
+          <input formControlName="city" md-input placeholder="3.6 - Cidade *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['city'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['city'].errors" title="Cidade"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.7 - UF *">
+          <input formControlName="state" md-input placeholder="3.7 - UF *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['state'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['state'].errors" title="UF"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -427,7 +436,10 @@
 
       <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.11 - E-mail *">
+          <input formControlName="email" md-input placeholder="3.11 - E-mail *">
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['email'].errors" title="E-mail"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -436,7 +448,7 @@
   <!-- Third tab: end -->
 
   <!-- Fourth tab: begin -->
-  <md-tab>
+  <md-tab formGroupName="situacao">
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[3].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[3].valid" class="warn">thumb_down</md-icon>
@@ -457,13 +469,16 @@
     <md-grid-list cols="2" rowHeight="100px">
       <md-grid-tile [colspan]="1">
         <md-icon class="material-icons">check_box</md-icon>
-        <md-select placeholder="4.2 - Especifique abaixo sua situação profissional:" class="full-width">
+        <md-select formControlName="question_4_2" placeholder="4.2 - Especifique abaixo sua situação profissional:" class="full-width">
           <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
         </md-select>
+        <md-hint class="warn" align="start" *ngIf="steps[3].controls['question_4_2'].touched || triedSend">
+          <input-error [errors]="steps[3].controls['question_4_2'].errors" title="Cor/Etnia"></input-error>
+        </md-hint>
       </md-grid-tile>
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>check_box</md-icon>
-        <md-select class="full-width" placeholder="4.3 - Especifique abaixo sua situação profissional">
+        <md-select formControlName="question_4_3" class="full-width" placeholder="4.3 - Especifique abaixo sua situação profissional">
           <md-option value="1">Menos de 1 SM</md-option><br>
           <md-option value="2">1 SM</md-option><br>
           <md-option value="3">Mais 1 a 2 SM</md-option><br>
@@ -475,13 +490,17 @@
           <md-option value="9">Mais 5 a 20 SM</md-option><br>
           <md-option value="10">Mais de 20 SM</md-option><br>
         </md-select>
+        <md-hint class="warn" align="start" *ngIf="steps[3].controls['question_4_3'].touched || triedSend">
+          <input-error [errors]="steps[3].controls['question_4_3'].errors" title="Cor/Etnia"></input-error>
+        </md-hint>
+        <br>
       </md-grid-tile>
     </md-grid-list>
   </md-tab>
   <!-- Fourth tab: end -->
 
   <!-- Fifth tab: begin -->
-  <md-tab>
+  <md-tab formGroupName="avaliacao">
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[4].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[4].valid" class="warn">thumb_down</md-icon>
@@ -489,7 +508,7 @@
     </template>
     <md-grid-list cols="2" rowHeight="100px">
         <md-grid-tile [colspan]="2">
-          <md-radio-group class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+          <md-radio-group formControlName="question_5_1" class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
             <md-radio-button class="radio-before" value="0">0</md-radio-button>
             <md-radio-button class="radio-before" value="1">1</md-radio-button>
             <md-radio-button class="radio-before" value="2">2</md-radio-button>
@@ -502,6 +521,9 @@
             <md-radio-button class="radio-before" value="9">9</md-radio-button>
             <md-radio-button class="radio-before" value="10">10</md-radio-button>
           </md-radio-group>
+          <md-hint class="warn" align="start" *ngIf="steps[4].controls['question_5_1'].touched || triedSend">
+            <input-error [errors]="steps[4].controls['question_5_1'].errors" title="Cor/Etnia"></input-error>
+          </md-hint>
         </md-grid-tile>
     </md-grid-list>
   </md-tab>

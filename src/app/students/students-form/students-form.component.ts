@@ -163,18 +163,28 @@ export class StudentsFormComponent implements OnInit {
 
     this.steps[2] = this.formBuilder.group({
       address: [null, [Validators.required]],
-      number: [null, [Validators.required]]
+      number: [null, [Validators.required]],
+      district: [null, [Validators.required]],
+      city: [null, [Validators.required]],
+      state: [null, [Validators.required]],
+      email: [null, [Validators.required]]
     });
 
     this.steps[3] = this.formBuilder.group({
+      question_4_2: [null, [Validators.required]],
+      question_4_3: [null, [Validators.required]]
     });
 
     this.steps[4] = this.formBuilder.group({
+      question_5_1: [null, [Validators.required]]
     });
 
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
-      turma: this.steps[1]
+      turma: this.steps[1],
+      contato: this.steps[2],
+      situacao: this.steps[3],
+      avaliacao: this.steps[4]
     });
     var id = this.route.params.subscribe(params => {
     var id = params['id'];
@@ -190,6 +200,9 @@ export class StudentsFormComponent implements OnInit {
           this.canSave = true;
             (<FormGroup>this.steps[0]).patchValue(this.student);
             (<FormGroup>this.steps[1]).patchValue(this.student);
+            (<FormGroup>this.steps[2]).patchValue(this.student);
+            (<FormGroup>this.steps[3]).patchValue(this.student);
+            (<FormGroup>this.steps[4]).patchValue(this.student);
           setTimeout(()=>this.bugFixPlaceholder(), 200);
         },
         response => {
@@ -223,7 +236,7 @@ export class StudentsFormComponent implements OnInit {
     this.canSave = false;
 
     var result,
-    userValue = Object.assign(this.steps[0].value,this.steps[1].value);
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.city_id = 2;

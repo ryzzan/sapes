@@ -37,7 +37,7 @@ label.md-radio-label
     font-weight: normal;
 }
 
-.valid-msg{
+.warn{
   color: #f6847c;
 }
 
@@ -46,13 +46,13 @@ label.md-radio-label
   display: none;
 }
 
-
-/*form inputs*/
-md-grid-tile.disability-cell figure{
-  justify-content: flex-start;
+/*form*/
+.md-tab-label .material-icons{
+  font-size: 16px;
 }
 
 /*form inputs*/
+md-grid-tile.disability-cell figure,
 md-grid-tile.flag figure{
   justify-content: flex-start;
 }

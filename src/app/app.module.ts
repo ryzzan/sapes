@@ -18,6 +18,8 @@ import { TesteComponent } from './teste/teste.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
+import { CorporateService } from './shared/corporate.service';
+import { WebStorageModule, LocalStorageService } from "angular2-localstorage";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { DatagridComponent } from './datagrid/datagrid.component';
     MdDataTableModule.forRoot(),
     RTModule
   ],
-  providers: [],
+  providers: [CorporateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
+
 <md-tab-group [selectedIndex]="formPagination.index" (selectChange)="changedTabIndex($event)">
+  <!-- First tab: begin -->
   <md-tab label="ALUNO" formGroupName="aluno">
 
     <template color="transparent"  md-tab-label>
@@ -134,7 +136,9 @@
 
     </md-grid-list>
   </md-tab>
+  <!-- First tab: end -->
 
+  <!-- Second tab: begin -->
   <md-tab formGroupName="turma">
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[1].valid">thumb_up</md-icon>
@@ -309,7 +313,6 @@
         </section>
       </md-grid-tile>
 
-
       <md-grid-tile [colspan]="4" class="disability-cell input-space">
         <md-icon>location_city</md-icon>
         <section class="full-width" class="flagInput">
@@ -343,6 +346,9 @@
 
     </md-grid-list>
   </md-tab>
+  <!-- Second tab: end -->
+
+  <!-- Third tab: begin -->
   <md-tab>
     <template color="transparent" md-tab-label>
       <md-icon *ngIf="steps[2].valid">thumb_up</md-icon>
@@ -352,13 +358,19 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.1 - Endereço">
+          <input formControlName="address" md-input placeholder="3.1 - Endereço *">
+          <md-hint class="valid-msg" align="start" *ngIf="steps[2].controls['class'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['address'].errors" title="Endereço"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.2 - Número">
+          <input formControlName="number" md-input placeholder="3.2 - Número *">
+          <md-hint class="valid-msg" align="start" *ngIf="steps[2].controls['class'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['number'].errors" title="Número"></input-error>
+          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -370,25 +382,25 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.4 - Bairro">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="full-width">
-          <input md-input placeholder="3.5 - Cidade">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="full-width">
-          <input md-input placeholder="3.6 - UF">
+          <input md-input placeholder="3.4 - Bairro *">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.7 - CEP">
+          <input md-input placeholder="3.5 - CEP">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="full-width">
+          <input md-input placeholder="3.6 - Cidade *">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+        <md-input-container class="full-width">
+          <input md-input placeholder="3.7 - UF *">
         </md-input-container>
       </md-grid-tile>
 
@@ -409,16 +421,18 @@
           <input md-input placeholder="3.10 - Telefone recado">
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1"><i class="material-icons">email</i>
+
+      <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.11 - Tele1.7 - Possui alguma deficiência (PcD)?fone recado">
+          <input md-input placeholder="3.11 - E-mail *">
         </md-input-container>
       </md-grid-tile>
 
-
     </md-grid-list>
   </md-tab>
+  <!-- Third tab: end -->
 
+  <!-- Fourth tab: begin -->
   <md-tab>
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[3].valid">thumb_up</md-icon>
@@ -461,7 +475,9 @@
       </md-grid-tile>
     </md-grid-list>
   </md-tab>
+  <!-- Fourth tab: end -->
 
+  <!-- Fifth tab: begin -->
   <md-tab>
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[4].valid">thumb_up</md-icon>
@@ -486,7 +502,10 @@
         </md-grid-tile>
     </md-grid-list>
   </md-tab>
+  <!-- Fifth tab: end -->
+
 </md-tab-group>
+
 
 <md-toolbar class="formActions" color="transparent">
     <button md-raised-button type="submit"

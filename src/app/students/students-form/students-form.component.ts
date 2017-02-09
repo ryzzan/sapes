@@ -162,6 +162,8 @@ export class StudentsFormComponent implements OnInit {
     });
 
     this.steps[2] = this.formBuilder.group({
+      address: [null, [Validators.required]],
+      number: [null, [Validators.required]]
     });
 
     this.steps[3] = this.formBuilder.group({

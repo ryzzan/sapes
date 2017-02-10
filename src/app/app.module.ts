@@ -40,7 +40,9 @@ import { CorporateService } from './shared/corporate.service';
     MdDataTableModule.forRoot(),
     RTModule
   ],
-  providers: [CorporateService],
+  providers: [
+    CorporateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

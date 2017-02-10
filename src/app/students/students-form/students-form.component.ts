@@ -7,6 +7,7 @@ import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrect
 const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 
 import { Student } from '../shared/student';
+import { CorporateService } from '../../shared/corporate.service';
 import { StudentsService } from '../shared/students.service';
 import { BasicValidators } from '../../shared/basic-validators';
 
@@ -19,6 +20,7 @@ export class StudentsFormComponent implements OnInit {
   title: string;
   form: FormGroup;
   student: Student = new Student();
+  private token = {};
   mask: any = {
     cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
     date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
@@ -39,7 +41,8 @@ export class StudentsFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService,
-    public snackBar: MdSnackBar
+    public snackBar: MdSnackBar,
+    private corporateService: CorporateService
   ) {
     this.bdInfo = {
       courses: [{id: 1, description: "Gestão ambiental"}],
@@ -168,7 +171,6 @@ export class StudentsFormComponent implements OnInit {
       address_district: [null, [Validators.required]],
       address_zip_code: [null],
       city_id: [null, [Validators.required]],
-      state: [null, [Validators.required]],
       home_phone: [null],
       cell_phone: [null],
       alternative_phone: [null],
@@ -196,7 +198,9 @@ export class StudentsFormComponent implements OnInit {
     var id = params['id'];
 
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
-    if (!id) return this.canSave = true;
+    if (!id) {
+      return this.canSave = true
+    };
 
     this.studentsService.getStudent(id)
       .subscribe(
@@ -204,12 +208,7 @@ export class StudentsFormComponent implements OnInit {
           this.student = student;
           this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
           this.canSave = true;
-            (<FormGroup>this.steps[0]).patchValue(this.student);
-            (<FormGroup>this.steps[1]).patchValue(this.student);
-            (<FormGroup>this.steps[2]).patchValue(this.student);
-            (<FormGroup>this.steps[3]).patchValue(this.student);
-            (<FormGroup>this.steps[4]).patchValue(this.student);
-          setTimeout(()=>this.bugFixPlaceholder(), 200);
+          this.setValues();
         },
         response => {
           if (response.status == 404) {
@@ -218,6 +217,25 @@ export class StudentsFormComponent implements OnInit {
         });
     });
 
+  }
+  getCorporateValue(value){
+    value = this.getNumber(value);
+    this.corporateService.getStudent(value).subscribe( data =>{
+      this.student.birth_date = data[0].dt_nascimento;
+      this.student.name = data[0].nome;
+      this.student.distance_education = data[0].cursos[0].ead!="N"? 1: 0;
+      this.student.regimental_gratuity = data[0].cursos[0]['gratuidade_regimental']!="N"? 1: 0;
+      this.student.gender = data[0]['sexo']=="M"? 1: 2;
+      this.setValues();
+    });
+  }
+  setValues(){
+    (<FormGroup>this.steps[0]).patchValue(this.student);
+    (<FormGroup>this.steps[1]).patchValue(this.student);
+    (<FormGroup>this.steps[2]).patchValue(this.student);
+    (<FormGroup>this.steps[3]).patchValue(this.student);
+    (<FormGroup>this.steps[4]).patchValue(this.student);
+    setTimeout(()=>this.bugFixPlaceholder(), 200);
   }
   changedTabIndex(event){
     this.bugFixPlaceholder(event);
@@ -237,25 +255,24 @@ export class StudentsFormComponent implements OnInit {
     return cpf.replace(/[/_.-]/g, '');
   }
   save() {
-
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;
 
+
     var result,
-    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value,this.steps[3].value,this.steps[4].value);
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value),
+    answerValue = Object.assign(this.steps[3].value,this.steps[4].value);
+
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.city_id = 2;
     userValue.f1 = true;
     delete userValue.state;
 
-    console.log(userValue);
-
     if(userValue){
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
-
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);

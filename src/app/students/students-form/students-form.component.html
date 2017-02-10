@@ -379,7 +379,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.3 - Complemento">
+          <input formControlName="address_complement" md-input placeholder="3.3 - Complemento">
         </md-input-container>
       </md-grid-tile>
 
@@ -394,7 +394,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.5 - CEP">
+          <input formControlName="address_zip_code" md-input placeholder="3.5 - CEP">
         </md-input-container>
       </md-grid-tile>
 
@@ -418,19 +418,19 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.8 - Telefone residencial">
+          <input formControlName="home_phone" md-input placeholder="3.8 - Telefone residencial">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.9 - Telefone celular">
+          <input formControlName="cell_phone" md-input placeholder="3.9 - Telefone celular">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input md-input placeholder="3.10 - Telefone recado">
+          <input formControlName="alternative_phone" md-input placeholder="3.10 - Telefone recado">
         </md-input-container>
       </md-grid-tile>
 
@@ -460,7 +460,7 @@
           <section class="flagInput">
             <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?</p><br>
             <span>Não</span>
-            <md-slide-toggle #pronatec >
+            <md-slide-toggle formControlName="question_4_1">
               Sim
             </md-slide-toggle>
           </section>

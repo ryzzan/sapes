@@ -76,12 +76,12 @@ export class StudentsFormComponent implements OnInit {
       bancos: ['Virá do banco'],
       regionals: [
         {description:'Acre',sigla:'AC'},{description:'Alagoas',sigla:'AL'},{description:'Amapá',sigla:'AP'},{description:'Amazonas',sigla:'AM'},
-        {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},{description:'Distrito Federal',sigla:'DF'},{description:'Espírito Santo',sigla:'ES'},
-        {description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},{description:'Mato Grosso do Sul',sigla:'MS'},
-        {description:'Minas Gerais',sigla:'MG'},{description:'Pará',sigla:'PA'},{description:'Paraíba',sigla:'PB'},{description:'Paraná',sigla:'PR'},
-        {description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},{description:'Rio Grande do Norte',sigla:'RN'},
-        {description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},{description:'Santa Catarina',sigla:'SC'},
-        {description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
+        {description:'Bahia',sigla:'BA'},{description:'Ceará',sigla:'CE'},{description:'CETIQT',sigla:'CT'},{description:'Distrito Federal',sigla:'DF'},
+        {description:'Espírito Santo',sigla:'ES'},{description:'Goiás',sigla:'GO'},{description:'Maranhão',sigla:'MA'},{description:'Mato Grosso',sigla:'MT'},
+        {description:'Mato Grosso do Sul',sigla:'MS'},{description:'Minas Gerais',sigla:'MG'},{description:'Pará',sigla:'PA'},{description:'Paraíba',sigla:'PB'},
+        {description:'Paraná',sigla:'PR'},{description:'Pernambuco',sigla:'PE'},{description:'Piauí',sigla:'PI'},{description:'Rio de Janeiro',sigla:'RJ'},
+        {description:'Rio Grande do Norte',sigla:'RN'},{description:'Rio Grande do Sul',sigla:'RS'},{description:'Rondônia',sigla:'RO'},{description:'Roraima',sigla:'RR'},
+        {description:'Santa Catarina',sigla:'SC'},{description:'São Paulo',sigla:'SP'},{description:'Sergipe',sigla:'SE'},{description:'Tocantins', sigla:'TO'}
       ],
       units: [
         {'id':4,description: "UNIDADE MÓVEL ELETROELETRÔNICA"},
@@ -165,17 +165,35 @@ export class StudentsFormComponent implements OnInit {
     });
 
     this.steps[2] = this.formBuilder.group({
+      address: [null, [Validators.required]],
+      address_number: [null, [Validators.required]],
+      address_complement: [null],
+      address_district: [null, [Validators.required]],
+      address_zip_code: [null],
+      city_id: [null, [Validators.required]],
+      state: [null, [Validators.required]],
+      home_phone: [null],
+      cell_phone: [null],
+      alternative_phone: [null],
+      email: [null, [Validators.required]]
     });
 
     this.steps[3] = this.formBuilder.group({
+      question_4_1: [null],
+      question_4_2: [null, [Validators.required]],
+      question_4_3: [null, [Validators.required]]
     });
 
     this.steps[4] = this.formBuilder.group({
+      question_5_1: [null, [Validators.required]]
     });
 
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
-      turma: this.steps[1]
+      turma: this.steps[1],
+      contato: this.steps[2],
+      situacao: this.steps[3],
+      avaliacao: this.steps[4]
     });
     var id = this.route.params.subscribe(params => {
     var id = params['id'];
@@ -240,10 +258,12 @@ export class StudentsFormComponent implements OnInit {
     this.canSave = false;
 
     var result,
-    userValue = Object.assign(this.steps[0].value,this.steps[1].value);
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value,this.steps[3].value,this.steps[4].value);
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.city_id = 2;
+    userValue.f1 = true;
+    delete userValue.state;
 
     console.log(userValue);
 

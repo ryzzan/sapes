@@ -1,6 +1,7 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
 
 <md-tab-group [selectedIndex]="formPagination.index" (selectChange)="changedTabIndex($event)">
+
   <!-- First tab: begin -->
   <md-tab label="ALUNO" formGroupName="aluno">
 
@@ -15,7 +16,7 @@
         <md-icon>credit_card</md-icon>
         <md-input-container align="start" class="full-width">
           <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
-              [textMask]="{mask: mask.cpf}">
+              [textMask]="{mask: mask.cpf}" maxlength="14">
           <md-hint class="warn" align="start" *ngIf="steps[0].controls['cpf_number'].touched || triedSend" >
               <input-error [errors]="steps[0].controls['cpf_number'].errors" title="CPF"></input-error>
           </md-hint>

@@ -233,6 +233,9 @@ export class StudentsFormComponent implements OnInit {
   setValues(){
     (<FormGroup>this.steps[0]).patchValue(this.student);
     (<FormGroup>this.steps[1]).patchValue(this.student);
+    (<FormGroup>this.steps[2]).patchValue(this.student);
+    (<FormGroup>this.steps[3]).patchValue(this.student);
+    (<FormGroup>this.steps[4]).patchValue(this.student);
     setTimeout(()=>this.bugFixPlaceholder(), 200);
   }
   changedTabIndex(event){

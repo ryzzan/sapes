@@ -34,7 +34,6 @@ export class BasicValidators {
     };
   }
 
-
   static cpf (control: FormControl){
 
     let CPF_REGEXP = /^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/;
@@ -45,5 +44,38 @@ export class BasicValidators {
       }
     };
   }
+
+ static zip (control: FormControl){
+
+    let ZIP_REGEXP = /^[0-9]{5}-[0-9]{3}$/;
+    if(!control.value) return null;
+    return ZIP_REGEXP.test(control.value) ? null : {
+      validateZip: {
+        valid: false
+      }
+    };
+ }
+
+ static phone (control: FormControl){
+
+    let ZIP_PHONE = /^[(]?[0-9]{2}[)]?[ ]?[0-9]{4}?[-]?[0-9]{4}$/;
+    if(!control.value) return null;
+    return ZIP_PHONE.test(control.value) ? null : {
+      validatePhone: {
+        valid: false
+      }
+    };
+ }
+
+ static cell_phone (control: FormControl){
+
+    let ZIP_CELL_PHONE = /^[(]?[0-9]{2}[)]?[ ]?[0-9]{5}?[-]?[0-9]{4}$/;
+    if(!control.value) return null;
+    return ZIP_CELL_PHONE.test(control.value) ? null : {
+      validateCellPhone: {
+        valid: false
+      }
+    };
+ }
 
 }

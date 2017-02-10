@@ -61,8 +61,11 @@ export class InputErrorComponent implements OnChanges {
   setMessages({
       required = 'O campo @field é obrigatório',
       defaultInvalid = 'O valor do campo @field é inválido',
-      validateCpf = 'CPF em formato incorreto',
-      validateDate = "Data no formato incorreto",
+      validateCpf = 'Formato inválido: 999.999.99-99',
+      validateDate = "Formato inválido: mm/dd/aaaa",
+      validateZip = "Formato inválido: 99999-999",
+      validatePhone = "Formato inválido: (99) 9999-9999",
+      validateCellPhone = "Formato inválido: (99) 99999-9999",
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres'
   } = {}){
@@ -71,6 +74,9 @@ export class InputErrorComponent implements OnChanges {
         defaultInvalid: defaultInvalid,
         validateCpf: validateCpf,
         validateDate: validateDate,
+        validateZip: validateZip,
+        validatePhone: validatePhone,
+        validateCellPhone: validateCellPhone,
         minlength: minlength,
         maxlength: maxlength
       }

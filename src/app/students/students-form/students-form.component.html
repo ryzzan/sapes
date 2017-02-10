@@ -20,7 +20,9 @@
           <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="2"></md-grid-tile>
+      <md-grid-tile [colspan]="2" class="disability-cell">
+        <button md-icon-button type="button" (click)="getCorporateValue(cpf.value)" mdTooltip="Ajuda"><md-icon class="md-toolbar">search</md-icon></button>
+      </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
         <md-icon>account_box</md-icon>

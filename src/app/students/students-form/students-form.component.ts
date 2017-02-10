@@ -171,7 +171,6 @@ export class StudentsFormComponent implements OnInit {
       address_district: [null, [Validators.required]],
       address_zip_code: [null],
       city_id: [null, [Validators.required]],
-      state: [null, [Validators.required]],
       home_phone: [null],
       cell_phone: [null],
       alternative_phone: [null],
@@ -256,25 +255,24 @@ export class StudentsFormComponent implements OnInit {
     return cpf.replace(/[/_.-]/g, '');
   }
   save() {
-
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;
 
+
     var result,
-    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value,this.steps[3].value,this.steps[4].value);
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value),
+    answerValue = Object.assign(this.steps[3].value,this.steps[4].value);
+
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.city_id = 2;
     userValue.f1 = true;
     delete userValue.state;
 
-    console.log(userValue);
-
     if(userValue){
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
-
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);

@@ -23,7 +23,7 @@
         </md-input-container>
       </md-grid-tile>
       <md-grid-tile [colspan]="2" class="disability-cell">
-        <button md-icon-button type="button" (click)="getCorporateValue(cpf.value)" mdTooltip="Ajuda"><md-icon class="md-toolbar">search</md-icon></button>
+        <button md-icon-button type="button" (click)="getCorporateValue(cpf.value)" mdTooltip="Procurar"><md-icon class="md-toolbar">search</md-icon></button>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
@@ -405,15 +405,6 @@
           <input formControlName="city_id" md-input placeholder="3.6 - Cidade *">
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['city_id'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['city_id'].errors" title="Cidade"></input-error>
-          </md-hint>
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="full-width">
-          <input formControlName="state" md-input placeholder="3.7 - UF *">
-          <md-hint class="warn" align="start" *ngIf="steps[2].controls['state'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['state'].errors" title="UF"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>

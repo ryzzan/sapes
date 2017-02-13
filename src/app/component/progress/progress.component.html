@@ -1,6 +1,6 @@
 <div class="container">
   <div class="containerContent">
-    <md-progress-circle mode="indeterminate"></md-progress-circle>
-    <small>Buscando concluinte</small>
+    <md-progress-circle *ngIf="progress" mode="indeterminate"></md-progress-circle>
+    <small>{{message}}</small>
   </div>
 </div>

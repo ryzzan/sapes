@@ -45,7 +45,7 @@ export class CorporateService {
     });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.getStudentUrl(identification,'dr'), options)
+    return this.http.get(this.getStudentUrl(identification,'DN'), options)
       .map(res => res.json());
   }
 

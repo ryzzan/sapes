@@ -412,13 +412,17 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
-        <md-input-container class="full-width">
-          <input formControlName="city_id" md-input placeholder="3.6 - Cidade *" maxlength="100" #city_id>
-          <md-hint class="warn" align="start" *ngIf="steps[2].controls['city_id'].touched || triedSend" >
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>location_city</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+          <md-select class="full-width" formControlName="city_id" placeholder="3.6 - Cidade *">
+            <md-option *ngFor="let city of bdInfo.cities" [value]="city.id">{{city.state}} - {{city.description}}</md-option>
+          </md-select>
+          <md-hint class="warn" align="start"
+              *ngIf="steps[2].controls['city_id'].touched || triedSend">
               <input-error [errors]="steps[2].controls['city_id'].errors" title="Cidade"></input-error>
           </md-hint>
-          <md-hint align="end">{{city_id.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 

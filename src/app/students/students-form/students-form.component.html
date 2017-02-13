@@ -1,13 +1,14 @@
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >
 
 <md-tab-group [selectedIndex]="formPagination.index" (selectChange)="changedTabIndex($event)">
+
   <!-- First tab: begin -->
   <md-tab label="ALUNO" formGroupName="aluno">
 
     <template color="transparent" md-tab-label>
       <md-icon *ngIf="steps[0].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[0].valid" class="warn">thumb_down</md-icon>
-      Aluno
+      ALUNO
     </template>
 
     <md-grid-list cols="4" rowHeight="95px">
@@ -16,13 +17,14 @@
 
         <md-input-container align="start" class="full-width">
           <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
-              [textMask]="{mask: mask.cpf}">
+          [textMask]="{mask: mask.cpf}">
           <md-hint class="warn" align="start" *ngIf="steps[0].controls['cpf_number'].touched || triedSend" >
               <input-error [errors]="steps[0].controls['cpf_number'].errors" title="CPF"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
+
       <md-grid-tile [colspan]="2" class="disability-cell">
         <button md-icon-button type="button" #pesquisar (click)="getCorporateValue(cpf.value, pesquisar)" mdTooltip="Procurar"><md-icon class="md-toolbar">search</md-icon></button>
       </md-grid-tile>
@@ -30,8 +32,7 @@
       <md-grid-tile [colspan]="2">
         <md-icon>account_box</md-icon>
         <md-input-container class="full-width">
-          <input #name md-input formControlName="name"
-                placeholder="1.1 - Nome do aluno *">
+          <input #name md-input formControlName="name" placeholder="1.1 - Nome do aluno *" maxlength="100">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['name'].touched || triedSend">
               <input-error [errors]="steps[0].controls['name'].errors" title="Nome do aluno"></input-error>
@@ -141,11 +142,11 @@
   <!-- First tab: end -->
 
   <!-- Second tab: begin -->
-  <md-tab formGroupName="turma">
+  <md-tab formGroupName="curso">
     <template color="transparent"  md-tab-label>
       <md-icon *ngIf="steps[1].valid" color="primary">thumb_up</md-icon>
       <md-icon *ngIf="!steps[1].valid" class="warn">thumb_down</md-icon>
-      Turma
+      CURSO
     </template>
      <md-grid-list cols="8" rowHeight="95px">
       <md-grid-tile [colspan]="2">
@@ -157,7 +158,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['start_year'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['start_year'].errors" title="Ano de início do curso"></input-error>
+              <input-error [errors]="steps[1].controls['start_year'].errors" title="Ano Início"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -171,8 +172,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['start_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['start_month'].errors"
-                           title="Início do curso"></input-error>
+              <input-error [errors]="steps[1].controls['start_month'].errors" title="Mês Início"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -180,7 +180,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
-          <input md-input disabled value="2017" placeholder="2.3 - Ano de término do curso">
+          <input md-input disabled value="2017" placeholder="2.3 - Ano Termino">
         </md-input-container>
       </md-grid-tile>
 
@@ -193,7 +193,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['end_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['end_month'].errors" title="Mês de término do curso"></input-error>
+              <input-error [errors]="steps[1].controls['end_month'].errors" title="Mês Término"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -363,76 +363,101 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="full-width">
-          <input formControlName="address" md-input placeholder="3.1 - Endereço *">
+          <input formControlName="address" md-input placeholder="3.1 - Endereço *" maxlength="100" #address>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address'].errors" title="Endereço"></input-error>
           </md-hint>
+          <md-hint align="end">{{address.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="full-width">
-          <input formControlName="address_number" md-input placeholder="3.2 - Número *">
+          <input formControlName="address_number" md-input placeholder="3.2 - Número *" maxlength="10" #address_number>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_number'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_number'].errors" title="Número"></input-error>
           </md-hint>
+          <md-hint align="end">{{address_number.value.length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
         <md-input-container class="full-width">
-          <input formControlName="address_complement" md-input placeholder="3.3 - Complemento">
+          <input formControlName="address_complement" md-input placeholder="3.3 - Complemento" maxlength="50" #address_complement>
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_complement'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['address_complement'].errors" title="Complemento"></input-error>
+          </md-hint>
+          <md-hint align="end">{{address_complement.value.length}} / 50</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input formControlName="address_district" md-input placeholder="3.4 - Bairro *">
+          <input formControlName="address_district" md-input placeholder="3.4 - Bairro *" maxlength="50" #address_district>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_district'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_district'].errors" title="Bairro"></input-error>
           </md-hint>
+          <md-hint align="end">{{address_district.value.length}} / 50</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
         <md-input-container class="full-width">
-          <input formControlName="address_zip_code" md-input placeholder="3.5 - CEP">
+          <input formControlName="address_zip_code" md-input placeholder="3.5 - CEP" [textMask]="{mask: mask.zip}" #address_zip_code>
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_zip_code'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['address_zip_code'].errors" title="CEP"></input-error>
+          </md-hint>
+          <md-hint align="end">{{getNumber(address_zip_code.value).length}} / 8</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input formControlName="city_id" md-input placeholder="3.6 - Cidade *">
+          <input formControlName="city_id" md-input placeholder="3.6 - Cidade *" maxlength="100" #city_id>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['city_id'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['city_id'].errors" title="Cidade"></input-error>
           </md-hint>
+          <md-hint align="end">{{city_id.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="home_phone" md-input placeholder="3.8 - Telefone residencial">
+          <input formControlName="home_phone" md-input placeholder="3.8 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['home_phone'].errors" title="Telefone"></input-error>
+          </md-hint>
+          <md-hint align="end">{{getNumber(home_phone.value).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input formControlName="cell_phone" md-input placeholder="3.9 - Telefone celular">
+          <input formControlName="cell_phone" md-input placeholder="3.9 - Telefone celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['cell_phone'].errors" title="Telefone Celular"></input-error>
+          </md-hint>
+          <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="alternative_phone" md-input placeholder="3.10 - Telefone recado">
+          <input formControlName="alternative_phone" md-input placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone}" #alternative_phone>
+          <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
+              <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="Telefone recado"></input-error>
+          </md-hint>
+          <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input formControlName="email" md-input placeholder="3.11 - E-mail *">
+          <input formControlName="email" md-input placeholder="3.11 - E-mail *" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['email'].errors" title="E-mail"></input-error>
           </md-hint>
+          <md-hint align="end">{{email.value.length}} / 100</md-hint>
         </md-input-container>
       </md-grid-tile>
 

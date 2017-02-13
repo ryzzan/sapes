@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MdSnackBar} from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
 const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
@@ -24,7 +24,10 @@ export class StudentsFormComponent implements OnInit {
   private token = {};
   mask: any = {
     cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
-    date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+    date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
+    zip: [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+    phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,],
+    cell_phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,]
   };
   formPagination: any = {
     maxIndex: 4,
@@ -168,14 +171,33 @@ export class StudentsFormComponent implements OnInit {
     this.steps[2] = this.formBuilder.group({
       address: [null, [Validators.required]],
       address_number: [null, [Validators.required]],
-      address_complement: [null],
-      address_district: [null, [Validators.required]],
-      address_zip_code: [null],
+      address_complement: [null, [
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]],
+      address_district: [null, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(10)
+      ]],
+      address_zip_code: [null, [
+        BasicValidators.zip
+      ]],
       city_id: [null, [Validators.required]],
-      home_phone: [null],
-      cell_phone: [null],
-      alternative_phone: [null],
-      email: [null, [Validators.required]]
+      home_phone: [null, [
+        BasicValidators.phone
+      ]],
+      cell_phone: [null, [
+        BasicValidators.cell_phone
+      ]],
+      alternative_phone: [null, [
+        BasicValidators.cell_phone
+      ]],
+      email: [null, [
+        BasicValidators.email,
+        Validators.minLength(6),
+        Validators.maxLength(100)
+      ]]
     });
 
     this.steps[3] = this.formBuilder.group({
@@ -190,7 +212,7 @@ export class StudentsFormComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
-      turma: this.steps[1],
+      curso: this.steps[1],
       contato: this.steps[2],
       situacao: this.steps[3],
       avaliacao: this.steps[4]
@@ -270,8 +292,8 @@ export class StudentsFormComponent implements OnInit {
       el[indice-1].dispatchEvent(new Event('change'));
     }
   }
-  getNumber(cpf){
-    return cpf.replace(/[/_.-]/g, '');
+  getNumber(value){
+    return value.replace(/[/ _)(.-]/g, '');
   }
   save() {
     if(!this.form.valid) return this.triedSend = true;

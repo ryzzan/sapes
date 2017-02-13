@@ -1,0 +1,20 @@
+.container{
+  text-align: center;
+}
+.containerContent{
+  display: inline-table;
+}
+md-progress-circle,
+small{
+  display: table-cell;
+  vertical-align: middle;
+}
+md-progress-circle{
+  height: 25px;
+  width: 25px;
+}
+small{
+  padding-left: 10px;
+  color: white;
+  font-weight: bolder;
+}

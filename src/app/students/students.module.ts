@@ -14,7 +14,7 @@ import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { InputErrorComponent } from '../component/input-error/input-error-component'
-
+import { ProgressComponent } from '../component/progress/progress.component';
 
 @NgModule({
   imports: [
@@ -35,12 +35,16 @@ import { InputErrorComponent } from '../component/input-error/input-error-compon
     NgTableSortingDirective,
     MaterialModule
   ],
+  entryComponents: [
+    ProgressComponent
+  ],
   declarations: [
     DatapickerComponent,
     StudentsComponent,
     StudentsFormComponent,
     StudentsListComponent,
-    InputErrorComponent
+    InputErrorComponent,
+    ProgressComponent
   ],
   providers: [StudentsService],
 })

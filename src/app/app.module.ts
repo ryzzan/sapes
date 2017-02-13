@@ -18,7 +18,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
-import { ProgressComponent } from './component/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { ProgressComponent } from './component/progress/progress.component';
     NotFoundComponent,
     LoginComponent,
     DatagridComponent,
-    ProgressComponent,
   ],
   imports: [
     BrowserModule,

@@ -192,7 +192,11 @@ export class StudentsFormComponent implements OnInit {
       alternative_phone: [null, [
         BasicValidators.cell_phone
       ]],
-      email: [null, [Validators.required]]
+      email: [null, [
+        BasicValidators.email,
+        Validators.minLength(6),
+        Validators.maxLength(100)
+      ]]
     });
 
     this.steps[3] = this.formBuilder.group({
@@ -207,7 +211,7 @@ export class StudentsFormComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
-      turma: this.steps[1],
+      curso: this.steps[1],
       contato: this.steps[2],
       situacao: this.steps[3],
       avaliacao: this.steps[4]

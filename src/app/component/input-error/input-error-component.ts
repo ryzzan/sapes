@@ -16,7 +16,6 @@ export class InputErrorComponent implements OnChanges {
   }
 
   ngOnChanges(){
-
     this.setMessages(this.validators);
     this.messageError = this.getMessage(this.errors,this.messages);
   }
@@ -66,6 +65,7 @@ export class InputErrorComponent implements OnChanges {
       validateZip = "Formato inválido: 99999-999",
       validatePhone = "Formato inválido: (99) 9999-9999",
       validateCellPhone = "Formato inválido: (99) 99999-9999",
+      validateEmail = "E-mail no formato inválido",
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres'
   } = {}){
@@ -77,6 +77,7 @@ export class InputErrorComponent implements OnChanges {
         validateZip: validateZip,
         validatePhone: validatePhone,
         validateCellPhone: validateCellPhone,
+        validateEmail: validateEmail,
         minlength: minlength,
         maxlength: maxlength
       }

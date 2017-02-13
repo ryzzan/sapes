@@ -14,21 +14,21 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AppRoutingModule } from './app.routing.module';
 import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
-import { TesteComponent } from './teste/teste.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
+import { ProgressComponent } from './component/progress/progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     HomeComponent,
-    TesteComponent,
     NotFoundComponent,
     LoginComponent,
     DatagridComponent,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,

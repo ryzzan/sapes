@@ -10,7 +10,11 @@ import { Student } from '../shared/student';
 import { CorporateService } from '../../shared/corporate.service';
 import { StudentsService } from '../shared/students.service';
 import { BasicValidators } from '../../shared/basic-validators';
+
 import { bdInfo } from './data';
+
+import { ProgressComponent } from '../../component/progress/progress.component';
+
 
 @Component({
   selector: 'app-students-form',
@@ -187,15 +191,33 @@ export class StudentsFormComponent implements OnInit {
     });
 
   }
-  getCorporateValue(value){
+  getCorporateValue(value, btn){
+    if(!this.steps[0].controls['cpf_number'].valid) return false;
+    btn.disabled = true;
+    let feedback = this.snackBar.openFromComponent(ProgressComponent);
+    feedback.instance.message = "Buscando concluinte";
+    feedback.instance.progress = true;
     value = this.getNumber(value);
-    this.corporateService.getStudent(value).subscribe( data =>{
+    this.corporateService.getStudent(value).subscribe(data => {
+      this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
+          duration: 5000
+      });
+      btn.disabled = false;
       this.student.birth_date = data[0].dt_nascimento;
       this.student.name = data[0].nome;
       this.student.distance_education = data[0].cursos[0].ead!="N"? 1: 0;
       this.student.regimental_gratuity = data[0].cursos[0]['gratuidade_regimental']!="N"? 1: 0;
       this.student.gender = data[0]['sexo']=="M"? 1: 2;
       this.setValues();
+    },
+    response => {
+      if(response.status == 404){
+        this.snackBar.open('Concluinte não encontrado','',{
+          duration: 5000
+        });
+        btn.disabled = false;
+      }
+      console.log(response);
     });
   }
   setValues(){

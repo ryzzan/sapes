@@ -14,6 +14,7 @@
     <md-grid-list cols="4" rowHeight="95px">
       <md-grid-tile [colspan]="2">
         <md-icon>credit_card</md-icon>
+
         <md-input-container align="start" class="full-width">
           <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
           [textMask]="{mask: mask.cpf}">
@@ -25,15 +26,13 @@
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2" class="disability-cell">
-        <button md-icon-button type="button" (click)="getCorporateValue(cpf.value)" mdTooltip="Procurar"><md-icon class="md-toolbar">search</md-icon></button>
+        <button md-icon-button type="button" #pesquisar (click)="getCorporateValue(cpf.value, pesquisar)" mdTooltip="Procurar"><md-icon class="md-toolbar">search</md-icon></button>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2">
         <md-icon>account_box</md-icon>
         <md-input-container class="full-width">
-          <input #name md-input
-                (input)="teste(steps[0].controls['name'].errors)" formControlName="name"
-                placeholder="1.1 - Nome do aluno *" maxlength="100">
+          <input #name md-input formControlName="name" placeholder="1.1 - Nome do aluno *" maxlength="100">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['name'].touched || triedSend">
               <input-error [errors]="steps[0].controls['name'].errors" title="Nome do aluno"></input-error>
@@ -181,7 +180,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
-          <input md-input disabled value="2017" placeholder="2.3 - Ano Trmino">
+          <input md-input disabled value="2017" placeholder="2.3 - Ano Termino">
         </md-input-container>
       </md-grid-tile>
 

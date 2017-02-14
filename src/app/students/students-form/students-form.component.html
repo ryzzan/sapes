@@ -48,7 +48,7 @@
           <md-radio-group formControlName="gender">
             1.2 - Selecione o sexo *<br>
             <md-radio-button *ngFor="let gender of bdInfo.genders" class="radio-before"
-                              [value]="gender.id">{{gender.value}}</md-radio-button>
+                              [value]="gender.id">{{gender.description}}</md-radio-button>
           </md-radio-group>
           <md-hint class="warn" align="start"
             *ngIf="steps[0].controls['gender'].touched || triedSend">
@@ -88,7 +88,8 @@
           <input style="display:none" md-input>
           1.5 - Estudou/estuda em que tipo de escola? *<br>
           <md-radio-group formControlName="origin_id">
-            <md-radio-button *ngFor="let origin of bdInfo.origins" class="radio-before" [value]="origin.id">{{origin.value}}</md-radio-button>
+            <md-radio-button class="radio-before" value="1">Escola Pública</md-radio-button>
+            <md-radio-button class="radio-before" value="2">Escola Particular</md-radio-button>
           </md-radio-group>
           <md-hint class="warn" align="start"
             *ngIf="steps[0].controls['origin_id'].touched || triedSend">

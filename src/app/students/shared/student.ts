@@ -4,6 +4,10 @@ export class Student {
   cell_phone: string;
   email: string;
   address: string;
+  address_number: string;
+  address_complment: string;
+  address_district: string;
+  address_zip_code: number;
   user_id: number;
   start_month: number;
   start_year: number;
@@ -21,7 +25,7 @@ export class Student {
   agreement: number;
   agreement_name: number;
   pronatec_id: number;
-  gender: number;
+  gender: string;
   ethnicity_id: number;
   cpf_number: number;
   rg_number: number;
@@ -29,6 +33,7 @@ export class Student {
   birth_date: string;
   disability_id: number;
   city_id: number;
+  base_id: number;
   // constructor(values: Object = {}){
   //   Object.assign(this, values);
   // }

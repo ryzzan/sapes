@@ -190,6 +190,9 @@ export class StudentsFormComponent implements OnInit {
     });
 
   }
+  openSelectCourse(data){
+
+  }
   getCorporateValue(value, btn){
     if(!this.steps[0].controls['cpf_number'].valid) return false;
     btn.disabled = true;
@@ -197,12 +200,16 @@ export class StudentsFormComponent implements OnInit {
     feedback.instance.message = "Buscando concluinte";
     feedback.instance.progress = true;
     value = this.getNumber(value);
-    this.corporateService.teste(value).subscribe(data => {
+    this.corporateService.getStudent(value).subscribe(data => {
+      // if(data[0].courses.length != 0) return this.openSelectCourse(data);
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
           duration: 5000
       });
+      let student = Object.assign(data[0], data[0].courses[0]);
+      delete student.courses;
       btn.disabled = false;
-      this.student = data[0];
+      this.student = student;
+      console.log(student);
       this.setValues();
     },
     response => {

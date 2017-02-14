@@ -28,6 +28,7 @@ export class CorporateService {
       urlSearchParams.append('client_secret', 'U0lTQVBTc2VjcmV0MjMxMDIwMTcxNTI3');
 
       let body = urlSearchParams.toString();
+
       this.http.post(this.url + "api-autenticacao/oauth2/token", body, this.options).map(res => res.json()).subscribe( data =>{
         sessionStorage.setItem('token', JSON.stringify(data));
       },
@@ -47,6 +48,29 @@ export class CorporateService {
 
     return this.http.get(this.getStudentUrl(identification,'DN'), options)
       .map(res => res.json());
+  }
+  Interceptor(data){
+    data = data.map(student => ({
+      birth_date: student.dt_nascimento,
+      name: student.nome,
+      gender: student['sexo']=="M"? 1: 2,
+      base_id: student.cd_pessoa,
+      cursos: student.cursos.map(curso => ({
+        distance_education: curso.ead!="N"? 1: 0,
+        regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
+      }))
+    }))
+    return data;
+  }
+  teste(identification){
+    let token = JSON.parse(sessionStorage.getItem('token'));
+    let headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': token.token_type + " " + token.access_token
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.getStudentUrl('PEDRO VICENTE','DN'), options)
+      .map(res => this.Interceptor(res.json()));
   }
 
   private getStudentUrl(identification, dr){

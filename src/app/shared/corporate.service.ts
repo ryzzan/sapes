@@ -52,11 +52,11 @@ export class CorporateService {
   }
   private dateForCourse(date, indice){
     if(date == null) return date;
-    return date.split("/")[indice];
+    return parseInt(date.split("/")[indice]);
   }
   private captureCity(nameCity, uf){
     bdInfo.cities.filter(city => {
-      city
+      city.description == nameCity && city.state == uf
     });
   }
   private Interceptor(data){

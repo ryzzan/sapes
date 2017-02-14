@@ -5,9 +5,6 @@
   origins: [
     {"id":1,"deleted_at":null,"created_at":"2017-01-11 19:49:53","code":1,"description":"PARTICULAR","enabled":1},{"id":2,"deleted_at":null,"created_at":"2017-01-11 19:49:53","code":2,"description":"P\u00daBLICA MUNICIPAL","enabled":1},{"id":3,"deleted_at":null,"created_at":"2017-01-11 19:49:53","code":3,"description":"P\u00daBLICA ESTADUAL","enabled":1},{"id":4,"deleted_at":null,"created_at":"2017-01-11 19:49:53","code":4,"description":"P\u00daBLICA FEDERAL","enabled":1},{"id":5,"deleted_at":null,"created_at":"2017-01-11 19:49:53","code":9,"description":"N\u00c3O DECLARADO","enabled":1}
   ],
-  genders: [{id: 1, value: 'Masculino'},{id: 2, value: 'Feminino'}],
-  courses: [{id: 1, description: "Gestão ambiental"}],
-  origins: [{id: 1, value: 'Escola Particular'},{id: 2, value: 'Escola Pública'}],
   genders: [{id: "M", value: 'Masculino'},{id: "F", value: 'Feminino'}],
   estagios: [
     {id: 1, description: 'Estágio'},

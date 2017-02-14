@@ -102,7 +102,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia *">
-            <md-option *ngFor="let ethnicity of bdInfo.ethnicities" [value]="ethnicity.id">{{ethnicity.value}}</md-option>
+            <md-option *ngFor="let ethnicity of bdInfo.ethnicities" [value]="ethnicity.id">{{ethnicity.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['ethnicity_id'].touched || triedSend">
@@ -128,7 +128,7 @@
                     formControlName="disability_id"
                     [required]="disabilty.checked">
             <md-option *ngFor="let disability of bdInfo.disabilities"
-                        [value]="disability.id">{{disability.value}}</md-option>
+                        [value]="disability.id">{{disability.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
             *ngIf="triedSend">
@@ -457,7 +457,7 @@
 
       <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input formControlName="email" md-input placeholder="3.11 - E-mail *" #email>
+          <input formControlName="email" md-input placeholder="3.11 - E-mail *" maxlength="100" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['email'].errors" title="E-mail"></input-error>
           </md-hint>

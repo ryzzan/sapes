@@ -56,9 +56,21 @@ export class CorporateService {
   }
 
   private captureCity(nameCity, uf){
-    bdInfo.cities.filter(city => {
+    if(nameCity == "" || uf == "") {
+      return null;
+    }
+    return bdInfo.cities.filter(city =>
       city.description == nameCity && city.state == uf
-    });
+    ).map(city => city.id)[0];
+  }
+
+  private captureCourse(nameCourse){
+    if(nameCourse == "") {
+      return null;
+    }
+    return bdInfo.courses.filter(course =>
+      course.description == nameCourse
+    ).map(course => course.id)[0];
   }
 
   private Interceptor(data){
@@ -69,10 +81,10 @@ export class CorporateService {
       gender: student['sexo'],
       ethnicity_id: student.cd_raca_cor == null ? null : bdInfo.ethnicities.filter(
           ethnicity => ethnicity.code == student.cd_raca_cor
-      )['id'],
+      )[0]['id'],
       disability_id: student.cd_necessidade_especial == null ? null : bdInfo.disabilities.filter(
           disability => disability.code == student.cd_necessidade_especial
-      )['id'],
+      )[0]['id'],
       address: student.endereco,
       address_zip_code: student.cep,
       address_number: student.numero,
@@ -85,23 +97,24 @@ export class CorporateService {
       //Filter for curse with situacao == 2
       courses: student.cursos.filter(curso => curso.cd_situacao == 2).map(curso => ({
         regional: curso.dr,
+        course_id: this.captureCourse(curso.ds_curso),
         unit_id: curso.cd_unidade == null ? null : bdInfo.units.filter(
           unit => unit.code == curso.cd_unidade
-        )['id'],
+        )[0]['id'],
         origin_id: curso.cd_escola_orig_aluno_no_curso == null ? null : bdInfo.origins.filter(
           origin => origin.code == curso.cd_escola_orig_aluno_no_curso
-        )['id'],
+        )[0]['id'],
         modality_id: curso.cd_modalidade == null ? null : bdInfo.modalities.filter(
-          modality => modality.id == curso.cd_modalidade
-        )['id'],
+          modality => modality.code == curso.cd_modalidade
+        )[0]['id'],
         distance_education: curso.ead!="N"? 1: 0,
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
         occupation_id: curso.cd_ocupacao == null ? null : bdInfo.occupations.filter(
           occupation => occupation.code == curso.cd_ocupacao
-        )['id'],
+        )[0]['id'],
         area_id: curso.cd_area_atuacao == null ? null : bdInfo.areas.filter(
           area => area.code == curso.cd_area_atuacao
-        )['id'],
+        )[0]['id'],
         start_month: this.dateForCourse(curso.dt_inicio, 1),
         start_year: this.dateForCourse(curso.dt_inicio, 2),
         end_month: this.dateForCourse(curso.dt_termino, 1),

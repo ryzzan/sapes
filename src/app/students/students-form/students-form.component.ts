@@ -15,7 +15,6 @@ import { bdInfo } from './data';
 
 import { ProgressComponent } from '../../component/progress/progress.component';
 
-
 @Component({
   selector: 'app-students-form',
   templateUrl: './students-form.component.html',

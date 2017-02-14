@@ -15,6 +15,7 @@ import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { InputErrorComponent } from '../component/input-error/input-error-component'
 import { ProgressComponent } from '../component/progress/progress.component';
+import { Md2AutocompleteModule } from 'md2-autocomplete/autocomplete';
 
 @NgModule({
   imports: [

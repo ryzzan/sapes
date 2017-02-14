@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams  } from '@angular/http';
+import { bdInfo } from '../students/students-form/data'
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -49,15 +50,46 @@ export class CorporateService {
     return this.http.get(this.getStudentUrl(identification,'DN'), options)
       .map(res => res.json());
   }
-  Interceptor(data){
+  private dateForCourse(date, indice){
+    if(date == null) return date;
+    return date.split("/")[indice];
+  }
+  private captureCity(nameCity, uf){
+    bdInfo.cities.filter(city => {
+      city
+    });
+  }
+  private Interceptor(data){
     data = data.map(student => ({
-      birth_date: student.dt_nascimento,
-      name: student.nome,
-      gender: student['sexo']=="M"? 1: 2,
       base_id: student.cd_pessoa,
-      cursos: student.cursos.map(curso => ({
+      name: student.nome,
+      birth_date: student.dt_nascimento,
+      gender: student['sexo'],
+      ethenicity_id: student.cd_raca_cor,
+      disability_id: student.cd_necessidade_especial,
+      address: student.endereco,
+      address_zip_code: student.cep,
+      address_number: student.numero,
+      address_complement: student.complement,
+      address_district: student.bairro,
+      rg_number: student.rg_numero,
+      city_id: this.captureCity(student.cidade, student.uf),
+      cell_phone: student.celular_num == null ? null : student.celular_ddd + "" + student.celular_num,
+      home_phone: student.telefone_num == null ? null : student.telefone_ddd + "" + student.telefone_num,
+      //Filter for curse with situacao == 2
+      courses: student.cursos.filter(curso => curso.cd_situacao == 2).map(curso => ({
+        regional: curso.dr,
+        unit_id: curso.cd_unidade,
+        origin_id: curso.cd_escola_orig_aluno_no_curso,
+        modality_id: curso.cd_modalidade,
         distance_education: curso.ead!="N"? 1: 0,
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
+        occupation_id: curso.cd_ocupacao,
+        area_id: curso.cd_area_atuacao,
+        start_month: this.dateForCourse(curso.dt_inicio, 1),
+        start_year: this.dateForCourse(curso.dt_inicio, 2),
+        end_month: this.dateForCourse(curso.dt_termino, 1),
+        end_year: this.dateForCourse(curso.dt_termino, 2)
       }))
     }))
     return data;
@@ -69,7 +101,7 @@ export class CorporateService {
       'Authorization': token.token_type + " " + token.access_token
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(this.getStudentUrl('PEDRO VICENTE','DN'), options)
+    return this.http.get(this.getStudentUrl(identification,'DN'), options)
       .map(res => this.Interceptor(res.json()));
   }
 

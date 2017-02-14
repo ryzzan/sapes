@@ -4,6 +4,10 @@ export class Student {
   cell_phone: string;
   email: string;
   address: string;
+  address_number: string;
+  address_complment: string;
+  address_district: string;
+  address_zip_code: number;
   user_id: number;
   start_month: number;
   start_year: number;

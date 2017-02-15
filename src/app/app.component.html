@@ -1,9 +1,9 @@
-<md-sidenav-container *ngIf="true" class="example-sidenav-fab-container">
-  <md-sidenav #sidenav mode="side" opened="true">
-    <app-sidenav></app-sidenav>
+<md-sidenav-container class="example-sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" [opened]="user">
+    <app-sidenav [logout]="logout"></app-sidenav>
   </md-sidenav>
 
-  <md-toolbar class="md-toolbar">
+  <md-toolbar class="md-toolbar" *ngIf="user">
       <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
       <h1>SAPES v2.0 - Sistema de Acompanhamento Permanente de Egressos do SENAI</h1>
       <span class="toolbar-spacer"></span>
@@ -24,8 +24,5 @@
   </md-toolbar>
 
   <!-- primary content -->
-  <div class="app-content">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </md-sidenav-container>
-<router-outlet *ngIf="false"></router-outlet>

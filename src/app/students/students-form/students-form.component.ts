@@ -251,7 +251,6 @@ export class StudentsFormComponent implements OnInit {
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;
 
-
     var result,
     userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value),
     answerValue = Object.assign(this.steps[3].value,this.steps[4].value);

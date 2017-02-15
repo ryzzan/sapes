@@ -1,25 +1,25 @@
 
 <div class="loginContent">
   <md-card class="boxLogin">
-      <md-toolbar class="md-toolbar">    
+      <md-toolbar class="md-toolbar">
         <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
-        <h1>SAPES | Acesso ao Sistema</h1>   
-        <span class="toolbar-spacer"></span>        
-        <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help</md-icon></button> 
+        <h1>SAPES | Acesso ao Sistema</h1>
+        <span class="toolbar-spacer"></span>
+        <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help</md-icon></button>
       </md-toolbar>
-      <div class="boxForm">
+      <form class="boxForm" (ngSubmit)="save(login.value, password.value)">
         <md-icon>perm_identity</md-icon>
         <md-input-container>
-          <input md-input placeholder="Informe seu login" value="">
-        </md-input-container> 
+          <input #login md-input placeholder="Informe seu login" value="">
+        </md-input-container>
         <br>
         <md-icon>lock_outline</md-icon>
         <md-input-container>
-          <input type="password" md-input placeholder="Informe sua senha" value="">
+          <input #password type="password" md-input placeholder="Informe sua senha" value="">
         </md-input-container>
         <br>
         <button md-raised-button class="md-button buttonPasswd" routerLink="../" type="button">Esqueci minha senha <md-icon>help_outline</md-icon></button>
-        <button md-raised-button class="md-button buttonLogin" routerLink="../" type="button">Entrar <md-icon>send</md-icon></button>                 
-      </div>  
+        <button md-raised-button class="md-button buttonLogin" type="submit">Entrar <md-icon>send</md-icon></button>
+      </form>
   </md-card>
 </div>

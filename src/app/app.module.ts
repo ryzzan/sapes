@@ -10,7 +10,7 @@ import { RTModule } from 'right-angled';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AppRoutingModule } from './app.routing.module';
 import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
+import { AuthService } from './shared/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CorporateService } from './shared/corporate.service';
     RTModule
   ],
   providers: [
+    AuthService,
     CorporateService
   ],
   bootstrap: [AppComponent]

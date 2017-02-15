@@ -33,11 +33,32 @@ export class StudentsListComponent implements OnInit {
       filtering: {filterString: '', placeholder: 'Buscar por nome'}
     },
     {
-      title: 'Email',
+      title: 'Unidade',
       className: ['office-header'],
-      name: 'email',
+      name: 'unit.description',
       sort: 'asc',
       filtering: { placeholder: 'Buscar por e-mail'}
+    },
+    {
+      title: 'Modalidade',
+      className: ['office-header'],
+      name: 'modality.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Modalidade'}
+    },
+    {
+      title: 'Curso',
+      className: ['office-header'],
+      name: 'course.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Curso'}
+    },
+    {
+      title: 'Turma',
+      className: ['office-header'],
+      name: 'course.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Turma'}
     },
     {
       title: '',

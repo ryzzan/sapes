@@ -181,7 +181,9 @@ export class StudentsListComponent implements OnInit {
       if (column.filtering) {
         filteredData = filteredData.filter((item:any) => {
           if(typeof(column.filtering.filterString)==="undefined") return true;
-          return item[column.name].toLowerCase().match(column.filtering.filterString.toLowerCase());
+          let nameColumn = column.name.split('.');
+          nameColumn = nameColumn.length == 2? item[nameColumn[0]][nameColumn[1]] : item[nameColumn[0]]
+          return nameColumn.toLowerCase().match(column.filtering.filterString.toLowerCase());
         });
       }
     });

@@ -37,7 +37,7 @@ export class StudentsListComponent implements OnInit {
       className: ['office-header'],
       name: 'unit.description',
       sort: 'asc',
-      filtering: { placeholder: 'Buscar por e-mail'}
+      filtering: { placeholder: 'Buscar por Unidade'}
     },
     {
       title: 'Modalidade',

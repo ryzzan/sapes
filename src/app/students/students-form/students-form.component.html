@@ -117,7 +117,7 @@
         <section class="flagInput">
           <p>1.7 - Possui alguma deficiência (PcD)? *</p><br>
           <span>Não</span>
-          <md-slide-toggle #disabilty [checked]="student.disability_id>0"
+          <md-slide-toggle #disabilty [checked]="student.disability_id>0 && student.disability_id!=9"
             (change)="changeDisabled(steps[0], 'disability_id', $event.checked)">
             Sim
           </md-slide-toggle>

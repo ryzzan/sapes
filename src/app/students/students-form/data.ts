@@ -5,7 +5,7 @@
   origins: [
     {"id":1,"code":1,"description":"PARTICULAR"},{"id":2,"code":2,"description":"P\u00daBLICA MUNICIPAL"},{"id":2,"code":3,"description":"P\u00daBLICA ESTADUAL"},{"id":2,"code":4,"description":"P\u00daBLICA FEDERAL"},{"id":null,"code":9,"description":"N\u00c3O DECLARADO"}
   ],
-  genders: [{id: "M", value: 'Masculino'},{id: "F", value: 'Feminino'}],
+  genders: [{id: "M", description: 'Masculino'},{id: "F", description: 'Feminino'}],
   estagios: [
     {id: 1, description: 'Estágio'},
     {id: 2, description: 'Aluno Cotista/Aprendiz'},

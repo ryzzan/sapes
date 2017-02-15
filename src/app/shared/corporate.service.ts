@@ -82,7 +82,7 @@ export class CorporateService {
       ethnicity_id: student.cd_raca_cor == null ? null : bdInfo.ethnicities.filter(
           ethnicity => ethnicity.code == student.cd_raca_cor
       )[0]['id'],
-      disability_id: student.cd_necessidade_especial == null ? null : bdInfo.disabilities.filter(
+      disability_id: student.cd_necessidade_especial == null || student.cd_necessidade_especial != 9 ? null : bdInfo.disabilities.filter(
           disability => disability.code == student.cd_necessidade_especial
       )[0]['id'],
       address: student.endereco,

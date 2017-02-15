@@ -127,7 +127,7 @@ export class StudentsFormComponent implements OnInit {
       address_district: [null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(10)
+        Validators.maxLength(50)
       ]],
       address_zip_code: [null, [
         BasicValidators.zip

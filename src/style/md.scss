@@ -1,25 +1,14 @@
-// Import all the tools needed to customize the theme and extract parts of it
 @import '~@angular/material/core/theming/all-theme';
-// Define a mixin that accepts a theme and outputs the color styles for the component.
-@mixin candy-carousel-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
+@include md-core();
 
-  // Use md-color to extract individual colors from a palette as necessary.
-  .candy-carousel {
-    background-color: md-color($primary);
-    border-color: md-color($accent, A400);
-  }
-}
-// Import a pre-built theme
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+$primary:  md-palette($md-green, 400);
+$accent:  md-palette($md-cyan, 600);
+$warn: md-palette($md-red);
+$theme: md-light-theme($primary, $accent, $warn);
 
-// Using the $theme variable from the pre-built theme you can call the theming function
-@include candy-carousel-theme($theme);
-@import '~ng2-md-datatable/md-datatable-theme';
+@include angular-material-theme($theme);
 
-@include md-datatable-theme($theme);
+
 
 .md-tab-body-content{
   padding: 10px 25px;

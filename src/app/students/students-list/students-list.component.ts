@@ -33,11 +33,32 @@ export class StudentsListComponent implements OnInit {
       filtering: {filterString: '', placeholder: 'Buscar por nome'}
     },
     {
-      title: 'Email',
+      title: 'Unidade',
       className: ['office-header'],
-      name: 'email',
+      name: 'unit.description',
       sort: 'asc',
       filtering: { placeholder: 'Buscar por e-mail'}
+    },
+    {
+      title: 'Modalidade',
+      className: ['office-header'],
+      name: 'modality.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Modalidade'}
+    },
+    {
+      title: 'Curso',
+      className: ['office-header'],
+      name: 'course.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Curso'}
+    },
+    {
+      title: 'Turma',
+      className: ['office-header'],
+      name: 'course.description',
+      sort: 'asc',
+      filtering: { placeholder: 'Buscar por Turma'}
     },
     {
       title: '',
@@ -160,7 +181,9 @@ export class StudentsListComponent implements OnInit {
       if (column.filtering) {
         filteredData = filteredData.filter((item:any) => {
           if(typeof(column.filtering.filterString)==="undefined") return true;
-          return item[column.name].toLowerCase().match(column.filtering.filterString.toLowerCase());
+          let nameColumn = column.name.split('.');
+          nameColumn = nameColumn.length == 2? item[nameColumn[0]][nameColumn[1]] : item[nameColumn[0]]
+          return nameColumn.toLowerCase().match(column.filtering.filterString.toLowerCase());
         });
       }
     });

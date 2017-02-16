@@ -18,7 +18,7 @@ export class CorporateService {
   });
   private options = new RequestOptions({ headers: this.headers });
 
-  private url: string = "http://portalh4.sistemaindustria.org.br:9080/";
+  private url: string = "//portalh4.sistemaindustria.org.br:9080/";
 
   getToken(){
     let token = sessionStorage.getItem('token');

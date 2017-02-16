@@ -53,39 +53,6 @@ export class StudentsFormComponent implements OnInit {
     private corporateService: CorporateService
   ) {
     this.bdInfo = bdInfo;
-  }
-  teste(event){
-    console.log(event);
-  }
-  changePronatecModalities(flag) {
-    this.modalities = bdInfo.modalities.filter(modality => {
-      if ((modality.id == 2 || modality.id == 3) && flag) return false;
-      return true;
-    });
-  }
-  changePronatecValue(checked){
-    this.changeDisabled(this.steps[1], 'pronatec_id', checked);
-    this.changePronatecModalities(checked);
-  }
-  changeGratuity(checked, pronatec){
-    console.log(pronatec);
-    if (checked) {
-      pronatec.checked = false;
-    }
-  }
-  changeDisabled(form, formName, checked){
-    if(checked){
-      return form.controls[formName].enable();
-    }
-
-    form.controls[formName].disable();
-
-    let obj = {};
-    obj[formName] = null;
-    form.patchValue(obj);
-  }
-  ngOnInit() {
-    this.changePronatecModalities(false);
     this.steps[0] = this.formBuilder.group({
       cpf_number: [null,
         Validators.compose([
@@ -176,6 +143,45 @@ export class StudentsFormComponent implements OnInit {
     this.steps[4] = this.formBuilder.group({
       question_5_1: [null, [Validators.required]]
     });
+  }
+  teste(event){
+    console.log(event);
+  }
+  changePronatecModalities(flag) {
+    let value = this.steps[1].controls['modality_id'].value;
+    this.modalities = bdInfo.modalities.filter(modality => {
+      if ((modality.id == 2 || modality.id == 3) && flag) return false;
+      return true;
+    });
+    if (flag && (value == 2 || value == 3)) {
+      this.steps[1].patchValue({
+        modality_id: null
+      })
+    }
+  }
+  changePronatecValue(checked){
+    this.changeDisabled(this.steps[1], 'pronatec_id', checked);
+    this.changePronatecModalities(checked);
+  }
+  changeGratuity(checked, pronatec){
+    console.log(pronatec);
+    if (checked) {
+      pronatec.checked = false;
+    }
+  }
+  changeDisabled(form, formName, checked){
+    if(checked){
+      return form.controls[formName].enable();
+    }
+
+    form.controls[formName].disable();
+
+    let obj = {};
+    obj[formName] = null;
+    form.patchValue(obj);
+  }
+  ngOnInit() {
+    this.changePronatecModalities(false);
 
     this.form = this.formBuilder.group({
       aluno: this.steps[0],

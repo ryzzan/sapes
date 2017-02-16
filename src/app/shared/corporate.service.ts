@@ -84,7 +84,7 @@ export class CorporateService {
       )[0]['id'],
       disability_id: student.cd_necessidade_especial == null || student.cd_necessidade_especial != 9 ? null : bdInfo.disabilities.filter(
           disability => disability.code == student.cd_necessidade_especial
-      )[0]['id'],
+      )[0],
       address: student.endereco,
       address_zip_code: student.cep,
       address_number: student.numero,

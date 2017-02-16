@@ -9,8 +9,8 @@ const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 import { Student } from '../shared/student';
 import { CorporateService } from '../../shared/corporate.service';
 import { StudentsService } from '../shared/students.service';
-import { BasicValidators } from '../../shared/basic-validators';
 
+import { Controls } from './form-control';
 import { bdInfo } from './data';
 
 import { ProgressComponent } from '../../component/progress/progress.component';
@@ -53,87 +53,7 @@ export class StudentsFormComponent implements OnInit {
     private corporateService: CorporateService
   ) {
     this.bdInfo = bdInfo;
-    this.steps[0] = this.formBuilder.group({
-      cpf_number: [null,
-        Validators.compose([
-          Validators.required,
-          BasicValidators.cpf
-        ])
-      ],
-      name: [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(100)
-        ])
-      ],
-      rg_number: [null, Validators.required],
-      birth_date: ['',
-        Validators.compose([
-          Validators.required,
-          BasicValidators.date
-        ])
-      ],
-      gender: [null, [Validators.required]],
-      origin_id: [null,Validators.required],
-      ethnicity_id: [null,[Validators.required]],
-      disability_id: [null]
-    })
-    this.steps[1] = this.formBuilder.group({
-      start_year: [null, [Validators.required]],
-      start_month: [null, [Validators.required]],
-      end_month: [null, [Validators.required]],
-      course_id: [null, [Validators.required]],
-      regional: [null, [Validators.required]],
-      unit_id: [null, [Validators.required]],
-      modality_id: [null, [Validators.required]],
-      area_id: [null, [Validators.required]],
-      occupation_id: [null, [Validators.required]],
-      class: [null, [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(10)
-      ]],
-      distance_education: [null],
-      regimental_gratuity: [null],
-      agreement: [null],
-      agreement_name: [null],
-      pronatec_id : [null]
-    });
-
-    this.steps[2] = this.formBuilder.group({
-      address: [null, [Validators.required]],
-      address_number: [null, [Validators.required]],
-      address_complement: [null, [
-        Validators.minLength(3),
-        Validators.maxLength(50)
-      ]],
-      address_district: [null, [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50)
-      ]],
-      address_zip_code: [null, [
-        BasicValidators.zip
-      ]],
-      city_id: [null, [Validators.required]],
-      home_phone: [null, [
-        BasicValidators.phone
-      ]],
-      cell_phone: [null, [
-        BasicValidators.cell_phone
-      ]],
-      alternative_phone: [null, [
-        BasicValidators.cell_phone
-      ]],
-      email: [null, [
-        BasicValidators.email,
-        Validators.minLength(6),
-        Validators.maxLength(100)
-      ]]
-    });
-
+    this.steps = Controls;
     this.steps[3] = this.formBuilder.group({
       question_4_1: [null],
       question_4_2: [null, [Validators.required]],

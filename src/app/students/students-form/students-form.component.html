@@ -246,7 +246,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
           <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide">
-            <md-option *ngFor="let modality of bdInfo.modalities" [value]="modality.id">{{modality.description}}</md-option>
+            <md-option *ngFor="let modality of modalities" [value]="modality.id">{{modality.description}}</md-option>
           </md-select>
 
           <md-hint class="warn" align="start"
@@ -310,7 +310,7 @@
         <section class="full-width" class="flagInput">
           <p>2.12 - Gratuidade regimental?</p><br>
           <span>Não</span>
-          <md-slide-toggle formControlName="regimental_gratuity">
+          <md-slide-toggle formControlName="regimental_gratuity" (change)="changeGratuity($event.checked, pronatec)">
             Sim
           </md-slide-toggle>
         </section>
@@ -340,7 +340,7 @@
           <p>2.15 - Pronatec?</p><br>
           <span>Não</span>
           <md-slide-toggle #pronatec [checked]="student.pronatec_id>0"
-            (change)="changeDisabled(steps[1], 'pronatec_id', $event.checked)">
+            (change)="changePronatecValue($event.checked)">
             Sim
           </md-slide-toggle>
         </section>

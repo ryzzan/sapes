@@ -32,6 +32,7 @@ export class StudentsFormComponent implements OnInit {
     phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,],
     cell_phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,]
   };
+  modalities: any;
   formPagination: any = {
     maxIndex: 4,
     index: 0
@@ -56,6 +57,22 @@ export class StudentsFormComponent implements OnInit {
   teste(event){
     console.log(event);
   }
+  changePronatecModalities(flag) {
+    this.modalities = bdInfo.modalities.filter(modality => {
+      if ((modality.id == 2 || modality.id == 3) && flag) return false;
+      return true;
+    });
+  }
+  changePronatecValue(checked){
+    this.changeDisabled(this.steps[1], 'pronatec_id', checked);
+    this.changePronatecModalities(checked);
+  }
+  changeGratuity(checked, pronatec){
+    console.log(pronatec);
+    if (checked) {
+      pronatec.checked = false;
+    }
+  }
   changeDisabled(form, formName, checked){
     if(checked){
       return form.controls[formName].enable();
@@ -68,6 +85,7 @@ export class StudentsFormComponent implements OnInit {
     form.patchValue(obj);
   }
   ngOnInit() {
+    this.changePronatecModalities(false);
     this.steps[0] = this.formBuilder.group({
       cpf_number: [null,
         Validators.compose([

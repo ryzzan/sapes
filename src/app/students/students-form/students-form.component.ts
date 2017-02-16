@@ -147,13 +147,14 @@ export class StudentsFormComponent implements OnInit {
   teste(event){
     console.log(event);
   }
-  changePronatecModalities(flag) {
+  changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
+    console.log(checked);
     this.modalities = bdInfo.modalities.filter(modality => {
-      if ((modality.id == 2 || modality.id == 3) && flag) return false;
+      if ((modality.id == 2 || modality.id == 3) && checked) return false;
       return true;
     });
-    if (flag && (value == 2 || value == 3)) {
+    if (checked && (value == 2 || value == 3)) {
       this.steps[1].patchValue({
         modality_id: null
       })
@@ -162,11 +163,17 @@ export class StudentsFormComponent implements OnInit {
   changePronatecValue(checked){
     this.changeDisabled(this.steps[1], 'pronatec_id', checked);
     this.changePronatecModalities(checked);
+    if(checked){
+      this.steps[1].patchValue({
+        regimental_gratuity: false
+      });
+    }
   }
   changeGratuity(checked, pronatec){
     console.log(pronatec);
     if (checked) {
       pronatec.checked = false;
+      this.changePronatecValue(false);
     }
   }
   changeDisabled(form, formName, checked){

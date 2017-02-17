@@ -231,7 +231,7 @@
         <md-icon>business</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Unidade SENAI">
+          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Unidade *">
             <md-option *ngFor="let unit of bdInfo.units" [value]="unit.id">{{unit.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
@@ -245,7 +245,7 @@
         <md-icon>list</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide">
+          <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide *">
             <md-option *ngFor="let modality of modalities" [value]="modality.id">{{modality.description}}</md-option>
           </md-select>
 
@@ -259,7 +259,7 @@
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="area_id" placeholder="2.8 - Área tecnológica">
+          <md-select class="full-width" formControlName="area_id" placeholder="2.8 - Área tecnológica *">
             <md-option *ngFor="let area of bdInfo.areas" [value]="area.id">{{area.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
@@ -273,7 +273,7 @@
         <md-icon>work</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="occupation_id" placeholder="2.9 - Ocupação">
+          <md-select class="full-width" formControlName="occupation_id" placeholder="2.9 - Ocupação *">
             <md-option *ngFor="let occupation of bdInfo.occupations" [value]="occupation.id">{{occupation.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
@@ -344,10 +344,18 @@
             Sim
           </md-slide-toggle>
         </section>
-         <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
+
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" md-input>
+            <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
             [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
-          <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
+            <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
         </md-select>
+            <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="Categoria Pronatec"></input-error>
+            </md-hint>
+        </md-input-container>
+
       </md-grid-tile>
 
     </md-grid-list>
@@ -481,7 +489,7 @@
         <md-grid-tile [colspan]="1" class="disability-cell">
           <md-icon>check_box</md-icon>
           <section class="flagInput">
-            <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada?</p><br>
+            <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada? *</p><br>
             <span>Não</span>
             <md-slide-toggle formControlName="question_4_1">
               Sim
@@ -494,7 +502,7 @@
         <md-icon class="material-icons">check_box</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-            <md-select formControlName="question_4_2" placeholder="4.2 - Especifique abaixo sua situação profissional:" class="full-width">
+            <md-select formControlName="question_4_2" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
               <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
             </md-select>
             <md-hint class="warn" align="start" *ngIf="steps[3].controls['question_4_2'].touched || triedSend">
@@ -506,7 +514,7 @@
         <md-icon>check_box</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select formControlName="question_4_3" class="full-width" placeholder="4.3 - Especifique abaixo sua situação profissional">
+          <md-select formControlName="question_4_3" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
             <md-option value="1">Menos de 1 SM</md-option><br>
             <md-option value="2">1 SM</md-option><br>
             <md-option value="3">Mais 1 a 2 SM</md-option><br>

@@ -41,9 +41,8 @@ Controls[1] = formBuilder.group({
     area_id: [null, [Validators.required]],
     occupation_id: [null, [Validators.required]],
     class: [null, [
-    Validators.required,
-    Validators.minLength(5),
-    Validators.maxLength(10)
+      Validators.required,
+      Validators.maxLength(10)
     ]],
     distance_education: [null],
     regimental_gratuity: [null],
@@ -56,31 +55,31 @@ Controls[2] = formBuilder.group({
     address: [null, [Validators.required]],
     address_number: [null, [Validators.required]],
     address_complement: [null, [
-    Validators.minLength(3),
-    Validators.maxLength(50)
+      Validators.minLength(3),
+      Validators.maxLength(50)
     ]],
     address_district: [null, [
-    Validators.required,
-    Validators.minLength(2),
-    Validators.maxLength(50)
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50)
     ]],
     address_zip_code: [null, [
-    BasicValidators.zip
+     BasicValidators.zip
     ]],
     city_id: [null, [Validators.required]],
     home_phone: [null, [
-    BasicValidators.phone
+      BasicValidators.phone
     ]],
     cell_phone: [null, [
-    BasicValidators.cell_phone
+      BasicValidators.cell_phone
     ]],
     alternative_phone: [null, [
-    BasicValidators.cell_phone
+      BasicValidators.cell_phone
     ]],
     email: [null, [
-    BasicValidators.email,
-    Validators.minLength(6),
-    Validators.maxLength(100)
+      BasicValidators.email,
+      Validators.minLength(6),
+      Validators.maxLength(100)
     ]]
 });
 export { Controls }

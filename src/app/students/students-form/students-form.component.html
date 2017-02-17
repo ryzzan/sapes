@@ -35,7 +35,7 @@
           <input #name md-input formControlName="name" placeholder="1.1 - Nome do aluno *" maxlength="100">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['name'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['name'].errors" title="Nome do aluno"></input-error>
+              <input-error [errors]="steps[0].controls['name'].errors" title="1.1"></input-error>
           </md-hint>
           <md-hint align="end">{{name.value.length}} / 100</md-hint>
         </md-input-container>
@@ -65,7 +65,7 @@
            placeholder="1.3 - Data de nascimento *" formControlName="birth_date" (blur)="'OI'">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['birth_date'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['birth_date'].errors" title="Data de nascimento"></input-error>
+              <input-error [errors]="steps[0].controls['birth_date'].errors" title="1.3"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(birth.value).length}} / 8</md-hint>
         </md-input-container>
@@ -77,7 +77,7 @@
           <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG *">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['rg_number'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['rg_number'].errors" title="RG"></input-error>
+              <input-error [errors]="steps[0].controls['rg_number'].errors" title="1.4"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -93,7 +93,7 @@
           </md-radio-group>
           <md-hint class="warn" align="start"
             *ngIf="steps[0].controls['origin_id'].touched || triedSend">
-            <input-error [errors]="steps[0].controls['origin_id'].errors" title="Origem"></input-error>
+            <input-error [errors]="steps[0].controls['origin_id'].errors" title="1.5"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -107,7 +107,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['ethnicity_id'].touched || triedSend">
-              <input-error [errors]="steps[0].controls['ethnicity_id'].errors" title="Cor/Etnia"></input-error>
+              <input-error [errors]="steps[0].controls['ethnicity_id'].errors" title="1.6"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -133,7 +133,7 @@
           </md-select>
           <md-hint class="warn" align="start"
             *ngIf="triedSend">
-            <input-error [errors]="steps[0].controls['disability_id'].errors" title="Deficiência"></input-error>
+            <input-error [errors]="steps[0].controls['disability_id'].errors" title="1.8"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -159,7 +159,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['start_year'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['start_year'].errors" title="Ano Início"></input-error>
+              <input-error [errors]="steps[1].controls['start_year'].errors" title="2.1"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -194,7 +194,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['end_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['end_month'].errors" title="Mês Término"></input-error>
+              <input-error [errors]="steps[1].controls['end_month'].errors" title="2.4"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -208,7 +208,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['course_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['course_id'].errors" title="Curso"></input-error>
+              <input-error [errors]="steps[1].controls['course_id'].errors" title="2.5"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -222,7 +222,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['regional'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['regional'].errors" title="DR"></input-error>
+              <input-error [errors]="steps[1].controls['regional'].errors" title="2.6"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -236,7 +236,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['unit_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['unit_id'].errors" title="Unidade"></input-error>
+              <input-error [errors]="steps[1].controls['unit_id'].errors" title="2.7"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -251,7 +251,7 @@
 
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['modality_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['modality_id'].errors" title="Modalidade"></input-error>
+              <input-error [errors]="steps[1].controls['modality_id'].errors" title="2.8"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -259,12 +259,12 @@
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" md-input>
-          <md-select class="full-width" formControlName="area_id" placeholder="2.8 - Área tecnológica *">
+          <md-select class="full-width" formControlName="area_id" placeholder="2.9 - Área tecnológica *">
             <md-option *ngFor="let area of bdInfo.areas" [value]="area.id">{{area.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['area_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['area_id'].errors" title="Area"></input-error>
+              <input-error [errors]="steps[1].controls['area_id'].errors" title="2.9"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -278,7 +278,7 @@
           </md-select>
           <md-hint class="warn" align="start"
             *ngIf="steps[1].controls['occupation_id'].touched || triedSend">
-            <input-error [errors]="steps[1].controls['occupation_id'].errors" title="Ocupação"></input-error>
+            <input-error [errors]="steps[1].controls['occupation_id'].errors" title="2.9"></input-error>
           </md-hint>
         </md-input-container>
 
@@ -287,9 +287,9 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>people_outline</md-icon>
         <md-input-container  align="start" class="full-width">
-          <input type="number" md-input #class formControlName="class" placeholder="2.10 Código da turma *">
+          <input type="number" md-input #class formControlName="class" placeholder="2.10 Turma *">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
-              <input-error [errors]="steps[1].controls['class'].errors" title="Código da turma"></input-error>
+              <input-error [errors]="steps[1].controls['class'].errors" title="2.10"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(class.value).length}} / 11</md-hint>
         </md-input-container>
@@ -329,7 +329,7 @@
         <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
           <input [required]="agreement.checked" formControlName="agreement_name" md-input placeholder="2.14 - Qual convênio?">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['agreement_name'].touched || triedSend" >
-              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="Convênio"></input-error>
+              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.14"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -352,7 +352,7 @@
             <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
         </md-select>
             <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="Categoria Pronatec"></input-error>
+              <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
             </md-hint>
         </md-input-container>
 
@@ -374,7 +374,7 @@
         <md-input-container class="full-width">
           <input formControlName="address" md-input placeholder="3.1 - Endereço *" maxlength="100" #address>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['address'].errors" title="Endereço"></input-error>
+              <input-error [errors]="steps[2].controls['address'].errors" title="3.1"></input-error>
           </md-hint>
           <md-hint align="end">{{address.value.length}} / 100</md-hint>
         </md-input-container>
@@ -384,7 +384,7 @@
         <md-input-container class="full-width">
           <input formControlName="address_number" md-input placeholder="3.2 - Número *" maxlength="10" #address_number>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_number'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['address_number'].errors" title="Número"></input-error>
+              <input-error [errors]="steps[2].controls['address_number'].errors" title="3.2"></input-error>
           </md-hint>
           <md-hint align="end">{{address_number.value.length}} / 10</md-hint>
         </md-input-container>
@@ -394,7 +394,7 @@
         <md-input-container class="full-width">
           <input formControlName="address_complement" md-input placeholder="3.3 - Complemento" maxlength="50" #address_complement>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_complement'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['address_complement'].errors" title="Complemento"></input-error>
+              <input-error [errors]="steps[2].controls['address_complement'].errors" title="3.3"></input-error>
           </md-hint>
           <md-hint align="end">{{address_complement.value.length}} / 50</md-hint>
         </md-input-container>
@@ -404,7 +404,7 @@
         <md-input-container class="full-width">
           <input formControlName="address_district" md-input placeholder="3.4 - Bairro *" maxlength="50" #address_district>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_district'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['address_district'].errors" title="Bairro"></input-error>
+              <input-error [errors]="steps[2].controls['address_district'].errors" title="3.4"></input-error>
           </md-hint>
           <md-hint align="end">{{address_district.value.length}} / 50</md-hint>
         </md-input-container>
@@ -429,7 +429,7 @@
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[2].controls['city_id'].touched || triedSend">
-              <input-error [errors]="steps[2].controls['city_id'].errors" title="Cidade"></input-error>
+              <input-error [errors]="steps[2].controls['city_id'].errors" title="3.6"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -438,7 +438,7 @@
         <md-input-container class="full-width">
           <input formControlName="home_phone" md-input placeholder="3.8 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['home_phone'].errors" title="Telefone"></input-error>
+              <input-error [errors]="steps[2].controls['home_phone'].errors" title="3.8"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(home_phone.value).length}} / 10</md-hint>
         </md-input-container>
@@ -446,9 +446,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input formControlName="cell_phone" md-input placeholder="3.9 - Telefone celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
+          <input formControlName="cell_phone" md-input placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['cell_phone'].errors" title="Telefone Celular"></input-error>
+              <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.9"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
         </md-input-container>
@@ -458,7 +458,7 @@
         <md-input-container class="full-width">
           <input formControlName="alternative_phone" md-input placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone}" #alternative_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="Telefone recado"></input-error>
+              <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.10"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
         </md-input-container>
@@ -468,7 +468,7 @@
         <md-input-container class="full-width">
           <input formControlName="email" md-input placeholder="3.11 - E-mail *" maxlength="100" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['email'].errors" title="E-mail"></input-error>
+              <input-error [errors]="steps[2].controls['email'].errors" title="3.11"></input-error>
           </md-hint>
           <md-hint align="end">{{email.value.length}} / 100</md-hint>
         </md-input-container>

@@ -11,7 +11,7 @@ html, body, material-app, md-sidenav-container, .my-content {
 .app-content{
   padding: 20px;
 }
-md-card.menu-card .md-card-header-text{
+md-card.menu-card .mat-card-header-text{
   margin-left: 0;
   color: white;
 }
@@ -31,8 +31,8 @@ md-sidenav{
   background: #4caf50;
 }
 
-label.md-input-placeholder,
-label.md-radio-label
+label.mat-input-placeholder,
+label.mat-radio-label
  {
     font-weight: normal;
 }
@@ -42,31 +42,31 @@ label.md-radio-label
 }
 
 /* gambis - for use mdHint in select */
-.fakeHint div.md-input-underline{
+.fakeHint div.mat-input-underline{
   display: none;
 }
 
 /*form*/
-.md-tab-label .material-icons{
+.mat-tab-label .material-icons{
   font-size: 16px;
 }
 
 /*form inputs*/
-md-grid-tile.disability-cell figure,
-md-grid-tile.flag figure{
+md-grid-tile.disability-cell figure.mat-figure,
+md-grid-tile.flag figure.mat-figure{
   justify-content: flex-start;
 }
 
 /* buttons actions of form */
-button.md-button--disabled{
+button.mat-button--disabled{
   background: #dedede;
   box-shadow: none;
 }
-button.md-button--valid{
+button.mat-button--valid{
   background: #48a8f4;
 }
-button.md-button--valid,
-button.md-button--cancel{
+button.mat-button--valid,
+button.mat-button--cancel{
   color:white;
   .material-icons{
     color:white;

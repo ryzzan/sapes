@@ -16,6 +16,7 @@ export class CorporateService {
   private headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded'
   });
+  private modalitiesAllow = [11,15,21,31,41];
   private options = new RequestOptions({ headers: this.headers });
 
   private url: string = "//portalh4.sistemaindustria.org.br:9080/";
@@ -72,6 +73,14 @@ export class CorporateService {
       course.description == nameCourse
     ).map(course => course.id)[0];
   }
+  private captureModality(code){
+    code = bdInfo.modalities.filter(
+      modality => modality.code == code
+    );
+
+    if(code.length == 0) return null;
+    return code[0]['id'];
+  }
 
   private Interceptor(data){
     data = data.map(student => ({
@@ -95,7 +104,9 @@ export class CorporateService {
       cell_phone: student.celular_num == null ? null : student.celular_ddd + "" + student.celular_num,
       home_phone: student.telefone_num == null ? null : student.telefone_ddd + "" + student.telefone_num,
       //Filter for curse with situacao == 2
-      courses: student.cursos.filter(curso => curso.cd_situacao == 2).map(curso => ({
+      courses: student.cursos.filter(curso => {
+        return curso.cd_situacao == 2 && this.modalitiesAllow.indexOf(curso.cd_modalidade) != -1;
+      }).map(curso => ({
         regional: curso.dr,
         course_id: this.captureCourse(curso.ds_curso),
         unit_id: curso.cd_unidade == null ? null : bdInfo.units.filter(
@@ -104,9 +115,7 @@ export class CorporateService {
         origin_id: curso.cd_escola_orig_aluno_no_curso == null ? null : bdInfo.origins.filter(
           origin => origin.code == curso.cd_escola_orig_aluno_no_curso
         )[0]['id'],
-        modality_id: curso.cd_modalidade == null ? null : bdInfo.modalities.filter(
-          modality => modality.code == curso.cd_modalidade
-        )[0],
+        modality_id: curso.cd_modalidade == null ? null : this.captureModality(curso.cd_modalidade),
         distance_education: curso.ead!="N"? 1: 0,
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
         occupation_id: curso.cd_ocupacao == null ? null : bdInfo.occupations.filter(

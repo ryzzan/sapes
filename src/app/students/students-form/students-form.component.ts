@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialog } from '@angular/material';
 
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
 const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
@@ -14,6 +14,7 @@ import { Controls } from './form-control';
 import { bdInfo } from './data';
 
 import { ProgressComponent } from '../../component/progress/progress.component';
+import { SelectCourseComponent } from '../select-course/select-course.component';
 
 @Component({
   selector: 'app-students-form',
@@ -50,19 +51,11 @@ export class StudentsFormComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService,
     public snackBar: MdSnackBar,
-    private corporateService: CorporateService
+    private corporateService: CorporateService,
+    public dialog: MdDialog
   ) {
     this.bdInfo = bdInfo;
     this.steps = Controls;
-    this.steps[3] = this.formBuilder.group({
-      question_4_1: [null],
-      question_4_2: [null, [Validators.required]],
-      question_4_3: [null, [Validators.required]]
-    });
-
-    this.steps[4] = this.formBuilder.group({
-      question_5_1: [null, [Validators.required]]
-    });
   }
   teste(event){
     console.log(event);
@@ -108,6 +101,7 @@ export class StudentsFormComponent implements OnInit {
     form.patchValue(obj);
   }
   ngOnInit() {
+    this.dialog.open(SelectCourseComponent);
     this.changePronatecModalities(false);
 
     this.form = this.formBuilder.group({
@@ -152,7 +146,10 @@ export class StudentsFormComponent implements OnInit {
     feedback.instance.progress = true;
     value = this.getNumber(value);
     this.corporateService.getStudent(value).subscribe(data => {
-      // if(data[0].courses.length != 0) return this.openSelectCourse(data);
+      if(data[0].courses.length == 0) return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
+        duration: 5000
+      });
+      // if(data[0].courses.length != 1) return this.openSelectCourse(data);
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
           duration: 5000
       });

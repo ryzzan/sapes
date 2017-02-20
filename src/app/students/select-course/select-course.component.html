@@ -1,0 +1,20 @@
+<h3 md-dialog-title style="text-align: center">Selecione o curso</h3>
+<md-dialog-content>
+  <strong>CPF:</strong> 000.000.000-00
+  <strong>DR:</strong> AL - ALAGOAS
+  <br>
+  <strong>Nome:</strong> Leonardo Victor Fernandes Ferreira
+  <br>
+  <form>
+    <md-select placeholder="Selecione o curso" [(ngModel)]="selectedValue" name="food">
+      <md-option *ngFor="let food of foods" [value]="food.value">
+        {{food.viewValue}}
+      </md-option>
+    </md-select>
+
+    <!--<p> Selected value: {{selectedValue}} </p>-->
+  </form>
+</md-dialog-content>
+<md-dialog-actions style="text-align: center">
+  <button md-raised-button>SELECIONAR</button>
+</md-dialog-actions>

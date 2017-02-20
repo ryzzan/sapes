@@ -3,6 +3,7 @@ import { BasicValidators } from '../../shared/basic-validators';
 
 let Controls = [],
 formBuilder = new FormBuilder();
+
 Controls[0] = formBuilder.group({
     cpf_number: [null,
     Validators.compose([
@@ -30,6 +31,7 @@ Controls[0] = formBuilder.group({
     ethnicity_id: [null,[Validators.required]],
     disability_id: [null]
 })
+
 Controls[1] = formBuilder.group({
     start_year: [null, [Validators.required]],
     start_month: [null, [Validators.required]],
@@ -82,4 +84,15 @@ Controls[2] = formBuilder.group({
       Validators.maxLength(100)
     ]]
 });
+
+Controls[3] = formBuilder.group({
+  question_4_1: [null],
+  question_4_2: [null, [Validators.required]],
+  question_4_3: [null, [Validators.required]]
+});
+
+Controls[4] = formBuilder.group({
+  question_5_1: [null, [Validators.required]]
+});
+
 export { Controls }

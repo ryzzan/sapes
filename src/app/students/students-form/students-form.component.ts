@@ -56,15 +56,6 @@ export class StudentsFormComponent implements OnInit {
   ) {
     this.bdInfo = bdInfo;
     this.steps = Controls;
-    this.steps[3] = this.formBuilder.group({
-      question_4_1: [null],
-      question_4_2: [null, [Validators.required]],
-      question_4_3: [null, [Validators.required]]
-    });
-
-    this.steps[4] = this.formBuilder.group({
-      question_5_1: [null, [Validators.required]]
-    });
   }
   teste(event){
     console.log(event);

@@ -1,6 +1,9 @@
 form{
-  margin-top: 40px;
+  margin-top: 25px;
 }
 md-select{
   width: 100%;
+}
+p{
+  line-height: 1.5;
 }

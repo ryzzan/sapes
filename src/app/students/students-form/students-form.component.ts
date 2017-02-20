@@ -62,7 +62,6 @@ export class StudentsFormComponent implements OnInit {
   }
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
-    console.log(checked);
     this.modalities = bdInfo.modalities.filter(modality => {
       if ((modality.id == 2 || modality.id == 3) && checked) return false;
       return true;
@@ -83,7 +82,6 @@ export class StudentsFormComponent implements OnInit {
     }
   }
   changeGratuity(checked, pronatec){
-    console.log(pronatec);
     if (checked) {
       pronatec.checked = false;
       this.changePronatecValue(false);
@@ -101,9 +99,18 @@ export class StudentsFormComponent implements OnInit {
     form.patchValue(obj);
   }
   ngOnInit() {
-    this.dialog.open(SelectCourseComponent);
     this.changePronatecModalities(false);
-
+    let dialogRef = this.dialog.open(SelectCourseComponent);
+    dialogRef.componentInstance.ref = dialogRef;
+    dialogRef.componentInstance.info = {
+      name: "Leonardo Victor Fernandes Ferreira",
+      cpf_number: "000.000.000-76",
+      regional: 'PR'
+    }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+    dialogRef.componentInstance.courses = [{course_id: 1, course_name: "curso 1"},{id: 2, course_name: "curso 2"}];
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
       curso: this.steps[1],
@@ -137,6 +144,7 @@ export class StudentsFormComponent implements OnInit {
   }
   openSelectCourse(data){
 
+    this.dialog.open(SelectCourseComponent);
   }
   getCorporateValue(value, btn){
     if(!this.steps[0].controls['cpf_number'].valid) return false;
@@ -146,10 +154,14 @@ export class StudentsFormComponent implements OnInit {
     feedback.instance.progress = true;
     value = this.getNumber(value);
     this.corporateService.getStudent(value).subscribe(data => {
-      if(data[0].courses.length == 0) return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
-        duration: 5000
-      });
-      // if(data[0].courses.length != 1) return this.openSelectCourse(data);
+      if(data[0].courses.length == 0) {
+        return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
+          duration: 5000
+        });
+      }
+      if(data[0].courses.length != 1) {
+        return this.openSelectCourse(data);
+      }
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
           duration: 5000
       });
@@ -176,22 +188,11 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[2]).patchValue(this.student);
     (<FormGroup>this.steps[3]).patchValue(this.student);
     (<FormGroup>this.steps[4]).patchValue(this.student);
-    setTimeout(()=>this.bugFixPlaceholder(), 200);
   }
   changedTabIndex(event){
-    this.bugFixPlaceholder(event);
     this.formPagination.index = event.index
   }
-  bugFixPlaceholder(info = null){
-    if(info != null){
-      if(info.index==1) return false;
-    }
-    let el = document.querySelectorAll('input[formControlName], input.md-radio-input:checked');
-    for(let indice = el.length; indice>0; indice--){
-      el[indice-1].dispatchEvent(new Event('input'));
-      el[indice-1].dispatchEvent(new Event('change'));
-    }
-  }
+
   getNumber(value){
     return value.replace(/[/ _)(.-]/g, '');
   }

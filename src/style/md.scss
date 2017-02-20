@@ -8,7 +8,6 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
 
-
 .md-tab-body-content{
   padding: 10px 25px;
 }

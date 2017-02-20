@@ -109,6 +109,7 @@ export class CorporateService {
       }).map(curso => ({
         regional: curso.dr,
         course_id: this.captureCourse(curso.ds_curso),
+        course_name: curso.ds_curso,
         unit_id: curso.cd_unidade == null ? null : bdInfo.units.filter(
           unit => unit.code == curso.cd_unidade
         )[0]['id'],

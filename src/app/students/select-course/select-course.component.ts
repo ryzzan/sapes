@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-select-course',
   templateUrl: './select-course.component.html',
   styleUrls: ['./select-course.component.css']
 })
 export class SelectCourseComponent implements OnInit {
+  @Input() info: any;
+  @Input() ref:any;
+  @Input() courses: any;
   selectedValue = null;
-  constructor() { }
-  foods = [{value: 1, viewValue: "curso 1"},{value: 2, viewValue: "curso 2"}]
+  selected(){
+    console.log("selecionado");
+  }
+  constructor() {
+    this.courses = [{course_id: 1, course_name: "curso 1"},{id: 2, course_name: "curso 2"}];
+  }
   ngOnInit() {
+
   }
 
 }

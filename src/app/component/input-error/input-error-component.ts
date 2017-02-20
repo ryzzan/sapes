@@ -61,7 +61,7 @@ export class InputErrorComponent implements OnChanges {
       required = 'O campo @field é obrigatório',
       defaultInvalid = 'O valor do campo @field é inválido',
       validateCpf = 'Formato inválido: 999.999.99-99',
-      validateDate = "Formato inválido: mm/dd/aaaa",
+      validateDate = "Data inválida ou inexistente",
       validateZip = "Formato inválido: 99999-999",
       validatePhone = "Formato inválido: (99) 9999-9999",
       validateCellPhone = "Formato inválido: (99) 99999-9999",

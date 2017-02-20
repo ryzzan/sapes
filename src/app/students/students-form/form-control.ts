@@ -85,13 +85,13 @@ Controls[2] = formBuilder.group({
     ]]
 });
 
-Controls[3] = this.formBuilder.group({
+Controls[3] = formBuilder.group({
   question_4_1: [null],
   question_4_2: [null, [Validators.required]],
   question_4_3: [null, [Validators.required]]
 });
 
-Controls[4] = this.formBuilder.group({
+Controls[4] = formBuilder.group({
   question_5_1: [null, [Validators.required]]
 });
 

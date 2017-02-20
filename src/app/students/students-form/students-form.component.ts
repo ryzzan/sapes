@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialog } from '@angular/material';
 
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe.js'
 const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
@@ -14,6 +14,7 @@ import { Controls } from './form-control';
 import { bdInfo } from './data';
 
 import { ProgressComponent } from '../../component/progress/progress.component';
+import { SelectCourseComponent } from '../select-course/select-course.component';
 
 @Component({
   selector: 'app-students-form',
@@ -50,7 +51,8 @@ export class StudentsFormComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService,
     public snackBar: MdSnackBar,
-    private corporateService: CorporateService
+    private corporateService: CorporateService,
+    public dialog: MdDialog
   ) {
     this.bdInfo = bdInfo;
     this.steps = Controls;
@@ -108,6 +110,7 @@ export class StudentsFormComponent implements OnInit {
     form.patchValue(obj);
   }
   ngOnInit() {
+    this.dialog.open(SelectCourseComponent);
     this.changePronatecModalities(false);
 
     this.form = this.formBuilder.group({

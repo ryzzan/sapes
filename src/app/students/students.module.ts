@@ -15,6 +15,7 @@ import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { InputErrorComponent } from '../component/input-error/input-error-component'
 import { ProgressComponent } from '../component/progress/progress.component';
+import { SelectCourseComponent } from './select-course/select-course.component';
 
 @NgModule({
   imports: [
@@ -36,15 +37,17 @@ import { ProgressComponent } from '../component/progress/progress.component';
     MaterialModule
   ],
   entryComponents: [
-    ProgressComponent
+    ProgressComponent,
+    SelectCourseComponent
   ],
   declarations: [
     DatapickerComponent,
     StudentsComponent,
-    StudentsFormComponent,
     StudentsListComponent,
     InputErrorComponent,
-    ProgressComponent
+    ProgressComponent,
+    SelectCourseComponent,
+    StudentsFormComponent
   ],
   providers: [StudentsService],
 })

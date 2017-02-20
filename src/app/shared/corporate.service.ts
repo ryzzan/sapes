@@ -106,7 +106,7 @@ export class CorporateService {
         )[0]['id'],
         modality_id: curso.cd_modalidade == null ? null : bdInfo.modalities.filter(
           modality => modality.code == curso.cd_modalidade
-        )[0]['id'],
+        )[0],
         distance_education: curso.ead!="N"? 1: 0,
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
         occupation_id: curso.cd_ocupacao == null ? null : bdInfo.occupations.filter(

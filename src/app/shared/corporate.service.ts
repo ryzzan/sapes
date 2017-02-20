@@ -72,6 +72,14 @@ export class CorporateService {
       course.description == nameCourse
     ).map(course => course.id)[0];
   }
+  private captureModality(code){
+    code = bdInfo.modalities.filter(
+      modality => modality.code == code
+    );
+
+    if(code.length == 0) return null;
+    return code[0]['id'];
+  }
 
   private Interceptor(data){
     data = data.map(student => ({
@@ -104,9 +112,7 @@ export class CorporateService {
         origin_id: curso.cd_escola_orig_aluno_no_curso == null ? null : bdInfo.origins.filter(
           origin => origin.code == curso.cd_escola_orig_aluno_no_curso
         )[0]['id'],
-        modality_id: curso.cd_modalidade == null ? null : bdInfo.modalities.filter(
-          modality => modality.code == curso.cd_modalidade
-        )[0],
+        modality_id: curso.cd_modalidade == null ? null : this.captureModality(curso.cd_modalidade),
         distance_education: curso.ead!="N"? 1: 0,
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
         occupation_id: curso.cd_ocupacao == null ? null : bdInfo.occupations.filter(

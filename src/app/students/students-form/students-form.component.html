@@ -16,7 +16,7 @@
         <md-icon>credit_card</md-icon>
 
         <md-input-container align="start" class="full-width">
-          <input md-input #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
+          <input mdInput #cpf formControlName="cpf_number" placeholder="Informe o CPF *"
           [textMask]="{mask: mask.cpf}">
           <md-hint class="warn" align="start" *ngIf="steps[0].controls['cpf_number'].touched || triedSend" >
               <input-error [errors]="steps[0].controls['cpf_number'].errors" title="CPF"></input-error>
@@ -32,7 +32,7 @@
       <md-grid-tile [colspan]="2">
         <md-icon>account_box</md-icon>
         <md-input-container class="full-width">
-          <input #name md-input formControlName="name" placeholder="1.1 - Nome do aluno *" maxlength="100">
+          <input #name mdInput formControlName="name" placeholder="1.1 - Nome do aluno *" maxlength="100">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['name'].touched || triedSend">
               <input-error [errors]="steps[0].controls['name'].errors" title="1.1"></input-error>
@@ -44,7 +44,7 @@
       <md-grid-tile class="input-space" [colspan]="2">
         <md-icon>wc</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-radio-group formControlName="gender">
             1.2 - Selecione o sexo *<br>
             <md-radio-button *ngFor="let gender of bdInfo.genders" class="radio-before"
@@ -60,7 +60,7 @@
       <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container style="width:100%">
-          <input md-input #birth class="full-width"
+          <input mdInput #birth class="full-width"
            [textMask]="{mask: mask.date, pipe: autoCorrectedDatePipe}"
            placeholder="1.3 - Data de nascimento *" formControlName="birth_date" (blur)="'OI'">
           <md-hint class="warn" align="start"
@@ -74,7 +74,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>fingerprint</md-icon>
         <md-input-container class="full-width">
-          <input md-input formControlName="rg_number" placeholder="1.4 - Informe o RG *">
+          <input mdInput formControlName="rg_number" placeholder="1.4 - Informe o RG *">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['rg_number'].touched || triedSend">
               <input-error [errors]="steps[0].controls['rg_number'].errors" title="1.4"></input-error>
@@ -85,7 +85,7 @@
       <md-grid-tile [colspan]="2">
         <md-icon>school</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           1.5 - Estudou/estuda em que tipo de escola? *<br>
           <md-radio-group formControlName="origin_id">
             <md-radio-button class="radio-before" value="1">Escola Pública</md-radio-button>
@@ -101,7 +101,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>face</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="ethnicity_id" placeholder="1.6 - Cor / Etnia *">
             <md-option *ngFor="let ethnicity of bdInfo.ethnicities" [value]="ethnicity.id">{{ethnicity.description}}</md-option>
           </md-select>
@@ -124,7 +124,7 @@
         </section>
         <md-input-container align="left" class="fakeHint disability disabilitySelect"
           [class.hidden]="!disabilty.checked" >
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select placeholder="1.8 - Qual deficiência?"
                     formControlName="disability_id"
                     [required]="disabilty.checked">
@@ -149,11 +149,11 @@
       <md-icon *ngIf="!steps[1].valid" color="warn">thumb_down</md-icon>
       CURSO
     </template>
-     <md-grid-list cols="8" rowHeight="95px">
+     <md-grid-list cols="8" rowHeight="100px">
       <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início do curso *">
             <md-option *ngFor="let year of bdInfo.years" [value]="year">{{year}}</md-option>
           </md-select>
@@ -167,7 +167,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início do curso *">
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
@@ -181,14 +181,14 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
-          <input md-input disabled value="2017" placeholder="2.3 - Ano Termino">
+          <input mdInput disabled value="2017" placeholder="2.3 - Ano Termino">
         </md-input-container>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término do curso *">
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
@@ -202,7 +202,7 @@
       <md-grid-tile [colspan]="3">
         <md-icon>class</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select formControlName="course_id" class="full-width" placeholder="2.5 - Selecione o curso *">
             <md-option *ngFor="let course of bdInfo.courses" [value]="course.id">{{course.description}}</md-option>
           </md-select>
@@ -216,7 +216,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>location_on</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select formControlName="regional" class="full-width" placeholder="2.6 - Selecione o DR *">
             <md-option *ngFor="let regional of bdInfo.regionals" [value]="regional.sigla">{{regional.sigla}} - {{regional.description}}</md-option>
           </md-select>
@@ -230,7 +230,7 @@
       <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>business</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Unidade *">
             <md-option *ngFor="let unit of bdInfo.units" [value]="unit.id">{{unit.description}}</md-option>
           </md-select>
@@ -244,7 +244,7 @@
       <md-grid-tile [colspan]="5">
         <md-icon>list</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide *">
             <md-option *ngFor="let modality of modalities" [value]="modality.id">{{modality.description}}</md-option>
           </md-select>
@@ -258,7 +258,7 @@
       <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="area_id" placeholder="2.9 - Área tecnológica *">
             <md-option *ngFor="let area of bdInfo.areas" [value]="area.id">{{area.description}}</md-option>
           </md-select>
@@ -272,7 +272,7 @@
       <md-grid-tile [colspan]="3">
         <md-icon>work</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="occupation_id" placeholder="2.9 - Ocupação *">
             <md-option *ngFor="let occupation of bdInfo.occupations" [value]="occupation.id">{{occupation.description}}</md-option>
           </md-select>
@@ -287,7 +287,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>people_outline</md-icon>
         <md-input-container  align="start" class="full-width">
-          <input type="number" md-input #class formControlName="class" placeholder="2.10 Turma *">
+          <input type="number" mdInput #class formControlName="class" placeholder="2.10 Turma *">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
               <input-error [errors]="steps[1].controls['class'].errors" title="2.10"></input-error>
           </md-hint>
@@ -327,7 +327,7 @@
           </md-slide-toggle>
         </section>
         <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
-          <input [required]="agreement.checked" formControlName="agreement_name" md-input placeholder="2.14 - Qual convênio?">
+          <input [required]="agreement.checked" formControlName="agreement_name" mdInput placeholder="2.14 - Qual convênio?">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['agreement_name'].touched || triedSend" >
               <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.14"></input-error>
           </md-hint>
@@ -346,7 +346,7 @@
         </section>
 
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
             <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
             [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
             <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
@@ -372,7 +372,7 @@
     <md-grid-list cols="4" rowHeight="100px">
       <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
         <md-input-container class="full-width">
-          <input formControlName="address" md-input placeholder="3.1 - Endereço *" maxlength="100" #address>
+          <input formControlName="address" mdInput placeholder="3.1 - Endereço *" maxlength="100" #address>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address'].errors" title="3.1"></input-error>
           </md-hint>
@@ -382,7 +382,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
         <md-input-container class="full-width">
-          <input formControlName="address_number" md-input placeholder="3.2 - Número *" maxlength="10" #address_number>
+          <input formControlName="address_number" mdInput placeholder="3.2 - Número *" maxlength="10" #address_number>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_number'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_number'].errors" title="3.2"></input-error>
           </md-hint>
@@ -392,7 +392,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
         <md-input-container class="full-width">
-          <input formControlName="address_complement" md-input placeholder="3.3 - Complemento" maxlength="50" #address_complement>
+          <input formControlName="address_complement" mdInput placeholder="3.3 - Complemento" maxlength="50" #address_complement>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_complement'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_complement'].errors" title="3.3"></input-error>
           </md-hint>
@@ -402,7 +402,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
         <md-input-container class="full-width">
-          <input formControlName="address_district" md-input placeholder="3.4 - Bairro *" maxlength="50" #address_district>
+          <input formControlName="address_district" mdInput placeholder="3.4 - Bairro *" maxlength="50" #address_district>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_district'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_district'].errors" title="3.4"></input-error>
           </md-hint>
@@ -412,7 +412,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
         <md-input-container class="full-width">
-          <input formControlName="address_zip_code" md-input placeholder="3.5 - CEP" [textMask]="{mask: mask.zip}" #address_zip_code>
+          <input formControlName="address_zip_code" mdInput placeholder="3.5 - CEP" [textMask]="{mask: mask.zip}" #address_zip_code>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_zip_code'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_zip_code'].errors" title="CEP"></input-error>
           </md-hint>
@@ -423,7 +423,7 @@
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>location_city</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="city_id" placeholder="3.6 - Cidade *">
             <md-option *ngFor="let city of bdInfo.cities" [value]="city.id">{{city.state}} - {{city.description}}</md-option>
           </md-select>
@@ -436,7 +436,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="home_phone" md-input placeholder="3.8 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
+          <input formControlName="home_phone" mdInput placeholder="3.8 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['home_phone'].errors" title="3.8"></input-error>
           </md-hint>
@@ -446,7 +446,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input formControlName="cell_phone" md-input placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
+          <input formControlName="cell_phone" mdInput placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.9"></input-error>
           </md-hint>
@@ -456,7 +456,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="alternative_phone" md-input placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone}" #alternative_phone>
+          <input formControlName="alternative_phone" mdInput placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone}" #alternative_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.10"></input-error>
           </md-hint>
@@ -466,7 +466,7 @@
 
       <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input formControlName="email" md-input placeholder="3.11 - E-mail *" maxlength="100" #email>
+          <input formControlName="email" mdInput placeholder="3.11 - E-mail *" maxlength="100" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['email'].errors" title="3.11"></input-error>
           </md-hint>
@@ -501,7 +501,7 @@
       <md-grid-tile [colspan]="1">
         <md-icon class="material-icons">check_box</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
             <md-select formControlName="question_4_2" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
               <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
             </md-select>
@@ -513,7 +513,7 @@
       <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>check_box</md-icon>
         <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
           <md-select formControlName="question_4_3" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
             <md-option value="1">Menos de 1 SM</md-option><br>
             <md-option value="2">1 SM</md-option><br>
@@ -545,7 +545,7 @@
     <md-grid-list cols="2" rowHeight="100px">
         <md-grid-tile [colspan]="2">
           <md-input-container class="full-width fakeHint">
-          <input style="display:none" md-input>
+          <input style="display:none" mdInput>
             <md-radio-group formControlName="question_5_1" class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
               <md-radio-button class="radio-before" value="0">0</md-radio-button>
               <md-radio-button class="radio-before" value="1">1</md-radio-button>
@@ -574,11 +574,11 @@
 <md-toolbar class="formActions" color="transparent">
     <button md-raised-button type="submit"
             [disabled]="!canSave" [class.md-button--disabled]="!form.valid"
-            [class.md-button--valid]="form.valid">Salvar <md-icon>send</md-icon>
+            [class.md-button--valid]="form.valid">SALVAR <md-icon>send</md-icon>
     </button>
-    <button md-raised-button color="warn" routerLink="../" type="button">Cancelar <md-icon>close</md-icon>
+    <button md-raised-button color="warn" routerLink="../" type="button">CANCELAR <md-icon>close</md-icon>
     </button>
-    <button md-raised-button type="reset">Limpar <md-icon>restore</md-icon>
+    <button md-raised-button type="reset">LIMPAR <md-icon>restore</md-icon>
     </button>
     <span class="toolbar-spacer"></span>
     <button md-raised-button (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" color="accent" routerLink="."><md-icon>navigate_before</md-icon></button>

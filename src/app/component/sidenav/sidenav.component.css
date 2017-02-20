@@ -28,7 +28,7 @@ md-list md-list-item{
 md-list-item .material-icons{
   height: auto;
 }
-md-list-item .md-list-text{
+md-list-item .mat-list-text{
   font-size: 14px;
 }
 a{

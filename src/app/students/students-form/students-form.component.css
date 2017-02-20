@@ -42,3 +42,6 @@ form{
 .flagInput md-slide-toggle{
   display: inline;
 }
+md-grid-list{
+  margin: 5px 15px
+}

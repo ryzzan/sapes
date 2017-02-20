@@ -33,7 +33,7 @@ import { AuthService } from './shared/auth.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     StudentsModule,
     AppRoutingModule,
     MdDataTableModule.forRoot(),

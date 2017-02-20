@@ -105,7 +105,7 @@ export class CorporateService {
       home_phone: student.telefone_num == null ? null : student.telefone_ddd + "" + student.telefone_num,
       //Filter for curse with situacao == 2
       courses: student.cursos.filter(curso => {
-        return curso.cd_situacao == 2 && this.modalitiesAllow.indexOf(curso.cd_modalidade) != -1
+        return curso.cd_situacao == 2 && this.modalitiesAllow.indexOf(curso.cd_modalidade) != -1;
       }).map(curso => ({
         regional: curso.dr,
         course_id: this.captureCourse(curso.ds_curso),

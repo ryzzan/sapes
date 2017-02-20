@@ -152,7 +152,10 @@ export class StudentsFormComponent implements OnInit {
     feedback.instance.progress = true;
     value = this.getNumber(value);
     this.corporateService.getStudent(value).subscribe(data => {
-      // if(data[0].courses.length != 0) return this.openSelectCourse(data);
+      if(data[0].courses.length == 0) return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
+        duration: 5000
+      });
+      // if(data[0].courses.length != 1) return this.openSelectCourse(data);
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
           duration: 5000
       });

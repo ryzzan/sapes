@@ -4,19 +4,19 @@
     <strong>Nome:</strong> {{info?.name}}
     <br>
     <strong>CPF:</strong> {{info?.cpf_number}}
-    <strong>DR:</strong> {{info?.regional}}
+    <strong>DR:</strong> {{regional}}
     <br>
   </p>
   <form>
-    <md-select #course placeholder="Selecione o curso" (change)="selected();" name="course">
+    <md-select #course placeholder="Selecione o curso" (change)="courseChanged($event.value)" name="course">
       <md-option *ngFor="let course of courses" [value]="course.course_id">
         {{course.course_name}}
       </md-option>
     </md-select>
-    <p> Selected value: {{selectedValue}} </p>
+
   </form>
 </md-dialog-content>
 <md-dialog-actions style="text-align: center">
-  <button [disabled]="selectedValue!=null" md-raised-button (click)="ref.close(course)" color="primary">SELECIONAR</button>
+  <button [disabled]="course.selected==null" md-raised-button (click)="courseSelected()" color="primary">SELECIONAR</button>
   <button md-raised-button md-dialog-close color="warn">CANCELAR</button>
 </md-dialog-actions>

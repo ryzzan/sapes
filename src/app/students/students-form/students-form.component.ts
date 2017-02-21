@@ -56,6 +56,47 @@ export class StudentsFormComponent implements OnInit {
   ) {
     this.bdInfo = bdInfo;
     this.steps = Controls;
+    this.form = this.formBuilder.group({
+      aluno: this.steps[0],
+      curso: this.steps[1],
+      contato: this.steps[2],
+      situacao: this.steps[3],
+      avaliacao: this.steps[4]
+    });
+  }
+
+  ngOnInit() {
+    this.changePronatecModalities(false);
+    // this.chooseCourse({
+    //   name: "Leonardo Victor Fernandes Ferreira",
+    //   cpf_number: "000.000.000-76",
+    //   regional: 'PR',
+    //   courses: [{course_id: 1, course_name: "curso 1"},{course_id: 2, course_name: "curso 2"}]
+    // },false);
+
+    var id = this.route.params.subscribe(params => {
+    var id = params['id'];
+
+    this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
+    if (!id) {
+      return this.canSave = true
+    };
+
+    this.studentsService.getStudent(id)
+      .subscribe(
+        student => {
+          this.student = student;
+          this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
+          this.canSave = true;
+          this.setValues();
+        },
+        response => {
+          if (response.status == 404) {
+            this.router.navigate(['NotFound']);
+          }
+        });
+    });
+
   }
   teste(event){
     console.log(event);
@@ -98,89 +139,71 @@ export class StudentsFormComponent implements OnInit {
     obj[formName] = null;
     form.patchValue(obj);
   }
-  ngOnInit() {
-    this.changePronatecModalities(false);
-    let dialogRef = this.dialog.open(SelectCourseComponent);
-    dialogRef.componentInstance.ref = dialogRef;
-    dialogRef.componentInstance.info = {
-      name: "Leonardo Victor Fernandes Ferreira",
-      cpf_number: "000.000.000-76",
-      regional: 'PR'
-    }
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-    dialogRef.componentInstance.courses = [{course_id: 1, course_name: "curso 1"},{id: 2, course_name: "curso 2"}];
-    this.form = this.formBuilder.group({
-      aluno: this.steps[0],
-      curso: this.steps[1],
-      contato: this.steps[2],
-      situacao: this.steps[3],
-      avaliacao: this.steps[4]
-    });
-    var id = this.route.params.subscribe(params => {
-    var id = params['id'];
 
-    this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
-    if (!id) {
-      return this.canSave = true
-    };
+  getStudentIntegratedBase(value, btnSearch){
 
-    this.studentsService.getStudent(id)
-      .subscribe(
-        student => {
-          this.student = student;
-          this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
-          this.canSave = true;
-          this.setValues();
-        },
-        response => {
-          if (response.status == 404) {
-            this.router.navigate(['NotFound']);
-          }
-        });
-    });
-
-  }
-  openSelectCourse(data){
-
-    this.dialog.open(SelectCourseComponent);
-  }
-  getCorporateValue(value, btn){
     if(!this.steps[0].controls['cpf_number'].valid) return false;
-    btn.disabled = true;
+    btnSearch.disabled = true;
+
     let feedback = this.snackBar.openFromComponent(ProgressComponent);
     feedback.instance.message = "Buscando concluinte";
     feedback.instance.progress = true;
+
     value = this.getNumber(value);
+
     this.corporateService.getStudent(value).subscribe(data => {
-      if(data[0].courses.length == 0) {
+      console.log(data[0]);
+      let student = data[0];
+      if(student.courses.length == 0) {
         return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
           duration: 5000
         });
       }
-      if(data[0].courses.length != 1) {
-        return this.openSelectCourse(data);
+      if(student.courses.length != 1) {
+        return this.chooseCourse(student, btnSearch);
       }
-      this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
-          duration: 5000
-      });
-      let student = Object.assign(data[0], data[0].courses[0]);
-      delete student.courses;
-      btn.disabled = false;
-      this.student = student;
-      console.log(student);
-      this.setValues();
+
+      return this.setValueFromIntegratedBase(student, btnSearch, student.courses[0]);
     },
     response => {
       if(response.status == 404){
         this.snackBar.open('Concluinte não encontrado','',{
           duration: 5000
         });
-        btn.disabled = false;
+        btnSearch.disabled = false;
       }
       console.log(response);
     });
+  }
+
+  chooseCourse(data, btn){
+
+    let dialogRef = this.dialog.open(SelectCourseComponent);
+    dialogRef.componentInstance.ref = dialogRef;
+    dialogRef.componentInstance.info = {
+      name: data.name,
+      cpf_number: data.cpf_number
+    }
+    dialogRef.componentInstance.courses = data.courses;
+    dialogRef.afterClosed().subscribe(courseSelected => {
+      if(typeof(courseSelected) != "undefined")
+      console.log(courseSelected);
+        this.setValueFromIntegratedBase(data, btn, courseSelected);
+    });
+  }
+
+  setValueFromIntegratedBase(data, btn, course){
+      this.form.reset();
+      let student = Object.assign(data, course);
+      delete student.courses;
+      if(btn){
+        btn.disabled = false;
+      }
+      this.student = student;
+      this.setValues();
+      this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
+          duration: 5000
+      });
   }
   setValues(){
     (<FormGroup>this.steps[0]).patchValue(this.student);
@@ -190,7 +213,7 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[4]).patchValue(this.student);
   }
   changedTabIndex(event){
-    this.formPagination.index = event.index
+    this.formPagination.index = event.index;
   }
 
   getNumber(value){

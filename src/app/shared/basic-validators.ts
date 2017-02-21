@@ -43,9 +43,7 @@ export class BasicValidators {
     if(!control.value) {
       return null;
     }
-    else {
-      var cpf = control.value.replace(/[^\d]+/g,'');
-    }
+    var cpf = control.value.replace(/[^\d]+/g,'');
 
     if(cpf == '') error = true;
     //removes the known invalid CPFs numbers

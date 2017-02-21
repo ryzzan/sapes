@@ -491,7 +491,7 @@
           <section class="flagInput">
             <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada? *</p><br>
             <span>Não</span>
-            <md-slide-toggle formControlName="question_4_1">
+            <md-slide-toggle formControlName="0">
               Sim
             </md-slide-toggle>
           </section>
@@ -502,11 +502,11 @@
         <md-icon class="material-icons">check_box</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-select formControlName="question_4_2" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
+            <md-select formControlName="1" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
               <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
             </md-select>
-            <md-hint class="warn" align="start" *ngIf="steps[3].controls['question_4_2'].touched || triedSend">
-              <input-error [errors]="steps[3].controls['question_4_2'].errors" title="Questão 4.2"></input-error>
+            <md-hint class="warn" align="start" *ngIf="steps[3].controls[1].touched || triedSend">
+              <input-error [errors]="steps[3].controls[1].errors" title="Questão 4.2"></input-error>
             </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -514,7 +514,7 @@
         <md-icon>check_box</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select formControlName="question_4_3" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
+          <md-select formControlName="2" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
             <md-option value="1">Menos de 1 SM</md-option><br>
             <md-option value="2">1 SM</md-option><br>
             <md-option value="3">Mais 1 a 2 SM</md-option><br>
@@ -526,8 +526,8 @@
             <md-option value="9">Mais 5 a 20 SM</md-option><br>
             <md-option value="10">Mais de 20 SM</md-option><br>
           </md-select>
-          <md-hint class="warn" align="start" *ngIf="steps[3].controls['question_4_3'].touched || triedSend">
-            <input-error [errors]="steps[3].controls['question_4_3'].errors" title="Questão 4.3"></input-error>
+          <md-hint class="warn" align="start" *ngIf="steps[3].controls[2].touched || triedSend">
+            <input-error [errors]="steps[3].controls[2].errors" title="Questão 4.3"></input-error>
           </md-hint>
          </md-input-container>
       </md-grid-tile>
@@ -546,21 +546,21 @@
         <md-grid-tile [colspan]="2">
           <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-radio-group formControlName="question_5_1" class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
-              <md-radio-button class="radio-before" value="0">0</md-radio-button>
-              <md-radio-button class="radio-before" value="1">1</md-radio-button>
-              <md-radio-button class="radio-before" value="2">2</md-radio-button>
-              <md-radio-button class="radio-before" value="3">3</md-radio-button>
-              <md-radio-button class="radio-before" value="4">4</md-radio-button>
-              <md-radio-button class="radio-before" value="5">5</md-radio-button>
-              <md-radio-button class="radio-before" value="6">6</md-radio-button>
-              <md-radio-button class="radio-before" value="7">7</md-radio-button>
-              <md-radio-button class="radio-before" value="8">8</md-radio-button>
-              <md-radio-button class="radio-before" value="9">9</md-radio-button>
-              <md-radio-button class="radio-before" value="10">10</md-radio-button>
+            <md-radio-group formControlName="0" class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+              <md-radio-button class="radio-before" value="1">0</md-radio-button>
+              <md-radio-button class="radio-before" value="2">1</md-radio-button>
+              <md-radio-button class="radio-before" value="3">2</md-radio-button>
+              <md-radio-button class="radio-before" value="4">3</md-radio-button>
+              <md-radio-button class="radio-before" value="5">4</md-radio-button>
+              <md-radio-button class="radio-before" value="6">5</md-radio-button>
+              <md-radio-button class="radio-before" value="7">6</md-radio-button>
+              <md-radio-button class="radio-before" value="8">7</md-radio-button>
+              <md-radio-button class="radio-before" value="9">8</md-radio-button>
+              <md-radio-button class="radio-before" value="10">9</md-radio-button>
+              <md-radio-button class="radio-before" value="11">10</md-radio-button>
             </md-radio-group>
-            <md-hint class="warn" align="start" *ngIf="steps[4].controls['question_5_1'].touched || triedSend">
-              <input-error [errors]="steps[4].controls['question_5_1'].errors" title="Questão 5.1"></input-error>
+            <md-hint class="warn" align="start" *ngIf="steps[4].controls['0'].touched || triedSend">
+              <input-error [errors]="steps[4].controls['0'].errors" title="Questão 5.1"></input-error>
             </md-hint>
           </md-input-container>
         </md-grid-tile>

@@ -1,3 +1,5 @@
+import { Answer } from './answer';
+
 export class Student {
   id: number;
   name: string;
@@ -34,6 +36,8 @@ export class Student {
   disability_id: number;
   city_id: number;
   base_id: number;
+  answers: Answer = new Answer();
+
   // constructor(values: Object = {}){
   //   Object.assign(this, values);
   // }

@@ -66,6 +66,7 @@ export class StudentsFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.form);
     this.changePronatecModalities(false);
     // this.chooseCourse({
     //   name: "Leonardo Victor Fernandes Ferreira",
@@ -79,7 +80,7 @@ export class StudentsFormComponent implements OnInit {
 
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
     if (!id) {
-      return this.canSave = true
+      return this.canSave = true;
     };
 
     this.studentsService.getStudent(id)
@@ -210,8 +211,8 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[0]).patchValue(this.student);
     (<FormGroup>this.steps[1]).patchValue(this.student);
     (<FormGroup>this.steps[2]).patchValue(this.student);
-    (<FormGroup>this.steps[3]).patchValue(this.student);
-    (<FormGroup>this.steps[4]).patchValue(this.student);
+    (<FormGroup>this.steps[3]).patchValue(this.student.answers);
+    (<FormGroup>this.steps[4]).patchValue(this.student.answers);
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;
@@ -225,8 +226,15 @@ export class StudentsFormComponent implements OnInit {
     this.canSave = false;
 
     var result,
-    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value),
-    answerValue = Object.assign(this.steps[3].value,this.steps[4].value);
+    userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value);
+    userValue.answers.concat(Object.assign(this.steps[3].value,this.steps[4].value));
+    let x = userValue.answers.array.forEach(answer => {
+      console.log(answer);
+      return {
+        alternative_id: answer
+      }
+    });
+    console.log(x);
 
     userValue.user_id=1;
     userValue.end_year = 2017;

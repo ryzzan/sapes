@@ -5,33 +5,27 @@ let Controls = [],
 formBuilder = new FormBuilder();
 
 Controls[0] = formBuilder.group({
-    cpf_number: [null,
-    Validators.compose([
+    cpf_number: [null, Validators.compose([
         Validators.required,
         BasicValidators.cpf
-    ])
+      ])
     ],
-    name: [
-    null,
-    Validators.compose([
+    name: [null, Validators.compose([
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(100)
-    ])
+      ])
     ],
-    rg_number: [
-    null,
-    Validators.compose([
+    rg_number: [null, Validators.compose([
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20)
-    ])
+      ])
     ],
-    birth_date: ['',
-    Validators.compose([
+    birth_date: ['', Validators.compose([
         Validators.required,
         BasicValidators.date
-    ])
+      ])
     ],
     gender: [null, [Validators.required]],
     origin_id: [null,Validators.required],

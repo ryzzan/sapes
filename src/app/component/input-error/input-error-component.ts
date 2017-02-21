@@ -46,7 +46,7 @@ export class InputErrorComponent implements OnChanges {
 
     let keys = Object.keys(errors);
     if(keys.length === 0) '';
-    console.log(errors);
+
     let key = null;
     keys.forEach(function(value){
       if(value != "required"){

@@ -19,7 +19,14 @@ Controls[0] = formBuilder.group({
         Validators.maxLength(100)
     ])
     ],
-    rg_number: [null, Validators.required],
+    rg_number: [
+    null,
+    Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)
+    ])
+    ],
     birth_date: ['',
     Validators.compose([
         Validators.required,

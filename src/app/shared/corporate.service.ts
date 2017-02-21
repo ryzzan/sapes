@@ -100,6 +100,7 @@ export class CorporateService {
       address_complement: student.complement,
       address_district: student.bairro,
       rg_number: student.rg_numero,
+      cpf_number: student.cpf,
       city_id: this.captureCity(student.cidade, student.uf),
       cell_phone: student.celular_num == null ? null : student.celular_ddd + "" + student.celular_num,
       home_phone: student.telefone_num == null ? null : student.telefone_ddd + "" + student.telefone_num,
@@ -108,7 +109,7 @@ export class CorporateService {
         return curso.cd_situacao == 2 && this.modalitiesAllow.indexOf(curso.cd_modalidade) != -1;
       }).map(curso => ({
         regional: curso.dr,
-        course_id: this.captureCourse(curso.ds_curso),
+        course_id: curso.cd_curso_dr,
         course_name: curso.ds_curso,
         unit_id: curso.cd_unidade == null ? null : bdInfo.units.filter(
           unit => unit.code == curso.cd_unidade

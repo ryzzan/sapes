@@ -10,7 +10,7 @@
   <form>
     <md-select #course placeholder="Selecione o curso" (change)="courseChanged($event.value)" name="course">
       <md-option *ngFor="let course of courses" [value]="course.course_id">
-        {{course.course_name}}
+        {{course.start_month}}/{{course.start_year}} - {{course.course_name}}
       </md-option>
     </md-select>
 

@@ -36,7 +36,7 @@ export class Student {
   disability_id: number;
   city_id: number;
   base_id: number;
-  answers: Answer = new Answer();
+  answers: Answer[];
 
   // constructor(values: Object = {}){
   //   Object.assign(this, values);

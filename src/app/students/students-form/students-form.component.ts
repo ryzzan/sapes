@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MdSnackBar, MdDialog } from '@angular/material';
 
@@ -68,12 +68,6 @@ export class StudentsFormComponent implements OnInit {
   ngOnInit() {
     console.log(this.form);
     this.changePronatecModalities(false);
-    // this.chooseCourse({
-    //   name: "Leonardo Victor Fernandes Ferreira",
-    //   cpf_number: "000.000.000-76",
-    //   regional: 'PR',
-    //   courses: [{course_id: 1, course_name: "curso 1"},{course_id: 2, course_name: "curso 2"}]
-    // },false);
 
     var id = this.route.params.subscribe(params => {
     var id = params['id'];
@@ -211,8 +205,22 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[0]).patchValue(this.student);
     (<FormGroup>this.steps[1]).patchValue(this.student);
     (<FormGroup>this.steps[2]).patchValue(this.student);
-    (<FormGroup>this.steps[3]).patchValue(this.student.answers);
-    (<FormGroup>this.steps[4]).patchValue(this.student.answers);
+    let questionOne = this.student.answers.filter(answer => answer.question_id*1 == 1).map(answer => {
+      answer.alternative_flag = answer.alternative_id == 1;
+      return answer;
+    }),
+    questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
+    questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
+
+    (<FormArray>this.steps[3]).patchValue([
+      questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
+      questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
+      questionThree.length > 0 ? questionThree[0] : {alternative_id: null},
+    ]);
+    let questionFour = this.student.answers.filter(answer => answer.question_id*1 == 4);
+    (<FormGroup>this.steps[4]).patchValue([
+       questionFour.length > 0 ? questionFour[0] : {alternative_id: null},
+    ]);
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;
@@ -227,14 +235,17 @@ export class StudentsFormComponent implements OnInit {
 
     var result,
     userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value);
-    userValue.answers.concat(Object.assign(this.steps[3].value,this.steps[4].value));
-    let x = userValue.answers.array.forEach(answer => {
-      console.log(answer);
-      return {
-        alternative_id: answer
+    userValue.answers = this.steps[3].value.concat(this.steps[4].value);
+
+    userValue.answers.forEach( (answer, index) => {
+      if(typeof(answer.alternative_flag)!="undefined"){
+        answer.alternative_id = answer.alternative_flag ? 1 : 2;
+        delete answer.alternative_flag;
       }
+      answer.phase = 1;
+      answer.question_id = index + 1;
     });
-    console.log(x);
+    console.log(userValue.answers);
 
     userValue.user_id=1;
     userValue.end_year = 2017;

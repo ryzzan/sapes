@@ -87,13 +87,21 @@ Controls[2] = formBuilder.group({
 });
 
 Controls[3] = formBuilder.array([
-  [null],
-  [null, [Validators.required]],
-  [null, [Validators.required]]
+  formBuilder.group({
+   alternative_flag: [null]
+  }),
+  formBuilder.group({
+    alternative_id: [null]
+  }),
+  formBuilder.group({
+    alternative_id: [null]
+  })
 ]);
 
 Controls[4] = formBuilder.array([
-  [null, [Validators.required]]
+  formBuilder.group({
+    alternative_id: [null, [Validators.required]]
+  })
 ]);
 
 export { Controls }

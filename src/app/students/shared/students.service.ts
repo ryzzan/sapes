@@ -27,7 +27,7 @@ export class StudentsService {
   private url: string = "//sapesapi.nitrofull.com.br/api/fase-1";
 
   getStudents(){
-    return this.http.get(this.url, this.options)
+    return this.http.get(this.url+"?noPaginete=true", this.options)
       .map(res => res.json());
   }
 

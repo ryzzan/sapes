@@ -11,17 +11,17 @@
   ],
   genders: [{id: "M", description: 'Masculino'},{id: "F", description: 'Feminino'}],
   estagios: [
-    {id: 1, description: 'Estágio'},
-    {id: 2, description: 'Aluno Cotista/Aprendiz'},
-    {id: 3, description: 'Empresário/Sócio proprietário'},
-    {id: 4, description: 'Empregado com carteira assinada'},
-    {id: 5, description: 'Empregado sem carteira assinada'},
-    {id: 6, description: 'Empregado temporário com carteira assinada'},
-    {id: 7, description: 'Empregado temporário sem carteira assinada'},
-    {id: 8, description: 'Profissional liberal (dentista, advogado...)'},
-    {id: 9, description: 'Autônomo (por conta própria)'},
-    {id: 10, description: 'Funcionário público/militar'},
-    {id: 11, description: 'Outra situação? Qual?'}
+    {id: 3, description: 'Estágio'},
+    {id: 4, description: 'Aluno Cotista/Aprendiz'},
+    {id: 5, description: 'Empresário/Sócio proprietário'},
+    {id: 6, description: 'Empregado com carteira assinada'},
+    {id: 7, description: 'Empregado sem carteira assinada'},
+    {id: 8, description: 'Empregado temporário com carteira assinada'},
+    {id: 9, description: 'Empregado temporário sem carteira assinada'},
+    {id: 10, description: 'Profissional liberal (dentista, advogado...)'},
+    {id: 11, description: 'Autônomo (por conta própria)'},
+    {id: 12, description: 'Funcionário público/militar'},
+    {id: 13, description: 'Outra situação? Qual?'}
   ],
   ethnicities: [
     {id:1,"code":1,"description":"BRANCA"},

@@ -10,12 +10,12 @@
       <form class="boxForm" (ngSubmit)="save(login.value, password.value)">
         <md-icon>perm_identity</md-icon>
         <md-input-container>
-          <input #login md-input placeholder="Informe seu login" value="">
+          <input #login mdInput placeholder="Informe seu login" value="">
         </md-input-container>
         <br>
         <md-icon>lock_outline</md-icon>
         <md-input-container>
-          <input #password type="password" md-input placeholder="Informe sua senha" value="">
+          <input #password type="password" mdInput placeholder="Informe sua senha" value="">
         </md-input-container>
         <br>
         <button md-raised-button class="md-button buttonPasswd" routerLink="../" type="button">Esqueci minha senha <md-icon>help_outline</md-icon></button>

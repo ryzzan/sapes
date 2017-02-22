@@ -74,11 +74,12 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>fingerprint</md-icon>
         <md-input-container class="full-width">
-          <input mdInput formControlName="rg_number" placeholder="1.4 - Informe o RG *">
+          <input mdInput #rg formControlName="rg_number" placeholder="1.4 - Informe o RG *" maxlength="20">
           <md-hint class="warn" align="start"
               *ngIf="steps[0].controls['rg_number'].touched || triedSend">
               <input-error [errors]="steps[0].controls['rg_number'].errors" title="1.4"></input-error>
           </md-hint>
+          <md-hint align="end">{{getNumber(rg.value).length}} / 20</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -150,11 +151,26 @@
       CURSO
     </template>
      <md-grid-list cols="8" rowHeight="100px">
+
+      <md-grid-tile [colspan]="2" class="input-space">
+        <md-icon>date_range</md-icon>
+        <md-input-container class="full-width fakeHint">
+          <input style="display:none" mdInput>
+          <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início *">
+            <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
+          </md-select>
+          <md-hint class="warn" align="start"
+              *ngIf="steps[1].controls['start_month'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['start_month'].errors" title="Mês Início"></input-error>
+          </md-hint>
+        </md-input-container>
+      </md-grid-tile>
+
       <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início do curso *">
+          <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início *">
             <md-option *ngFor="let year of bdInfo.years" [value]="year">{{year}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
@@ -168,12 +184,12 @@
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início do curso *">
+          <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término *">
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
-              *ngIf="steps[1].controls['start_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['start_month'].errors" title="Mês Início"></input-error>
+              *ngIf="steps[1].controls['end_month'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['end_month'].errors" title="2.4"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -182,20 +198,6 @@
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
           <input mdInput disabled value="2017" placeholder="2.3 - Ano Termino">
-        </md-input-container>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="2" class="input-space">
-        <md-icon>date_range</md-icon>
-        <md-input-container class="full-width fakeHint">
-          <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término do curso *">
-            <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
-          </md-select>
-          <md-hint class="warn" align="start"
-              *ngIf="steps[1].controls['end_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['end_month'].errors" title="2.4"></input-error>
-          </md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -231,7 +233,7 @@
         <md-icon>business</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Unidade *">
+          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Selecione a Unidade *">
             <md-option *ngFor="let unit of bdInfo.units" [value]="unit.id">{{unit.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"

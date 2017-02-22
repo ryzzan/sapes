@@ -46,7 +46,7 @@ export class InputErrorComponent implements OnChanges {
 
     let keys = Object.keys(errors);
     if(keys.length === 0) '';
-    console.log(errors);
+
     let key = null;
     keys.forEach(function(value){
       if(value != "required"){
@@ -60,8 +60,8 @@ export class InputErrorComponent implements OnChanges {
   setMessages({
       required = 'O campo @field é obrigatório',
       defaultInvalid = 'O valor do campo @field é inválido',
-      validateCpf = 'Formato inválido: 999.999.99-99',
-      validateDate = "Formato inválido: mm/dd/aaaa",
+      validateCpf = 'CPF inválido',
+      validateDate = "Data inválida ou inexistente",
       validateZip = "Formato inválido: 99999-999",
       validatePhone = "Formato inválido: (99) 9999-9999",
       validateCellPhone = "Formato inválido: (99) 99999-9999",

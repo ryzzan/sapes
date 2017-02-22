@@ -505,28 +505,28 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
             <md-select formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
-              <md-option *ngFor="let estagio of bdInfo.estagios" value="{{estagio.id}}">{{estagio.description}}</md-option>
+              <md-option *ngFor="let estagio of bdInfo.estagios" [value]="estagio.id">{{estagio.description}}</md-option>
             </md-select>
             <md-hint class="warn" align="start" *ngIf="steps[3].controls[1].touched || triedSend">
               <input-error [errors]="steps[3].controls[1].errors" title="Questão 4.2"></input-error>
             </md-hint>
         </md-input-container>
       </md-grid-tile>
-      <md-grid-tile [colspan]="1" formGroupName="2" class="input-space">
+      <md-grid-tile [colspan]="1" class="input-space">
         <md-icon>check_box</md-icon>
-        <md-input-container class="full-width fakeHint">
+        <md-input-container formGroupName="2" class="full-width fakeHint">
           <input style="display:none" mdInput>
           <md-select formControlName="alternative_id" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
-            <md-option value="14">Menos de 1 SM</md-option><br>
-            <md-option value="15">1 SM</md-option><br>
-            <md-option value="16">Mais 1 a 2 SM</md-option><br>
-            <md-option value="17">Mais 2 a 3 SM</md-option><br>
-            <md-option value="18">Mais 3 a 5 SM</md-option><br>
-            <md-option value="19">Mais 5 a 7 SM</md-option><br>
-            <md-option value="20">Mais 7 a 10 SM</md-option><br>
-            <md-option value="21">Mais 10 a 15 SM</md-option><br>
-            <md-option value="22">Mais 5 a 20 SM</md-option><br>
-            <md-option value="23">Mais de 20 SM</md-option><br>
+            <md-option [value]="14">Menos de 1 SM</md-option><br>
+            <md-option [value]="15">1 SM</md-option><br>
+            <md-option [value]="16">Mais 1 a 2 SM</md-option><br>
+            <md-option [value]="17">Mais 2 a 3 SM</md-option><br>
+            <md-option [value]="18">Mais 3 a 5 SM</md-option><br>
+            <md-option [value]="19">Mais 5 a 7 SM</md-option><br>
+            <md-option [value]="20">Mais 7 a 10 SM</md-option><br>
+            <md-option [value]="21">Mais 10 a 15 SM</md-option><br>
+            <md-option [value]="22">Mais 5 a 20 SM</md-option><br>
+            <md-option [value]="23">Mais de 20 SM</md-option><br>
           </md-select>
           <md-hint class="warn" align="start" *ngIf="steps[3].controls[2].touched || triedSend">
             <input-error [errors]="steps[3].controls[2].errors" title="Questão 4.3"></input-error>

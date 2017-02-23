@@ -109,6 +109,11 @@ export class StudentsFormComponent implements OnInit {
       })
     }
   }
+
+  filterCities(val: string) {
+    return val.length>2 ? this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description)) : this.bdInfo.cities;
+  }
+
   changePronatecValue(checked){
     this.changeDisabled(this.steps[1], 'pronatec_id', checked);
     this.changePronatecModalities(checked);
@@ -256,8 +261,14 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    if(userValue.agreement==null){
+    if(userValue.agreement == null){
       userValue.agreement = false;
+    }
+    if(userValue.regimental_gratuity == null){
+      userValue.regimental_gratuity = false;
+    }
+    if(userValue.distance_education == null){
+      userValue.distance_education = false;
     }
 
     userValue.user_id=1;

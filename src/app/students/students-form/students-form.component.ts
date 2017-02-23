@@ -204,23 +204,25 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[0]).patchValue(this.student);
     (<FormGroup>this.steps[1]).patchValue(this.student);
     (<FormGroup>this.steps[2]).patchValue(this.student);
-    let questionOne = this.student.answers.filter(answer => answer.question_id*1 == 1).map(answer => {
-      answer.alternative_flag = answer.alternative_id == 1;
-      return answer;
-    }),
-    questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
-    questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
+    if(typeof(this.student.answers) != 'undefined' && this.student.answers!=null){
+      let questionOne = this.student.answers.filter(answer => answer.question_id*1 == 1).map(answer => {
+        answer.alternative_flag = answer.alternative_id == 1;
+        return answer;
+      }),
+      questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
+      questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
 
-    (<FormArray>this.steps[3]).patchValue([
-      questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
-      questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
-      questionThree.length > 0 ? questionThree[0] : {alternative_id: null},
-    ]);
-    let questionFour = this.student.answers.filter(answer => answer.question_id*1 == 4);
-    (<FormGroup>this.steps[4]).patchValue([
-       questionFour.length > 0 ? questionFour[0] : {alternative_id: null},
-    ]);
+      (<FormArray>this.steps[3]).patchValue([
+        questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
+        questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
+        questionThree.length > 0 ? questionThree[0] : {alternative_id: null},
+      ]);
+      let questionFour = this.student.answers.filter(answer => answer.question_id*1 == 4);
+      (<FormGroup>this.steps[4]).patchValue([
+        questionFour.length > 0 ? questionFour[0] : {alternative_id: null},
+      ]);
 
+    }
     this.changeUnit();
   }
   changedTabIndex(event){

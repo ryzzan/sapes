@@ -67,6 +67,7 @@ export class StudentsFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form.reset();
     this.changePronatecModalities(false);
 
     var id = this.route.params.subscribe(params => {
@@ -201,7 +202,6 @@ export class StudentsFormComponent implements OnInit {
       });
   }
   setValues(){
-    this.form.reset();
     (<FormGroup>this.steps[0]).patchValue(this.student);
     (<FormGroup>this.steps[1]).patchValue(this.student);
     (<FormGroup>this.steps[2]).patchValue(this.student);

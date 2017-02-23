@@ -43,7 +43,7 @@ Controls[1] = formBuilder.group({
     modality_id: [null, [Validators.required]],
     area_id: [null, [Validators.required]],
     occupation_id: [null, [Validators.required]],
-    pronatec_id: [null, [Validators.required]],
+    pronatec_id: [null],
     class: [null, [
       Validators.required,
       Validators.maxLength(10)

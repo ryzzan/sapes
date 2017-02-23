@@ -66,7 +66,7 @@ export class StudentsFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.form);
+    this.form.reset();
     this.changePronatecModalities(false);
 
     var id = this.route.params.subscribe(params => {

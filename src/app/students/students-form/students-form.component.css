@@ -3,6 +3,10 @@ form{
   color: gray;
 }
 
+.button-disabled{
+  background-color: darkgray;
+}
+
 .full-width {
   width: 100%;
 }

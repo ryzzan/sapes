@@ -96,7 +96,7 @@ export class BasicValidators {
  }
 
  static cell_phone (control: FormControl){
-    let ZIP_CELL_PHONE = /^[(]?[0-9]{2}[)]?[ ]?[0-9]{5}?[-]?[0-9]{4}$/;
+    let ZIP_CELL_PHONE = /^[(]?[0-9]{2}[)]?[ ]?[0-9]{4}?[-]?[0-9]{4,5}$/;
     if(!control.value) return null;
     return ZIP_CELL_PHONE.test(control.value) ? null : {
       validateCellPhone: {

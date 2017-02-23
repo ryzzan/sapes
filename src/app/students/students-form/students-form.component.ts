@@ -37,7 +37,7 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 0
+    index: 2
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -220,6 +220,8 @@ export class StudentsFormComponent implements OnInit {
     (<FormGroup>this.steps[4]).patchValue([
        questionFour.length > 0 ? questionFour[0] : {alternative_id: null},
     ]);
+
+    this.changeUnit();
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;

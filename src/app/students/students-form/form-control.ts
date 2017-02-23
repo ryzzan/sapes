@@ -43,6 +43,7 @@ Controls[1] = formBuilder.group({
     modality_id: [null, [Validators.required]],
     area_id: [null, [Validators.required]],
     occupation_id: [null, [Validators.required]],
+    pronatec_id: [null, [Validators.required]],
     class: [null, [
       Validators.required,
       Validators.maxLength(10)
@@ -50,8 +51,7 @@ Controls[1] = formBuilder.group({
     distance_education: [null],
     regimental_gratuity: [null],
     agreement: [null],
-    agreement_name: [null],
-    pronatec_id : [null]
+    agreement_name: [null]
 });
 
 Controls[2] = formBuilder.group({

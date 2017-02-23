@@ -96,6 +96,7 @@ export class StudentsFormComponent implements OnInit {
   teste(event){
     console.log(event);
   }
+
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
     this.modalities = bdInfo.modalities.filter(modality => {
@@ -240,11 +241,13 @@ export class StudentsFormComponent implements OnInit {
     userValue = Object.assign(this.steps[0].value,this.steps[1].value,this.steps[2].value);
     userValue.answers = this.steps[3].value.concat(this.steps[4].value);
     userValue.answers.forEach( (answer, index) => {
-      let id = this.student.answers.filter(answer =>
-        answer.question_id == index + 1
-      );
-      if(typeof(id[0])!="undefined"){
-        answer.id = id[0]['id'];
+      if(this.student.answers){
+        let id = this.student.answers.filter(answer =>
+          answer.question_id == index + 1
+        );
+        if(typeof(id[0])!="undefined"){
+          answer.id = id[0]['id'];
+        }
       }
       if(typeof(answer.alternative_flag)!="undefined"){
         answer.alternative_id = answer.alternative_flag ? 1 : 2;
@@ -253,7 +256,9 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    console.log(userValue.answers);
+    if(userValue.agreement==null){
+      userValue.agreement = false;
+    }
 
     userValue.user_id=1;
     userValue.end_year = 2017;

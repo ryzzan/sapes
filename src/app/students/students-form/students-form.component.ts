@@ -39,7 +39,7 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 2
+    index: 0
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -177,7 +177,6 @@ export class StudentsFormComponent implements OnInit {
         });
         btnSearch.disabled = false;
       }
-      console.log(response);
     });
   }
 
@@ -234,6 +233,7 @@ export class StudentsFormComponent implements OnInit {
 
     }
     this.changeUnit();
+    this.changePronatecValue(this.steps[1].controls['pronatec_id'].value>0);
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;
@@ -268,7 +268,6 @@ export class StudentsFormComponent implements OnInit {
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.f1 = true;
-    delete userValue.state;
 
     if(userValue){
       let data = userValue['birth_date'].split('/');

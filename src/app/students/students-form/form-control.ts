@@ -94,10 +94,10 @@ Controls[3] = formBuilder.array([
    alternative_flag: [null]
   }),
   formBuilder.group({
-    alternative_id: [null]
+    alternative_id: [null, [Validators.required]]
   }),
   formBuilder.group({
-    alternative_id: [null]
+    alternative_id: [null, [Validators.required]]
   })
 ]);
 

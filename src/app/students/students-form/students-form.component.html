@@ -231,16 +231,18 @@
 
       <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>business</md-icon>
-        <md-input-container class="full-width fakeHint">
-          <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Selecione a Unidade *">
-            <md-option *ngFor="let unit of units" [value]="unit.id">{{unit.description}}</md-option>
-          </md-select>
+        <md-input-container class="full-width">
+          <input mdInput class="full-width" placeholder="2.7 - Selecione a Unidade *" [mdAutocomplete]="autoUnit" formControlName="unit_id">
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['unit_id'].touched || triedSend">
               <input-error [errors]="steps[1].controls['unit_id'].errors" title="2.7"></input-error>
           </md-hint>
         </md-input-container>
+        <md-autocomplete #autoUnit="mdAutocomplete">
+          <md-option *ngFor="let unit of filteredUnits | async" value="{{unit.description}}">
+            {{unit.description}}
+          </md-option>
+        </md-autocomplete>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="5">

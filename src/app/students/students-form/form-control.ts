@@ -39,7 +39,10 @@ Controls[1] = formBuilder.group({
     end_month: [null, [Validators.required]],
     course_id: [null, [Validators.required]],
     regional: [null, [Validators.required]],
-    unit_id: [null, [Validators.required]],
+    unit_id: [null, [
+      Validators.required,
+      BasicValidators.unit
+    ]],
     modality_id: [null, [Validators.required]],
     area_id: [null, [Validators.required]],
     occupation_id: [null, [Validators.required]],

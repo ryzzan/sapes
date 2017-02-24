@@ -39,6 +39,7 @@ export class StudentsService {
   }
   transformToApi(data){
     data.city_id = this.getCityId(data.city_id);
+    data.unit_id = this.getUnitId(data.unit_id);
     if(data.agreement == null){
       data.agreement = false;
     }
@@ -52,6 +53,7 @@ export class StudentsService {
   }
   transformToForm(data){
     data.city_id = `${data.city.state} - ${data.city.description}`
+    data.unit_id = data.unit.description;
     return data;
   }
 
@@ -68,6 +70,16 @@ export class StudentsService {
     });
     if(city.length == 1){
       return city[0].id;
+    }
+  }
+  getUnitId(unit_name){
+    if(!unit_name) return null;
+    unit_name = unit_name.toLowerCase();
+    let unit = bdInfo.units.filter(unit =>
+       unit.description.toLowerCase() == unit_name
+    );
+    if(unit.length == 1){
+      return unit[0].id;
     }
   }
 

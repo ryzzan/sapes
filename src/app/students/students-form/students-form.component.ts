@@ -39,12 +39,13 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 2
+    index: 0
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
   bdInfo : any = {};
+  filteredUnits:any;
   filteredCities:any;
   steps: any = [];
 
@@ -69,6 +70,10 @@ export class StudentsFormComponent implements OnInit {
     this.filteredCities = this.steps[2].controls['city_id'].valueChanges
       .startWith(null)
       .map(city => this.filterCities(city));
+
+    this.filteredUnits = this.steps[1].controls['unit_id'].valueChanges
+      .startWith(null)
+      .map(unit => this.filterUnits(unit));
   }
 
   ngOnInit() {
@@ -103,6 +108,14 @@ export class StudentsFormComponent implements OnInit {
     if(!val) return [];
     if(val.length<2) return [];
     return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
+  }
+
+  filterUnits(val: string) {
+    if(!val) return [];
+    if(val.length<2) return [];
+    return this.bdInfo.units.filter((unit) => {
+      return new RegExp(val, 'gi').test(unit.description) && unit.regional == this.steps[1].controls['regional'].value;
+    });
   }
 
   changePronatecModalities(checked) {

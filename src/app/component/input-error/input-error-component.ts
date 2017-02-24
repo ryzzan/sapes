@@ -64,7 +64,7 @@ export class InputErrorComponent implements OnChanges {
       validateDate = "Data inválida ou inexistente",
       validateZip = "Formato inválido: 99999-999",
       validatePhone = "Formato inválido: (99) 9999-9999",
-      validateCellPhone = "Formato inválido: (99) 99999-9999",
+      validateCellPhone = "Formato inválido: (99) 9999-99999",
       validateEmail = "E-mail no formato inválido",
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres'

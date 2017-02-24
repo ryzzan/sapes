@@ -33,9 +33,10 @@ export class StudentsFormComponent implements OnInit {
     date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
     zip: [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
     phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,],
-    cell_phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,]
+    cell_phone: ['(', /\d/, /\d/, ')',' ' , /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/,]
   };
   modalities: any;
+  units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
     index: 1
@@ -96,7 +97,6 @@ export class StudentsFormComponent implements OnInit {
           }
         });
     });
-
   }
   teste(event){
     console.log(event);
@@ -237,6 +237,7 @@ export class StudentsFormComponent implements OnInit {
       ]);
 
     }
+    this.changeUnit();
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;
@@ -314,5 +315,13 @@ export class StudentsFormComponent implements OnInit {
       if(date.length!=10) return '';
       let data = date.split('-');
       return data[2]+"/"+data[1]+"/"+data[0];
+  }
+
+  changeUnit(){ 
+    console.log("entrou");
+    let value = this.steps[1].controls['regional'].value;
+    this.units = bdInfo.units.filter(unit => {
+      return unit.regional == value
+    })
   }
 }

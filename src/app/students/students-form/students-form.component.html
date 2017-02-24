@@ -219,8 +219,8 @@
         <md-icon>location_on</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select formControlName="regional" class="full-width" placeholder="2.6 - Selecione o DR *">
-            <md-option *ngFor="let regional of bdInfo.regionals" [value]="regional.sigla">{{regional.sigla}} - {{regional.description}}</md-option>
+          <md-select formControlName="regional" class="full-width" (change)="changeUnit()"  placeholder="2.6 - Selecione o DR *">
+            <md-option *ngFor="let regional of bdInfo.regionals" [value]="regional.sigla" >{{regional.sigla}} - {{regional.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['regional'].touched || triedSend">
@@ -234,7 +234,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
           <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Selecione a Unidade *">
-            <md-option *ngFor="let unit of bdInfo.units" [value]="unit.id">{{unit.description}}</md-option>
+            <md-option *ngFor="let unit of units" [value]="unit.id">{{unit.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['unit_id'].touched || triedSend">
@@ -247,7 +247,7 @@
         <md-icon>list</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalide *">
+          <md-select class="full-width" formControlName="modality_id" placeholder="2.8 - Modalidade *">
             <md-option *ngFor="let modality of modalities" [value]="modality.id">{{modality.description}}</md-option>
           </md-select>
 
@@ -356,6 +356,7 @@
             <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
               <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
             </md-hint>
+
         </md-input-container>
 
       </md-grid-tile>
@@ -450,7 +451,7 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input formControlName="cell_phone" mdInput placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone}" #cell_phone>
+          <input formControlName="cell_phone" mdInput placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone, guide: false}" #cell_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.9"></input-error>
           </md-hint>
@@ -460,11 +461,11 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="alternative_phone" mdInput placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone}" #alternative_phone>
+          <input formControlName="alternative_phone" mdInput placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone, guide: false}" #alternative_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.10"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
+          <md-hint align="end">{{getNumber(alternative_phone.value).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -576,9 +577,9 @@
 
 
 <md-toolbar class="formActions" color="transparent">
-    <button md-raised-button color="primary" type="submit"
-            [disabled]="!canSave" [class.md-button--disabled]="!form.valid"
-            [class.md-button--valid]="form.valid">SALVAR <md-icon>send</md-icon>
+    <button md-raised-button color="primary" type="submit" 
+            [disabled]="!canSave" [class.button-disabled]="!form.valid">
+            SALVAR <md-icon>send</md-icon>
     </button>
     <button md-raised-button color="warn" routerLink="../" type="button">CANCELAR <md-icon>close</md-icon>
     </button>

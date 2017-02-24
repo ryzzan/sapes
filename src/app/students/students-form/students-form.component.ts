@@ -268,7 +268,6 @@ export class StudentsFormComponent implements OnInit {
     userValue.user_id=1;
     userValue.end_year = 2017;
     userValue.f1 = true;
-    delete userValue.state;
 
     if(userValue){
       let data = userValue['birth_date'].split('/');

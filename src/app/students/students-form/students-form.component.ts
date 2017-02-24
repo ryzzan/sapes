@@ -16,6 +16,8 @@ import { bdInfo } from './data';
 import { ProgressComponent } from '../../component/progress/progress.component';
 import { SelectCourseComponent } from '../select-course/select-course.component';
 
+import 'rxjs/add/operator/startWith';
+
 @Component({
   selector: 'app-students-form',
   templateUrl: './students-form.component.html',
@@ -36,13 +38,13 @@ export class StudentsFormComponent implements OnInit {
   modalities: any;
   formPagination: any = {
     maxIndex: 4,
-    index: 0
+    index: 1
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
   bdInfo : any = {};
-
+  filteredCities:any;
   steps: any = [];
 
   constructor(
@@ -63,6 +65,9 @@ export class StudentsFormComponent implements OnInit {
       situacao: this.steps[3],
       avaliacao: this.steps[4]
     });
+    this.filteredCities = this.steps[2].controls['city_id'].valueChanges
+      .startWith(null)
+      .map(city => this.filterCities(city));
   }
 
   ngOnInit() {
@@ -97,6 +102,12 @@ export class StudentsFormComponent implements OnInit {
     console.log(event);
   }
 
+  filterCities(val: string) {
+    if(!val) return [];
+    if(val.length<3) return [];
+    return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
+  }
+
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
     this.modalities = bdInfo.modalities.filter(modality => {
@@ -108,10 +119,6 @@ export class StudentsFormComponent implements OnInit {
         modality_id: null
       })
     }
-  }
-
-  filterCities(val: string) {
-    return val.length>2 ? this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description)) : this.bdInfo.cities;
   }
 
   changePronatecValue(checked){

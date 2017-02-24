@@ -177,7 +177,6 @@ export class StudentsFormComponent implements OnInit {
         });
         btnSearch.disabled = false;
       }
-      console.log(response);
     });
   }
 
@@ -234,6 +233,7 @@ export class StudentsFormComponent implements OnInit {
 
     }
     this.changeUnit();
+    this.changePronatecValue(this.steps[1].controls['pronatec_id'].value>0);
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;

@@ -353,9 +353,9 @@
             [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
             <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
         </md-select>
-            <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
-            </md-hint>
+        <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
+          <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
+        </md-hint>
 
         </md-input-container>
 

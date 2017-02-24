@@ -173,7 +173,6 @@ export class StudentsFormComponent implements OnInit {
         });
         btnSearch.disabled = false;
       }
-      console.log(response);
     });
   }
 
@@ -231,6 +230,7 @@ export class StudentsFormComponent implements OnInit {
 
     }
     this.changeUnit();
+    this.changePronatecValue(this.steps[1].controls['pronatec_id'].value>0);
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;
@@ -310,8 +310,7 @@ export class StudentsFormComponent implements OnInit {
       return data[2]+"/"+data[1]+"/"+data[0];
   }
 
-  changeUnit(){ 
-    console.log("entrou");
+  changeUnit(){
     let value = this.steps[1].controls['regional'].value;
     this.units = bdInfo.units.filter(unit => {
       return unit.regional == value

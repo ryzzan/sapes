@@ -320,7 +320,7 @@
 
       <md-grid-tile [colspan]="4" class="disability-cell input-space">
         <md-icon>location_city</md-icon>
-        <section class="full-width" class="flagInput">
+        <section class="flagInput">
           <p>2.13 - Convênio?</p><br>
           <span>Não</span>
           <md-slide-toggle #agreement formControlName="agreement"
@@ -336,7 +336,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="disability-cell ">
+      <md-grid-tile [colspan]="4" class="disability-cell">
         <md-icon>school</md-icon>
         <section class="flagInput">
           <p>2.15 - Pronatec?</p><br>
@@ -347,16 +347,15 @@
           </md-slide-toggle>
         </section>
 
-        <md-input-container class="full-width fakeHint">
+        <md-input-container class="disabilitySelect fakeHint">
           <input style="display:none" mdInput>
-            <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
-            [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
-            <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
-        </md-select>
-        <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
-          <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
-        </md-hint>
-
+          <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
+          [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
+          <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
+          </md-select>
+          <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
+            <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
+          </md-hint>
         </md-input-container>
 
       </md-grid-tile>

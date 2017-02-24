@@ -39,7 +39,7 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 1
+    index: 2
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -98,13 +98,10 @@ export class StudentsFormComponent implements OnInit {
         });
     });
   }
-  teste(event){
-    console.log(event);
-  }
 
   filterCities(val: string) {
     if(!val) return [];
-    if(val.length<3) return [];
+    if(val.length<2) return [];
     return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
   }
 
@@ -195,7 +192,6 @@ export class StudentsFormComponent implements OnInit {
     dialogRef.componentInstance.courses = data.courses;
     dialogRef.afterClosed().subscribe(courseSelected => {
       if(typeof(courseSelected) != "undefined")
-      console.log(courseSelected);
         this.setValueFromIntegratedBase(data, btn, courseSelected);
     });
   }
@@ -269,19 +265,8 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    if(userValue.agreement == null){
-      userValue.agreement = false;
-    }
-    if(userValue.regimental_gratuity == null){
-      userValue.regimental_gratuity = false;
-    }
-    if(userValue.distance_education == null){
-      userValue.distance_education = false;
-    }
-
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.city_id = 2;
     userValue.f1 = true;
     delete userValue.state;
 
@@ -317,8 +302,7 @@ export class StudentsFormComponent implements OnInit {
       return data[2]+"/"+data[1]+"/"+data[0];
   }
 
-  changeUnit(){ 
-    console.log("entrou");
+  changeUnit(){
     let value = this.steps[1].controls['regional'].value;
     this.units = bdInfo.units.filter(unit => {
       return unit.regional == value

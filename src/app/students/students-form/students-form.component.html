@@ -433,7 +433,7 @@
           </md-hint>
         </md-input-container>
         <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let city of filteredCities | async" [value]="city.id">
+          <md-option *ngFor="let city of filteredCities | async" value="{{city.state}} - {{city.description}}">
             {{city.state}} - {{city.description}}
           </md-option>
         </md-autocomplete>
@@ -577,7 +577,7 @@
 
 
 <md-toolbar class="formActions" color="transparent">
-    <button md-raised-button color="primary" type="submit" 
+    <button md-raised-button color="primary" type="submit"
             [disabled]="!canSave" [class.button-disabled]="!form.valid">
             SALVAR <md-icon>send</md-icon>
     </button>

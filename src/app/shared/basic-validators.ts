@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-
+import { bdInfo } from '../students/students-form/data';
 export class BasicValidators {
 
   static email (control: FormControl){
@@ -90,6 +90,24 @@ export class BasicValidators {
     if(!control.value) return null;
     return ZIP_PHONE.test(control.value) ? null : {
       validatePhone: {
+        valid: false
+      }
+    };
+ }
+
+ static city (control: FormControl){
+    if(!control.value) return null;
+    let value = (control.value + "").toLowerCase();
+    let valueSplit = value.split(' - ');
+    let city = bdInfo.cities.filter(city => {
+      let valueForSearch = (city.state + " - " + city.description).toLowerCase().split(' - ')
+      if(valueSplit.length == 1){
+        return valueSplit[0] == valueForSearch[1];
+      };
+      return valueSplit[0] == valueForSearch[0] && valueSplit[1] == valueForSearch[1];
+    });
+    return city.length == 1 ? null : {
+      validateCity: {
         valid: false
       }
     };

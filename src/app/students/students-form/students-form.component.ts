@@ -16,6 +16,8 @@ import { bdInfo } from './data';
 import { ProgressComponent } from '../../component/progress/progress.component';
 import { SelectCourseComponent } from '../select-course/select-course.component';
 
+import 'rxjs/add/operator/startWith';
+
 @Component({
   selector: 'app-students-form',
   templateUrl: './students-form.component.html',
@@ -37,13 +39,13 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 0
+    index: 2
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
   bdInfo : any = {};
-
+  filteredCities:any;
   steps: any = [];
 
   constructor(
@@ -64,6 +66,9 @@ export class StudentsFormComponent implements OnInit {
       situacao: this.steps[3],
       avaliacao: this.steps[4]
     });
+    this.filteredCities = this.steps[2].controls['city_id'].valueChanges
+      .startWith(null)
+      .map(city => this.filterCities(city));
   }
 
   ngOnInit() {
@@ -93,8 +98,11 @@ export class StudentsFormComponent implements OnInit {
         });
     });
   }
-  teste(event){
-    console.log(event);
+
+  filterCities(val: string) {
+    if(!val) return [];
+    if(val.length<2) return [];
+    return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
   }
 
   changePronatecModalities(checked) {
@@ -108,10 +116,6 @@ export class StudentsFormComponent implements OnInit {
         modality_id: null
       })
     }
-  }
-
-  filterCities(val: string) {
-    return val.length>2 ? this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description)) : this.bdInfo.cities;
   }
 
   changePronatecValue(checked){
@@ -187,7 +191,6 @@ export class StudentsFormComponent implements OnInit {
     dialogRef.componentInstance.courses = data.courses;
     dialogRef.afterClosed().subscribe(courseSelected => {
       if(typeof(courseSelected) != "undefined")
-      console.log(courseSelected);
         this.setValueFromIntegratedBase(data, btn, courseSelected);
     });
   }
@@ -262,19 +265,8 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    if(userValue.agreement == null){
-      userValue.agreement = false;
-    }
-    if(userValue.regimental_gratuity == null){
-      userValue.regimental_gratuity = false;
-    }
-    if(userValue.distance_education == null){
-      userValue.distance_education = false;
-    }
-
     userValue.user_id=1;
     userValue.end_year = 2017;
-    userValue.city_id = 2;
     userValue.f1 = true;
     delete userValue.state;
 

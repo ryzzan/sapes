@@ -69,7 +69,10 @@ Controls[2] = formBuilder.group({
     address_zip_code: [null, [
      BasicValidators.zip
     ]],
-    city_id: [null, [Validators.required]],
+    city_id: [null, [
+      Validators.required,
+      BasicValidators.city
+    ]],
     home_phone: [null, [
       BasicValidators.phone
     ]],

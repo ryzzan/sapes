@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions  } from '@angular/http';
 import { Student } from  './student';
+import { bdInfo } from '../students-form/data';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -34,17 +35,56 @@ export class StudentsService {
   getStudent(id){
 
     return this.http.get(this.getStudentUrl(id), this.options)
-      .map(res => res.json());
+      .map(res => this.transformToForm(res.json()));
+  }
+  transformToApi(data){
+    data.city_id = this.getCityId(data.city_id);
+    if(data.agreement == null){
+      data.agreement = false;
+    }
+    if(data.regimental_gratuity == null){
+      data.regimental_gratuity = false;
+    }
+    if(data.distance_education == null){
+      data.distance_education = false;
+    }
+    return data;
+  }
+  transformToForm(data){
+    data.city_id = `${data.city.state} - ${data.city.description}`
+    return data;
+  }
+
+  getCityId(city_name){
+    if(!city_name) return null;
+    city_name = city_name.toLowerCase();
+    city_name = city_name.split(' - ');
+    let city = bdInfo.cities.filter(city => {
+      let valueForSearch = (city.state + " - " + city.description).toLowerCase().split(' - ')
+      if(city_name.length == 1){
+        return city_name[0] == valueForSearch[1];
+      };
+      return city_name[0] == valueForSearch[0] && city_name[1] == valueForSearch[1];
+    });
+    if(city.length == 1){
+      return city[0].id;
+    }
   }
 
   addStudent(student){
-    return this.http.post(this.url, JSON.stringify(student), this.options)
-      .map(res => res.json());
+    return this.http.post(
+      this.url,
+      JSON.stringify(this.transformToApi(student)),
+      this.options
+    ).map(res => res.json());
   }
 
   updateStudent(student){
-    return this.http.put(this.getStudentUrl(student.id), JSON.stringify(student), this.options)
-      .map(res => res.json());
+    return this.http.put(
+      this.getStudentUrl(student.id),
+      JSON.stringify(this.transformToApi(student)),
+      this.options
+    ).map(res => res.json());
   }
 
   deleteStudent(id){

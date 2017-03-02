@@ -40,8 +40,8 @@ export class StudentsService {
   transformToApi(data){
     data.city_id = this.getCityId(data.city_id);
     data.unit_id = this.getUnitId(data.unit_id);
-    data.course_id = this.getUnitId(data.course_id);
-    data.occupation_id = this.getUnitId(data.occupation_id);
+    data.course_id = this.getCourseId(data.course_id);
+    data.occupation_id = this.getOccupationId(data.occupation_id);
     if(data.agreement == null){
       data.agreement = false;
     }
@@ -84,6 +84,28 @@ export class StudentsService {
     );
     if(unit.length == 1){
       return unit[0].id;
+    }
+  }
+
+  getCourseId(course_name){
+    if(!course_name) return null;
+    course_name = course_name.toLowerCase();
+    let course = bdInfo.courses.filter(course =>
+       course.description.toLowerCase() == course_name
+    );
+    if(course.length == 1){
+      return course[0].id;
+    }
+  }
+
+  getOccupationId(occupation_name){
+    if(!occupation_name) return null;
+    occupation_name = occupation_name.toLowerCase();
+    let occupation = bdInfo.occupations.filter(occupation =>
+       occupation.description.toLowerCase() == occupation_name
+    );
+    if(occupation.length == 1){
+      return occupation[0].id;
     }
   }
 

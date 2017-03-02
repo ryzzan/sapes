@@ -69,7 +69,9 @@ export class InputErrorComponent implements OnChanges {
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres',
       validateCity = 'Cidade inválida, exemplo: PR - Curitiba',
-      validateUnit = 'Unidade inválida'
+      validateUnit = 'Unidade inválida',
+      validateCourse = 'Curso inválido',
+      validateOccupation = 'Ocupação inválida'
   } = {}){
       this.messages = {
         required: required,
@@ -83,7 +85,9 @@ export class InputErrorComponent implements OnChanges {
         minlength: minlength,
         maxlength: maxlength,
         validateCity: validateCity,
-        validateUnit: validateUnit
+        validateUnit: validateUnit,
+        validateCourse: validateCourse,
+        validateOccupation: validateOccupation
       }
   }
 }

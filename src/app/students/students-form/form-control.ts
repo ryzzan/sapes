@@ -94,7 +94,8 @@ Controls[3] = formBuilder.array([
    alternative_flag: [null]
   }),
   formBuilder.group({
-    alternative_id: [null, [Validators.required]]
+    alternative_id: [null, [Validators.required]],
+    complement: [null]
   }),
   formBuilder.group({
     alternative_id: [null, [Validators.required]]

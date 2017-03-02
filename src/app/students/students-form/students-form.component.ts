@@ -104,7 +104,9 @@ export class StudentsFormComponent implements OnInit {
     if(val.length<2) return [];
     return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
   }
-
+  teste(e){
+    console.log(e);
+  }
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
     this.modalities = bdInfo.modalities.filter(modality => {

@@ -19,7 +19,7 @@
     {id: 10, description: 'Profissional liberal (dentista, advogado...)'},
     {id: 11, description: 'Autônomo (por conta própria)'},
     {id: 12, description: 'Funcionário público/militar'},
-    {id: 13, description: 'Outra situação? Qual?'}
+    {id: 13, description: 'Outra situação?'}
   ],
   ethnicities: [
     {id:1,"code":1,"description":"BRANCA"},

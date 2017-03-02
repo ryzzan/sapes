@@ -506,7 +506,7 @@
         <md-icon class="material-icons">directions_run</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-select formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
+            <md-select #situacao formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
               <md-option *ngFor="let estagio of bdInfo.estagios" [value]="estagio.id">{{estagio.description}}</md-option>
             </md-select>
             <md-hint class="warn" align="start" *ngIf="steps[3].controls[1].touched || triedSend">
@@ -534,6 +534,17 @@
             <input-error [errors]="steps[3].controls[2].errors" title="Questão 4.3"></input-error>
           </md-hint>
          </md-input-container>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-input-container formGroupName="1" align="left" class="disability disabilitySelect full-width"
+                            [class.hidden]="!situacao.selected?.value==13" >
+          <input [required]="situacao.selected?.value==13" formControlName="complement" mdInput placeholder="Qual a situação?*" maxlength="100" #email>
+
+          <md-hint class="warn" align="start"
+            *ngIf="triedSend">
+            <input-error [errors]="steps[3].controls[2].errors" title="1.8"></input-error>
+          </md-hint>
+        </md-input-container>
       </md-grid-tile>
     </md-grid-list>
   </md-tab>

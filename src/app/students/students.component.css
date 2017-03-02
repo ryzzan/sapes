@@ -5,7 +5,5 @@
   padding: 20px;
 }
 .add{
-  position: fixed;
-  right: 5%;
-  bottom: 5%;
+  margin-left: 7px;
 }

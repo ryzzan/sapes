@@ -1,12 +1,12 @@
 <div class="app-content">
   <md-card class="card-content">
       <md-toolbar style.color="$primary" class="title-form">
-          <md-icon>filter_1</md-icon>&nbsp;&nbsp;{{title}} - FASE 1
-          <span class="toolbar-spacer"></span>
-          <button md-icon-button mdTooltip="Baixar Formulário"><md-icon class="md-toolbar">file_download</md-icon></button>
-          <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help_outline</md-icon></button>
+        <md-icon>filter_1</md-icon>&nbsp;&nbsp;{{title}} - FASE 1
+        <a class="add" md-mini-fab routerLink="add"><md-icon>add</md-icon></a>
+        <span class="toolbar-spacer"></span>
+        <button md-icon-button mdTooltip="Baixar Formulário"><md-icon class="md-toolbar">file_download</md-icon></button>
+        <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help_outline</md-icon></button>
       </md-toolbar>
       <router-outlet></router-outlet>
   </md-card>
-  <a class="add" md-fab routerLink="add"><md-icon>add</md-icon></a>
 </div>

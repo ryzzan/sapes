@@ -51,6 +51,9 @@ export class StudentsService {
     if(data.distance_education == null){
       data.distance_education = false;
     }
+    if(typeof(data.disability_id) == "undefined"){
+      data.disability_id = null;
+    }
     if(typeof(data.distance_education) == "undefined"){
       data.distance_education = null;
     }

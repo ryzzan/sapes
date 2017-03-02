@@ -289,11 +289,11 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>people_outline</md-icon>
         <md-input-container  align="start" class="full-width">
-          <input type="number" mdInput #class formControlName="class" placeholder="2.11 Turma *">
+          <input mdInput #class formControlName="class" placeholder="2.11 Turma *" maxlength="10">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
               <input-error [errors]="steps[1].controls['class'].errors" title="2.11"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(class.value).length}} / 11</md-hint>
+          <md-hint align="end">{{getNumber(class.value).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
       <md-grid-tile [colspan]="3" class="disability-cell input-space">
@@ -329,9 +329,9 @@
           </md-slide-toggle>
         </section>
         <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
-          <input [required]="agreement.checked" formControlName="agreement_name" mdInput placeholder="2.14 - Qual convênio?">
+          <input [required]="agreement.checked" formControlName="agreement_name" mdInput placeholder="2.15 - Qual convênio?">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['agreement_name'].touched || triedSend" >
-              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.14"></input-error>
+              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.15"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -339,7 +339,7 @@
       <md-grid-tile [colspan]="4" class="disability-cell">
         <md-icon>school</md-icon>
         <section class="flagInput">
-          <p>2.15 - Pronatec?</p><br>
+          <p>2.16 - Pronatec?</p><br>
           <span>Não</span>
           <md-slide-toggle #pronatec [checked]="student.pronatec_id>0"
             (change)="changePronatecValue($event.checked)">
@@ -349,12 +349,12 @@
 
         <md-input-container class="disabilitySelect fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
+          <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.17 - Qual Pronatec?"
           [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
           <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
-            <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
+            <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.17"></input-error>
           </md-hint>
         </md-input-container>
 

@@ -113,6 +113,45 @@ export class BasicValidators {
     };
  }
 
+ static unit (control: FormControl){
+    if(!control.value) return null;
+    let value = (control.value + "").toLowerCase();
+    let unit = bdInfo.units.filter(unit =>
+      unit.description.toLowerCase() == value
+    );
+    return unit.length == 1 ? null : {
+      validateUnit: {
+        valid: false
+      }
+    };
+ }
+
+ static course (control: FormControl){
+    if(!control.value) return null;
+    let value = (control.value + "").toLowerCase();
+    let course = bdInfo.courses.filter(course =>
+      course.description.toLowerCase() == value
+    );
+    return course.length == 1 ? null : {
+      validateCourse: {
+        valid: false
+      }
+    };
+ }
+
+ static occupation (control: FormControl){
+    if(!control.value) return null;
+    let value = (control.value + "").toLowerCase();
+    let occupation = bdInfo.occupations.filter(occupation =>
+      occupation.description.toLowerCase() == value
+    );
+    return occupation.length == 1 ? null : {
+      validateOccupation: {
+        valid: false
+      }
+    };
+ }
+
  static cell_phone (control: FormControl){
     let ZIP_CELL_PHONE = /^[(]?[0-9]{2}[)]?[ ]?[0-9]{4}?[-]?[0-9]{4,5}$/;
     if(!control.value) return null;

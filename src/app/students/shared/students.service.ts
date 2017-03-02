@@ -39,6 +39,9 @@ export class StudentsService {
   }
   transformToApi(data){
     data.city_id = this.getCityId(data.city_id);
+    data.unit_id = this.getUnitId(data.unit_id);
+    data.course_id = this.getCourseId(data.course_id);
+    data.occupation_id = this.getOccupationId(data.occupation_id);
     if(data.agreement == null){
       data.agreement = false;
     }
@@ -64,7 +67,10 @@ export class StudentsService {
     return data;
   }
   transformToForm(data){
-    data.city_id = `${data.city.state} - ${data.city.description}`
+    data.city_id = `${data.city.state} - ${data.city.description}`;
+    data.unit_id = data.unit.description;
+    data.course_id = data.course.description;
+    data.occupation_id = data.occupation.description;
     return data;
   }
 
@@ -81,6 +87,38 @@ export class StudentsService {
     });
     if(city.length == 1){
       return city[0].id;
+    }
+  }
+  getUnitId(unit_name){
+    if(!unit_name) return null;
+    unit_name = unit_name.toLowerCase();
+    let unit = bdInfo.units.filter(unit =>
+       unit.description.toLowerCase() == unit_name
+    );
+    if(unit.length == 1){
+      return unit[0].id;
+    }
+  }
+
+  getCourseId(course_name){
+    if(!course_name) return null;
+    course_name = course_name.toLowerCase();
+    let course = bdInfo.courses.filter(course =>
+       course.description.toLowerCase() == course_name
+    );
+    if(course.length == 1){
+      return course[0].id;
+    }
+  }
+
+  getOccupationId(occupation_name){
+    if(!occupation_name) return null;
+    occupation_name = occupation_name.toLowerCase();
+    let occupation = bdInfo.occupations.filter(occupation =>
+       occupation.description.toLowerCase() == occupation_name
+    );
+    if(occupation.length == 1){
+      return occupation[0].id;
     }
   }
 

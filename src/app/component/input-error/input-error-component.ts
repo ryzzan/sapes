@@ -68,7 +68,10 @@ export class InputErrorComponent implements OnChanges {
       validateEmail = "E-mail no formato inválido",
       minlength = 'O campo @field deve ter no mínimo @minValue caracteres',
       maxlength = 'O campo @field deve ter no máximo @maxValue caracteres',
-      validateCity = 'Cidade inválida, exemplo: PR - Curitiba'
+      validateCity = 'Cidade inválida, exemplo: PR - Curitiba',
+      validateUnit = 'Unidade inválida',
+      validateCourse = 'Curso inválido',
+      validateOccupation = 'Ocupação inválida'
   } = {}){
       this.messages = {
         required: required,
@@ -81,7 +84,10 @@ export class InputErrorComponent implements OnChanges {
         validateEmail: validateEmail,
         minlength: minlength,
         maxlength: maxlength,
-        validateCity: validateCity
+        validateCity: validateCity,
+        validateUnit: validateUnit,
+        validateCourse: validateCourse,
+        validateOccupation: validateOccupation
       }
   }
 }

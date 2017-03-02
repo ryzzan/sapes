@@ -4,10 +4,9 @@
   </md-sidenav>
 
   <md-toolbar class="md-toolbar" *ngIf="user">
-      <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
-      <h1>SAPES v2.0 - Sistema de Acompanhamento Permanente de Egressos do SENAI</h1>
-      <span class="toolbar-spacer"></span>
-      <span class="md-toolbar date">Ano Base: 2017</span>
+      <button (click)="sidenav.toggle();" md-icon-button mdTooltip="MENU">
+        <md-icon class="md-toolbar">menu</md-icon>
+      </button>
       <button md-icon-button [mdMenuTriggerFor]="menudate" mdTooltip="Alterar Ano Base!">
         <md-icon class="md-toolbar grey">date_range</md-icon>
       </button>
@@ -21,6 +20,10 @@
           <span>2018</span>
         </button>
       </md-menu>
+      <span class="md-toolbar date">Ano Base: 2017</span>
+      <span class="toolbar-spacer"></span>
+      <h1>SAPES v2.0</h1>
+      <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
   </md-toolbar>
 
   <!-- primary content -->

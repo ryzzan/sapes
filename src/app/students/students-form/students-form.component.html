@@ -156,7 +156,7 @@
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="start_month" placeholder="2.2 - Mês de início *">
+          <md-select class="full-width" formControlName="start_month" placeholder="2.1 - Mês de início *">
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
@@ -170,12 +170,12 @@
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="start_year" placeholder="2.1 - Ano de início *">
+          <md-select class="full-width" formControlName="start_year" placeholder="2.2 - Ano de início *">
             <md-option *ngFor="let year of bdInfo.years" [value]="year">{{year}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['start_year'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['start_year'].errors" title="2.1"></input-error>
+              <input-error [errors]="steps[1].controls['start_year'].errors" title="2.2"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -184,12 +184,12 @@
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="end_month" placeholder="2.4 - Mês de término *">
+          <md-select class="full-width" formControlName="end_month" placeholder="2.3 - Mês de término *">
             <md-option *ngFor="let month of bdInfo.months" [value]="month.id">{{month.valueView}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['end_month'].touched || triedSend">
-              <input-error [errors]="steps[1].controls['end_month'].errors" title="2.4"></input-error>
+              <input-error [errors]="steps[1].controls['end_month'].errors" title="2.3"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
@@ -197,7 +197,7 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width">
-          <input mdInput disabled value="2017" placeholder="2.3 - Ano Termino">
+          <input mdInput disabled value="2017" placeholder="2.4 - Ano Termino">
         </md-input-container>
       </md-grid-tile>
 
@@ -294,17 +294,17 @@
       <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>people_outline</md-icon>
         <md-input-container  align="start" class="full-width">
-          <input type="number" mdInput #class formControlName="class" placeholder="2.10 Turma *">
+          <input mdInput #class formControlName="class" placeholder="2.11 Turma *" maxlength="10">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
-              <input-error [errors]="steps[1].controls['class'].errors" title="2.10"></input-error>
+              <input-error [errors]="steps[1].controls['class'].errors" title="2.11"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(class.value).length}} / 11</md-hint>
+          <md-hint align="end">{{getNumber(class.value).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
       <md-grid-tile [colspan]="3" class="disability-cell input-space">
         <md-icon>school</md-icon>
         <section class="full-width" class="flagInput">
-          <p>2.11 - Educação à distância - EAD?</p><br>
+          <p>2.12 - Educação à distância - EAD?</p><br>
           <span>Não</span>
           <md-slide-toggle formControlName="distance_education">
             Sim
@@ -315,7 +315,7 @@
       <md-grid-tile [colspan]="3" class="disability-cell">
         <md-icon>monetization_on</md-icon>
         <section class="full-width" class="flagInput">
-          <p>2.12 - Gratuidade regimental?</p><br>
+          <p>2.13 - Gratuidade regimental?</p><br>
           <span>Não</span>
           <md-slide-toggle formControlName="regimental_gratuity" (change)="changeGratuity($event.checked, pronatec)">
             Sim
@@ -325,8 +325,8 @@
 
       <md-grid-tile [colspan]="4" class="disability-cell input-space">
         <md-icon>location_city</md-icon>
-        <section class="full-width" class="flagInput">
-          <p>2.13 - Convênio?</p><br>
+        <section class="flagInput">
+          <p>2.14 - Convênio?</p><br>
           <span>Não</span>
           <md-slide-toggle #agreement formControlName="agreement"
               (change)="changeDisabled(steps[1], 'agreement_name', $event.checked)">
@@ -334,17 +334,17 @@
           </md-slide-toggle>
         </section>
         <md-input-container class="disabilitySelect" [class.hidden]="!agreement.checked">
-          <input [required]="agreement.checked" formControlName="agreement_name" mdInput placeholder="2.14 - Qual convênio?">
+          <input [required]="agreement.checked" formControlName="agreement_name" mdInput placeholder="2.15 - Qual convênio?">
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['agreement_name'].touched || triedSend" >
-              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.14"></input-error>
+              <input-error [errors]="steps[1].controls['agreement_name'].errors" title="2.15"></input-error>
           </md-hint>
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="disability-cell ">
+      <md-grid-tile [colspan]="4" class="disability-cell">
         <md-icon>school</md-icon>
         <section class="flagInput">
-          <p>2.15 - Pronatec?</p><br>
+          <p>2.16 - Pronatec?</p><br>
           <span>Não</span>
           <md-slide-toggle #pronatec [checked]="student.pronatec_id>0"
             (change)="changePronatecValue($event.checked)">
@@ -352,16 +352,15 @@
           </md-slide-toggle>
         </section>
 
-        <md-input-container class="full-width fakeHint">
+        <md-input-container class="disabilitySelect fakeHint">
           <input style="display:none" mdInput>
-            <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.16 - Qual Pronatec?"
-            [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
-            <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
-        </md-select>
-        <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
-          <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.16"></input-error>
-        </md-hint>
-
+          <md-select class="disabilitySelect" formControlName="pronatec_id" placeholder="2.17 - Qual Pronatec?"
+          [class.hidden]="!pronatec.checked" [required]="pronatec.checked">
+          <md-option *ngFor="let pronatec of bdInfo.pronatec" [value]="pronatec.id">{{pronatec.description}}</md-option>
+          </md-select>
+          <md-hint class="warn" align="start" *ngIf="steps[1].controls['pronatec_id'].touched || triedSend">
+            <input-error [errors]="steps[1].controls['pronatec_id'].errors" title="2.17"></input-error>
+          </md-hint>
         </md-input-container>
 
       </md-grid-tile>
@@ -446,9 +445,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="home_phone" mdInput placeholder="3.8 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
+          <input formControlName="home_phone" mdInput placeholder="3.7 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['home_phone'].errors" title="3.8"></input-error>
+              <input-error [errors]="steps[2].controls['home_phone'].errors" title="3.7"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(home_phone.value).length}} / 10</md-hint>
         </md-input-container>
@@ -456,9 +455,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
         <md-input-container class="full-width">
-          <input formControlName="cell_phone" mdInput placeholder="3.9 - Celular" [textMask]="{mask: mask.cell_phone, guide: false}" #cell_phone>
+          <input formControlName="cell_phone" mdInput placeholder="3.8 - Celular" [textMask]="{mask: mask.cell_phone, guide: false}" #cell_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.9"></input-error>
+              <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.8"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
         </md-input-container>
@@ -466,9 +465,9 @@
 
       <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
         <md-input-container class="full-width">
-          <input formControlName="alternative_phone" mdInput placeholder="3.10 - Telefone recado" [textMask]="{mask: mask.cell_phone, guide: false}" #alternative_phone>
+          <input formControlName="alternative_phone" mdInput placeholder="3.9 - Telefone recado" [textMask]="{mask: mask.cell_phone, guide: false}" #alternative_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.10"></input-error>
+              <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.9"></input-error>
           </md-hint>
           <md-hint align="end">{{getNumber(alternative_phone.value).length}} / 11</md-hint>
         </md-input-container>
@@ -476,9 +475,9 @@
 
       <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
         <md-input-container class="full-width">
-          <input formControlName="email" mdInput placeholder="3.11 - E-mail *" maxlength="100" #email>
+          <input formControlName="email" mdInput placeholder="3.10 - E-mail *" maxlength="100" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
-              <input-error [errors]="steps[2].controls['email'].errors" title="3.11"></input-error>
+              <input-error [errors]="steps[2].controls['email'].errors" title="3.10"></input-error>
           </md-hint>
           <md-hint align="end">{{email.value.length}} / 100</md-hint>
         </md-input-container>
@@ -497,7 +496,7 @@
     </template>
     <md-grid-list cols="1" formGroupName="0" rowHeight="100px">
         <md-grid-tile [colspan]="1" class="disability-cell">
-          <md-icon>check_box</md-icon>
+          <md-icon>attach_money</md-icon>
           <section class="flagInput">
             <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada? *</p><br>
             <span>Não</span>
@@ -509,7 +508,7 @@
     </md-grid-list>
     <md-grid-list cols="2" rowHeight="100px">
       <md-grid-tile formGroupName="1" [colspan]="1">
-        <md-icon class="material-icons">check_box</md-icon>
+        <md-icon class="material-icons">directions_run</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
             <md-select formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional *" class="full-width">
@@ -521,7 +520,7 @@
         </md-input-container>
       </md-grid-tile>
       <md-grid-tile [colspan]="1" class="input-space">
-        <md-icon>check_box</md-icon>
+        <md-icon>attach_money</md-icon>
         <md-input-container formGroupName="2" class="full-width fakeHint">
           <input style="display:none" mdInput>
           <md-select formControlName="alternative_id" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
@@ -556,7 +555,7 @@
         <md-grid-tile [colspan]="2">
           <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-radio-group formControlName="alternative_id" class="example-section"><i class="material-icons">check_box</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+            <md-radio-group formControlName="alternative_id" class="example-section"><i class="material-icons">thumbs_up_down</i>5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
               <md-radio-button class="radio-before" value="24">0</md-radio-button>
               <md-radio-button class="radio-before" value="25">1</md-radio-button>
               <md-radio-button class="radio-before" value="26">2</md-radio-button>

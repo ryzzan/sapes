@@ -201,18 +201,20 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3">
+      <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>class</md-icon>
-        <md-input-container class="full-width fakeHint">
-          <input style="display:none" mdInput>
-          <md-select formControlName="course_id" class="full-width" placeholder="2.5 - Selecione o curso *">
-            <md-option *ngFor="let course of bdInfo.courses" [value]="course.id">{{course.description}}</md-option>
-          </md-select>
+        <md-input-container class="full-width">
+          <input mdInput class="full-width" placeholder="2.5 - Selecione o curso *" [mdAutocomplete]="autoCourse" formControlName="course_id">
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['course_id'].touched || triedSend">
               <input-error [errors]="steps[1].controls['course_id'].errors" title="2.5"></input-error>
           </md-hint>
         </md-input-container>
+        <md-autocomplete #autoCourse="mdAutocomplete">
+          <md-option *ngFor="let course of filteredCourses | async" value="{{course.description}}">
+            {{course.description}}
+          </md-option>
+        </md-autocomplete>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2" class="input-space">
@@ -231,16 +233,18 @@
 
       <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>business</md-icon>
-        <md-input-container class="full-width fakeHint">
-          <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="unit_id" placeholder="2.7 - Selecione a Unidade *">
-            <md-option *ngFor="let unit of units" [value]="unit.id">{{unit.description}}</md-option>
-          </md-select>
+        <md-input-container class="full-width">
+          <input mdInput class="full-width" placeholder="2.7 - Selecione a Unidade *" [mdAutocomplete]="autoUnit" formControlName="unit_id">
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['unit_id'].touched || triedSend">
               <input-error [errors]="steps[1].controls['unit_id'].errors" title="2.7"></input-error>
           </md-hint>
         </md-input-container>
+        <md-autocomplete #autoUnit="mdAutocomplete">
+          <md-option *ngFor="let unit of filteredUnits | async" value="{{unit.description}}">
+            {{unit.description}}
+          </md-option>
+        </md-autocomplete>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="5">
@@ -271,19 +275,20 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3">
+      <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>work</md-icon>
-        <md-input-container class="full-width fakeHint">
-          <input style="display:none" mdInput>
-          <md-select class="full-width" formControlName="occupation_id" placeholder="2.10 - Ocupação *">
-            <md-option *ngFor="let occupation of bdInfo.occupations" [value]="occupation.id">{{occupation.description}}</md-option>
-          </md-select>
+        <md-input-container class="full-width">
+          <input mdInput class="full-width" placeholder="2.9 - Ocupação *" [mdAutocomplete]="autoOccupation" formControlName="occupation_id">
           <md-hint class="warn" align="start"
-            *ngIf="steps[1].controls['occupation_id'].touched || triedSend">
-            <input-error [errors]="steps[1].controls['occupation_id'].errors" title="2.10"></input-error>
+              *ngIf="steps[1].controls['occupation_id'].touched || triedSend">
+              <input-error [errors]="steps[1].controls['occupation_id'].errors" title="2.9"></input-error>
           </md-hint>
         </md-input-container>
-
+        <md-autocomplete #autoOccupation="mdAutocomplete">
+          <md-option *ngFor="let occupation of filteredOccupations | async" value="{{occupation.description}}">
+            {{occupation.description}}
+          </md-option>
+        </md-autocomplete>
       </md-grid-tile>
 
       <md-grid-tile [colspan]="2" class="input-space">

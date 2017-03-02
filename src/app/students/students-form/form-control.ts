@@ -37,12 +37,21 @@ Controls[1] = formBuilder.group({
     start_year: [null, [Validators.required]],
     start_month: [null, [Validators.required]],
     end_month: [null, [Validators.required]],
-    course_id: [null, [Validators.required]],
+    course_id: [null, [
+      Validators.required,
+      BasicValidators.course
+    ]],
     regional: [null, [Validators.required]],
-    unit_id: [null, [Validators.required]],
+    unit_id: [null, [
+      Validators.required,
+      BasicValidators.unit
+    ]],
     modality_id: [null, [Validators.required]],
     area_id: [null, [Validators.required]],
-    occupation_id: [null, [Validators.required]],
+    occupation_id: [null, [
+      Validators.required,
+      BasicValidators.occupation
+    ]],
     pronatec_id: [null],
     class: [null, [
       Validators.required,

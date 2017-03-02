@@ -46,7 +46,9 @@ export class StudentsFormComponent implements OnInit {
   canSave: boolean = false;
   bdInfo : any = {};
   filteredUnits:any;
+  filteredCourses:any;
   filteredCities:any;
+  filteredOccupations:any;
   steps: any = [];
 
   constructor(
@@ -74,6 +76,14 @@ export class StudentsFormComponent implements OnInit {
     this.filteredUnits = this.steps[1].controls['unit_id'].valueChanges
       .startWith(null)
       .map(unit => this.filterUnits(unit));
+
+    this.filteredCourses = this.steps[1].controls['course_id'].valueChanges
+      .startWith(null)
+      .map(course => this.filterCourses(course));
+
+    this.filteredOccupations = this.steps[1].controls['occupation_id'].valueChanges
+      .startWith(null)
+      .map(occupation => this.filterOccupations(occupation));
   }
 
   ngOnInit() {
@@ -115,6 +125,22 @@ export class StudentsFormComponent implements OnInit {
     if(val.length<2) return [];
     return this.bdInfo.units.filter((unit) => {
       return new RegExp(val, 'gi').test(unit.description) && unit.regional == this.steps[1].controls['regional'].value;
+    });
+  }
+
+  filterCourses(val: string) {
+    if(!val) return [];
+    if(val.length<2) return [];
+    return this.bdInfo.courses.filter((course) => {
+      return new RegExp(val, 'gi').test(course.description);
+    });
+  }
+
+  filterOccupations(val: string) {
+    if(!val) return [];
+    if(val.length<2) return [];
+    return this.bdInfo.occupations.filter((occupation) => {
+      return new RegExp(val, 'gi').test(occupation.description);
     });
   }
 

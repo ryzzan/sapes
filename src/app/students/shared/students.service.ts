@@ -40,6 +40,8 @@ export class StudentsService {
   transformToApi(data){
     data.city_id = this.getCityId(data.city_id);
     data.unit_id = this.getUnitId(data.unit_id);
+    data.course_id = this.getUnitId(data.course_id);
+    data.occupation_id = this.getUnitId(data.occupation_id);
     if(data.agreement == null){
       data.agreement = false;
     }
@@ -52,8 +54,10 @@ export class StudentsService {
     return data;
   }
   transformToForm(data){
-    data.city_id = `${data.city.state} - ${data.city.description}`
+    data.city_id = `${data.city.state} - ${data.city.description}`;
     data.unit_id = data.unit.description;
+    data.course_id = data.course.description;
+    data.occupation_id = data.occupation.description;
     return data;
   }
 

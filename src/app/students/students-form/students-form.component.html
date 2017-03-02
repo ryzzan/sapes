@@ -542,7 +542,7 @@
       </md-grid-tile>
       <md-grid-tile [colspan]="1" class="input-space">
         <md-input-container formGroupName="1" align="left" class="disability disabilitySelect full-width"
-                            [class.hidden]="!situacao.selected?.value==13" >
+                            [class.hidden]="situacao.selected?.value!=13" >
           <input [required]="situacao.selected?.value==13" formControlName="complement" mdInput placeholder="Qual a situação?*" maxlength="100" #email>
 
           <md-hint class="warn" align="start"

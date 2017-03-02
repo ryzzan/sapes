@@ -119,12 +119,9 @@ export class StudentsFormComponent implements OnInit {
     if(val.length<2) return [];
     return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
   }
-<<<<<<< HEAD
   teste(e){
     console.log(e);
   }
-=======
-
   filterUnits(val: string) {
     if(!val) return [];
     if(val.length<2) return [];
@@ -149,7 +146,6 @@ export class StudentsFormComponent implements OnInit {
     });
   }
 
->>>>>>> f6c67e6a1ccaccd10e759775ebeb4ca05d60bb80
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
     this.modalities = bdInfo.modalities.filter(modality => {

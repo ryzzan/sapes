@@ -201,7 +201,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="input-space">
+      <md-grid-tile [colspan]="4" class="input-space">
         <md-icon>class</md-icon>
         <md-input-container class="full-width">
           <input mdInput class="full-width" placeholder="2.5 - Selecione o curso *" [mdAutocomplete]="autoCourse" formControlName="course_id">
@@ -217,7 +217,7 @@
         </md-autocomplete>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2" class="input-space">
+      <md-grid-tile [colspan]="4" class="input-space">
         <md-icon>location_on</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
@@ -231,7 +231,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="input-space">
+      <md-grid-tile [colspan]="4" class="input-space">
         <md-icon>business</md-icon>
         <md-input-container class="full-width">
           <input mdInput class="full-width" placeholder="2.7 - Selecione a Unidade *" [mdAutocomplete]="autoUnit" formControlName="unit_id">
@@ -247,7 +247,7 @@
         </md-autocomplete>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="5">
+      <md-grid-tile [colspan]="4" class="input-space">
         <md-icon>list</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
@@ -261,6 +261,7 @@
           </md-hint>
         </md-input-container>
       </md-grid-tile>
+
       <md-grid-tile [colspan]="3" class="input-space">
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
@@ -301,6 +302,7 @@
           <md-hint align="end">{{getNumber(class.value).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
+
       <md-grid-tile [colspan]="3" class="disability-cell input-space">
         <md-icon>school</md-icon>
         <section class="full-width" class="flagInput">
@@ -312,18 +314,7 @@
         </section>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="disability-cell">
-        <md-icon>monetization_on</md-icon>
-        <section class="full-width" class="flagInput">
-          <p>2.13 - Gratuidade regimental?</p><br>
-          <span>Não</span>
-          <md-slide-toggle formControlName="regimental_gratuity" (change)="changeGratuity($event.checked, pronatec)">
-            Sim
-          </md-slide-toggle>
-        </section>
-      </md-grid-tile>
-
-      <md-grid-tile [colspan]="4" class="disability-cell input-space">
+      <md-grid-tile [colspan]="5" class="disability-cell input-space">
         <md-icon>location_city</md-icon>
         <section class="flagInput">
           <p>2.14 - Convênio?</p><br>
@@ -341,7 +332,18 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="4" class="disability-cell">
+      <md-grid-tile [colspan]="3" class="disability-cell input-space" >
+        <md-icon>monetization_on</md-icon>
+        <section class="full-width" class="flagInput">
+          <p>2.13 - Gratuidade regimental?</p><br>
+          <span>Não</span>
+          <md-slide-toggle formControlName="regimental_gratuity" (change)="changeGratuity($event.checked, pronatec)">
+            Sim
+          </md-slide-toggle>
+        </section>
+      </md-grid-tile>  
+
+      <md-grid-tile [colspan]="5" class="disability-cell input-space">
         <md-icon>school</md-icon>
         <section class="flagInput">
           <p>2.16 - Pronatec?</p><br>
@@ -532,7 +534,7 @@
             <md-option [value]="19">Mais 5 a 7 SM</md-option><br>
             <md-option [value]="20">Mais 7 a 10 SM</md-option><br>
             <md-option [value]="21">Mais 10 a 15 SM</md-option><br>
-            <md-option [value]="22">Mais 5 a 20 SM</md-option><br>
+            <md-option [value]="22">Mais 15 a 20 SM</md-option><br>
             <md-option [value]="23">Mais de 20 SM</md-option><br>
           </md-select>
           <md-hint class="warn" align="start" *ngIf="steps[3].controls[2].touched || triedSend">

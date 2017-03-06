@@ -195,7 +195,7 @@ export class StudentsFormComponent implements OnInit {
     feedback.instance.message = "Buscando concluinte";
     feedback.instance.progress = true;
 
-    value = this.getNumber(value);
+    value = value.replace(/[/ _)(.-]/g, '');
     this.corporateService.getStudent(value).subscribe(data => {
       data = data.filter(student => student.courses.length > 0);
 
@@ -280,9 +280,6 @@ export class StudentsFormComponent implements OnInit {
     this.formPagination.index = event.index;
   }
 
-  getNumber(value){
-    return value.replace(/[/ _)(.-]/g, '');
-  }
   save() {
     if(!this.form.valid) return this.triedSend = true;
     this.canSave = false;

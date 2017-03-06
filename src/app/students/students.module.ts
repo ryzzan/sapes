@@ -16,6 +16,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
 import { InputErrorComponent } from '../component/input-error/input-error-component'
 import { ProgressComponent } from '../component/progress/progress.component';
 import { SelectCourseComponent } from './select-course/select-course.component';
+import { MoneyMaskPipe } from './../pipes/money-mask.pipe'
+import { GetNumberPipe } from './../pipes/get-number.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +29,7 @@ import { SelectCourseComponent } from './select-course/select-course.component';
     TextMaskModule,
     Ng2TableModule,
     PaginationModule.forRoot(),
-    HttpModule
+    HttpModule,
   ],
   exports: [
     NgTableComponent,
@@ -41,13 +43,15 @@ import { SelectCourseComponent } from './select-course/select-course.component';
     SelectCourseComponent
   ],
   declarations: [
+    MoneyMaskPipe,
     DatapickerComponent,
     StudentsComponent,
     StudentsListComponent,
     InputErrorComponent,
     ProgressComponent,
     SelectCourseComponent,
-    StudentsFormComponent
+    StudentsFormComponent,
+    GetNumberPipe
   ],
   providers: [StudentsService],
 })

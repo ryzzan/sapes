@@ -21,7 +21,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[0].controls['cpf_number'].touched || triedSend" >
               <input-error [errors]="steps[0].controls['cpf_number'].errors" title="CPF"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(cpf.value).length}} / 11</md-hint>
+          <md-hint align="end">{{(cpf.value | getNumber).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -67,7 +67,7 @@
               *ngIf="steps[0].controls['birth_date'].touched || triedSend">
               <input-error [errors]="steps[0].controls['birth_date'].errors" title="1.3"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(birth.value).length}} / 8</md-hint>
+          <md-hint align="end">{{(birth.value | getNumber).length}} / 8</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -79,7 +79,7 @@
               *ngIf="steps[0].controls['rg_number'].touched || triedSend">
               <input-error [errors]="steps[0].controls['rg_number'].errors" title="1.4"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(rg.value).length}} / 20</md-hint>
+          <md-hint align="end">{{(rg.value | getNumber).length}} / 20</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -299,7 +299,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[1].controls['class'].touched || triedSend" >
               <input-error [errors]="steps[1].controls['class'].errors" title="2.11"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(class.value).length}} / 10</md-hint>
+          <md-hint align="end">{{(class.value | getNumber).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -425,7 +425,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_zip_code'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['address_zip_code'].errors" title="CEP"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(address_zip_code.value).length}} / 8</md-hint>
+          <md-hint align="end">{{(address_zip_code.value | getNumber).length}} / 8</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -451,7 +451,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['home_phone'].errors" title="3.7"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(home_phone.value).length}} / 10</md-hint>
+          <md-hint align="end">{{(home_phone.value | getNumber).length}} / 10</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -461,7 +461,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['cell_phone'].errors" title="3.8"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(cell_phone.value).length}} / 11</md-hint>
+          <md-hint align="end">{{(cell_phone.value | getNumber).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -471,7 +471,7 @@
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
               <input-error [errors]="steps[2].controls['alternative_phone'].errors" title="3.9"></input-error>
           </md-hint>
-          <md-hint align="end">{{getNumber(alternative_phone.value).length}} / 11</md-hint>
+          <md-hint align="end">{{(alternative_phone.value | getNumber).length}} / 11</md-hint>
         </md-input-container>
       </md-grid-tile>
 
@@ -518,7 +518,7 @@
       </div>
       <md-input-container style="padding-left: 10px; width:30%" align="left"
                           [class.hidden]="situacao.selected?.value!=13" >
-        <input [required]="situacao.selected?.value==13" formControlName="complement" mdInput placeholder="Qual a situação?" maxlength="100" #email>
+        <input [required]="situacao.selected?.value==13" formControlName="complement" mdInput placeholder="Qual a situação?" maxlength="100">
         <md-hint class="warn" align="start"
           *ngIf="triedSend">
           <input-error [errors]="steps[3].controls[1].controls['complement'].errors" title="1.8"></input-error>

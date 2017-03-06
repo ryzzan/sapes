@@ -17,6 +17,7 @@ import { InputErrorComponent } from '../component/input-error/input-error-compon
 import { ProgressComponent } from '../component/progress/progress.component';
 import { SelectCourseComponent } from './select-course/select-course.component';
 import { MoneyMaskPipe } from './../pipes/money-mask.pipe'
+import { GetNumberPipe } from './../pipes/get-number.pipe';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { MoneyMaskPipe } from './../pipes/money-mask.pipe'
     InputErrorComponent,
     ProgressComponent,
     SelectCourseComponent,
-    StudentsFormComponent
+    StudentsFormComponent,
+    GetNumberPipe
   ],
   providers: [StudentsService],
 })

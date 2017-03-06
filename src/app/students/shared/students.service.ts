@@ -25,7 +25,7 @@ export class StudentsService {
   //Novo
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
   private options = new RequestOptions({ headers: this.headers });
-  private url: string = "//sapesapi.nitrofull.com.br/api/fase-1";
+  private url: string = "https://sapesapi.nitrofull.com.br/api/fase-1";
 
   getStudents(){
     return this.http.get(this.url+"?noPaginete=true", this.options)

@@ -49,7 +49,7 @@
   ],
   years: [2016, 2015, 2014,2013],
   bancos: ['Virá do banco'],
-  salaryValue: 880.00,
+  salaryValue: 937.00,
   salary: [
     {value: "14", description: "Menos de 1 SM", max: 1, min: null, exactly: null},
     {value: "14", description: "1 SM", max: null, min: null, exactly: 1 },

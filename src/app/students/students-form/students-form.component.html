@@ -210,8 +210,8 @@
               <input-error [errors]="steps[1].controls['course_id'].errors" title="2.5"></input-error>
           </md-hint>
         </md-input-container>
-        <md-autocomplete #autoCourse="mdAutocomplete">
-          <md-option *ngFor="let course of filteredCourses | async" value="{{course.description}}">
+        <md-autocomplete #autoCourse="mdAutocomplete" >
+          <md-option *ngFor="let course of filteredCourses | async" value="{{course.description}}"  >
             {{course.description}}
           </md-option>
         </md-autocomplete>

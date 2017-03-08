@@ -11,15 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
+
   public students:Array<any> = [];
-  public columns:Array<any> = [
-    {title: 'COD', name: 'id', sort: false},
-    {title: 'Nome', name: 'name'},
-    {title: 'Unidade',name: 'unit.description',sort: 'asc'},
-    {title: 'Modalidade',name: 'modality.description',sort: 'asc'},
-    {title: 'Curso',name: 'course.description',sort: 'asc'},
-    {title: 'Turma',name: 'course.description',sort: 'asc'}
-  ];
+  public selectedStudents:Array<any> = [];
+
   public page:number = 1;
   public itemsPerPage:number = 5;
   public maxSize:number = 5;

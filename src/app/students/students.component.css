@@ -11,3 +11,6 @@ md-toolbar{
   border-bottom: none;
   background: transparent;
 }
+h4{
+  color: rgba(0,0,0,0.87);
+}

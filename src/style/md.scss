@@ -31,3 +31,18 @@ table.dataTable {
   height: 30px;
   line-height: 30px;
 }
+
+div.mat-autocomplete-panel,
+div.mat-select-panel{
+  max-width: 600px; 
+}
+
+.selectGroup{
+  font-size: 0.8em;
+  position: relative;
+}
+.selectGroup p{
+  bottom: -1.2em;
+  position: absolute;
+}
+

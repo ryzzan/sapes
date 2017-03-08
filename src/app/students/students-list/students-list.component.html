@@ -1,4 +1,4 @@
-<div class="list-content"> 
+<div class="list-content">
   <div class="row">
     <div class="col-md-4">
       <input *ngIf="config.filtering" placeholder="Buscar em todos os campos"
@@ -37,7 +37,7 @@
     </div>
   </td>
   </ng-table>
-</div>  
+</div>
 <md-toolbar color="transparent" class="toolbar-bottom">
 <pagination nextText="Próxima" previousText="Anterior" firstText="Primeira" lastText="Última" *ngIf="config.paging"
             class="pagination-sm"
@@ -50,13 +50,13 @@
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
   </pagination>
-  <span class="pagination-spacer"></span>      
+  <span class="pagination-spacer"></span>
   <span class="pagination-info">
     Itens por página: {{itemsPerPage}}
     <button md-icon-button [mdMenuTriggerFor]="menupage" mdTooltip="Páginas"><md-icon class="md-toolbar grey">arrow_drop_down</md-icon></button>
-    
-    {{page}}-{{itemsPerPage}} de {{numPages}}    
-      
+
+    {{page}}-{{itemsPerPage}} de {{numPages}}
+
       <md-menu #menupage="mdMenu">
         <button *ngFor="let value of arrayPagination" (click)="changeNumberPerPage(value)" md-menu-item><span>{{value}}</span></button>
       </md-menu>

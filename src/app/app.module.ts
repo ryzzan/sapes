@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { MdDataTableModule } from 'ng2-md-datatable';
 import { RTModule } from 'right-angled';
+import { DataTableModule } from "angular2-datatable";
 
 import 'hammerjs';
 
@@ -37,7 +38,8 @@ import { AuthService } from './shared/auth.service';
     StudentsModule,
     AppRoutingModule,
     MdDataTableModule.forRoot(),
-    RTModule
+    RTModule,
+    DataTableModule
   ],
   providers: [
     AuthService,

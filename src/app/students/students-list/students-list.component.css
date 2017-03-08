@@ -7,4 +7,52 @@ th:last-child{
 .list-content {
   padding: 10px;
 }
+md-toolbar{
+  background: white;
+}
+table{
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.87);
+}
+table thead{
+  font-family: 'Roboto', sans-serif;
+}
+table td,
+table th{
+  border-bottom: 1px solid #dfdfdf;
+}
+table tr>th{
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+}
+table tr:hover td{
+  background: #EEEEEE;
+}
+table td,
+table th{
+  padding: 10px;
+  vertical-align: middle;
+}
+table td:first-child,
+table th:first-child{
+  padding: 12px 24px;
+}
+table th:last-child{
+  width: 54px;
+}
+table td:last-child{
+  text-align: center;
+}
+.button-edit md-icon{
+  font-size: 18px;
+}
 
+/*propriedades proprias dessa tabela*/
+table tr>th:nth-child(3),
+table tr>td:nth-child(3),
+table tr>th:nth-child(7),
+table tr>td:nth-child(7){
+  text-align: right;
+}

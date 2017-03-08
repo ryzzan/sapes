@@ -1,12 +1,28 @@
 <div class="app-content">
   <md-card class="card-content">
-      <md-toolbar style.color="$primary" class="title-form">
-        <md-icon>filter_1</md-icon>&nbsp;&nbsp;{{title}} - FASE 1
-        <span class="toolbar-spacer"></span>
-        <button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">Adicionar Concluinte</button>
-        <button md-icon-button mdTooltip="Baixar Formulário"><md-icon class="md-toolbar">file_download</md-icon></button>
-        <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help_outline</md-icon></button>
-      </md-toolbar>
-      <router-outlet></router-outlet>
+    <md-toolbar class="title-form">
+      <md-icon>filter_1</md-icon>&nbsp;&nbsp;{{title}} - FASE 1
+      <span class="toolbar-spacer"></span>
+      <!--<button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">
+        Adicionar Concluinte
+      </button>-->
+      <button md-icon-button mdTooltip="Filtrar">
+        <md-icon>filter_list</md-icon>
+      </button>
+      <button md-icon-button [mdMenuTriggerFor]="listMenu" mdTooltip="Mais opções">
+        <md-icon>more_vert</md-icon>
+      </button>
+      <md-menu #listMenu="mdMenu">
+        <button md-menu-item>
+          <md-icon>file_download</md-icon>
+          <span>Baixar Formulário</span>
+        </button>
+        <button md-menu-item>
+          <md-icon>help_outline</md-icon>
+          <span>Ajuda</span>
+        </button>
+      </md-menu>
+    </md-toolbar>
+    <router-outlet></router-outlet>
   </md-card>
 </div>

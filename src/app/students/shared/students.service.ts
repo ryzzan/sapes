@@ -15,21 +15,20 @@ export class StudentsService {
     let body = res.json();
     return body.data || { };
   }
-  getList(){
-    let headers      = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
-    let options       = new RequestOptions({ headers: headers });
-    return this.http.get(this.url,options).map(res => res.json());
-  }
+
   constructor(private http: Http) {}
 
   //Novo
-  private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON
-  private options = new RequestOptions({ headers: this.headers });
+  private headers = new Headers({
+    'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+  }); // ... Set content type to JSON
+  // private options = new RequestOptions({ headers: this.headers,});
+  private options = new RequestOptions({ headers: this.headers});
   private url: string = "https://sapesapi.nitrofull.com.br/api/fase-1";
 
   getStudents(){
     return this.http.get(this.url+"?noPaginete=true", this.options)
-      .map(res => res.json());
+      .map(res => res.json().data);
   }
 
   getStudent(id){

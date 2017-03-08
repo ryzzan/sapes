@@ -1,64 +1,56 @@
-<div class="list-content"> 
-  <div class="row">
-    <div class="col-md-4">
-      <input *ngIf="config.filtering" placeholder="Buscar em todos os campos"
-            [ngTableFiltering]="config.filtering"
-            class="form-control"
-            (tableChanged)="onChangeTable(config)"/>
-    </div>
-  </div>
-  <br>
-  <ng-table [config]="config"
-            (tableChanged)="onChangeTable(config)"
-            (cellClicked)="onCellClick($event)"
-            [rows]="rows" [columns]="columns">
-            <td *ngIf="view || edit || delete" >
-    <div>
-      <button
-              type="button"
-              class="btn btn-xs btn-default"
-              (click)="viewClick(row)">
-              <i class="fa fa-eye"></i> View
-      </button>
-
-      <button *ngIf="edit"
-              type="button"
-              class="btn btn-xs btn-default"
-              (click)="editClick(row)">
-              <i class="fa fa-edit"></i> Edit
+<table>
+  <thead>
+    <tr>
+      <th>
+         <md-checkbox></md-checkbox>
+      </th>
+      <th>Nome</th>
+      <th>COD</th>
+      <th>Unidade</th>
+      <th>Modalidade</th>
+      <th>Curso</th>
+      <th>Turma</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>
+         <md-checkbox></md-checkbox>
+      </td>
+      <td>{{student.name}}</td>
+      <td>{{student.id}}</td>
+      <td>{{student.unit?.description}}</td>
+      <td>{{student.modality?.description}}</td>
+      <td>{{student.course?.description}}</td>
+      <td>{{student.class}}</td>
+      <td>
+        <button (click)="edit(student.id)" class="button-edit" md-icon-button mdTooltip="Editar concluinte">
+          <md-icon>edit</md-icon>
         </button>
-
-        <button *ngIf="delete"
-              type="button"
-              class="btn btn-xs btn-default"
-              (click)="deleteClick(row)">
-              <i class="fa fa-trash-o"></i> Delete
-        </button>
-    </div>
-  </td>
-  </ng-table>
-</div>  
-<md-toolbar color="transparent" class="toolbar-bottom">
-<pagination nextText="Próxima" previousText="Anterior" firstText="Primeira" lastText="Última" *ngIf="config.paging"
-            class="pagination-sm"
-            [(ngModel)]="page"
-            [totalItems]="length"
-            [itemsPerPage]="itemsPerPage"
-            [maxSize]="maxSize"
-            [boundaryLinks]="true"
-            [rotate]="false"
-            (pageChanged)="onChangeTable(config, $event)"
-            (numPages)="numPages = $event">
-  </pagination>
-  <span class="pagination-spacer"></span>      
+      </td>
+    </tr>
+  </tbody>
+</table>
+<md-toolbar>
+  <span class="pagination-spacer"></span>
   <span class="pagination-info">
-    Itens por página: {{itemsPerPage}}
-    <button md-icon-button [mdMenuTriggerFor]="menupage" mdTooltip="Páginas"><md-icon class="md-toolbar grey">arrow_drop_down</md-icon></button>
-    
-    {{page}}-{{itemsPerPage}} de {{numPages}}    
-      
-      <md-menu #menupage="mdMenu">
-        <button *ngFor="let value of arrayPagination" (click)="changeNumberPerPage(value)" md-menu-item><span>{{value}}</span></button>
-      </md-menu>
+    Página: {{itemsPerPage}}
+    <button md-icon-button [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
+      <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+    </button>
+    <md-menu #pageNumber="mdMenu">
+      <button *ngFor="let value of arrayPagination" md-menu-item>
+        <span>{{value}}</span>
+      </button>
+    </md-menu>
+    Concluintes por página: {{itemsPerPage}}
+    <button md-icon-button [mdMenuTriggerFor]="menupage" mdTooltip="Páginas">
+      <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+    </button>
+    {{page}}-{{itemsPerPage}} de {{numPages}}
+    <md-menu #menupage="mdMenu">
+      <button *ngFor="let value of arrayPagination" md-menu-item><span>{{value}}</span></button>
+    </md-menu>
   </span>
 </md-toolbar>

@@ -14,7 +14,6 @@ import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
-import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
 
@@ -24,8 +23,7 @@ import { AuthService } from './shared/auth.service';
     SidenavComponent,
     HomeComponent,
     NotFoundComponent,
-    LoginComponent,
-    DatagridComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

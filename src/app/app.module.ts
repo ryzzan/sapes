@@ -5,9 +5,6 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { MdDataTableModule } from 'ng2-md-datatable';
-import { RTModule } from 'right-angled';
-import { DataTableModule } from "angular2-datatable";
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -17,10 +14,8 @@ import { StudentsModule } from './students/students.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
-import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
-import { ArrayGeneratorPipe } from './pipes/array-generator.pipe';
 
 @NgModule({
   declarations: [
@@ -28,9 +23,7 @@ import { ArrayGeneratorPipe } from './pipes/array-generator.pipe';
     SidenavComponent,
     HomeComponent,
     NotFoundComponent,
-    LoginComponent,
-    DatagridComponent,
-    ArrayGeneratorPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +32,7 @@ import { ArrayGeneratorPipe } from './pipes/array-generator.pipe';
     MaterialModule,
     StudentsModule,
     AppRoutingModule,
-    MdDataTableModule.forRoot(),
-    RTModule,
-    DataTableModule
+    MdDataTableModule.forRoot()
   ],
   providers: [
     AuthService,

@@ -17,6 +17,7 @@ import { ProgressComponent } from '../component/progress/progress.component';
 import { SelectCourseComponent } from './select-course/select-course.component';
 import { MoneyMaskPipe } from './../pipes/money-mask.pipe'
 import { GetNumberPipe } from './../pipes/get-number.pipe';
+import { ArrayGeneratorPipe } from './../pipes/array-generator.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { GetNumberPipe } from './../pipes/get-number.pipe';
     MaterialModule,
     TextMaskModule,
     Ng2TableModule,
-    HttpModule,
+    HttpModule
   ],
   exports: [
     NgTableComponent,
@@ -49,7 +50,8 @@ import { GetNumberPipe } from './../pipes/get-number.pipe';
     ProgressComponent,
     SelectCourseComponent,
     StudentsFormComponent,
-    GetNumberPipe
+    GetNumberPipe,
+    ArrayGeneratorPipe
   ],
   providers: [StudentsService],
 })

@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
+import { ApiService } from './shared/api.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthService } from './shared/auth.service';
     MdDataTableModule.forRoot()
   ],
   providers: [
+    ApiService,
     AuthService,
     CorporateService
   ],

@@ -16,7 +16,7 @@
   <tbody>
     <tr *ngFor="let student of students">
       <td>
-         <md-checkbox (click)="toogleSelected()"></md-checkbox>
+         <md-checkbox (change)="toogleSelected($event.checked, student)"></md-checkbox>
       </td>
       <td>{{student.name}}</td>
       <td>{{student.id}}</td>

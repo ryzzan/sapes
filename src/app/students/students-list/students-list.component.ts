@@ -53,7 +53,13 @@ export class StudentsListComponent implements OnInit {
       this.students = students;
     });
   }
-
+  toogleSelected(checked: boolean, student: any){
+    if(checked){
+      return this.selectedStudents.push(student.id);
+    }
+    //remover do array
+    // this.selectedStudents.slide
+  }
   public edit(id: any): any {
     // console.log(data);
     // if(data.column == "excluir"){

@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
+import { ArrayGeneratorPipe } from './pipes/array-generator.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuthService } from './shared/auth.service';
     NotFoundComponent,
     LoginComponent,
     DatagridComponent,
+    ArrayGeneratorPipe,
   ],
   imports: [
     BrowserModule,

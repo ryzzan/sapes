@@ -4,12 +4,48 @@
       <th>
          <md-checkbox></md-checkbox>
       </th>
-      <th>Nome</th>
-      <th>COD</th>
-      <th>Unidade</th>
-      <th>Modalidade</th>
-      <th>Curso</th>
-      <th>Turma</th>
+      <th>
+        <a (click)="changeSortAndOrder('name')">
+          Nome
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'name'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_drop_down</md-icon>
+        </a>
+      </th>
+      <th>
+        <a (click)="changeSortAndOrder('id')">
+          COD
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'id'">arrow_drop_down</md-icon>
+        </a>
+      </th>
+      <th>
+        <a (click)="changeSortAndOrder('unit.description')">
+          Unidade
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'unit.description'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'unit.description'">arrow_drop_down</md-icon>
+        </a>
+      </th>
+      <th>
+        <a (click)="changeSortAndOrder('modality?.description')">
+          Modalidade
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'modality?.description'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'modality?.description'">arrow_drop_down</md-icon>
+        </a>
+      </th>
+      <th>
+        <a (click)="changeSortAndOrder('course?.description')">
+          Curso
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'course?.description'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course?.description'">arrow_drop_down</md-icon>
+        </a>
+      </th>
+      <th>
+        <a (click)="changeSortAndOrder('class')">
+          Turma
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_drop_up</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_drop_down</md-icon>
+        </a>
+      </th>
       <th></th>
     </tr>
   </thead>
@@ -35,21 +71,22 @@
 <md-toolbar>
   <span class="pagination-spacer"></span>
   <span class="pagination-info">
-    Página: {{itemsPerPage}}
+    Página: {{ infoApi?.current_page }}
     <button md-icon-button [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
       <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
     </button>
     <md-menu #pageNumber="mdMenu">
-      <button *ngFor="let value of arrayPagination" md-menu-item>
-        <span>{{value}}</span>
+      <button *ngFor="let page of (this.infoApi?.last_page | arrayGenerator)"  (click)="changePage(page);" md-menu-item>
+        <span>{{page}}</span>
       </button>
     </md-menu>
-    Concluintes por página: {{itemsPerPage}}
-    <button md-icon-button [mdMenuTriggerFor]="menupage" mdTooltip="Páginas">
+    Concluintes por página: {{ infoApi?.per_page }}
+    <button md-icon-button [mdMenuTriggerFor]="perPageSelect" mdTooltip="Páginas">
       <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
     </button>
-    {{page}}-{{itemsPerPage}} de {{numPages}}
-    <md-menu #menupage="mdMenu">
-      <button *ngFor="let value of arrayPagination" md-menu-item><span>{{value}}</span></button>
+    <md-menu #perPageSelect="mdMenu">
+      <button *ngFor="let value of arrayPagination" (click)="changeLimit(value)" md-menu-item><span>{{value}}</span></button>
     </md-menu>
+    {{ infoApi?.from }} - {{ infoApi?.to }} de {{ infoApi?.total }}
+  </span>
 </md-toolbar>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions  } from '@angular/http';
+import { Http,Headers, RequestOptions  } from '@angular/http';
 import { Student } from  './student';
 import { bdInfo } from '../students-form/data';
+import { ApiService } from './../../shared/api.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -9,31 +10,27 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
-export class StudentsService {
+export class StudentsService{
   private students: Student[] = [];
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.data || { };
+  private url: string;
+  info: any;
+  constructor(private apiService:ApiService){
+    this.apiService.init('fase-1');
+    this.url = this.apiService.url;
+    this.info = this.apiService.info;
   }
-
-  constructor(private http: Http) {}
-
-  //Novo
   private headers = new Headers({
     'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
   }); // ... Set content type to JSON
   // private options = new RequestOptions({ headers: this.headers,});
   private options = new RequestOptions({ headers: this.headers});
-  private url: string = "https://sapesapi.nitrofull.com.br/api/fase-1";
 
-  getStudents(){
-    return this.http.get(this.url+"?noPaginete=true", this.options)
-      .map(res => res.json().data);
+  getStudents(params){
+    return this.apiService.getList(params);
   }
 
   getStudent(id){
-
-    return this.http.get(this.getStudentUrl(id), this.options)
+    return this.apiService.http.get(this.getStudentUrl(id), this.options)
       .map(res => this.transformToForm(res.json()));
   }
   transformToApi(data){
@@ -122,7 +119,7 @@ export class StudentsService {
   }
 
   addStudent(student){
-    return this.http.post(
+    return this.apiService.http.post(
       this.url,
       JSON.stringify(this.transformToApi(student)),
       this.options
@@ -130,7 +127,7 @@ export class StudentsService {
   }
 
   updateStudent(student){
-    return this.http.put(
+    return this.apiService.http.put(
       this.getStudentUrl(student.id),
       JSON.stringify(this.transformToApi(student)),
       this.options
@@ -138,7 +135,7 @@ export class StudentsService {
   }
 
   deleteStudent(id){
-    return this.http.delete(this.getStudentUrl(id), this.options)
+    return this.apiService.http.delete(this.getStudentUrl(id), this.options)
       .map(res => res.json());
   }
 

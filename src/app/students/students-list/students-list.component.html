@@ -1,13 +1,13 @@
 <md-toolbar class="title-form">
   <md-input-container class="fakeHint" floatPlaceholder="never" *ngIf="isSearch" style="width: 100%;">
-    <input mdInput placeholder="Pesquisar" (input)="changeSearch($event.target.value)">
+    <input id="search" autofocus="isSearch" mdInput #inputSearch placeholder="Pesquisar" (input)="changeSearch($event.target.value)">
   </md-input-container>
   <h4 *ngIf="!isSearch">{{title}} - FASE 1</h4>
   <span class="toolbar-spacer"></span>
   <!--<button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">
     Adicionar Concluinte
   </button>-->
-  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = true" *ngIf="!isSearch">
+  <button md-icon-button mdTooltip="Filtrar" (click)="this.isSearch = true;" *ngIf="!isSearch">
     <md-icon>filter_list</md-icon>
   </button>
 
@@ -85,6 +85,12 @@
     </tr>
   </thead>
   <tbody>
+    <tr *ngIf="isLoading">
+      <td class="loadingTable" colspan="8"><md-progress-bar mode="indeterminate"></md-progress-bar></td>
+    </tr>
+    <tr *ngIf="!isLoading && students.length==0" >
+      <td class="feedbackTable" colspan="8">Nenhum concluinte encontrado</td>
+    </tr>
     <tr  *ngFor="let student of students">
       <td>
          <md-checkbox [(ngModel)]="student.checked" (change)="toogleSelected($event.checked, student)"></md-checkbox>
@@ -100,12 +106,6 @@
           <md-icon>edit</md-icon>
         </button>
       </td>
-    </tr>
-    <tr *ngIf="isLoading">
-      <td class="loadingTable" colspan="8"><md-progress-bar mode="indeterminate"></md-progress-bar></td>
-    </tr>
-    <tr *ngIf="!isLoading && students.length==0" >
-      <td class="feedbackTable" colspan="8">Nenhum concluinte encontrado</td>
     </tr>
   </tbody>
 </table>

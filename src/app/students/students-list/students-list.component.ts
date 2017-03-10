@@ -1,6 +1,5 @@
 import { StudentsService } from '../shared/students.service';
 import { Component, OnInit, ViewChild, Input, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/debounceTime';
@@ -31,12 +30,7 @@ export class StudentsListComponent implements OnInit {
   apiPage = 1;
   apiLimit = 5;
   errorMessage;
-
   public arrayPagination = [5,10,15,20,25,30,35,40,45,50];
-
-  teste(e){
-    console.log(e);
-  }
 
   constructor(
     private router: Router,
@@ -71,6 +65,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   changeSearch = (s) => {
+    console.log("Entrou");
     this.querySearch = s;
     this.getStudents.emit();
   }
@@ -89,7 +84,6 @@ export class StudentsListComponent implements OnInit {
     this.getStudents.emit();
   }
 
-
   getData: any = (
     page = this.apiPage,
     limit = this.apiLimit,
@@ -103,12 +97,15 @@ export class StudentsListComponent implements OnInit {
         this.isLoading = false;
         if(apiResponse.length == 0 && this.apiPage > this.infoApi.last_page) {
           this.apiPage = this.infoApi.last_page;
-          return this.getStudents.emit();
+          if(this.apiPage!=0){
+            return this.getStudents.emit();
+          }
         }
         this.students = this.students.map(student => {
           student['checked'] = false;
           return student;
         });
+        this.apiPage = this.infoApi.current_page;
         this.selectedStudents = [];
         this.inputSelectAll.checked = false
         this.students = apiResponse;

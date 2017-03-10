@@ -49,3 +49,11 @@ form, md-card{
 md-grid-list{
   margin: 5px 15px
 }
+
+md-toolbar{
+  border-bottom: none;
+  background: transparent;
+}
+h4{
+  color: rgba(0,0,0,0.87);
+}

@@ -56,3 +56,10 @@ table tr>th:nth-child(7),
 table tr>td:nth-child(7){
   text-align: right;
 }
+md-toolbar{
+  border-bottom: none;
+  background: transparent;
+}
+h4{
+  color: rgba(0,0,0,0.87);
+}

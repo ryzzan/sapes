@@ -20,7 +20,7 @@ export class ApiService{
   getList(params):  Observable<any> {
     let url = this.url+"?";
     if(params.querySearch != null){
-      url += "like=description,"+params.querySearch+"&";
+      url += "like=name,"+params.querySearch+"&";
     }
     if(params.page != "") {
       url += "page="+params['page']+"&";

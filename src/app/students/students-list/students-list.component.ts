@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
+  
+  title = "Avaliação do Concluinte";
 
   public students:Array<any> = [];
   public selectedStudents:Array<any> = [];
 
   infoApi: any;
+  isSearch = false;
+
   sort = {
     order: "asc",
     field: "id"
@@ -40,23 +44,22 @@ export class StudentsListComponent implements OnInit {
     this.getStudent();
   }
 
-  changePage = (p) => {
-    console.log("entrou");
+  changePage = p => {
     this.apiPage = p;
     this.getStudent();
   }
 
-  changeLimit = (l) => {
+  changeLimit = l => {
     this.apiLimit = l;
     this.getStudent();
   }
 
-  changeSearch = (s) => {
+  changeSearch = s => {
     this.querySearch = s;
     this.getStudent();
   }
 
-  changeSortAndOrder = (field) => {
+  changeSortAndOrder = field => {
     if(this.sort.field == field){
       this.sort.order = this.sort.order == "asc" ? "desc" : "asc";
     }
@@ -73,6 +76,10 @@ export class StudentsListComponent implements OnInit {
     this.studentsService.getStudents({page, limit, sort, querySearch})
     .subscribe(
       apiResponse => {
+        if(apiResponse.length == 0 && this.apiPage != 1) {
+          this.apiPage = this.infoApi.last_page;
+          return this.getStudent();
+        }
         this.students = apiResponse;
       },
       error =>  this.errorMessage = <any>error

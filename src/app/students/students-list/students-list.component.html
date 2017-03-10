@@ -15,6 +15,10 @@
     <md-icon>close</md-icon>
   </button>
 
+  <button md-icon-button mdTooltip="Deletar" *ngIf="selectedStudents.length>0">
+    <md-icon>delete</md-icon>
+  </button>
+
   <button md-icon-button [mdMenuTriggerFor]="listMenu" mdTooltip="Mais opções">
     <md-icon>more_vert</md-icon>
   </button>
@@ -33,7 +37,7 @@
   <thead>
     <tr>
       <th>
-         <md-checkbox></md-checkbox>
+         <md-checkbox #inputSelectAll (change)="toogleSelectedAll($event.checked)"></md-checkbox>
       </th>
       <th>
         <a (click)="changeSortAndOrder('name')">
@@ -83,7 +87,7 @@
   <tbody>
     <tr *ngFor="let student of students">
       <td>
-         <md-checkbox (change)="toogleSelected($event.checked, student)"></md-checkbox>
+         <md-checkbox [(ngModel)]="student.checked" (change)="toogleSelected($event.checked, student)"></md-checkbox>
       </td>
       <td>{{student.name}}</td>
       <td>{{student.id}}</td>

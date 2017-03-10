@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class StudentsListComponent implements OnInit {
 
   title = "Avaliação do Concluinte";
-
+  @ViewChild('inputSelectAll') inputSelectAll;
   public students:Array<any> = [];
   public selectedStudents:Array<any> = [];
 
@@ -29,6 +29,7 @@ export class StudentsListComponent implements OnInit {
   public arrayPagination = [2,5,10,15,20,25,30,35,40,45,50];
 
   teste(e){
+    console.log(e);
   }
 
   constructor(
@@ -80,20 +81,40 @@ export class StudentsListComponent implements OnInit {
     this.studentsService.getStudents({page, limit, sort, querySearch})
     .subscribe(
       apiResponse => {
-        if(apiResponse.length == 0 && this.apiPage != 1) {
+        if(apiResponse.length == 0 && this.apiPage > this.infoApi.last_page) {
           this.apiPage = this.infoApi.last_page;
           return this.getStudent();
         }
+        this.students = this.students.map(student => {
+          student['checked'] = false;
+          return student;
+        });
         this.students = apiResponse;
       },
       error =>  this.errorMessage = <any>error
     );
   }
+
   toogleSelected(checked: boolean, student: any){
-    if(checked){
-      return this.selectedStudents.push(student.id);
+    student.checked = checked;
+    this.selectedStudents = this.students.filter(
+      student => student.checked
+    );
+    let allSelected = this.selectedStudents.length == this.students.length;
+    if((allSelected) != this.inputSelectAll.checked){
+      this.inputSelectAll.checked = allSelected;
     }
   }
+  toogleSelectedAll(checked){
+    for(let i = this.students.length-1; i >= 0 ; i--){
+      this.students[i].checked = checked;
+    }
+    if(checked){
+      return this.selectedStudents = this.students;
+    }
+    this.selectedStudents = [];
+  }
+
   deleteStudent(student){
     // if (confirm("Are you sure you want to delete " + student.name + "?")) {
 

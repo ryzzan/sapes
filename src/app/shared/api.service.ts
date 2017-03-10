@@ -36,7 +36,6 @@ export class ApiService{
     url = url.substring(0, url.length-1);
     console.log(url);
     return this.http.get(url)
-                    .debounceTime(300)        // wait 300ms after each keystroke before considering the term
                     .distinctUntilChanged()   // ignore if next search term is same as previous
                     .map(data => this.extractData(data))
                     .catch(this.handleError);

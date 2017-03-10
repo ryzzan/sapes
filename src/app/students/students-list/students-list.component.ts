@@ -1,6 +1,9 @@
 import { StudentsService } from '../shared/students.service';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-students-list',
@@ -8,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
+
+  public getStudents = new EventEmitter<any>();
 
   title = "Avaliação do Concluinte";
   @ViewChild('inputSelectAll') inputSelectAll;
@@ -40,31 +45,34 @@ export class StudentsListComponent implements OnInit {
     this.studentsService.info.subscribe(info => {
       this.infoApi = info;
     });
+    this.getStudents.debounceTime(400).subscribe( ()=> {
+        this.getData();
+    });
   }
 
   ngOnInit():void {
-    this.getStudent();
+    this.getStudents.emit();
   }
 
   changePage = p => {
     this.apiPage = p;
-    this.getStudent();
+    this.getStudents.emit();
   }
 
   nextPreviousPage(action){
     this.apiPage += action;
     console.log(this.apiPage);
-    this.getStudent();
+    this.getStudents.emit();
   }
 
   changeLimit = l => {
     this.apiLimit = l;
-    this.getStudent();
+    this.getStudents.emit();
   }
 
-  changeSearch = s => {
+  changeSearch = (s) => {
     this.querySearch = s;
-    this.getStudent();
+    this.getStudents.emit();
   }
 
   changeSortAndOrder = field => {
@@ -72,17 +80,17 @@ export class StudentsListComponent implements OnInit {
       this.sort.order = this.sort.order == "asc" ? "desc" : "asc";
     }
     this.sort.field = field;
-    this.getStudent();
+    this.getStudents.emit();
   }
 
   clearSearch(){
     this.isSearch = false;
     this.querySearch = null;
-    this.getStudent();
+    this.getStudents.emit();
   }
 
 
-  getStudent = (
+  getData: any = (
     page = this.apiPage,
     limit = this.apiLimit,
     sort = this.sort,
@@ -95,7 +103,7 @@ export class StudentsListComponent implements OnInit {
         this.isLoading = false;
         if(apiResponse.length == 0 && this.apiPage > this.infoApi.last_page) {
           this.apiPage = this.infoApi.last_page;
-          return this.getStudent();
+          return this.getStudents.emit();
         }
         this.students = this.students.map(student => {
           student['checked'] = false;
@@ -142,7 +150,7 @@ export class StudentsListComponent implements OnInit {
             qtdDeleted++;
             if(qtdDeleted==this.selectedStudents.length){
               alert("finished");
-              this.getStudent();
+              this.getStudents.emit();
             }
           },
           err => {

@@ -71,19 +71,23 @@
 <md-toolbar>
   <span class="pagination-spacer"></span>
   <span class="pagination-info">
-    Página: {{ infoApi?.current_page }}
-    <button md-icon-button [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
-      <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
-    </button>
+    <label>
+      Página: {{ apiPage }}
+      <button md-icon-button [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
+        <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+      </button>
+    </label>
     <md-menu #pageNumber="mdMenu">
       <button *ngFor="let page of (this.infoApi?.last_page | arrayGenerator)"  (click)="changePage(page);" md-menu-item>
         <span>{{page}}</span>
       </button>
     </md-menu>
-    Concluintes por página: {{ infoApi?.per_page }}
-    <button md-icon-button [mdMenuTriggerFor]="perPageSelect" mdTooltip="Páginas">
-      <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
-    </button>
+    <label>
+      Concluintes por página: {{ apiLimit }}
+      <button md-icon-button [mdMenuTriggerFor]="perPageSelect" mdTooltip="Páginas">
+        <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+      </button>
+    </label>
     <md-menu #perPageSelect="mdMenu">
       <button *ngFor="let value of arrayPagination" (click)="changeLimit(value)" md-menu-item><span>{{value}}</span></button>
     </md-menu>

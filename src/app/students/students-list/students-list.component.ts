@@ -87,7 +87,7 @@ export class StudentsListComponent implements OnInit {
     // if (confirm("Are you sure you want to delete " + student.name + "?")) {
 
 
-    //   this.studentsService.deleteStudent(student.id)
+      // this.studentsService.deleteStudent(student.id)
     //     .subscribe(
     //       ()=>{
     //         // this.onChangeTable(this.config);

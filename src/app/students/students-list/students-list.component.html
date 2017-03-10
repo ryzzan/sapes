@@ -1,3 +1,34 @@
+<md-toolbar class="title-form">
+  <md-input-container class="fakeHint" floatPlaceholder="never" *ngIf="isSearch" style="width: 100%;">
+    <input mdInput placeholder="Pesquisar" (input)="changeSearch($event.target.value)">
+  </md-input-container>
+  <h4 *ngIf="!isSearch">{{title}} - FASE 1</h4>
+  <span class="toolbar-spacer"></span>
+  <!--<button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">
+    Adicionar Concluinte
+  </button>-->
+  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = !isSearch" *ngIf="!isSearch">
+    <md-icon>filter_list</md-icon>
+  </button>
+
+  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = !isSearch" *ngIf="isSearch">
+    <md-icon>close</md-icon>
+  </button>
+
+  <button md-icon-button [mdMenuTriggerFor]="listMenu" mdTooltip="Mais opções">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #listMenu="mdMenu">
+    <button md-menu-item>
+      <md-icon>file_download</md-icon>
+      <span>Baixar Formulário</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>help_outline</md-icon>
+      <span>Ajuda</span>
+    </button>
+  </md-menu>
+</md-toolbar>
 <table>
   <thead>
     <tr>

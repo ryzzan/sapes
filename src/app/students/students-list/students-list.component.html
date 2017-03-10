@@ -7,11 +7,11 @@
   <!--<button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">
     Adicionar Concluinte
   </button>-->
-  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = !isSearch" *ngIf="!isSearch">
+  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = true" *ngIf="!isSearch">
     <md-icon>filter_list</md-icon>
   </button>
 
-  <button md-icon-button mdTooltip="Filtrar" (click)="isSearch = !isSearch" *ngIf="isSearch">
+  <button md-icon-button mdTooltip="Limpar busca" (click)="clearSearch()" *ngIf="isSearch">
     <md-icon>close</md-icon>
   </button>
 

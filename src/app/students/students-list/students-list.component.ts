@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
-  
+
   title = "Avaliação do Concluinte";
 
   public students:Array<any> = [];
@@ -66,7 +66,11 @@ export class StudentsListComponent implements OnInit {
     this.sort.field = field;
     this.getStudent();
   }
-
+  clearSearch(){
+    this.isSearch = false;
+    this.querySearch = null;
+    this.getStudent();
+  }
   getStudent = (
     page = this.apiPage,
     limit = this.apiLimit,

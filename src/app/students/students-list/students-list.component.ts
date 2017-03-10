@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
+  
+  title = "Avaliação do Concluinte";
 
   public students:Array<any> = [];
   public selectedStudents:Array<any> = [];
 
-  //NOVO
   infoApi: any;
-  title = "Avaliação do Concluinte";
   isSearch = false;
-  /*Sort properties beggining*/
+
   sort = {
     order: "asc",
     field: "id"
@@ -26,11 +26,9 @@ export class StudentsListComponent implements OnInit {
   apiLimit = 2;
   errorMessage;
 
-  //VELHO
   public arrayPagination = [2,5,10,15,20,25,30,35,40,45,50];
 
   teste(e){
-    console.log(e);
   }
 
   constructor(
@@ -39,7 +37,6 @@ export class StudentsListComponent implements OnInit {
   ) {
     this.studentsService.info.subscribe(info => {
       this.infoApi = info;
-      console.log(this.infoApi);
     });
   }
 
@@ -88,6 +85,11 @@ export class StudentsListComponent implements OnInit {
       error =>  this.errorMessage = <any>error
     );
   }
+  toogleSelected(checked: boolean, student: any){
+    if(checked){
+      return this.selectedStudents.push(student.id);
+    }
+  }
   deleteStudent(student){
     // if (confirm("Are you sure you want to delete " + student.name + "?")) {
 
@@ -103,13 +105,7 @@ export class StudentsListComponent implements OnInit {
     //       });
     //   }
   }
-  public edit(id: any): any {
-    // console.log(data);
-    // if(data.column == "excluir"){
-    //   return this.deleteStudent(data.row);
-    // }
+  edit(id: any): any {
     return  this.router.navigate(['/students', id]);
-
   }
-
 }

@@ -65,7 +65,6 @@ export class StudentsListComponent implements OnInit {
   }
 
   changeSearch = (s) => {
-    console.log("Entrou");
     this.querySearch = s;
     this.getStudents.emit();
   }

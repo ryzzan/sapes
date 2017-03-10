@@ -1,5 +1,5 @@
 import { StudentsService } from '../shared/students.service';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,7 +26,6 @@ export class StudentsListComponent implements OnInit {
   apiPage = 1;
   apiLimit = 5;
   errorMessage;
-
   public arrayPagination = [5,10,15,20,25,30,35,40,45,50];
 
   teste(e){
@@ -67,6 +66,17 @@ export class StudentsListComponent implements OnInit {
     this.getStudent();
   }
 
+  clearSearch(){
+    this.isSearch = false;
+    this.querySearch = null;
+    this.getStudent();
+  }
+  enableSearch(input){
+
+    this.isSearch = true;
+    // input.focus();
+  }
+
   changeSortAndOrder = field => {
     if(this.sort.field == field){
       this.sort.order = this.sort.order == "asc" ? "desc" : "asc";
@@ -74,13 +84,6 @@ export class StudentsListComponent implements OnInit {
     this.sort.field = field;
     this.getStudent();
   }
-
-  clearSearch(){
-    this.isSearch = false;
-    this.querySearch = null;
-    this.getStudent();
-  }
-
 
   getStudent = (
     page = this.apiPage,

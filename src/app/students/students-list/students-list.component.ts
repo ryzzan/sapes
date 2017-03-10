@@ -28,10 +28,6 @@ export class StudentsListComponent implements OnInit {
   errorMessage;
   public arrayPagination = [5,10,15,20,25,30,35,40,45,50];
 
-  teste(e){
-    console.log(e);
-  }
-
   constructor(
     private router: Router,
     private studentsService: StudentsService
@@ -71,11 +67,6 @@ export class StudentsListComponent implements OnInit {
     this.querySearch = null;
     this.getStudent();
   }
-  enableSearch(input){
-
-    this.isSearch = true;
-    // input.focus();
-  }
 
   changeSortAndOrder = field => {
     if(this.sort.field == field){
@@ -104,6 +95,7 @@ export class StudentsListComponent implements OnInit {
           student['checked'] = false;
           return student;
         });
+        this.apiPage = this.infoApi.current_page;
         this.selectedStudents = [];
         this.inputSelectAll.checked = false
         this.students = apiResponse;

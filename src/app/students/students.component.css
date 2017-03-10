@@ -1,9 +1,14 @@
-.card-content{
+md-card.card-content{
   padding: 0;
+  clear:both;
 }
 .md-sidenav-content{
   padding: 20px;
 }
 .add{
   margin-left: 7px;
+}
+a{
+  margin-bottom: 20px;
+  float: right;
 }

@@ -57,7 +57,7 @@ export class StudentsListComponent implements OnInit {
 
   changeSearch = s => {
     this.querySearch = s;
-    this.getStudent();
+    this.getStudent();;
   }
 
   changeSortAndOrder = field => {
@@ -67,11 +67,13 @@ export class StudentsListComponent implements OnInit {
     this.sort.field = field;
     this.getStudent();
   }
+
   clearSearch(){
     this.isSearch = false;
     this.querySearch = null;
     this.getStudent();
   }
+
   getStudent = (
     page = this.apiPage,
     limit = this.apiLimit,
@@ -89,6 +91,8 @@ export class StudentsListComponent implements OnInit {
           student['checked'] = false;
           return student;
         });
+        this.selectedStudents = [];
+        this.inputSelectAll.checked = false
         this.students = apiResponse;
       },
       error =>  this.errorMessage = <any>error
@@ -100,6 +104,9 @@ export class StudentsListComponent implements OnInit {
     this.selectedStudents = this.students.filter(
       student => student.checked
     );
+    this.toogleInputSelectAll();
+  }
+  toogleInputSelectAll(){
     let allSelected = this.selectedStudents.length == this.students.length;
     if((allSelected) != this.inputSelectAll.checked){
       this.inputSelectAll.checked = allSelected;
@@ -115,20 +122,25 @@ export class StudentsListComponent implements OnInit {
     this.selectedStudents = [];
   }
 
-  deleteStudent(student){
-    // if (confirm("Are you sure you want to delete " + student.name + "?")) {
-
-
-      // this.studentsService.deleteStudent(student.id)
-    //     .subscribe(
-    //       ()=>{
-    //         // this.onChangeTable(this.config);
-    //       },
-    //       err => {
-    //         alert("Could not delete student.");
-    //       // Revert the view back to its original state
-    //       });
-    //   }
+  deleteStudents(){
+    if (confirm("Você realmente quer excluir?")) {
+      let qtdDeleted = 0;
+      for(let i = this.selectedStudents.length-1; i>=0; i--){
+        this.studentsService.deleteStudent(this.selectedStudents[i].id)
+          .subscribe(
+          ()=>{
+            qtdDeleted++;
+            if(qtdDeleted==this.selectedStudents.length){
+              alert("finished");
+              this.getStudent();
+            }
+          },
+          err => {
+            alert("Could not delete student.");
+          // Revert the view back to its original state
+          });
+      }
+    }
   }
   edit(id: any): any {
     return  this.router.navigate(['/students', id]);

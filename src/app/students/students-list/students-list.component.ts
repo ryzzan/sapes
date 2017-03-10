@@ -16,6 +16,7 @@ export class StudentsListComponent implements OnInit {
 
   infoApi: any;
   isSearch = false;
+  isLoading = false;
 
   sort = {
     order: "asc",
@@ -23,10 +24,10 @@ export class StudentsListComponent implements OnInit {
   }
   querySearch:any = null;
   apiPage = 1;
-  apiLimit = 2;
+  apiLimit = 5;
   errorMessage;
 
-  public arrayPagination = [2,5,10,15,20,25,30,35,40,45,50];
+  public arrayPagination = [5,10,15,20,25,30,35,40,45,50];
 
   teste(e){
     console.log(e);
@@ -50,6 +51,12 @@ export class StudentsListComponent implements OnInit {
     this.getStudent();
   }
 
+  nextPreviousPage(action){
+    this.apiPage += action;
+    console.log(this.apiPage);
+    this.getStudent();
+  }
+
   changeLimit = l => {
     this.apiLimit = l;
     this.getStudent();
@@ -57,7 +64,7 @@ export class StudentsListComponent implements OnInit {
 
   changeSearch = s => {
     this.querySearch = s;
-    this.getStudent();;
+    this.getStudent();
   }
 
   changeSortAndOrder = field => {
@@ -74,15 +81,18 @@ export class StudentsListComponent implements OnInit {
     this.getStudent();
   }
 
+
   getStudent = (
     page = this.apiPage,
     limit = this.apiLimit,
     sort = this.sort,
     querySearch = this.querySearch
   ) => {
+    this.isLoading = true;
     this.studentsService.getStudents({page, limit, sort, querySearch})
     .subscribe(
       apiResponse => {
+        this.isLoading = false;
         if(apiResponse.length == 0 && this.apiPage > this.infoApi.last_page) {
           this.apiPage = this.infoApi.last_page;
           return this.getStudent();

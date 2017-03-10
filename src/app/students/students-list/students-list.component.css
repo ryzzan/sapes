@@ -10,45 +10,69 @@ th:last-child{
 md-toolbar{
   background: white;
 }
-table{
+.table{
   width: 100%;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   color: rgba(0, 0, 0, 0.87);
 }
-table thead{
+.table thead{
   font-family: 'Roboto', sans-serif;
 }
-table td,
-table th{
+.table th{
+  cursor: pointer;
+}
+.table td,
+.table th{
   border-bottom: 1px solid #dfdfdf;
 }
-table tr>th{
+.table tr>th{
   color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
 }
-table tr:hover td{
+.table tr:hover td{
   background: #EEEEEE;
 }
-table td,
-table th{
+.table td,
+.table th{
   padding: 10px;
   vertical-align: middle;
 }
-table td:first-child,
-table th:first-child{
+.table td:first-child,
+.table th:first-child{
   padding: 12px 24px;
 }
-table th:last-child{
+.table th:last-child{
   width: 54px;
 }
-table td:last-child{
+.table td:last-child{
   text-align: center;
 }
 .button-edit md-icon{
   font-size: 18px;
 }
-
+.table tr>td.loadingTable{
+  padding: 0;
+}
+.table tr>td.feedbackTable{
+  padding: 24px;
+}
+.table tr>th.td-sort md-icon{
+  vertical-align: middle;
+  font-size: 1.6em;
+}
+.td-sort{
+  font-weight: bold;
+}
+.md-icon-button{
+  font-size: 1em;
+}
+.md-icon-button md-icon{
+  vertical-align: middle;
+}
+.previus-btn{
+  margin-left: 10px;
+}
 /*propriedades proprias dessa tabela*/
 table tr>th:nth-child(3),
 table tr>td:nth-child(3),

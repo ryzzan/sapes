@@ -33,59 +33,59 @@
     </button>
   </md-menu>
 </md-toolbar>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>
          <md-checkbox #inputSelectAll (change)="toogleSelectedAll($event.checked)"></md-checkbox>
       </th>
-      <th>
+      <th [class.td-sort]="sort.field == 'name'">
         <a (click)="changeSortAndOrder('name')">
           Nome
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'name'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'name'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_downward</md-icon>
         </a>
       </th>
-      <th>
+      <th [class.td-sort]="sort.field == 'id'">
         <a (click)="changeSortAndOrder('id')">
           COD
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'id'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'id'">arrow_downward</md-icon>
         </a>
       </th>
-      <th>
+      <th [class.td-sort]="sort.field == 'unit.description'">
         <a (click)="changeSortAndOrder('unit.description')">
           Unidade
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'unit.description'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'unit.description'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'unit.description'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'unit.description'">arrow_downward</md-icon>
         </a>
       </th>
-      <th>
-        <a (click)="changeSortAndOrder('modality?.description')">
+      <th [class.td-sort]="sort.field == 'modality.description'">
+        <a (click)="changeSortAndOrder('modality.description')">
           Modalidade
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'modality?.description'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'modality?.description'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'modality.description'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'modality.description'">arrow_downward</md-icon>
         </a>
       </th>
-      <th>
-        <a (click)="changeSortAndOrder('course?.description')">
+      <th [class.td-sort]="sort.field == 'course.description'">
+        <a (click)="changeSortAndOrder('course.description')">
           Curso
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'course?.description'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course?.description'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'course.description'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course.description'">arrow_downward</md-icon>
         </a>
       </th>
-      <th>
+      <th [class.td-sort]="sort.field == 'class'">
         <a (click)="changeSortAndOrder('class')">
           Turma
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_drop_up</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_drop_down</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
         </a>
       </th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students">
+    <tr  *ngFor="let student of students">
       <td>
          <md-checkbox [(ngModel)]="student.checked" (change)="toogleSelected($event.checked, student)"></md-checkbox>
       </td>
@@ -101,15 +101,21 @@
         </button>
       </td>
     </tr>
+    <tr *ngIf="isLoading">
+      <td class="loadingTable" colspan="8"><md-progress-bar mode="indeterminate"></md-progress-bar></td>
+    </tr>
+    <tr *ngIf="!isLoading && students.length==0" >
+      <td class="feedbackTable" colspan="8">Nenhum concluinte encontrado</td>
+    </tr>
   </tbody>
 </table>
 <md-toolbar>
   <span class="pagination-spacer"></span>
-  <span class="pagination-info">
+  <div class="pagination-info">
     <label>
-      Página: {{ apiPage }}
-      <button md-icon-button [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
-        <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+      Página:
+      <button [disabled]="this.infoApi?.total<=0" md-icon-button class="md-icon-button" [mdMenuTriggerFor]="pageNumber" mdTooltip="Número da página">
+        {{ apiPage }}<md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
       </button>
     </label>
     <md-menu #pageNumber="mdMenu">
@@ -118,14 +124,24 @@
       </button>
     </md-menu>
     <label>
-      Concluintes por página: {{ apiLimit }}
-      <button md-icon-button [mdMenuTriggerFor]="perPageSelect" mdTooltip="Páginas">
-        <md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
+      Concluintes por página:
+      <button class="md-icon-button" md-icon-button [mdMenuTriggerFor]="perPageSelect" mdTooltip="Páginas">
+        {{ apiLimit }}<md-icon class="md-toolbar grey">arrow_drop_down</md-icon>
       </button>
     </label>
     <md-menu #perPageSelect="mdMenu">
       <button *ngFor="let value of arrayPagination" (click)="changeLimit(value)" md-menu-item><span>{{value}}</span></button>
     </md-menu>
-    {{ infoApi?.from }} - {{ infoApi?.to }} de {{ infoApi?.total }}
-  </span>
+    <span>
+      {{ infoApi?.from | showNumber}} - {{ infoApi?.to | showNumber}} de {{ infoApi?.total | showNumber}}
+    </span>
+    <button *ngIf="(apiPage<this.infoApi?.total) && apiPage>1" md-icon-button class="previus-btn md-icon-button"
+            (click)="nextPreviousPage(-1)" mdTooltip="Anterior">
+      <md-icon class="md-toolbar grey">keyboard_arrow_left</md-icon>
+    </button>
+    <button *ngIf="apiPage<this.infoApi?.total" md-icon-button class="md-icon-button"
+            (click)="nextPreviousPage(1)" mdTooltip="Próximo">
+      <md-icon class="md-toolbar grey">keyboard_arrow_right</md-icon>
+    </button>
+  </div>
 </md-toolbar>

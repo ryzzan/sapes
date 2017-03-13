@@ -9,7 +9,6 @@ import { StudentsRoutingModule } from './students.routing';
 import { StudentsFormComponent } from './students-form/students-form.component';
 import { DatapickerComponent } from '../datapicker/datapicker.component';
 import { TextMaskModule } from 'angular2-text-mask';
-import { Ng2TableModule,NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { InputErrorComponent } from '../component/input-error/input-error-component'
@@ -28,14 +27,9 @@ import { ShowNumberPipe } from './../pipes/show-number.pipe';
     ReactiveFormsModule,
     MaterialModule,
     TextMaskModule,
-    Ng2TableModule,
     HttpModule,
   ],
   exports: [
-    NgTableComponent,
-    NgTableFilteringDirective,
-    NgTablePagingDirective,
-    NgTableSortingDirective,
     MaterialModule
   ],
   entryComponents: [

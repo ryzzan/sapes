@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
-import { MdDataTableModule } from 'ng2-md-datatable';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -32,8 +31,7 @@ import { ApiService } from './shared/api.service';
     HttpModule,
     MaterialModule,
     StudentsModule,
-    AppRoutingModule,
-    MdDataTableModule.forRoot()
+    AppRoutingModule
   ],
   providers: [
     ApiService,

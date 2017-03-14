@@ -12,10 +12,13 @@ form, md-card{
 }
 
 .input-space md-icon{
-  padding-left:20px;
+  padding-left:10px;
 }
-.material-icons {
-  padding-right: 10px;
+
+md-input-container,
+.flagInput,
+.selectGroup {
+  padding-left: 10px;
 }
 
 .radio-before {
@@ -53,6 +56,9 @@ md-grid-list{
 md-toolbar{
   border-bottom: none;
   background: transparent;
+}
+md-toolbar.formActions{
+  border-top:#f7f7f7 1px solid;
 }
 h4{
   color: rgba(0,0,0,0.87);

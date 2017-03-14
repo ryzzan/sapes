@@ -142,6 +142,11 @@ export class StudentsFormComponent implements OnInit {
     if(!val) return [];
     if(val.length<2) return [];
     return this.bdInfo.occupations.filter((occupation) => {
+      let code = new RegExp(val, 'gi').test(occupation.code);
+
+      if(code){
+        return code;
+      }
       return new RegExp(val, 'gi').test(occupation.description);
     });
   }

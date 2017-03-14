@@ -1,15 +1,3 @@
-th:last-child{
-  width:10%;
-}
-.office-header{
-  color: blue;
-}
-.list-content {
-  padding: 10px;
-}
-md-toolbar{
-  background: white;
-}
 .table{
   width: 100%;
   font-family: 'Roboto', sans-serif;
@@ -61,17 +49,17 @@ md-toolbar{
   vertical-align: middle;
   font-size: 1.6em;
 }
-.td-sort{
+.td-right.td-sort{
   position: relative;
   font-weight: bold;
 }
-.td-sort>a>md-icon{
+.td-right.td-sort>a>md-icon{
   position: absolute;
   top: 25%;
-  right: 0;
+  left: 0;
 }
-.td-sort>a>span{
-  padding-right: 24px;
+.td-right.td-sort>a>span{
+  padding-left: 24px;
 }
 .md-icon-button{
   font-size: 1em;
@@ -82,13 +70,6 @@ md-toolbar{
 .previus-btn{
   margin-left: 10px;
 }
-/*propriedades proprias dessa tabela*/
-table tr>th:nth-child(3),
-table tr>td:nth-child(3),
-table tr>th:nth-child(7),
-table tr>td:nth-child(7){
-  text-align: right;
-}
 md-toolbar{
   border-bottom: none;
   background: transparent;
@@ -96,3 +77,12 @@ md-toolbar{
 h4{
   color: rgba(0,0,0,0.87);
 }
+
+/*propriedades proprias dessa tabela*/
+table tr>th:nth-child(3),
+table tr>td:nth-child(3),
+table tr>th:nth-child(7),
+table tr>td:nth-child(7){
+  text-align: right;
+}
+

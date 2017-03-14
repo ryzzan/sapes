@@ -46,7 +46,7 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'id'">
+      <th class="td-right" [class.td-sort]="sort.field == 'id'">
         <a (click)="changeSortAndOrder('id')">
           <span>COD</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_upward</md-icon>
@@ -74,7 +74,7 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course.description'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'class'">
+      <th class="td-right" [class.td-sort]="sort.field == 'class'">
         <a (click)="changeSortAndOrder('class')">
           <span>Turma</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>

@@ -19,36 +19,6 @@ md-card.menu-card md-card-title{
 md-card.menu-card md-card-actions{
   padding-left: 5px;
 }
-md-list{
-  padding-top: 0;
-}
-md-list md-list-item{
-  color:white;
-}
-md-list-item .material-icons{
-  height: auto;
-}
-md-list-item .mat-list-text{
-  font-size: 14px;
-}
-a{
-  width: 100%;
-  cursor: pointer;
-  text-decoration: none;
-}
-a md-list-item{
-  border-left:5px solid transparent;
-}
-a:hover md-list-item,
-a.sidenav--active md-list-item{
-  background:#f9f9f9;
-  color: #1b5e20;
-  border-left-color:#1b5e20;
-}
-
-.md-list-text h4{
-  font-size:  14px;
-}
 
 .tagInfo{
   display: inline;
@@ -74,6 +44,29 @@ a.sidenav--active md-list-item{
   border-radius: .25em;
 }
 
-p.tagFase{
-  line-height: 1.5;
+
+/*menu*/
+md-nav-list a{
+  color:white;
+}
+
+md-list-item{
+  border-right:2px solid transparent;
+}
+md-list-item:hover,
+md-nav-list md-list-item.sidenav--active{
+  background:#f9f9f9;
+  border-right-color:#1b5e20;
+}
+md-nav-list md-list-item.sidenav--active a,
+md-list-item:hover a{
+  color: #1b5e20;
+}
+md-nav-list md-icon{
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.md-list-text h4{
+  font-size:  14px;
 }

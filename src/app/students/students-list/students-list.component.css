@@ -62,7 +62,16 @@ md-toolbar{
   font-size: 1.6em;
 }
 .td-sort{
+  position: relative;
   font-weight: bold;
+}
+.td-sort>a>md-icon{
+  position: absolute;
+  top: 25%;
+  right: 0;
+}
+.td-sort>a>span{
+  padding-right: 24px;
 }
 .md-icon-button{
   font-size: 1em;

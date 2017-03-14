@@ -1,9 +1,6 @@
 <md-toolbar class="title-form">
   <h4>{{title}} - FASE 1</h4>
   <span class="toolbar-spacer"></span>
-  <!--<button color="accent" md-raised-button mdTooltip="Adicionar Concluinte" class="add" routerLink="add">
-    Adicionar Concluinte
-  </button>-->
   <button md-icon-button [mdMenuTriggerFor]="listMenu" mdTooltip="Mais opções">
     <md-icon>more_vert</md-icon>
   </button>
@@ -171,8 +168,7 @@
       CURSO
     </template>
      <md-grid-list cols="8" rowHeight="100px">
-
-      <md-grid-tile [colspan]="2" class="input-space">
+      <md-grid-tile [colspan]="2">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
@@ -186,7 +182,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="2">
+      <md-grid-tile [colspan]="2" class="input-space">
         <md-icon>date_range</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
@@ -221,7 +217,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="4" class="input-space">
+      <md-grid-tile [colspan]="4">
         <md-icon>class</md-icon>
         <md-input-container class="full-width">
           <input mdInput class="full-width" placeholder="2.5 - Selecione o curso *" [mdAutocomplete]="autoCourse" formControlName="course_id">
@@ -251,7 +247,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="4" class="input-space">
+      <md-grid-tile [colspan]="4">
         <md-icon>business</md-icon>
         <md-input-container class="full-width">
           <input mdInput class="full-width" placeholder="2.7 - Selecione a Unidade *" [mdAutocomplete]="autoUnit" formControlName="unit_id">
@@ -282,7 +278,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="input-space">
+      <md-grid-tile [colspan]="3">
         <md-icon>language</md-icon>
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
@@ -323,7 +319,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="disability-cell input-space">
+      <md-grid-tile [colspan]="3" class="disability-cell">
         <md-icon>school</md-icon>
         <section class="full-width" class="flagInput">
           <p>2.12 - Educação à distância - EAD?</p><br>
@@ -352,7 +348,7 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3" class="disability-cell input-space" >
+      <md-grid-tile [colspan]="3" class="disability-cell" >
         <md-icon>monetization_on</md-icon>
         <section class="full-width" class="flagInput">
           <p>2.13 - Gratuidade regimental?</p><br>
@@ -399,7 +395,8 @@
       CONTATO
     </template>
     <md-grid-list cols="4" rowHeight="100px">
-      <md-grid-tile [colspan]="3"><i class="material-icons">home</i>
+      <md-grid-tile [colspan]="3">
+        <md-icon>home</md-icon>
         <md-input-container class="full-width">
           <input formControlName="address" mdInput placeholder="3.1 - Endereço *" maxlength="100" #address>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address'].touched || triedSend" >
@@ -409,7 +406,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">filter_3</i>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>filter_3</md-icon>
         <md-input-container class="full-width">
           <input formControlName="address_number" mdInput placeholder="3.2 - Número *" maxlength="10" #address_number>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_number'].touched || triedSend" >
@@ -419,7 +417,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">compare_arrows</i>
+      <md-grid-tile [colspan]="1">
+        <md-icon>compare_arrows</md-icon>
         <md-input-container class="full-width">
           <input formControlName="address_complement" mdInput placeholder="3.3 - Complemento" maxlength="50" #address_complement>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_complement'].touched || triedSend" >
@@ -429,7 +428,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">location_on</i>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>location_on</md-icon>
         <md-input-container class="full-width">
           <input formControlName="address_district" mdInput placeholder="3.4 - Bairro *" maxlength="50" #address_district>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_district'].touched || triedSend" >
@@ -439,7 +439,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">local_post_office</i>
+      <md-grid-tile [colspan]="1" class="input-space">
+       <md-icon>local_post_office</md-icon>
         <md-input-container class="full-width">
           <input formControlName="address_zip_code" mdInput placeholder="3.5 - CEP" [textMask]="{mask: mask.zip}" #address_zip_code>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['address_zip_code'].touched || triedSend" >
@@ -465,7 +466,8 @@
         </md-autocomplete>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+      <md-grid-tile [colspan]="1">
+        <md-icon>phone</md-icon>
         <md-input-container class="full-width">
           <input formControlName="home_phone" mdInput placeholder="3.7 - Telefone residencial" [textMask]="{mask: mask.phone}" #home_phone >
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['home_phone'].touched || triedSend" >
@@ -475,7 +477,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">smartphone</i>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>smartphone</md-icon>
         <md-input-container class="full-width">
           <input formControlName="cell_phone" mdInput placeholder="3.8 - Celular" [textMask]="{mask: mask.cell_phone, guide: false}" #cell_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['cell_phone'].touched || triedSend" >
@@ -485,7 +488,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="1"><i class="material-icons">phone</i>
+      <md-grid-tile [colspan]="1" class="input-space">
+        <md-icon>phone</md-icon>
         <md-input-container class="full-width">
           <input formControlName="alternative_phone" mdInput placeholder="3.9 - Telefone recado" [textMask]="{mask: mask.cell_phone, guide: false}" #alternative_phone>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['alternative_phone'].touched || triedSend" >
@@ -495,7 +499,8 @@
         </md-input-container>
       </md-grid-tile>
 
-      <md-grid-tile [colspan]="3"><i class="material-icons">email</i>
+      <md-grid-tile [colspan]="3">
+        <md-icon>email</md-icon>
         <md-input-container class="full-width">
           <input formControlName="email" mdInput placeholder="3.10 - E-mail *" maxlength="100" #email>
           <md-hint class="warn" align="start" *ngIf="steps[2].controls['email'].touched || triedSend" >
@@ -574,9 +579,10 @@
     </template>
     <md-grid-list cols="2" formGroupName="0" rowHeight="100px">
         <md-grid-tile [colspan]="2">
+         <md-icon>thumbs_up_down</md-icon>
           <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-radio-group formControlName="alternative_id" class="example-section"><i class="material-icons">thumbs_up_down</i>5.1 - Qual é o <s></s>eu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+            <md-radio-group formControlName="alternative_id" class="example-section">5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
               <md-radio-button class="radio-before" value="24">0</md-radio-button>
               <md-radio-button class="radio-before" value="25">1</md-radio-button>
               <md-radio-button class="radio-before" value="26">2</md-radio-button>

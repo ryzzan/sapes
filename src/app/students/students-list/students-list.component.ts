@@ -1,6 +1,8 @@
 import { StudentsService } from '../shared/students.service';
 import { Component, OnInit, ViewChild, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdSnackBar, MdDialog } from '@angular/material';
+import { ProgressComponent } from '../../component/progress/progress.component';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -34,7 +36,9 @@ export class StudentsListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private studentsService: StudentsService
+    private studentsService: StudentsService,
+    private dialog: MdDialog,
+    private snackBar: MdSnackBar,
   ) {
     this.studentsService.info.subscribe(info => {
       this.infoApi = info;
@@ -138,20 +142,35 @@ export class StudentsListComponent implements OnInit {
 
   deleteStudents(){
     if (confirm("Você realmente quer excluir?")) {
-      let qtdDeleted = 0;
+      let qtdDeleted = 0,
+      qtdErrorDeleted = 0,
+      feedback = this.dialog.open(ProgressComponent, {
+        disableClose: true
+      });
+      feedback.componentInstance.message = "Excluindo concluinte";
+      feedback.componentInstance.progress = true;
       for(let i = this.selectedStudents.length-1; i>=0; i--){
         this.studentsService.deleteStudent(this.selectedStudents[i].id)
           .subscribe(
           ()=>{
             qtdDeleted++;
-            if(qtdDeleted==this.selectedStudents.length){
-              alert("finished");
+            if((qtdErrorDeleted + qtdDeleted)==this.selectedStudents.length){
+              feedback.close();
               this.getStudents.emit();
+              this.snackBar.open('Concluinte(s) excluido(s) com sucesso','',{
+                duration: 5000
+              });
             }
           },
           err => {
-            alert("Could not delete student.");
-          // Revert the view back to its original state
+            qtdErrorDeleted++;
+            if((qtdErrorDeleted + qtdDeleted)==this.selectedStudents.length){
+              feedback.close();
+              this.getStudents.emit();
+              this.snackBar.open(`Apenas ${{qtdDeleted}} de ${{qtdErrorDeleted}} concluintes selecionados, foram deletados.`,'',{
+                duration: 5000
+              });
+            }
           });
       }
     }

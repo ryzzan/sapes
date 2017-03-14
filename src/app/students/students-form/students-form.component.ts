@@ -146,9 +146,8 @@ export class StudentsFormComponent implements OnInit {
 
       if(code){
         return code;
-      } else {
-        return new RegExp(val, 'gi').test(occupation.description);
       }
+      return new RegExp(val, 'gi').test(occupation.description);
     });
   }
 
@@ -197,12 +196,15 @@ export class StudentsFormComponent implements OnInit {
     if(!this.steps[0].controls['cpf_number'].valid) return false;
     btnSearch.disabled = true;
 
-    let feedback = this.snackBar.openFromComponent(ProgressComponent);
-    feedback.instance.message = "Buscando concluinte";
-    feedback.instance.progress = true;
+    let feedback = this.dialog.open(ProgressComponent, {
+      disableClose: true
+    });
+    feedback.componentInstance.message = "Buscando concluinte";
+    feedback.componentInstance.progress = true;
 
     value = value.replace(/[/ _)(.-]/g, '');
     this.corporateService.getStudent(value).subscribe(data => {
+      feedback.close();
       data = data.filter(student => student.courses.length > 0);
 
       let student = data[0];
@@ -214,16 +216,21 @@ export class StudentsFormComponent implements OnInit {
       if(student.courses.length != 1) {
         return this.chooseCourse(student, btnSearch);
       }
-
-      return this.setValueFromIntegratedBase(student, btnSearch, student.courses[0]);
-    },
-    response => {
-      if(response.status == 404){
-        this.snackBar.open('Concluinte não encontrado','',{
-          duration: 5000
-        });
+      if(btnSearch){
         btnSearch.disabled = false;
       }
+      return this.setValueFromIntegratedBase(student, student.courses[0]);
+    },
+    response => {
+      feedback.close();
+      let msgError = 'Algo inesperado ocorreu, tente novamente ou entre em contato com o responsável pelo sistema.';
+      if(response.status == 404){
+        msgError = 'Concluinte não encontrado';
+      }
+      this.snackBar.open(msgError,'',{
+        duration: 5000
+      });
+      btnSearch.disabled = false;
     });
   }
 
@@ -237,19 +244,22 @@ export class StudentsFormComponent implements OnInit {
     }
     dialogRef.componentInstance.courses = data.courses;
     dialogRef.afterClosed().subscribe(courseSelected => {
-      if(typeof(courseSelected) != "undefined")
-        this.setValueFromIntegratedBase(data, btn, courseSelected);
-    });
-  }
-
-  setValueFromIntegratedBase(data, btn, course){
-      this.form.reset();
-      let student = Object.assign(data, course);
-      delete student.courses;
       if(btn){
         btn.disabled = false;
       }
-      console.log(student);
+      if(typeof(courseSelected) != "undefined"){
+        return this.setValueFromIntegratedBase(data, courseSelected);
+      }
+      return this.snackBar.open('Operação de busca cancelada pelo usuário','',{
+          duration: 5000
+      });
+    });
+  }
+
+  setValueFromIntegratedBase(data, course){
+      this.form.reset();
+      let student = Object.assign(data, course);
+      delete student.courses;
       this.student = student;
       this.setValues();
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{

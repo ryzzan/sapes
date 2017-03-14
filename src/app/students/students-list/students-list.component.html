@@ -46,7 +46,7 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'id'">
+      <th class="td-right" [class.td-sort]="sort.field == 'id'">
         <a (click)="changeSortAndOrder('id')">
           <span>COD</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_upward</md-icon>
@@ -74,7 +74,7 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course.description'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'class'">
+      <th class="td-right" [class.td-sort]="sort.field == 'class'">
         <a (click)="changeSortAndOrder('class')">
           <span>Turma</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
@@ -135,11 +135,11 @@
     <span>
       {{ infoApi?.from | showNumber}} - {{ infoApi?.to | showNumber}} de {{ infoApi?.total | showNumber}}
     </span>
-    <button *ngIf="(apiPage<this.infoApi?.total) && apiPage>1" md-icon-button class="previus-btn md-icon-button"
+    <button *ngIf="(apiPage<this.infoApi?.last_page) && apiPage>1" md-icon-button class="previus-btn md-icon-button"
             (click)="nextPreviousPage(-1)" mdTooltip="Anterior">
       <md-icon class="md-toolbar grey">keyboard_arrow_left</md-icon>
     </button>
-    <button *ngIf="apiPage<this.infoApi?.total" md-icon-button class="md-icon-button"
+    <button *ngIf="apiPage<this.infoApi?.last_page" md-icon-button class="md-icon-button"
             (click)="nextPreviousPage(1)" mdTooltip="Próximo">
       <md-icon class="md-toolbar grey">keyboard_arrow_right</md-icon>
     </button>

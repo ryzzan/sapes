@@ -135,11 +135,11 @@
     <span>
       {{ infoApi?.from | showNumber}} - {{ infoApi?.to | showNumber}} de {{ infoApi?.total | showNumber}}
     </span>
-    <button *ngIf="(apiPage<this.infoApi?.total) && apiPage>1" md-icon-button class="previus-btn md-icon-button"
+    <button *ngIf="(apiPage<this.infoApi?.last_page) && apiPage>1" md-icon-button class="previus-btn md-icon-button"
             (click)="nextPreviousPage(-1)" mdTooltip="Anterior">
       <md-icon class="md-toolbar grey">keyboard_arrow_left</md-icon>
     </button>
-    <button *ngIf="apiPage<this.infoApi?.total" md-icon-button class="md-icon-button"
+    <button *ngIf="apiPage<this.infoApi?.last_page" md-icon-button class="md-icon-button"
             (click)="nextPreviousPage(1)" mdTooltip="Próximo">
       <md-icon class="md-toolbar grey">keyboard_arrow_right</md-icon>
     </button>

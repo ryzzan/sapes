@@ -41,42 +41,42 @@
       </th>
       <th [class.td-sort]="sort.field == 'name'">
         <a (click)="changeSortAndOrder('name')">
-          Nome
+          <span>Nome</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'name'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_downward</md-icon>
         </a>
       </th>
       <th [class.td-sort]="sort.field == 'id'">
         <a (click)="changeSortAndOrder('id')">
-          COD
+          <span>COD</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'id'">arrow_downward</md-icon>
         </a>
       </th>
       <th [class.td-sort]="sort.field == 'unit.description'">
         <a (click)="changeSortAndOrder('unit.description')">
-          Unidade
+          <span>Unidade</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'unit.description'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'unit.description'">arrow_downward</md-icon>
         </a>
       </th>
       <th [class.td-sort]="sort.field == 'modality.description'">
         <a (click)="changeSortAndOrder('modality.description')">
-          Modalidade
+          <span>Modalidade</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'modality.description'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'modality.description'">arrow_downward</md-icon>
         </a>
       </th>
       <th [class.td-sort]="sort.field == 'course.description'">
         <a (click)="changeSortAndOrder('course.description')">
-          Curso
+          <span>Curso</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'course.description'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course.description'">arrow_downward</md-icon>
         </a>
       </th>
       <th [class.td-sort]="sort.field == 'class'">
         <a (click)="changeSortAndOrder('class')">
-          Turma
+          <span>Turma</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
         </a>

@@ -307,7 +307,7 @@
         </md-input-container>
         <md-autocomplete #autoOccupation="mdAutocomplete">
           <md-option *ngFor="let occupation of filteredOccupations | async" value="{{occupation.description}}">
-            {{occupation.description}}
+            {{occupation.code}} - {{occupation.description}}
           </md-option>
         </md-autocomplete>
       </md-grid-tile>
@@ -606,12 +606,12 @@
             [disabled]="!canSave" [class.button-disabled]="!form.valid">
             SALVAR <md-icon>send</md-icon>
     </button>
-    <button md-raised-button color="warn" routerLink="../" type="button">CANCELAR <md-icon>close</md-icon>
+    <button md-raised-button color="warn" routerLink="../" type="button">CANCELAR2 <md-icon>close</md-icon>
     </button>
     <button md-raised-button type="reset">LIMPAR <md-icon>restore</md-icon>
     </button>
     <span class="toolbar-spacer"></span>
-    <button md-raised-button (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" color="accent" routerLink="."><md-icon>navigate_before</md-icon></button>
-    <button md-raised-button (click)="changedTabIndex({index: this.formPagination.index+1})" type="button"*ngIf="formPagination.index!=formPagination.maxIndex" color="accent" routerLink="."><md-icon>navigate_next</md-icon></button>
+    <button md-icon-button class="previus-btn md-icon-button" (click)="changedTabIndex({index: this.formPagination.index-1})" type="button" *ngIf="formPagination.index!=0" routerLink="."><md-icon class="md-toolbar grey">keyboard_arrow_left</md-icon></button>
+    <button md-icon-button class="md-icon-button" (click)="changedTabIndex({index: this.formPagination.index+1})" type="button"*ngIf="formPagination.index!=formPagination.maxIndex" routerLink="."><md-icon class="md-toolbar grey">keyboard_arrow_right</md-icon></button>
 </md-toolbar>
 </form>

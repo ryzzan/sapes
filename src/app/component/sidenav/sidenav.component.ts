@@ -8,10 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SidenavComponent implements OnInit {
   @Input() logout:any;
   constructor() { }
-
+  private menu;
   ngOnInit() {
-    console.log(this.logout);
-
+    this.menu = [
+      {
+        icon: 'filter_1',
+        text: 'Avaliação do Concluinte',
+        link: 'students'
+      }, {
+        icon: 'filter_2',
+        text: 'Avaliação do Egresso',
+        link: 'egressos'
+      }, {
+        icon: 'filter_3',
+        text: 'Avaliação da Empresa',
+        link: 'teste'
+      },
+    ]
   }
 
 }

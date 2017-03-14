@@ -146,9 +146,8 @@ export class StudentsFormComponent implements OnInit {
 
       if(code){
         return code;
-      } else {
-        return new RegExp(val, 'gi').test(occupation.description);
       }
+      return new RegExp(val, 'gi').test(occupation.description);
     });
   }
 

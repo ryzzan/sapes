@@ -15,6 +15,9 @@ md-progress-circle{
 }
 small{
   padding-left: 10px;
-  color: white;
+  color:#8c8c8c;
   font-weight: bolder;
+}
+button{
+  margin: 0 auto;
 }

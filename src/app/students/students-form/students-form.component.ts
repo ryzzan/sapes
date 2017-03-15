@@ -113,7 +113,10 @@ export class StudentsFormComponent implements OnInit {
         });
     });
   }
-
+  displayFn(user): string {
+    console.log(user);
+    return user ? user.description : user;
+  }
   filterCities(val: string) {
     if(!val) return [];
     if(val.length<2) return [];
@@ -121,6 +124,10 @@ export class StudentsFormComponent implements OnInit {
   }
   teste(e){
     console.log(e);
+
+    setTimeout(()=>{
+      console.log(this.steps[2].controls['city_id']);
+    },1000);
   }
   filterUnits(val: string) {
     if(!val) return [];

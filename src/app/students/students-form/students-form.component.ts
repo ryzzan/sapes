@@ -39,7 +39,7 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 0
+    index: 1
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -71,7 +71,7 @@ export class StudentsFormComponent implements OnInit {
     });
     this.filteredCities = this.steps[2].controls['city_id'].valueChanges
       .startWith(null)
-      .map(city => this.filterCities(city));
+      .map(city => this.filterGeneric(city, 'cities'));
 
     this.filteredUnits = this.steps[1].controls['unit_id'].valueChanges
       .startWith(null)
@@ -79,11 +79,11 @@ export class StudentsFormComponent implements OnInit {
 
     this.filteredCourses = this.steps[1].controls['course_id'].valueChanges
       .startWith(null)
-      .map(course => this.filterCourses(course));
+      .map(course => this.filterGeneric(course, 'courses'));
 
     this.filteredOccupations = this.steps[1].controls['occupation_id'].valueChanges
       .startWith(null)
-      .map(occupation => this.filterOccupations(occupation));
+      .map(occupation => this.filterGeneric(occupation, 'occupations'));
   }
 
   ngOnInit() {
@@ -113,42 +113,42 @@ export class StudentsFormComponent implements OnInit {
         });
     });
   }
-
-  filterCities(val: string) {
+  filterGeneric(val, bdInfoIndex){
     if(!val) return [];
-    if(val.length<2) return [];
-    return this.bdInfo.cities.filter((city) => new RegExp(val, 'gi').test(city.description));
+    if(typeof val != "string"){
+      val = val.description;
+    }
+    let selecteds = this.bdInfo[bdInfoIndex].filter((selected) => {
+      let forSearch = '';
+      if(bdInfoIndex == "occupations"){
+        forSearch += selected.code + " "
+      }
+      forSearch += selected.description;
+      return new RegExp(val, 'gi').test(forSearch);
+    });
+    return selecteds.length>100 && val.length<3 ? [] : selecteds;
   }
+
   teste(e){
     console.log(e);
   }
-  filterUnits(val: string) {
-    if(!val) return [];
-    if(val.length<2) return [];
-    return this.bdInfo.units.filter((unit) => {
-      return new RegExp(val, 'gi').test(unit.description) && unit.regional == this.steps[1].controls['regional'].value;
-    });
-  }
 
-  filterCourses(val: string) {
+  filterUnits(val:any) {
     if(!val) return [];
-    if(val.length<2) return [];
-    return this.bdInfo.courses.filter((course) => {
-      return new RegExp(val, 'gi').test(course.description);
-    });
-  }
+    if(typeof val != "string"){
+      val = val.description;
+    }
 
-  filterOccupations(val: string) {
-    if(!val) return [];
-    if(val.length<2) return [];
-    return this.bdInfo.occupations.filter((occupation) => {
-      let code = new RegExp(val, 'gi').test(occupation.code);
 
-      if(code){
-        return code;
+    let selecteds = this.bdInfo.units.filter((unit) => {
+      if(this.steps[1].controls['regional'].value){
+        return unit.regional == this.steps[1].controls['regional'].value &&
+        new RegExp(val, 'gi').test(unit.description);
       }
-      return new RegExp(val, 'gi').test(occupation.description);
+      new RegExp(val, 'gi').test(unit.description);
     });
+    return selecteds.length>100 && val.length<3 ? [] : selecteds;
+
   }
 
   changePronatecModalities(checked) {
@@ -190,7 +190,9 @@ export class StudentsFormComponent implements OnInit {
     obj[formName] = null;
     form.patchValue(obj);
   }
-
+  displayAutocomplete(value){
+    return value ? value.description:value;
+  }
   getStudentIntegratedBase(value, btnSearch){
 
     if(!this.steps[0].controls['cpf_number'].valid) return false;
@@ -327,6 +329,8 @@ export class StudentsFormComponent implements OnInit {
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
+    console.log(userValue);
+
     if (this.student.id){
       userValue.id = this.student.id;
       result = this.studentsService.updateStudent(userValue);

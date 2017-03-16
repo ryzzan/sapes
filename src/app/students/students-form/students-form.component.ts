@@ -129,10 +129,6 @@ export class StudentsFormComponent implements OnInit {
     return selecteds.length>100 && val.length<3 ? [] : selecteds;
   }
 
-  teste(e){
-    console.log(e);
-  }
-
   filterUnits(val:any) {
     if(!val) return [];
     if(typeof val != "string"){

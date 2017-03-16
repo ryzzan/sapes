@@ -20,7 +20,8 @@ export class StudentsService{
     this.info = this.apiService.info;
   }
   private headers = new Headers({
-    'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+    'Content-Type': 'application/json', 
+    'Access-Control-Allow-Origin': '*'
   }); // ... Set content type to JSON
   // private options = new RequestOptions({ headers: this.headers,});
   private options = new RequestOptions({ headers: this.headers});

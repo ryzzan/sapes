@@ -11,13 +11,13 @@ import { DatapickerComponent } from '../datapicker/datapicker.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { StudentsService } from './shared/students.service';
 import { StudentsListComponent } from './students-list/students-list.component';
-import { InputErrorComponent } from '../component/input-error/input-error-component'
 import { ProgressComponent } from '../component/progress/progress.component';
 import { SelectCourseComponent } from './select-course/select-course.component';
 import { MoneyMaskPipe } from './../pipes/money-mask.pipe'
 import { GetNumberPipe } from './../pipes/get-number.pipe';
 import { ArrayGeneratorPipe } from './../pipes/array-generator.pipe';
 import { ShowNumberPipe } from './../pipes/show-number.pipe';
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -28,6 +28,7 @@ import { ShowNumberPipe } from './../pipes/show-number.pipe';
     MaterialModule,
     TextMaskModule,
     HttpModule,
+    SharedModule
   ],
   exports: [
     MaterialModule
@@ -41,7 +42,6 @@ import { ShowNumberPipe } from './../pipes/show-number.pipe';
     DatapickerComponent,
     StudentsComponent,
     StudentsListComponent,
-    InputErrorComponent,
     ProgressComponent,
     SelectCourseComponent,
     StudentsFormComponent,

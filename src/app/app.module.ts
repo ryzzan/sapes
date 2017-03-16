@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
 import { ApiService } from './shared/api.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { ApiService } from './shared/api.service';
     HttpModule,
     MaterialModule,
     StudentsModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     ApiService,

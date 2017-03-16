@@ -1,4 +1,3 @@
-
 <div class="loginContent">
   <md-card class="boxLogin">
       <md-toolbar class="md-toolbar">
@@ -7,19 +6,28 @@
         <span class="toolbar-spacer"></span>
         <button md-icon-button mdTooltip="Ajuda"><md-icon class="md-toolbar">help</md-icon></button>
       </md-toolbar>
-      <form class="boxForm" (ngSubmit)="save(login.value, password.value)">
+      <form class="boxForm" (ngSubmit)="save()" [formGroup]="loginForm">
         <md-icon>perm_identity</md-icon>
         <md-input-container>
-          <input #login mdInput placeholder="Informe seu login" value="">
+          <input #login mdInput placeholder="Informe seu login" formControlName="login">
+          <md-hint class="warn" align="start" *ngIf="loginForm.controls['login'].touched || triedSend" >
+              <input-error [errors]="loginForm.controls['login'].errors" title="login"></input-error>
+          </md-hint>
         </md-input-container>
         <br>
         <md-icon>lock_outline</md-icon>
         <md-input-container>
-          <input #password type="password" mdInput placeholder="Informe sua senha" value="">
+          <input #password type="password" mdInput placeholder="Informe sua senha" formControlName="password">
+          <md-hint class="warn" align="start" *ngIf="loginForm.controls['password'].touched || triedSend" >
+              <input-error [errors]="loginForm.controls['password'].errors" title="password"></input-error>
+          </md-hint>
         </md-input-container>
         <br>
         <button md-raised-button class="md-button buttonPasswd" routerLink="../" type="button">Esqueci minha senha <md-icon>help_outline</md-icon></button>
-        <button md-raised-button class="md-button buttonLogin" type="submit">Entrar <md-icon>send</md-icon></button>
+        <button md-raised-button class="md-button buttonLogin" type="submit"
+        [class.button-disabled]="!loginForm.valid">
+          Entrar <md-icon>send</md-icon>
+        </button>
       </form>
   </md-card>
 </div>

@@ -5,10 +5,10 @@
     <md-icon>more_vert</md-icon>
   </button>
   <md-menu #listMenu="mdMenu">
-    <button md-menu-item>
+    <a href="assets/download/formulario.docx" download md-menu-item>
       <md-icon>file_download</md-icon>
       <span>Baixar Formulário</span>
-    </button>
+    </a>
     <button md-menu-item>
       <md-icon>help_outline</md-icon>
       <span>Ajuda</span>
@@ -226,8 +226,8 @@
               <input-error [errors]="steps[1].controls['course_id'].errors" title="2.5"></input-error>
           </md-hint>
         </md-input-container>
-        <md-autocomplete #autoCourse="mdAutocomplete" >
-          <md-option *ngFor="let course of filteredCourses | async" value="{{course.description}}"  >
+        <md-autocomplete #autoCourse="mdAutocomplete" [displayWith]="displayAutocomplete">
+          <md-option *ngFor="let course of filteredCourses | async" [value]="course"  >
             {{course.description}}
           </md-option>
         </md-autocomplete>
@@ -256,8 +256,8 @@
               <input-error [errors]="steps[1].controls['unit_id'].errors" title="2.7"></input-error>
           </md-hint>
         </md-input-container>
-        <md-autocomplete #autoUnit="mdAutocomplete">
-          <md-option *ngFor="let unit of filteredUnits | async" value="{{unit.description}}">
+        <md-autocomplete #autoUnit="mdAutocomplete" [displayWith]="displayAutocomplete">
+          <md-option *ngFor="let unit of filteredUnits | async" [value]="unit">
             {{unit.description}}
           </md-option>
         </md-autocomplete>
@@ -301,8 +301,8 @@
               <input-error [errors]="steps[1].controls['occupation_id'].errors" title="2.9"></input-error>
           </md-hint>
         </md-input-container>
-        <md-autocomplete #autoOccupation="mdAutocomplete">
-          <md-option *ngFor="let occupation of filteredOccupations | async" value="{{occupation.description}}">
+        <md-autocomplete #autoOccupation="mdAutocomplete" [displayWith]="displayAutocomplete">
+          <md-option *ngFor="let occupation of filteredOccupations | async" [value]="occupation">
             {{occupation.code}} - {{occupation.description}}
           </md-option>
         </md-autocomplete>
@@ -459,7 +459,7 @@
               <input-error [errors]="steps[2].controls['city_id'].errors" title="3.6"></input-error>
           </md-hint>
         </md-input-container>
-        <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
+        <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayAutocomplete">
           <md-option *ngFor="let city of filteredCities | async" [value]="city">
             {{city.state}} - {{city.description}}
           </md-option>
@@ -582,7 +582,7 @@
          <md-icon>thumbs_up_down</md-icon>
           <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
-            <md-radio-group formControlName="alternative_id" class="example-section">5.1 - Qual é o seu nível de satisfação como aluno/ex-aluno do SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
+            <md-radio-group formControlName="alternative_id" class="example-section">5.1 - Qual é o seu nível de satisfação com o SENAI? Dê uma nota de 0 a 10 onde (0: muito insatisfeito; 10: muito satisfeito)<br>
               <md-radio-button class="radio-before" value="24">0</md-radio-button>
               <md-radio-button class="radio-before" value="25">1</md-radio-button>
               <md-radio-button class="radio-before" value="26">2</md-radio-button>

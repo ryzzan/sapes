@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
+import { AuthGuard } from './shared/auth/auth.guard';
 import { ApiService } from './shared/api.service';
 import { SharedModule } from './shared/shared.module';
 
@@ -39,7 +40,8 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     ApiService,
     AuthService,
-    CorporateService
+    CorporateService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

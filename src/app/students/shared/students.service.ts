@@ -35,10 +35,10 @@ export class StudentsService{
       .map(res => this.transformToForm(res.json()));
   }
   transformToApi(data){
-    data.city_id = this.getCityId(data.city_id);
-    data.unit_id = this.getUnitId(data.unit_id);
-    data.course_id = this.getCourseId(data.course_id);
-    data.occupation_id = this.getOccupationId(data.occupation_id);
+    data.city_id = data.city_id.id;
+    data.unit_id = data.unit_id.id;
+    data.course_id = data.course_id.id;
+    data.occupation_id = data.occupation_id.id;
     if(data.agreement == null){
       data.agreement = false;
     }
@@ -64,28 +64,13 @@ export class StudentsService{
     return data;
   }
   transformToForm(data){
-    data.city_id = `${data.city.state} - ${data.city.description}`;
-    data.unit_id = data.unit.description;
-    data.course_id = data.course.description;
-    data.occupation_id = data.occupation.description;
+    data.city_id = data.city;
+    data.unit_id = data.unit;
+    data.course_id = data.course;
+    data.occupation_id = data.occupation;
     return data;
   }
 
-  getCityId(city_name){
-    if(!city_name) return null;
-    city_name = city_name.toLowerCase();
-    city_name = city_name.split(' - ');
-    let city = bdInfo.cities.filter(city => {
-      let valueForSearch = (city.state + " - " + city.description).toLowerCase().split(' - ')
-      if(city_name.length == 1){
-        return city_name[0] == valueForSearch[1];
-      };
-      return city_name[0] == valueForSearch[0] && city_name[1] == valueForSearch[1];
-    });
-    if(city.length == 1){
-      return city[0].id;
-    }
-  }
   getUnitId(unit_name){
     if(!unit_name) return null;
     unit_name = unit_name.toLowerCase();

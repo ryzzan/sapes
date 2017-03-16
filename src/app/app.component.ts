@@ -19,12 +19,8 @@ export class AppComponent {
   ){
     this.corporateService.getToken();
     this.user = this.authService.getUser();
-
     this.router.events.subscribe(params => {
       this.user = this.authService.getUser();
-      if(this.user == null && params['url']!="/login"){
-        this.router.navigate(['login']);
-      }
     })
   }
   logout(){

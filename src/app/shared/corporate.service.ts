@@ -62,7 +62,7 @@ export class CorporateService {
     }
     return bdInfo.cities.filter(city =>
       city.description == nameCity && city.state == uf
-    ).map(city => city.id)[0];
+    )[0];
   }
 
   private captureCourse(name){
@@ -71,7 +71,7 @@ export class CorporateService {
         course.description.toLowerCase() == name.toLowerCase()
       }
     )
-    return course.length == 0 ? null : course[0]['id'];
+    return course.length == 0 ? null : course[0];
   }
   private captureModality(code){
     code = bdInfo.modalities.filter(
@@ -113,7 +113,7 @@ export class CorporateService {
         course_name: curso.ds_curso,
         unit_id: curso.cd_unidade == null ? null : bdInfo.units.filter(
           unit => unit.code == curso.cd_unidade
-        )[0]['id'],
+        )[0],
         origin_id: curso.cd_escola_orig_aluno_no_curso == null ? null : bdInfo.origins.filter(
           origin => origin.code == curso.cd_escola_orig_aluno_no_curso
         )[0]['id'],
@@ -122,7 +122,7 @@ export class CorporateService {
         regimental_gratuity: curso['gratuidade_regimental']!="N"? 1: 0,
         occupation_id: curso.cd_ocupacao == null ? null : bdInfo.occupations.filter(
           occupation => occupation.code == curso.cd_ocupacao
-        )[0]['id'],
+        )[0],
         area_id: curso.cd_area_atuacao == null ? null : bdInfo.areas.filter(
           area => area.code == curso.cd_area_atuacao
         )[0]['id'],

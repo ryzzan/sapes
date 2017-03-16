@@ -97,15 +97,12 @@ export class BasicValidators {
 
  static city (control: FormControl){
     if(!control.value) return null;
-    let value = (control.value + "").toLowerCase();
-    let valueSplit = value.split(' - ');
-    let city = bdInfo.cities.filter(city => {
-      let valueForSearch = (city.state + " - " + city.description).toLowerCase().split(' - ')
-      if(valueSplit.length == 1){
-        return valueSplit[0] == valueForSearch[1];
-      };
-      return valueSplit[0] == valueForSearch[0] && valueSplit[1] == valueForSearch[1];
-    });
+    let city = [];
+    if(typeof(control.value.id) != "undefined"){
+      city = bdInfo.cities.filter(city =>
+        city.id == control.value.id
+      );
+    }
     return city.length == 1 ? null : {
       validateCity: {
         valid: false
@@ -115,10 +112,12 @@ export class BasicValidators {
 
  static unit (control: FormControl){
     if(!control.value) return null;
-    let value = (control.value + "").toLowerCase();
-    let unit = bdInfo.units.filter(unit =>
-      unit.description.toLowerCase() == value
-    );
+    let unit = [];
+    if(typeof(control.value.id) != "undefined"){
+      unit = bdInfo.units.filter(unit =>
+        unit.id == control.value.id
+      );
+    }
     return unit.length == 1 ? null : {
       validateUnit: {
         valid: false
@@ -128,10 +127,12 @@ export class BasicValidators {
 
  static course (control: FormControl){
     if(!control.value) return null;
-    let value = (control.value + "").toLowerCase();
-    let course = bdInfo.courses.filter(course =>
-      course.description.toLowerCase() == value
-    );
+    let course = [];
+    if(typeof(control.value.id) != "undefined"){
+      course = bdInfo.courses.filter(course =>
+        course.id == control.value.id
+      );
+    }
     return course.length == 1 ? null : {
       validateCourse: {
         valid: false
@@ -141,10 +142,12 @@ export class BasicValidators {
 
  static occupation (control: FormControl){
     if(!control.value) return null;
-    let value = (control.value + "").toLowerCase();
-    let occupation = bdInfo.occupations.filter(occupation =>
-      occupation.description.toLowerCase() == value
-    );
+    let occupation = [];
+    if(typeof(control.value.id) != "undefined"){
+      occupation = bdInfo.occupations.filter(occupation =>
+        occupation.id == control.value.id
+      );
+    }
     return occupation.length == 1 ? null : {
       validateOccupation: {
         valid: false

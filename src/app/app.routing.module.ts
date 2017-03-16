@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core'
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
+import { AuthGuard } from './shared/auth/auth.guard';
 import { HomeComponent} from './home/home.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent} from './login/login.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'not-found', component: NotFoundComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'not-found' }
+  { path: '', component: HomeComponent,canActivate: [AuthGuard]},
+  { path: 'not-found', component: NotFoundComponent,canActivate: [AuthGuard]},
+  { path: 'login', component: LoginComponent},
+  { path: '**', redirectTo: 'not-found'}
 
 ];
 

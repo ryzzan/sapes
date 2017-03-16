@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
+
+import { AuthGuard } from './../shared/auth/auth.guard';
 import { StudentsComponent } from './students.component';
 import { StudentsFormComponent } from './students-form/students-form.component';
 import { StudentsListComponent } from './students-list/students-list.component';
@@ -12,7 +14,7 @@ const studentsRoutes: Routes = [{
     { path: '', component: StudentsListComponent,  pathMatch: 'full'},
     { path: 'add', component: StudentsFormComponent },
     { path: ':id', component: StudentsFormComponent }
-  ]
+  ], canActivate: [AuthGuard]
 }];
 
 @NgModule({

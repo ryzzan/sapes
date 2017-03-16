@@ -24,7 +24,7 @@
         </md-input-container>
         <br>
         <button md-raised-button class="md-button buttonPasswd" routerLink="../" type="button">Esqueci minha senha <md-icon>help_outline</md-icon></button>
-        <button md-raised-button class="md-button buttonLogin" type="submit"
+        <button md-raised-button class="md-button buttonLogin" [disabled]="isLoading" type="submit"
         [class.button-disabled]="!loginForm.valid">
           Entrar <md-icon>send</md-icon>
         </button>

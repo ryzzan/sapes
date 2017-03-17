@@ -52,7 +52,7 @@ export class ApiService{
     let options = this.createOptions();
     let url = this.url+"?";
     if(params.querySearch != null){
-      url += "like=name,"+params.querySearch+"&";
+      url += "search="+params.querySearch+"&";
     }
     if(params.page != "") {
       url += "page="+params['page']+"&";

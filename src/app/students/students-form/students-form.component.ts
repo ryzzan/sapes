@@ -118,12 +118,15 @@ export class StudentsFormComponent implements OnInit {
     if(typeof val != "string"){
       val = val.description;
     }
+
+    val = this.replaceSpecialChars(val);
     let selecteds = this.bdInfo[bdInfoIndex].filter((selected) => {
       let forSearch = '';
       if(bdInfoIndex == "occupations"){
         forSearch += selected.code + " "
       }
       forSearch += selected.description;
+      forSearch = this.replaceSpecialChars(forSearch);
       return new RegExp(val, 'gi').test(forSearch);
     });
     return selecteds.length>100 && val.length<3 ? [] : selecteds;
@@ -134,19 +137,29 @@ export class StudentsFormComponent implements OnInit {
     if(typeof val != "string"){
       val = val.description;
     }
-
-
+    val = this.replaceSpecialChars(val);
     let selecteds = this.bdInfo.units.filter((unit) => {
       if(this.steps[1].controls['regional'].value){
         return unit.regional == this.steps[1].controls['regional'].value &&
-        new RegExp(val, 'gi').test(unit.description);
+        new RegExp(val, 'gi').test(this.replaceSpecialChars(unit.description));
       }
-      new RegExp(val, 'gi').test(unit.description);
+      new RegExp(val, 'gi').test(this.replaceSpecialChars(unit.description));
     });
     return selecteds.length>100 && val.length<3 ? [] : selecteds;
 
   }
+  replaceSpecialChars(str)
+  {
+      str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
+      str = str.replace(/[àáâãäå]/,"a");
+      str = str.replace(/[ÈÉÊË]/,"E");
+      str = str.replace(/[Ç]/,"C");
+      str = str.replace(/[ç]/,"c");
 
+      // o resto
+
+      return str.replace(/[^a-z0-9]/gi,'');
+  }
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;
     this.modalities = bdInfo.modalities.filter(modality => {

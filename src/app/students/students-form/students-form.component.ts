@@ -120,6 +120,7 @@ export class StudentsFormComponent implements OnInit {
     }
 
     val = this.replaceSpecialChars(val);
+    console.log(val);
     let selecteds = this.bdInfo[bdInfoIndex].filter((selected) => {
       let forSearch = '';
       if(bdInfoIndex == "occupations"){
@@ -150,15 +151,15 @@ export class StudentsFormComponent implements OnInit {
   }
   replaceSpecialChars(str)
   {
-      str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
-      str = str.replace(/[àáâãäå]/,"a");
-      str = str.replace(/[ÈÉÊË]/,"E");
-      str = str.replace(/[Ç]/,"C");
-      str = str.replace(/[ç]/,"c");
+      str = str.replace(/[ÀÁÂÃÄÅ]/gi,"A");
+      str = str.replace(/[òóõô]/gi,"O");
+      str = str.replace(/[ìí]/gi,"i");
+      str = str.replace(/[ÈÉÊË]/gi,"E");
+      str = str.replace(/[Ç]/gi,"C");
 
       // o resto
 
-      return str.replace(/[^a-z0-9]/gi,'');
+      return str.replace(/[^ a-z0-9]/gi,'');
   }
   changePronatecModalities(checked) {
     let value = this.steps[1].controls['modality_id'].value;

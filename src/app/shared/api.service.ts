@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http,XHRBackend, RequestOptions, Response } from '@angular/http'
+import { Http,XHRBackend, RequestOptions, Headers, Response } from '@angular/http'
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -16,8 +16,21 @@ export class ApiService{
   init(service){
     this.url += service;
   }
+  createOptions(){
+    let header = new Headers({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }),
+    token = sessionStorage.getItem('access_token');
+    if(token){
+      header.append('Authorization', "Bearer " + token);
+    }
+    let options = new RequestOptions({ headers: header});
+    return options;
+  }
 
   getList(params):  Observable<any> {
+    let options = this.createOptions();
     let url = this.url+"?";
     if(params.querySearch != null){
       url += "like=name,"+params.querySearch+"&";
@@ -35,7 +48,7 @@ export class ApiService{
 
     url = url.substring(0, url.length-1);
     console.log(url);
-    return this.http.get(url)
+    return this.http.get(url,options)
                     .distinctUntilChanged()   // ignore if next search term is same as previous
                     .map(data => this.extractData(data))
                     .catch(this.handleError);

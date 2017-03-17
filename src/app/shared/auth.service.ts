@@ -15,14 +15,14 @@ export class AuthService {
 
   constructor(
     private http: Http
-  ) { 
+  ) {
     this.headers = new Headers({
-      'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
     this.options = new RequestOptions({
       'headers': this.headers
-    })
+    });
   }
 
   getUser(){
@@ -39,30 +39,30 @@ export class AuthService {
   login(data: any){
     return this.http
     .post(
-      this.url, 
+      this.url,
       {
-        'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J', 
-        'client_id': 2, 
+        'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
+        'client_id': 2,
         'grant_type': 'password',
         'username': data.login,
         'password': data.password
       },
       this.options
-    ).map(res => 
+    ).map(res =>
       this.setToken(res.json())
     )
-    // .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if                  
+    // .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if
   }
   setToken(data){
     sessionStorage.setItem('user_token', JSON.stringify(data));
     sessionStorage.setItem('access_token', data.access_token);
-    
+
     let string = 'Bearer '+sessionStorage.getItem('access_token');
-    
+
     return this.http
     .get(
       'https://sapesapi.nitrofull.com.br/api/user?Authorization='+string
-    ).map(res => 
+    ).map(res =>
       console.log(res.json())
     );
   }

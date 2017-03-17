@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ export class AuthService {
   
   headersToUser: Headers;
   optionsToUser: RequestOptions;
+  user: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private http: Http
@@ -27,12 +28,6 @@ export class AuthService {
     this.optionsToAuth = new RequestOptions({
       'headers': this.headersToAuth
     })
-  }
-
-  getUser(){
-    let token = sessionStorage.getItem('user_token');
-    if(!token) return null;
-    return token;
   }
 
   getToken(){
@@ -66,7 +61,16 @@ export class AuthService {
     let string = 'Bearer '+sessionStorage.getItem('access_token');
     return this.getUserData(string);
   }
-
+  getUser(){
+    let user = sessionStorage.getItem('user');
+    if(!user) return false;
+    user = JSON.parse(user);
+    user = user ? user : null;
+    if(user){
+      console.log(user);
+      this.user.emit(user);
+    } 
+  }
   getUserData(string) {
     this.headersToUser = new Headers({
       'Content-Type': 'application/json', 
@@ -89,7 +93,8 @@ export class AuthService {
 
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
-
+    console.log("Entrou");
+    this.user.emit(data);
     return true;
   }
 

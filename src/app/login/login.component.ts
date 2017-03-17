@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
+  
   save(): any{
     if(!this.loginForm.valid) 
       return this.triedSend = true;

@@ -30,6 +30,11 @@ export class AuthService {
     if(!token) return null;
     return token;
   }
+  getToken(){
+    let token = sessionStorage.getItem('user_token');
+    if(!token) return null;
+    return token;
+  }
 
   login(data: any){
     return this.http
@@ -44,13 +49,22 @@ export class AuthService {
       },
       this.options
     ).map(res => 
-      this.setUser(res.json())
+      this.setToken(res.json())
     )
-    .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if                  
+    // .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if                  
   }
-  setUser(data){
-    sessionStorage.setItem('user_token', JSON.stringify({DR: "DN",user: "SAPES ADM"}));
-    return true;
+  setToken(data){
+    sessionStorage.setItem('user_token', JSON.stringify(data));
+    sessionStorage.setItem('access_token', data.access_token);
+    
+    let string = 'Bearer '+sessionStorage.getItem('access_token');
+    
+    return this.http
+    .get(
+      'https://sapesapi.nitrofull.com.br/api/user?Authorization='+string
+    ).map(res => 
+      console.log(res.json())
+    );
   }
 
   logout(){

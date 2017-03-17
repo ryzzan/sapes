@@ -23,7 +23,4 @@ export class AppComponent {
       this.user = this.authService.getUser();
     })
   }
-  logout(){
-    this.authService.logout();
-  }
 }

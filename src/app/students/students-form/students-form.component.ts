@@ -358,7 +358,7 @@ export class StudentsFormComponent implements OnInit {
       this.snackBar.open('Salvo com sucesso!', '', {
           duration: 4000,
       });
-      // this.router.navigate(['students']);
+      this.router.navigate(['students']);
     });
   }
 

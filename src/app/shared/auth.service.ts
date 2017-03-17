@@ -10,19 +10,23 @@ import 'rxjs/add/operator/distinctUntilChanged';
 @Injectable()
 export class AuthService {
   url = "https://sapesapi.nitrofull.com.br/oauth/token";
-  headers: Headers;
-  options: RequestOptions;
+  headersToAuth: Headers;
+  optionsToAuth: RequestOptions;
+  
+  headersToUser: Headers;
+  optionsToUser: RequestOptions;
 
   constructor(
     private http: Http
-  ) {
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
+  ) { 
+    this.headersToAuth = new Headers({
+      'Content-Type': 'application/json', 
       'Access-Control-Allow-Origin': '*'
     });
-    this.options = new RequestOptions({
-      'headers': this.headers
-    });
+
+    this.optionsToAuth = new RequestOptions({
+      'headers': this.headersToAuth
+    })
   }
 
   getUser(){
@@ -30,6 +34,7 @@ export class AuthService {
     if(!token) return null;
     return token;
   }
+
   getToken(){
     let token = sessionStorage.getItem('user_token');
     if(!token) return null;
@@ -47,24 +52,45 @@ export class AuthService {
         'username': data.login,
         'password': data.password
       },
-      this.options
-    ).map(res =>
+      this.optionsToAuth
+    ).map(res => 
       this.setToken(res.json())
     )
     // .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if
   }
+
   setToken(data){
     sessionStorage.setItem('user_token', JSON.stringify(data));
     sessionStorage.setItem('access_token', data.access_token);
 
     let string = 'Bearer '+sessionStorage.getItem('access_token');
+    return this.getUserData(string);
+  }
+
+  getUserData(string) {
+    this.headersToUser = new Headers({
+      'Content-Type': 'application/json', 
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': string
+    })
+    
+    this.optionsToUser = new RequestOptions({
+      'headers': this.headersToUser
+    })
 
     return this.http
     .get(
-      'https://sapesapi.nitrofull.com.br/api/user?Authorization='+string
-    ).map(res =>
-      console.log(res.json())
-    );
+      'https://sapesapi.nitrofull.com.br/api/user',
+      this.optionsToUser
+    ).map(res => 
+      this.setUserData(res.json())
+    )
+  }
+
+  setUserData(data) {
+    sessionStorage.setItem('user', JSON.stringify(data))
+
+    return true;
   }
 
   logout(){

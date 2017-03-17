@@ -8,8 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
   private menu;
-  constructor(private router: Router) { }
+  user = sessionStorage.getItem('user');
+
+  constructor(private router: Router) {
+    this.user = JSON.parse(this.user);
+  }
+
   ngOnInit() {
+    console.log(this.user);
     this.menu = [
       {
         icon: 'filter_1',

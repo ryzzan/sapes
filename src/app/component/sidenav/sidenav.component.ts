@@ -15,7 +15,6 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.user);
     this.menu = [
       {
         icon: 'filter_1',

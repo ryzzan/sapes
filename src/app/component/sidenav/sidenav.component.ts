@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
+  @Input()
+  user;
+  
   private menu;
-  user = sessionStorage.getItem('user');
-
   constructor(private router: Router) {
-    this.user = JSON.parse(this.user);
   }
 
   ngOnInit() {
@@ -34,6 +34,6 @@ export class SidenavComponent implements OnInit {
 
   logout() {
     sessionStorage.clear();
-    this.router.navigateByUrl('/login');
+    window.location.replace('/login');
   }
 }

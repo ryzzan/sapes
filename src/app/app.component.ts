@@ -17,10 +17,11 @@ export class AppComponent {
     private router: Router,
     private route: ActivatedRoute,
   ){
-    this.corporateService.getToken();
-    this.user = this.authService.getUser();
-    this.router.events.subscribe(params => {
-      this.user = this.authService.getUser();
-    })
+    this.corporateService.getToken();  
+    this.authService.user.subscribe(user => {
+      console.log(user);  
+      this.user = user
+    });
+    this.authService.getUser();
   }
 }

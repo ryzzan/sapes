@@ -1,6 +1,6 @@
 <md-sidenav-container class="example-sidenav-fab-container">
-  <md-sidenav #sidenav mode="side" *ngIf="user" [opened]="true">
-    <app-sidenav></app-sidenav>
+  <md-sidenav #sidenav mode="side" [opened]="user"> 
+    <app-sidenav [user]="user"></app-sidenav>
   </md-sidenav>
 
   <md-toolbar class="md-toolbar" *ngIf="user">

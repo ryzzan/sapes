@@ -28,7 +28,26 @@ export class ApiService{
     let options = new RequestOptions({ headers: header});
     return options;
   }
-
+  get(url) :  Observable<any> {
+    let options = this.createOptions();
+    return this.http.get(url,options)
+      .distinctUntilChanged();
+  }
+  post(url, data) : Observable<any> {
+    let options = this.createOptions();
+    return this.http.post(url,data, options)
+    .map(res => res.json());
+  }
+  put(url, data) : Observable<any> {
+    let options = this.createOptions();
+    return this.http.put(url,data, options)
+    .map(res => res.json());
+  }
+  delete(url) : Observable<any> {
+    let options = this.createOptions();
+    return this.http.delete(url, options)
+    .map(res => res.json());
+  }
   getList(params):  Observable<any> {
     let options = this.createOptions();
     let url = this.url+"?";

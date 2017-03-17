@@ -14,24 +14,19 @@ export class StudentsService{
   private students: Student[] = [];
   private url: string;
   info: any;
+
   constructor(private apiService:ApiService){
     this.apiService.init('fase-1');
     this.url = this.apiService.url;
     this.info = this.apiService.info;
   }
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  }); // ... Set content type to JSON
-  // private options = new RequestOptions({ headers: this.headers,});
-  private options = new RequestOptions({ headers: this.headers});
 
   getStudents(params){
     return this.apiService.getList(params);
   }
 
   getStudent(id){
-    return this.apiService.http.get(this.getStudentUrl(id), this.options)
+    return this.apiService.get(this.getStudentUrl(id))
       .map(res => this.transformToForm(res.json()));
   }
   transformToApi(data){
@@ -71,58 +66,22 @@ export class StudentsService{
     return data;
   }
 
-  getUnitId(unit_name){
-    if(!unit_name) return null;
-    unit_name = unit_name.toLowerCase();
-    let unit = bdInfo.units.filter(unit =>
-       unit.description.toLowerCase() == unit_name
-    );
-    if(unit.length == 1){
-      return unit[0].id;
-    }
-  }
-
-  getCourseId(course_name){
-    if(!course_name) return null;
-    course_name = course_name.toLowerCase();
-    let course = bdInfo.courses.filter(course =>
-       course.description.toLowerCase() == course_name
-    );
-    if(course.length == 1){
-      return course[0].id;
-    }
-  }
-
-  getOccupationId(occupation_name){
-    if(!occupation_name) return null;
-    occupation_name = occupation_name.toLowerCase();
-    let occupation = bdInfo.occupations.filter(occupation =>
-       occupation.description.toLowerCase() == occupation_name
-    );
-    if(occupation.length == 1){
-      return occupation[0].id;
-    }
-  }
-
   addStudent(student){
-    return this.apiService.http.post(
+    return this.apiService.post(
       this.url,
-      JSON.stringify(this.transformToApi(student)),
-      this.options
-    ).map(res => res.json());
+      JSON.stringify(this.transformToApi(student))
+    );
   }
 
   updateStudent(student){
-    return this.apiService.http.put(
+    return this.apiService.put(
       this.getStudentUrl(student.id),
       JSON.stringify(this.transformToApi(student)),
-      this.options
-    ).map(res => res.json());
+    );
   }
 
   deleteStudent(id){
-    return this.apiService.http.delete(this.getStudentUrl(id), this.options)
-      .map(res => res.json());
+    return this.apiService.delete(this.getStudentUrl(id));
   }
 
   private getStudentUrl(id){

@@ -46,18 +46,17 @@ export class LoginComponent implements OnInit {
           this.snackBar.open('Login feito com sucesso. Carregando seus dados.','',{duration: 2000});
           res.subscribe(()=>{
             this.router.navigateByUrl('/');
-            this.isLoading =  false;
           });
         }    
       },
       error => {
+        this.isLoading = false;
         if(error.status == 401){
-          return this.snackBar.open('Login ou senha incorreto','',{duration: 3000});
+          return this.snackBar.open('Login ou senha incorreto','',{duration: 3000});        
         }
         return this.snackBar.open('Algo errado aconteceu, por favor, tente novamente','',{duration: 4000});
       },
-      () => {
-        
+      () => {        
       }
     )
     

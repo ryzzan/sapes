@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers, RequestOptions  } from '@angular/http';
+import { Headers, RequestOptions  } from '@angular/http';
 import { Student } from  './student';
 import { bdInfo } from '../students-form/data';
 import { ApiService } from './../../shared/api.service';
@@ -20,7 +20,7 @@ export class StudentsService{
     this.info = this.apiService.info;
   }
   private headers = new Headers({
-    'Content-Type': 'application/json', 
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   }); // ... Set content type to JSON
   // private options = new RequestOptions({ headers: this.headers,});

@@ -4,6 +4,9 @@ import { AuthService } from '../shared/auth.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
+
+import { ProgressComponent } from './../component/progress/progress.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,15 +38,19 @@ export class LoginComponent implements OnInit {
   save(): any{
     if(!this.loginForm.valid) 
       return this.triedSend = true;
-    
-    this.snackBar.open('Aguarde a tentiva de login.','',{duration: 1000});
+
+    let feedback = this.snackBar.openFromComponent(ProgressComponent, {duration: 1000});
+    feedback.instance.message = "Aguarde a tentiva de login";
+    feedback.instance.progress = true;
+
     let obj = this.loginForm.value;
     this.isLoading = true;
     this.authService.login(obj)
     .subscribe(
       res => {
         if(res){
-          this.snackBar.open('Login feito com sucesso. Carregando seus dados.','',{duration: 2000});
+          feedback.instance.message = "Login feito com sucesso. Carregando seus dados.";
+          
           res.subscribe(()=>{
             this.router.navigateByUrl('/');
           });

@@ -1,5 +1,5 @@
 <md-sidenav-container class="example-sidenav-fab-container">
-  <md-sidenav #sidenav mode="side" [opened]="user">
+  <md-sidenav #sidenav mode="side" *ngIf="user" [opened]="true">
     <app-sidenav></app-sidenav>
   </md-sidenav>
 

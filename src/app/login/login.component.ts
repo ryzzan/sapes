@@ -44,9 +44,10 @@ export class LoginComponent implements OnInit {
       res => {
         if(res){
           this.snackBar.open('Login feito com sucesso. Carregando seus dados.','',{duration: 2000});
-          
-          this.router.navigateByUrl('/');
-          this.isLoading =  false;
+          res.subscribe(()=>{
+            this.router.navigateByUrl('/');
+            this.isLoading =  false;
+          });
         }    
       },
       error => {

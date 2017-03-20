@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+# firebase hosting
+/functions
+
 # dependencies
 /node_modules
 

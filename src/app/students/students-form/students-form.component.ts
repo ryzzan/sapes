@@ -9,6 +9,7 @@ const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 import { Student } from '../shared/student';
 import { CorporateService } from '../../shared/corporate.service';
 import { StudentsService } from '../shared/students.service';
+import { AuthService } from './../../shared/auth.service';
 
 import { Controls } from './form-control';
 import { bdInfo } from './data';
@@ -24,6 +25,9 @@ import 'rxjs/add/operator/startWith';
   styleUrls: ['./students-form.component.css']
 })
 export class StudentsFormComponent implements OnInit {
+  user;
+  profileDescription;
+
   title: string;
   form: FormGroup;
   student: Student = new Student();
@@ -44,6 +48,7 @@ export class StudentsFormComponent implements OnInit {
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
+  profileEdit: boolean = false;
   bdInfo : any = {};
   filteredUnits:any;
   filteredCourses:any;
@@ -58,8 +63,15 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar,
     private corporateService: CorporateService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private authService: AuthService
   ) {
+    this.authService.user.subscribe(user => {
+      this.user = user
+    });
+
+    this.authService.getUser();
+
     this.bdInfo = bdInfo;
     this.steps = Controls;
     this.form = this.formBuilder.group({
@@ -87,6 +99,8 @@ export class StudentsFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.user);
+
     this.form.reset();
     this.changePronatecModalities(false);
 
@@ -112,6 +126,60 @@ export class StudentsFormComponent implements OnInit {
           }
         });
     });
+
+    switch(this.user.profile_id) {
+      case 1:
+        //ADMINISTRADOR DO SISTEMA
+        this.profileEdit = true;
+        break;
+
+      case 2:
+        //COORDENADOR NACIONAL
+        this.profileEdit = true;
+        break;
+
+      case 3:
+        //GESTOR NACIONAL
+        this.profileEdit = false;
+        break;
+
+      case 4:
+        //COORDENADOR REGIONAL
+        this.profileEdit = true;
+        break;
+
+      case 5:
+        //GESTOR REGIONAL
+        this.profileEdit = false;
+        break;
+
+      case 6:
+        //DIGITADOR REGIONAL
+        if(id) {
+          this.profileEdit = false;
+        } else {
+          this.profileEdit = true;
+        }
+        break;
+
+      case 7:
+        //COORDENADOR ESCOLAR
+        this.profileEdit = true;
+        break;
+
+      case 8:
+        //DIGITADOR ESCOLAR
+        if(id) {
+          this.profileEdit = false;
+        } else {
+          this.profileEdit = true;
+        }
+        break;
+
+      default:
+        //ALUNO
+        this.profileEdit = false;
+    }
   }
   filterGeneric(val, bdInfoIndex){
     if(!val) return [];

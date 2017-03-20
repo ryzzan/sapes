@@ -9,6 +9,56 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 @Injectable()
 export class AuthService {
+  permissions = 
+  [
+    {
+      profileDescription: "ADMINISTRADOR DO SISTEMA",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "COORDENADOR NACIONAL",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "GESTOR NACIONAL",
+      create: false,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "COORDENADOR REGIONAL",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "GESTOR REGIONAL",
+      create: false,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "DIGITADOR REGIONAL",
+      create: true,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "COORDENADOR ESCOLAR",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "DIGITADOR ESCOLAR",
+      create: true,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "ALUNO",
+      create: true,
+      update: false,
+      delete: false
+    }
+  ];
+
   url = "https://sapesapi.nitrofull.com.br/oauth/token";
   headersToAuth: Headers;
   optionsToAuth: RequestOptions;
@@ -67,7 +117,6 @@ export class AuthService {
     user = JSON.parse(user);
     user = user ? user : null;
     if(user){
-      console.log(user);
       this.user.emit(user);
     } 
   }

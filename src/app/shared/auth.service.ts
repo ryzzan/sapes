@@ -111,15 +111,19 @@ export class AuthService {
     let string = 'Bearer '+sessionStorage.getItem('access_token');
     return this.getUserData(string);
   }
+  
   getUser(){
     let user = sessionStorage.getItem('user');
     if(!user) return false;
     user = JSON.parse(user);
     user = user ? user : null;
+    user['permissions'] = this.permissions[user['profile_id']-1];
+    
     if(user){
       this.user.emit(user);
     } 
   }
+
   getUserData(string) {
     this.headersToUser = new Headers({
       'Content-Type': 'application/json', 
@@ -142,7 +146,8 @@ export class AuthService {
 
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
-    console.log("Entrou");
+    data.permissions = this.permissions[data['profile_id']-1];
+    console.log(data);
     this.user.emit(data);
     return true;
   }

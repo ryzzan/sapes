@@ -56,6 +56,8 @@ export class StudentsFormComponent implements OnInit {
   filteredOccupations:any;
   steps: any = [];
 
+  checkIfUpdating;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -99,8 +101,6 @@ export class StudentsFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.user);
-
     this.form.reset();
     this.changePronatecModalities(false);
 
@@ -108,6 +108,9 @@ export class StudentsFormComponent implements OnInit {
     var id = params['id'];
 
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
+
+    this.checkIfUpdating = id;
+    
     if (!id) {
       return this.canSave = true;
     };
@@ -126,60 +129,6 @@ export class StudentsFormComponent implements OnInit {
           }
         });
     });
-
-    switch(this.user.profile_id) {
-      case 1:
-        //ADMINISTRADOR DO SISTEMA
-        this.profileEdit = true;
-        break;
-
-      case 2:
-        //COORDENADOR NACIONAL
-        this.profileEdit = true;
-        break;
-
-      case 3:
-        //GESTOR NACIONAL
-        this.profileEdit = false;
-        break;
-
-      case 4:
-        //COORDENADOR REGIONAL
-        this.profileEdit = true;
-        break;
-
-      case 5:
-        //GESTOR REGIONAL
-        this.profileEdit = false;
-        break;
-
-      case 6:
-        //DIGITADOR REGIONAL
-        if(id) {
-          this.profileEdit = false;
-        } else {
-          this.profileEdit = true;
-        }
-        break;
-
-      case 7:
-        //COORDENADOR ESCOLAR
-        this.profileEdit = true;
-        break;
-
-      case 8:
-        //DIGITADOR ESCOLAR
-        if(id) {
-          this.profileEdit = false;
-        } else {
-          this.profileEdit = true;
-        }
-        break;
-
-      default:
-        //ALUNO
-        this.profileEdit = false;
-    }
   }
   filterGeneric(val, bdInfoIndex){
     if(!val) return [];
@@ -188,7 +137,7 @@ export class StudentsFormComponent implements OnInit {
     }
 
     val = this.replaceSpecialChars(val);
-    console.log(val);
+
     let selecteds = this.bdInfo[bdInfoIndex].filter((selected) => {
       let forSearch = '';
       if(bdInfoIndex == "occupations"){
@@ -357,7 +306,7 @@ export class StudentsFormComponent implements OnInit {
       }),
       questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
       questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
-
+      console.log(questionThree);
       (<FormArray>this.steps[3]).patchValue([
         questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
         questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
@@ -407,7 +356,6 @@ export class StudentsFormComponent implements OnInit {
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
-    console.log(userValue);
 
     if (this.student.id){
       userValue.id = this.student.id;

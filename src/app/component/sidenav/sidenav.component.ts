@@ -9,12 +9,9 @@ import { Router } from '@angular/router';
 export class SidenavComponent implements OnInit {
   @Input()
   user;
-
-  profileDescription;
   
   private menu;
   constructor(private router: Router) {
-    
   }
 
   ngOnInit() {

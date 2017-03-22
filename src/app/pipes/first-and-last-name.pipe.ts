@@ -14,12 +14,8 @@ export class FirstAndLastNamePipe implements PipeTransform {
       if(array.length > 1) {
         return array[0] + " " + array[array.length - 1];
       } 
-      
-      if(array.length == 1) {
-        return array[0];
-      }
+      return array[0];
     }
-
     return name;
   }
 }

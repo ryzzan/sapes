@@ -69,7 +69,7 @@ export class StudentsFormComponent implements OnInit {
     private authService: AuthService
   ) {
     this.authService.user.subscribe(user => {
-      this.user = user
+      this.user = user;
     });
 
     this.authService.getUser();
@@ -306,7 +306,7 @@ export class StudentsFormComponent implements OnInit {
       }),
       questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
       questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
-      console.log(questionThree);
+      
       (<FormArray>this.steps[3]).patchValue([
         questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
         questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
@@ -348,7 +348,7 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    userValue.user_id=1;
+    userValue.user_id=this.user.id;
     userValue.end_year = 2017;
     userValue.f1 = true;
 

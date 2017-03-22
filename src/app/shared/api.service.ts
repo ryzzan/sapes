@@ -7,9 +7,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class ApiService{
-  url = "https://sapesapi.nitrofull.com.br/api/";
+  url = environment.urlToApi;
   info: EventEmitter<any> = new EventEmitter();
   constructor(public http:Http) {
   }

@@ -5,11 +5,11 @@ let Controls = [],
 formBuilder = new FormBuilder();
 
 Controls[0] = formBuilder.group({
-    cpf_number: [{value: null, enabled: Validators.compose([
+    cpf_number: [null, Validators.compose([
         Validators.required,
         BasicValidators.cpf
       ])
-    }],
+    ],
     name: [null, Validators.compose([
         Validators.required,
         Validators.minLength(5),

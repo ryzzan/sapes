@@ -16,6 +16,7 @@ import { GetNumberPipe } from './../pipes/get-number.pipe';
 import { ArrayGeneratorPipe } from './../pipes/array-generator.pipe';
 import { ShowNumberPipe } from './../pipes/show-number.pipe';
 import { SharedModule } from './../shared/shared.module';
+import { StudentsViewComponent } from './students-view/students-view.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { SharedModule } from './../shared/shared.module';
     StudentsFormComponent,
     GetNumberPipe,
     ShowNumberPipe,
-    ArrayGeneratorPipe
+    ArrayGeneratorPipe,
+    StudentsViewComponent
   ],
   providers: [StudentsService],
 })

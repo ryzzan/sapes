@@ -40,43 +40,43 @@
       <th>
          <md-checkbox #inputSelectAll (change)="toogleSelectedAll($event.checked)"></md-checkbox>
       </th>
-      <th [class.td-sort]="sort.field == 'name'">
-        <a mdTooltip="Ordenar pelo nome" (click)="changeSortAndOrder('name')">
+      <th [class.td-sort]="sort.field == 'name'" (click)="changeSortAndOrder('name')">
+        <a mdTooltip="Ordenar pelo nome">
           <span>Nome</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'name'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'name'">arrow_downward</md-icon>
         </a>
       </th>
-      <th class="td-right" [class.td-sort]="sort.field == 'id'">
-        <a  mdTooltip="Ordenar pelo COD" (click)="changeSortAndOrder('id')">
+      <th class="td-right" [class.td-sort]="sort.field == 'id'" (click)="changeSortAndOrder('id')">
+        <a  mdTooltip="Ordenar pelo COD">
           <span>COD</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'id'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'id'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'unit'">
-        <a mdTooltip="Ordenar pela Unidade" (click)="changeSortAndOrder('unit')">
+      <th [class.td-sort]="sort.field == 'unit'" (click)="changeSortAndOrder('unit')">
+        <a mdTooltip="Ordenar pela Unidade">
           <span>Unidade</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'unit'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'unit'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'modality'">
-        <a mdTooltip="Ordenar pela modalidade" (click)="changeSortAndOrder('modality')">
+      <th [class.td-sort]="sort.field == 'modality'" (click)="changeSortAndOrder('modality')">
+        <a mdTooltip="Ordenar pela modalidade">
           <span>Modalidade</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'modality'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'modality'">arrow_downward</md-icon>
         </a>
       </th>
-      <th [class.td-sort]="sort.field == 'course'">
-        <a mdTooltip="Ordenar pelo curso" (click)="changeSortAndOrder('course')">
+      <th [class.td-sort]="sort.field == 'course'" (click)="changeSortAndOrder('course')">
+        <a mdTooltip="Ordenar pelo curso">
           <span>Curso</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'course'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'course'">arrow_downward</md-icon>
         </a>
       </th>
-      <th class="td-right" [class.td-sort]="sort.field == 'class'">
-        <a  mdTooltip="Ordenar pela turma" (click)="changeSortAndOrder('class')">
+      <th class="td-right" [class.td-sort]="sort.field == 'class'" (click)="changeSortAndOrder('class')">
+        <a  mdTooltip="Ordenar pela turma">
           <span>Turma</span>
           <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
@@ -103,8 +103,14 @@
       <td>{{student.course}}</td>
       <td>{{student.class}}</td>
       <td>
-        <button (click)="edit(student.id)" class="button-edit" md-icon-button mdTooltip="Editar concluinte">
+        <button md-icon-button (click)="edit(student.id)" class="button-edit" mdTooltip="Editar concluinte" 
+                *ngIf="user?.permissions.create">
           <md-icon>edit</md-icon>
+        </button>
+
+        <button md-icon-button (click)="edit(student.id)" class="button-edit" mdTooltip="Visualizar concluinte" 
+                *ngIf="!user?.permissions.create">
+          <md-icon>remove_red_eyes</md-icon>
         </button>
       </td>
     </tr>

@@ -9,6 +9,55 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 @Injectable()
 export class AuthService {
+  permissions = 
+  [
+    {
+      profileDescription: "ADMINISTRADOR DO SISTEMA",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "COORDENADOR NACIONAL",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "GESTOR NACIONAL",
+      create: false,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "COORDENADOR REGIONAL",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "GESTOR REGIONAL",
+      create: false,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "DIGITADOR REGIONAL",
+      create: true,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "COORDENADOR ESCOLAR",
+      create: true,
+      update: true,
+      delete: true
+    }, {
+      profileDescription: "DIGITADOR ESCOLAR",
+      create: true,
+      update: false,
+      delete: false
+    }, {
+      profileDescription: "ALUNO",
+      create: true,
+      update: false,
+      delete: false
+    }
+  ];
   // url = "https://sapesapi.nitrofull.com.br/oauth/token";
   url = "http://sapesapi.al.senai.br/oauth/token";
   headersToAuth: Headers;
@@ -64,16 +113,20 @@ export class AuthService {
     let string = 'Bearer '+sessionStorage.getItem('access_token');
     return this.getUserData(string);
   }
-  getUser(){
+  
+  getUser(){    
     let user = sessionStorage.getItem('user');
     if(!user) return false;
     user = JSON.parse(user);
     user = user ? user : null;
+
+    user['permissions'] = this.permissions[user['profile_id']-1];
+    
     if(user){
-      console.log(user);
       this.user.emit(user);
     }
   }
+
   getUserData(string) {
     this.headersToUser = new Headers({
       'Content-Type': 'application/json',
@@ -97,7 +150,8 @@ export class AuthService {
 
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
-    console.log("Entrou");
+    data.permissions = this.permissions[data['profile_id']-1];
+
     this.user.emit(data);
     return true;
   }

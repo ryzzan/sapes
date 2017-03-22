@@ -44,7 +44,7 @@ export class AuthService {
       this.url,
       {
         // 'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
-        'client_secret': 'PyENxZi5NqlvW0IZnXXSzOSNdLcjPTW1fiiEWRuP',
+        'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
         'client_id': 2,
         'grant_type': 'password',
         'username': data.login,

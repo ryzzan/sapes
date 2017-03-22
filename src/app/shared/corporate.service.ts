@@ -19,7 +19,7 @@ export class CorporateService {
   private modalitiesAllow = [11,15,21,31,41];
   private options = new RequestOptions({ headers: this.headers });
 
-  private url: string = "//portalh4.sistemaindustria.org.br:9080/";
+  private url: string = "https://ws3.sistemaindustria.org.br:9443/";
 
   getToken(){
     let token = sessionStorage.getItem('token');

@@ -117,16 +117,6 @@ export class AuthService {
     if(!user) return false;
     user = JSON.parse(user);
     user = user ? user : null;
-    
-    /*Create first and last name attribute start*/
-    let array = user['name'].split(" ");
-
-    if(array.length > 1) {
-      user['firstAndLastname'] = array[0] + " " + array[array.length - 1];
-    } else {
-      user['firstAndLastname'] = array[0];
-    }
-    /*Create first and last name attribute end*/
 
     user['permissions'] = this.permissions[user['profile_id']-1];
     
@@ -158,16 +148,6 @@ export class AuthService {
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
     data.permissions = this.permissions[data['profile_id']-1];
-
-    /*Create first and last name attribute start*/
-    let array = data.name.split(" ");
-
-    if(array.length > 1) {
-      data.firstAndLastname = array[0] + " " + array[array.length - 1];
-    } else {
-      data.firstAndLastname = array[0];
-    }
-    /*Create first and last name attribute end*/
 
     this.user.emit(data);
     return true;

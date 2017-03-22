@@ -155,14 +155,6 @@ export class AuthService {
     )
   }
 
-  getFirstAndLastName() {
-    let name;
-    let user = sessionStorage.getItem('user');
-    if(user) {
-      
-    }
-  }
-
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
     data.permissions = this.permissions[data['profile_id']-1];

@@ -7,11 +7,11 @@
     <button md-icon-button mdTooltip="Página inicial" routerLink="./"><md-icon>home</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="menuconfig" mdTooltip="Minhas Configurações"><md-icon>settings</md-icon></button>
     <md-menu #menuconfig="mdMenu">
-      <button md-menu-item>
+      <button routerLink="./not-found" md-menu-item>
         <md-icon>person</md-icon>
         <span>Minha Conta</span>
       </button>
-      <button md-menu-item>
+      <button routerLink="./not-found" md-menu-item>
         <md-icon>build</md-icon>
         <span>Sistema</span>
       </button>

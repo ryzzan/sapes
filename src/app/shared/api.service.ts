@@ -9,7 +9,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 @Injectable()
 export class ApiService{
-  url = "https://sapesapi.nitrofull.com.br/api/";
+  // url = "https://sapesapi.nitrofull.com.br/api/";
+  url = "http://sapesapi.al.senai.br/api/";
   info: EventEmitter<any> = new EventEmitter();
   constructor(public http:Http) {
   }

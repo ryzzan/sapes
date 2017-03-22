@@ -19,9 +19,9 @@ export class AppComponent {
   ){
     this.corporateService.getToken();  
     this.authService.user.subscribe(user => {
-      console.log(user);  
       this.user = user
     });
+    
     this.authService.getUser();
   }
 }

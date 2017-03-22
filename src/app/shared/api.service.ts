@@ -67,7 +67,7 @@ export class ApiService{
     }
 
     url = url.substring(0, url.length-1);
-    console.log(url);
+    
     return this.http.get(url,options)
                     .distinctUntilChanged()   // ignore if next search term is same as previous
                     .map(data => this.extractData(data))

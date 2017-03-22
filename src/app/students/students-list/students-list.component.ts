@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MdSnackBar, MdDialog } from '@angular/material';
 import { ProgressComponent } from '../../component/progress/progress.component';
 
+import { AuthService } from './../../shared/auth.service';
+
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -15,6 +17,7 @@ export class StudentsListComponent implements OnInit {
 
   public getStudents = new EventEmitter<any>();
 
+  user;
   title = "Avaliação do Concluinte";
   @ViewChild('inputSelectAll') inputSelectAll;
   public students:Array<any> = [];
@@ -39,6 +42,7 @@ export class StudentsListComponent implements OnInit {
     private studentsService: StudentsService,
     private dialog: MdDialog,
     private snackBar: MdSnackBar,
+    private authService: AuthService
   ) {
     this.studentsService.info.subscribe(info => {
       this.infoApi = info;
@@ -46,6 +50,12 @@ export class StudentsListComponent implements OnInit {
     this.getStudents.debounceTime(400).subscribe( ()=> {
         this.getData();
     });
+
+    this.authService.user.subscribe(user => {
+      this.user = user;
+    });
+
+    this.authService.getUser();
   }
 
   ngOnInit():void {
@@ -59,7 +69,6 @@ export class StudentsListComponent implements OnInit {
 
   nextPreviousPage(action){
     this.apiPage += action;
-    console.log(this.apiPage);
     this.getStudents.emit();
   }
 
@@ -177,5 +186,9 @@ export class StudentsListComponent implements OnInit {
   }
   edit(id: any): any {
     return  this.router.navigate(['/students', id]);
+  }
+
+  view(id: any): any {
+    return  this.router.navigate(['/students/view', id]);
   }
 }

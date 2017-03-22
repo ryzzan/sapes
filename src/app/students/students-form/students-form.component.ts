@@ -9,6 +9,7 @@ const autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
 import { Student } from '../shared/student';
 import { CorporateService } from '../../shared/corporate.service';
 import { StudentsService } from '../shared/students.service';
+import { AuthService } from './../../shared/auth.service';
 
 import { Controls } from './form-control';
 import { bdInfo } from './data';
@@ -24,6 +25,8 @@ import 'rxjs/add/operator/startWith';
   styleUrls: ['./students-form.component.css']
 })
 export class StudentsFormComponent implements OnInit {
+  user;
+
   title: string;
   form: FormGroup;
   student: Student = new Student();
@@ -51,6 +54,8 @@ export class StudentsFormComponent implements OnInit {
   filteredOccupations:any;
   steps: any = [];
 
+  checkIfUpdating: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -58,8 +63,15 @@ export class StudentsFormComponent implements OnInit {
     private studentsService: StudentsService,
     public snackBar: MdSnackBar,
     private corporateService: CorporateService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private authService: AuthService
   ) {
+    this.authService.user.subscribe(user => {
+      this.user = user;
+    });
+
+    this.authService.getUser();
+
     this.bdInfo = bdInfo;
     this.steps = Controls;
     this.form = this.formBuilder.group({
@@ -94,7 +106,12 @@ export class StudentsFormComponent implements OnInit {
     var id = params['id'];
 
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
+
+    this.checkIfUpdating = true;
+    
     if (!id) {
+      this.checkIfUpdating = false;
+      
       return this.canSave = true;
     };
 
@@ -120,7 +137,7 @@ export class StudentsFormComponent implements OnInit {
     }
 
     val = this.replaceSpecialChars(val);
-    console.log(val);
+
     let selecteds = this.bdInfo[bdInfoIndex].filter((selected) => {
       let forSearch = '';
       if(bdInfoIndex == "occupations"){
@@ -289,7 +306,7 @@ export class StudentsFormComponent implements OnInit {
       }),
       questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
       questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
-
+      
       (<FormArray>this.steps[3]).patchValue([
         questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
         questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},
@@ -331,7 +348,7 @@ export class StudentsFormComponent implements OnInit {
       answer.phase = 1;
       answer.question_id = index + 1;
     });
-    userValue.user_id=1;
+    userValue.user_id=this.user.id;
     userValue.end_year = 2017;
     userValue.f1 = true;
 
@@ -339,7 +356,6 @@ export class StudentsFormComponent implements OnInit {
       let data = userValue['birth_date'].split('/');
       userValue['birth_date'] = data[2]+"-"+data[1]+"-"+data[0];
     }
-    console.log(userValue);
 
     if (this.student.id){
       userValue.id = this.student.id;

@@ -18,6 +18,7 @@ import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { ApiService } from './shared/api.service';
 import { SharedModule } from './shared/shared.module';
+import { FirstAndLastNamePipe } from './pipes/first-and-last-name.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SharedModule } from './shared/shared.module';
     SidenavComponent,
     HomeComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    FirstAndLastNamePipe
   ],
   imports: [
     BrowserModule,

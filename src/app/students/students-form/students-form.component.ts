@@ -26,7 +26,6 @@ import 'rxjs/add/operator/startWith';
 })
 export class StudentsFormComponent implements OnInit {
   user;
-  profileDescription;
 
   title: string;
   form: FormGroup;
@@ -48,7 +47,6 @@ export class StudentsFormComponent implements OnInit {
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
   canSave: boolean = false;
-  profileEdit: boolean = false;
   bdInfo : any = {};
   filteredUnits:any;
   filteredCourses:any;
@@ -56,7 +54,7 @@ export class StudentsFormComponent implements OnInit {
   filteredOccupations:any;
   steps: any = [];
 
-  checkIfUpdating;
+  checkIfUpdating: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -109,9 +107,11 @@ export class StudentsFormComponent implements OnInit {
 
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
 
-    this.checkIfUpdating = id;
+    this.checkIfUpdating = true;
     
     if (!id) {
+      this.checkIfUpdating = false;
+      
       return this.canSave = true;
     };
 

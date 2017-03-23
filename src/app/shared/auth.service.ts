@@ -60,20 +60,20 @@ export class AuthService {
       delete: false
     }
   ];
-
   url = environment.urlToOauthToken;
   headersToAuth: Headers;
   optionsToAuth: RequestOptions;
-  
+
   headersToUser: Headers;
   optionsToUser: RequestOptions;
   user: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private http: Http
-  ) { 
+    private http: Http,
+
+  ) {
     this.headersToAuth = new Headers({
-      'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
 
@@ -93,14 +93,15 @@ export class AuthService {
     .post(
       this.url,
       {
-        'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
+        // 'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
+        'client_secret': 'PyENxZi5NqlvW0IZnXXSzOSNdLcjPTW1fiiEWRuP',
         'client_id': 2,
         'grant_type': 'password',
         'username': data.login,
         'password': data.password
       },
       this.optionsToAuth
-    ).map(res => 
+    ).map(res =>
       this.setToken(res.json())
     )
     // .catch(error => Observable.throw(error.json().error || 'Server error')); //...errors if
@@ -124,16 +125,16 @@ export class AuthService {
     
     if(user){
       this.user.emit(user);
-    } 
+    }
   }
 
   getUserData(string) {
     this.headersToUser = new Headers({
-      'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Authorization': string
     })
-    
+
     this.optionsToUser = new RequestOptions({
       'headers': this.headersToUser
     })
@@ -142,7 +143,7 @@ export class AuthService {
     .get(
       environment.urlToApi+"user",
       this.optionsToUser
-    ).map(res => 
+    ).map(res =>
       this.setUserData(res.json())
     )
   }

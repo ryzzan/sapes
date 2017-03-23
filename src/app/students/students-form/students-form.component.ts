@@ -122,6 +122,7 @@ export class StudentsFormComponent implements OnInit {
           this.student['birth_date'] = this.transformDateBR(this.student['birth_date'])
           this.canSave = true;
           this.setValues();
+          console.log(this.student);
         },
         response => {
           if (response.status == 404) {

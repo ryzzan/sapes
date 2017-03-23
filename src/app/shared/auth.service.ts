@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class AuthService {
   permissions = 
@@ -58,8 +60,7 @@ export class AuthService {
       delete: false
     }
   ];
-  // url = "https://sapesapi.nitrofull.com.br/oauth/token";
-  url = "http://sapesapi.al.senai.br/oauth/token";
+  url = environment.urlToOauthToken;
   headersToAuth: Headers;
   optionsToAuth: RequestOptions;
 
@@ -140,8 +141,7 @@ export class AuthService {
 
     return this.http
     .get(
-      // 'https://sapesapi.nitrofull.com.br/api/user',
-      'http://sapesapi.al.senai.br/api/user',
+      environment.urlToApi+"user",
       this.optionsToUser
     ).map(res =>
       this.setUserData(res.json())

@@ -10,56 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { environment } from './../../environments/environment';
 
 @Injectable()
-export class AuthService {
-  permissions = 
-  [
-    {
-      profileDescription: "ADMINISTRADOR DO SISTEMA",
-      create: true,
-      update: true,
-      delete: true
-    }, {
-      profileDescription: "COORDENADOR NACIONAL",
-      create: true,
-      update: true,
-      delete: true
-    }, {
-      profileDescription: "GESTOR NACIONAL",
-      create: false,
-      update: false,
-      delete: false
-    }, {
-      profileDescription: "COORDENADOR REGIONAL",
-      create: true,
-      update: true,
-      delete: true
-    }, {
-      profileDescription: "GESTOR REGIONAL",
-      create: false,
-      update: false,
-      delete: false
-    }, {
-      profileDescription: "DIGITADOR REGIONAL",
-      create: true,
-      update: false,
-      delete: false
-    }, {
-      profileDescription: "COORDENADOR ESCOLAR",
-      create: true,
-      update: true,
-      delete: true
-    }, {
-      profileDescription: "DIGITADOR ESCOLAR",
-      create: true,
-      update: false,
-      delete: false
-    }, {
-      profileDescription: "ALUNO",
-      create: true,
-      update: false,
-      delete: false
-    }
-  ];
+export class AuthService {  
   url = environment.urlToOauthToken;
   headersToAuth: Headers;
   optionsToAuth: RequestOptions;
@@ -93,8 +44,8 @@ export class AuthService {
     .post(
       this.url,
       {
-        // 'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
-        'client_secret': 'PyENxZi5NqlvW0IZnXXSzOSNdLcjPTW1fiiEWRuP',
+        // 'client_secret': 'PyENxZi5NqlvW0IZnXXSzOSNdLcjPTW1fiiEWRuP',
+        'client_secret': 'uGUNmd2yK3ux31tulaMhaDWIjbeHlur6f94a387J',
         'client_id': 2,
         'grant_type': 'password',
         'username': data.login,
@@ -120,8 +71,6 @@ export class AuthService {
     if(!user) return false;
     user = JSON.parse(user);
     user = user ? user : null;
-
-    user['permissions'] = this.permissions[user['profile_id']-1];
     
     if(user){
       this.user.emit(user);
@@ -150,7 +99,6 @@ export class AuthService {
 
   setUserData(data) {
     sessionStorage.setItem('user', JSON.stringify(data))
-    data.permissions = this.permissions[data['profile_id']-1];
 
     this.user.emit(data);
     return true;

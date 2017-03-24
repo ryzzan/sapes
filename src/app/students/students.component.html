@@ -1,5 +1,5 @@
 <div class="app-content">
-  <a md-fab routerLink="add" *ngIf="user?.permissions.create"><md-icon>add</md-icon></a>
+  <a md-fab routerLink="add" *ngIf="user?.permissions[0].create"><md-icon>add</md-icon></a>
   <md-card class="card-content">
     <router-outlet></router-outlet>
   </md-card>

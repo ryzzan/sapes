@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { CorporateService } from './shared/corporate.service';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth/auth.guard';
+import { LoginGuard } from './shared/auth/login.guard';
 import { ApiService } from './shared/api.service';
 import { SharedModule } from './shared/shared.module';
 import { FirstAndLastNamePipe } from './pipes/first-and-last-name.pipe';
@@ -42,6 +43,7 @@ import { FirstAndLastNamePipe } from './pipes/first-and-last-name.pipe';
   providers: [
     ApiService,
     AuthService,
+    LoginGuard,
     CorporateService,
     AuthGuard
   ],

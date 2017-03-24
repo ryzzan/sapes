@@ -14,7 +14,6 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
-
   public getStudents = new EventEmitter<any>();
 
   user;
@@ -31,6 +30,7 @@ export class StudentsListComponent implements OnInit {
     order: "asc",
     field: "id"
   }
+
   querySearch:any = null;
   apiPage = 1;
   apiLimit = 5;
@@ -54,8 +54,10 @@ export class StudentsListComponent implements OnInit {
     this.authService.user.subscribe(user => {
       this.user = user;
     });
-
+    
     this.authService.getUser();
+
+    console.log(this.user);
   }
 
   ngOnInit():void {

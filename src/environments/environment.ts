@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  urlToApi: "https://sapesapi.al.senai.br/api/",
-  urlToOauthToken: "https://sapesapi.al.senai.br/oauth/token"
-  /*urlToApi: "http://10.83.3.191/api/",
-  urlToOauthToken: "http://10.83.3.191/oauth/token"*/
+  //urlToApi: "https://sapesapi.al.senai.br/api/",
+  //urlToOauthToken: "https://sapesapi.al.senai.br/oauth/token"
+  urlToApi: "http://10.83.3.191/api/",
+  urlToOauthToken: "http://10.83.3.191/oauth/token"
 };

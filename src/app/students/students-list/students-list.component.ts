@@ -56,8 +56,6 @@ export class StudentsListComponent implements OnInit {
     });
     
     this.authService.getUser();
-
-    console.log(this.user);
   }
 
   ngOnInit():void {
@@ -123,6 +121,8 @@ export class StudentsListComponent implements OnInit {
         this.selectedStudents = [];
         this.inputSelectAll.checked = false
         this.students = apiResponse;
+
+        console.log(this.students);
       },
       error =>  this.errorMessage = <any>error
     );

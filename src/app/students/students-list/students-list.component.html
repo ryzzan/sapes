@@ -8,7 +8,7 @@
     Adicionar Concluinte
   </button>-->
   <button md-icon-button mdTooltip="Filtrar" (click)="this.isSearch = true;" *ngIf="!isSearch">
-    <md-icon>filter_list</md-icon>
+    <md-icon>search</md-icon>
   </button>
 
   <button md-icon-button mdTooltip="Limpar busca" (click)="clearSearch()" *ngIf="isSearch">
@@ -82,6 +82,13 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
         </a>
       </th>
+      <th class="td-right" [class.td-sort]="sort.field == 'class'" (click)="changeSortAndOrder('class')">
+        <a  mdTooltip="Ordenar pela UF">
+          <span>UF</span>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
+        </a>
+      </th>
       <th></th>
     </tr>
   </thead>
@@ -102,6 +109,7 @@
       <td>{{student.modality}}</td>
       <td>{{student.course}}</td>
       <td>{{student.class}}</td>
+      <td>{{student.regional}}</td>
       <td>
         <button md-icon-button (click)="edit(student.id)" class="button-edit" mdTooltip="Editar concluinte" 
                 *ngIf="user?.permissions[0].update">
@@ -109,7 +117,7 @@
         </button>
 
         <button md-icon-button (click)="edit(student.id)" class="button-edit" mdTooltip="Visualizar concluinte" 
-                *ngIf="user?.permissions[0].view">
+                *ngIf="user?.permissions[0].view && !user?.permissions[0].create && !user?.permissions[0].update">
           <md-icon>remove_red_eyes</md-icon>
         </button>
       </td>

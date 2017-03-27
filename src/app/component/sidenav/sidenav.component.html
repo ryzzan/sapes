@@ -1,7 +1,14 @@
 <md-card class="menu-card">
   <md-card-header>
     <md-card-title>{{ user?.name | firstAndLastName }}</md-card-title>
-    <md-card-subtitle> {{ user?.profile[0].description }} <span class="tagInfo tagRegional">DN</span></md-card-subtitle>
+    <md-card-subtitle> {{ user?.profile[0].description }} 
+      <span class="tagInfo tagRegional" *ngIf="!user?.profile[0].permission_filter">
+        DN
+      </span>
+      <span class="tagInfo tagRegional" *ngIf="user?.profile[0].permission_filter">
+        {{ user?.regional }}
+      </span>
+    </md-card-subtitle>
   </md-card-header>
   <md-card-actions>
     <button md-icon-button mdTooltip="Página inicial" routerLink="./"><md-icon>home</md-icon></button>

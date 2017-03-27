@@ -82,11 +82,11 @@
           <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
         </a>
       </th>
-      <th class="td-right" [class.td-sort]="sort.field == 'class'" (click)="changeSortAndOrder('class')">
+      <th class="td-right" [class.td-sort]="sort.field == 'regional'" (click)="changeSortAndOrder('regional')">
         <a  mdTooltip="Ordenar pela UF">
           <span>UF</span>
-          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'class'">arrow_upward</md-icon>
-          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'class'">arrow_downward</md-icon>
+          <md-icon *ngIf="sort.order == 'asc' && sort.field == 'regional'">arrow_upward</md-icon>
+          <md-icon *ngIf="sort.order == 'desc' && sort.field == 'regional'">arrow_downward</md-icon>
         </a>
       </th>
       <th></th>
@@ -101,7 +101,7 @@
     </tr>
     <tr *ngFor="let student of students">
       <td>
-         <md-checkbox [(ngModel)]="student.checked" (change)="toogleSelected($event.checked, student)" *ngIf="(user?.permissions[0].delete)"></md-checkbox>
+         <md-checkbox [(ngModel)]="student.checked" (change)="toogleSelected($event.checked, student)" [disabled]="!user?.permissions[0].delete"></md-checkbox>
       </td>
       <td>{{student.name}}</td>
       <td>{{student.id}}</td>

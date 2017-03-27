@@ -67,18 +67,19 @@ export class StudentsFormComponent implements OnInit {
     private authService: AuthService
   ) {
     this.bdInfo = bdInfo;
-    this.filteredRegional = this.bdInfo.regional;
+    this.filteredRegional = this.bdInfo.regionals;
     this.authService.user.subscribe(user => {
       this.user = user;
-      if(this.user.profile[0].permission_filter=="DR"){
+      if(this.user.profile[0].permission_filter!=""){
         this.filteredRegional = this.bdInfo.regionals.filter( regional =>
           regional.sigla == user.regional
         );
-      }
-      if(this.user.profile[0].permission_filter=="UNIT"){
-        this.bdInfo.units = this.bdInfo.units.filter( unit =>
-          unit.id == user.unit_id
-        );
+        if(this.user.profile[0].permission_filter=="UNIT"){
+          this.bdInfo.units = this.bdInfo.units.filter( unit =>
+            unit.id == user.unit_id
+          );
+          console.log(this.bdInfo.units);
+        }
       }
 
     });
@@ -174,7 +175,7 @@ export class StudentsFormComponent implements OnInit {
         return unit.regional == this.steps[1].controls['regional'].value &&
         new RegExp(val, 'gi').test(this.replaceSpecialChars(unit.description));
       }
-      new RegExp(val, 'gi').test(this.replaceSpecialChars(unit.description));
+      return new RegExp(val, 'gi').test(this.replaceSpecialChars(unit.description));
     });
     return selecteds.length>100 && val.length<3 ? [] : selecteds;
 

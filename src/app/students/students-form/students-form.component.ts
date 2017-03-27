@@ -30,7 +30,6 @@ export class StudentsFormComponent implements OnInit {
   title: string;
   form: FormGroup;
   student: Student = new Student();
-  private token = {};
   mask: any = {
     cpf: [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/,/\d/],
     date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
@@ -52,6 +51,7 @@ export class StudentsFormComponent implements OnInit {
   filteredCourses:any;
   filteredCities:any;
   filteredOccupations:any;
+  filteredRegional:any;
   steps: any = [];
 
   checkIfUpdating: boolean;
@@ -66,13 +66,25 @@ export class StudentsFormComponent implements OnInit {
     public dialog: MdDialog,
     private authService: AuthService
   ) {
+    this.bdInfo = bdInfo;
+    this.filteredRegional = this.bdInfo.regional;
     this.authService.user.subscribe(user => {
       this.user = user;
-    });
+      if(this.user.profile[0].permission_filter=="DR"){
+        this.filteredRegional = this.bdInfo.regionals.filter( regional =>
+          regional.sigla == user.regional
+        );
+      }
+      if(this.user.profile[0].permission_filter=="UNIT"){
+        this.bdInfo.units = this.bdInfo.units.filter( unit =>
+          unit.id == user.unit_id
+        );
+      }
 
+    });
     this.authService.getUser();
 
-    this.bdInfo = bdInfo;
+
     this.steps = Controls;
     this.form = this.formBuilder.group({
       aluno: this.steps[0],
@@ -108,10 +120,10 @@ export class StudentsFormComponent implements OnInit {
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
 
     this.checkIfUpdating = true;
-    
+
     if (!id) {
       this.checkIfUpdating = false;
-      
+
       return this.canSave = true;
     };
 
@@ -307,7 +319,7 @@ export class StudentsFormComponent implements OnInit {
       }),
       questionTwo = this.student.answers.filter(answer => answer.question_id*1 == 2),
       questionThree = this.student.answers.filter(answer => answer.question_id*1 == 3);
-      
+
       (<FormArray>this.steps[3]).patchValue([
         questionOne.length > 0 ? questionOne[0] : {alternative_id: false},
         questionTwo.length > 0 ? questionTwo[0] : {alternative_id: null},

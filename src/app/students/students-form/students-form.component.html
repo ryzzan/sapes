@@ -237,7 +237,7 @@
         <md-input-container class="full-width fakeHint">
           <input style="display:none" mdInput>
           <md-select formControlName="regional" class="full-width" (change)="changeUnit()"  placeholder="2.6 - Selecione o DR *">
-            <md-option *ngFor="let regional of bdInfo.regionals" [value]="regional.sigla" >{{regional.sigla}} - {{regional.description}}</md-option>
+            <md-option *ngFor="let regional of filteredRegional" [value]="regional.sigla" >{{regional.sigla}} - {{regional.description}}</md-option>
           </md-select>
           <md-hint class="warn" align="start"
               *ngIf="steps[1].controls['regional'].touched || triedSend">

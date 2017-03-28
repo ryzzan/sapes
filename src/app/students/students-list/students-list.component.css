@@ -86,7 +86,9 @@ h4{
 table tr>th:nth-child(3),
 table tr>td:nth-child(3),
 table tr>th:nth-child(7),
-table tr>td:nth-child(7){
+table tr>td:nth-child(7),
+table tr>th:nth-child(8),
+table tr>td:nth-child(8){
   text-align: right;
 }
 

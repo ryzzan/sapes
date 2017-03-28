@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  urlToApi: "https://sapesapi.nitrofull.com.br/api/",
-  urlToOauthToken: "https://sapesapi.nitrofull.com.br/oauth/token"
+  urlToApi: "http://sapesv2.senai.be/api/",
+  urlToOauthToken: "http://sapesv2.senai.br/oauth/token"
 };

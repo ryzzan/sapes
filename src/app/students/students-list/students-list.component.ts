@@ -121,8 +121,6 @@ export class StudentsListComponent implements OnInit {
         this.selectedStudents = [];
         this.inputSelectAll.checked = false
         this.students = apiResponse;
-
-        console.log(this.students);
       },
       error =>  this.errorMessage = <any>error
     );

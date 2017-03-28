@@ -16,7 +16,6 @@ export class SidenavComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.user);
     this.menu = [
       {
         icon: 'filter_1',

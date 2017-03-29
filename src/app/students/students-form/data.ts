@@ -77,7 +77,7 @@
   modalities: [
     {"id":2,"code":11,"description":"APRENDIZAGEM INDUSTRIAL B\u00c1SICA"},
     {"id":3,"code":15,"description":"APRENDIZAGEM INDUSTRIAL T\u00c9CNICA DE N\u00cdVEL M\u00c9DIO"},
-    {"id":4,"code":21,"description":"QUALIFICA\u00c7\u00c3O PROFISSIONAL"},
+    // {"id":4,"code":21,"description":"QUALIFICA\u00c7\u00c3O PROFISSIONAL"},
     {"id":5,"code":31,"description":"T\u00c9CNICO DE N\u00cdVEL M\u00c9DIO"},
     {"id":6,"code":41,"description":"GRADUA\u00c7\u00c3O TECNOL\u00d3GICA"}
   ],

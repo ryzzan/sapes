@@ -145,9 +145,12 @@ export class StudentsFormComponent implements OnInit {
     });
   }
   changeRemunerado(){
-    if(this.flagRemunerado){
+    if(this.flagRemunerado.checked){
       this.steps[3].controls[1].patchValue({'alternative_id': null});
       this.steps[3].controls[2].patchValue({'alternative_id': null});
+    } else {
+      this.steps[3].controls[1].patchValue({'alternative_id': 35});
+      this.steps[3].controls[2].patchValue({'alternative_id': 36});
     }
   }
   filterGeneric(val, bdInfoIndex){
@@ -359,17 +362,6 @@ export class StudentsFormComponent implements OnInit {
         );
         if(typeof(id[0])!="undefined"){
           answer.id = id[0]['id'];
-        }
-      }
-
-      //Se não for remunerado adiciona as alternativas padrão de vazio
-      if(!this.flagRemunerado.checked){
-        if(index + 1 == 2){
-          answer.alternative_id = 35;
-        }
-
-        if(index + 1 == 3){
-          answer.alternative_id = 36;
         }
       }
 

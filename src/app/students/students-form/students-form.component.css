@@ -42,7 +42,11 @@ md-input-container,
   flex: 1 1 auto;
 }
 .hiddenField{
-  display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .flagInput>span{
   margin: 5px 5px 0 0;

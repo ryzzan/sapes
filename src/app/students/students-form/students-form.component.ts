@@ -145,8 +145,10 @@ export class StudentsFormComponent implements OnInit {
     });
   }
   changeRemunerado(){
-    this.steps[3].controls[1].patchValue({'alternative_id': null});
-    this.steps[3].controls[2].patchValue({'alternative_id': null});
+    if(this.flagRemunerado){
+      this.steps[3].controls[1].patchValue({'alternative_id': null});
+      this.steps[3].controls[2].patchValue({'alternative_id': null});
+    }
   }
   filterGeneric(val, bdInfoIndex){
     if(!val) return [];

@@ -16,7 +16,8 @@ export class CorporateService {
   private headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded'
   });
-  private modalitiesAllow = [11,15,21,31,41];
+  private modalitiesAllow = [11,15,31,41];
+  //21 - qualificação
   private options = new RequestOptions({ headers: this.headers });
 
   private url: string = "https://ws3.sistemaindustria.org.br:9443/";

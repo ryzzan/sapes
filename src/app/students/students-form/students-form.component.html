@@ -525,15 +525,15 @@
       <section style="display: inline-block;" class="flagInput">
         <p>4.1 - Atualmente você esta trabalhando/estagiando de forma remunerada? *</p><br>
         <span>Não</span>
-        <md-slide-toggle formControlName="alternative_flag">
+        <md-slide-toggle #remunerado (change)="changeRemunerado($event)" formControlName="alternative_flag">
           Sim
         </md-slide-toggle>
       </section>
     </md-card>
-    <md-card formGroupName="1">
+    <md-card [class.hiddenField]="!remunerado.checked" formGroupName="1">
       <md-icon class="material-icons">directions_run</md-icon>
       <div class="selectGroup" style="width:50%;display: inline-block;">
-        <md-select #situacao formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional*" class="full-width">
+        <md-select [required]="remunerado.checked" #situacao formControlName="alternative_id" placeholder="4.2 - Especifique abaixo sua situação profissional*" class="full-width">
           <md-option *ngFor="let estagio of bdInfo.estagios" [value]="estagio.id">{{estagio.description}}</md-option>
         </md-select>
         <p class="warn" align="start" *ngIf="steps[3].controls[1].controls['alternative_id'].touched || triedSend">
@@ -549,11 +549,11 @@
         </md-hint>
       </md-input-container>
     </md-card>
-    <md-card>
+    <md-card [class.hiddenField]="!remunerado.checked">
       <md-icon>attach_money</md-icon>
       <md-input-container formGroupName="2" style="width:50%;" class="fakeHint">
         <input style="display:none" mdInput>
-        <md-select formControlName="alternative_id" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
+        <md-select [required]="remunerado.checked" formControlName="alternative_id" class="full-width" placeholder="4.3 - Quanto você ganha por mês atualmente *">
           <md-option *ngFor="let salary of bdInfo.salary" [value]="salary.value">
               {{salary.description}} - <span *ngIf="salary.limit">até {{salary.limit*bdInfo.salaryValue | moneyMask}}</span>
               <span *ngIf="salary.min">{{salary.min*bdInfo.salaryValue | moneyMask}}</span>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MdSnackBar, MdDialog } from '@angular/material';
@@ -26,6 +26,7 @@ import 'rxjs/add/operator/startWith';
 })
 export class StudentsFormComponent implements OnInit {
   user;
+  @ViewChild('remunerado') flagRemunerado;
 
   title: string;
   form: FormGroup;
@@ -41,7 +42,7 @@ export class StudentsFormComponent implements OnInit {
   units: any = bdInfo.units;
   formPagination: any = {
     maxIndex: 4,
-    index: 0
+    index: 3
   };
   autoCorrectedDatePipe = autoCorrectedDatePipe;
   triedSend: boolean = false;
@@ -142,6 +143,10 @@ export class StudentsFormComponent implements OnInit {
           }
         });
     });
+  }
+  changeRemunerado(){
+    this.steps[3].controls[1].patchValue({'alternative_id': null});
+    this.steps[3].controls[2].patchValue({'alternative_id': null});
   }
   filterGeneric(val, bdInfoIndex){
     if(!val) return [];
@@ -354,6 +359,18 @@ export class StudentsFormComponent implements OnInit {
           answer.id = id[0]['id'];
         }
       }
+
+      //Se não for remunerado adiciona as alternativas padrão de vazio
+      if(!this.flagRemunerado.checked){
+        if(index + 1 == 2){
+          answer.alternative_id = 35;
+        }
+
+        if(index + 1 == 3){
+          answer.alternative_id = 36;
+        }
+      }
+
       if(typeof(answer.alternative_flag)!="undefined"){
         answer.alternative_id = answer.alternative_flag ? 1 : 2;
         delete answer.alternative_flag;
@@ -392,10 +409,10 @@ export class StudentsFormComponent implements OnInit {
   }
 
   transformDateBR(date){
-      if(!date) return '';
-      if(date.length!=10) return '';
-      let data = date.split('-');
-      return data[2]+"/"+data[1]+"/"+data[0];
+    if(!date) return '';
+    if(date.length!=10) return '';
+    let data = date.split('-');
+    return data[2]+"/"+data[1]+"/"+data[0];
   }
 
   changeUnit(){

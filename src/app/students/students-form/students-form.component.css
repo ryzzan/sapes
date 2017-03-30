@@ -41,7 +41,9 @@ md-input-container,
 .toolbar-spacer {
   flex: 1 1 auto;
 }
-
+.hiddenField{
+  display: none;
+}
 .flagInput>span{
   margin: 5px 5px 0 0;
   float: left;

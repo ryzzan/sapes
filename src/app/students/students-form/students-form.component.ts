@@ -13,6 +13,7 @@ import { AuthService } from './../../shared/auth.service';
 
 import { Controls } from './form-control';
 import { bdInfo } from './data';
+import { environment } from './../../../environments/environment';
 
 import { ProgressComponent } from '../../component/progress/progress.component';
 import { SelectCourseComponent } from '../select-course/select-course.component';
@@ -27,7 +28,7 @@ import 'rxjs/add/operator/startWith';
 export class StudentsFormComponent implements OnInit {
   user;
   @ViewChild('remunerado') flagRemunerado;
-
+  urlToNotionManual = environment.urlToNotionManual+"#6c4b0b645fef4ed9b65a2ec6c1e0288f";
   title: string;
   form: FormGroup;
   student: Student = new Student();
@@ -262,8 +263,6 @@ export class StudentsFormComponent implements OnInit {
     value = value.replace(/[/ _)(.-]/g, '');
     this.corporateService.getStudent(value).subscribe(data => {
       feedback.close();
-      data = data.filter(student => student.courses.length > 0);
-
       let student = data[0];
       if(student.courses.length == 0) {
         return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{

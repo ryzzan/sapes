@@ -7,6 +7,8 @@ import {MdSnackBar} from '@angular/material';
 
 import { ProgressComponent } from './../component/progress/progress.component';
 
+import { environment } from './../../environments/environment';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +20,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading: boolean = false;
   triedSend: boolean = false;
+  urlToNotionManual = environment.urlToNotionManual+"#73a2d0adda6e48318c022c77070ca851";
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -34,7 +38,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  
   save(): any{
     if(!this.loginForm.valid)
       return this.triedSend = true;

@@ -38,13 +38,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  go(url): any {
-    window.open(url, '_blank');
-  }
-
+  
   save(): any{
-    if(!this.loginForm.valid) 
+    if(!this.loginForm.valid)
       return this.triedSend = true;
 
     let feedback = this.snackBar.openFromComponent(ProgressComponent, {duration: 1000});
@@ -58,23 +54,23 @@ export class LoginComponent implements OnInit {
       res => {
         if(res){
           feedback.instance.message = "Login feito com sucesso. Carregando seus dados.";
-          
+
           res.subscribe(()=>{
             this.router.navigateByUrl('/');
           });
-        }    
+        }
       },
       error => {
         this.isLoading = false;
         if(error.status == 401){
-          return this.snackBar.open('Login ou senha incorreto','',{duration: 3000});        
+          return this.snackBar.open('Login ou senha incorreto','',{duration: 3000});
         }
         return this.snackBar.open('Algo errado aconteceu, por favor, tente novamente','',{duration: 4000});
       },
-      () => {        
+      () => {
       }
     )
-    
+
 
   }
 

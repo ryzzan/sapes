@@ -79,7 +79,6 @@ export class StudentsFormComponent implements OnInit {
           this.bdInfo.units = this.bdInfo.units.filter( unit =>
             unit.id == user.unit_id
           );
-          console.log(this.bdInfo.units);
         }
       }
 
@@ -119,6 +118,7 @@ export class StudentsFormComponent implements OnInit {
     var id = this.route.params.subscribe(params => {
     var id = params['id'];
 
+
     this.title = id ? 'Editar Concluinte' : 'Novo Concluinte';
 
     this.checkIfUpdating = true;
@@ -126,6 +126,11 @@ export class StudentsFormComponent implements OnInit {
     if (!id) {
       this.checkIfUpdating = false;
 
+      (<FormArray>this.steps[3]).patchValue([
+        {alternative_flag: true},
+        {alternative_id: null},
+        {alternative_id: null}
+      ]);
       return this.canSave = true;
     };
 
@@ -314,6 +319,13 @@ export class StudentsFormComponent implements OnInit {
       delete student.courses;
       this.student = student;
       this.setValues();
+      if(this.flagRemunerado.checked){
+        (<FormArray>this.steps[3]).patchValue([
+          {alternative_flag: true},
+          {alternative_id: null},
+          {alternative_id: null}
+        ]);
+      }
       this.snackBar.open('Concluinte encontrado, o formulario foi preenchido','',{
           duration: 5000
       });
@@ -343,6 +355,7 @@ export class StudentsFormComponent implements OnInit {
     }
     this.changeUnit();
     this.changePronatecValue(this.steps[1].controls['pronatec_id'].value>0);
+
   }
   changedTabIndex(event){
     this.formPagination.index = event.index;

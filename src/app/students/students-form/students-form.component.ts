@@ -265,16 +265,16 @@ export class StudentsFormComponent implements OnInit {
       data = data.filter(student => student.courses.length > 0);
 
       let student = data[0];
-      if(student.courses.length == 0) {
-        return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
-          duration: 5000
-        });
-      }
       if(student.courses.length != 1) {
         return this.chooseCourse(student, btnSearch);
       }
       if(btnSearch){
         btnSearch.disabled = false;
+      }
+      if(student.courses.length == 0) {
+        return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{
+          duration: 5000
+        });
       }
       return this.setValueFromIntegratedBase(student, student.courses[0]);
     },

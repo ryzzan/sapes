@@ -100,7 +100,8 @@ Controls[2] = formBuilder.group({
 
 Controls[3] = formBuilder.array([
   formBuilder.group({
-   alternative_flag: [null]
+   alternative_flag: [null],
+   checkedRemunerado: [true]
   }),
   formBuilder.group({
     alternative_id: [null],

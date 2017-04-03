@@ -4,7 +4,7 @@
         <h2><img src="./assets/images/logo_senai.png" alt="SENAI" title="SENAI" /></h2>
         <h1>Acesso</h1>
         <span class="toolbar-spacer"></span>
-        <a md-icon-button mdTooltip="Ajuda" class="blueIcon" href="https://www.notion.so/MANUAL-DO-SISTEMA-96d289598fb649dd89835d191a15396b" target="_blank"><md-icon class="md-toolbar">help</md-icon></a>
+        <a md-icon-button mdTooltip="Ajuda" class="blueIcon" [href]="urlToNotionManual" target="_blank"><md-icon class="md-toolbar">help</md-icon></a>
       </md-toolbar>
       <form class="boxForm" (ngSubmit)="save()" [formGroup]="loginForm">
         <md-icon>perm_identity</md-icon>

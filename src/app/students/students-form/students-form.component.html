@@ -9,10 +9,10 @@
       <md-icon>file_download</md-icon>
       <span>Baixar Formulário</span>
     </a>
-    <button md-menu-item>
+    <a [href]="urlToNotionManual" target="_blank" md-menu-item>
       <md-icon>help_outline</md-icon>
       <span>Ajuda</span>
-    </button>
+    </a>
   </md-menu>
 </md-toolbar>
 <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()" >

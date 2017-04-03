@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   urlToApi: "https://sapesapi.al.senai.br/api/",
-  urlToOauthToken: "https://sapesapi.al.senai.br/oauth/token"
+  urlToOauthToken: "https://sapesapi.al.senai.br/oauth/token",
+  urlToNotionManual: "https://www.notion.so/MANUAL-DO-SISTEMA-96d289598fb649dd89835d191a15396b"
   // urlToApi: "http://10.83.3.191/api/",
   // urlToOauthToken: "http://10.83.3.191/oauth/token"
 };

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { environment } from './../../../environments/environment';
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -10,6 +12,7 @@ export class SidenavComponent implements OnInit {
   @Input()
   user;
 
+  urlToNotionManual = environment.urlToNotionManual+"#320908f415124263ab86507c3d12197c";
   name;  
   private menu;
 

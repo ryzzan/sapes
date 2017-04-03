@@ -55,6 +55,10 @@ button {
     padding-top: 20px;
     line-height: 45px;
 }
+.blueIcon {
+    color: #0068b3;
+    background: #fff;
+}
 md-input-container {
     width: 70%;
 }

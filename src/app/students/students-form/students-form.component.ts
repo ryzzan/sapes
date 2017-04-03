@@ -27,8 +27,6 @@ import 'rxjs/add/operator/startWith';
 export class StudentsFormComponent implements OnInit {
   user;
   @ViewChild('remunerado') flagRemunerado;
-  
-  checkedRemunerado;
   title: string;
   form: FormGroup;
   student: Student = new Student();
@@ -115,7 +113,6 @@ export class StudentsFormComponent implements OnInit {
 
   ngOnInit() {
     this.form.reset();
-    this.checkedRemunerado = true;
     this.changePronatecModalities(false);
 
     var id = this.route.params.subscribe(params => {

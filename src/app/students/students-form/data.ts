@@ -47,7 +47,7 @@
     {id: 7,valueView:'Julho'}, {id: 8,valueView:'Agosto'}, {id: 9,valueView:'Setembro'},
     {id: 10,valueView:'Outubro'}, {id: 11,valueView:'Novembro'}, {id: 12,valueView:'Dezembro'}
   ],
-  years: [2016, 2015, 2014,2013],
+  years: [2017, 2016, 2015, 2014, 2013],
   bancos: ['Virá do banco'],
   salaryValue: 937.00,
   salary: [

@@ -5,6 +5,7 @@ import { MdSnackBar, MdDialog } from '@angular/material';
 import { ProgressComponent } from '../../component/progress/progress.component';
 
 import { AuthService } from './../../shared/auth.service';
+import { environment } from './../../../environments/environment';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -22,6 +23,7 @@ export class StudentsListComponent implements OnInit {
   public students:Array<any> = [];
   public selectedStudents:Array<any> = [];
 
+  urlToNotionManual = environment.urlToNotionManual+"#e5298bb77e73469dbfe483927724cabc";
   infoApi: any;
   isSearch = false;
   isLoading = false;

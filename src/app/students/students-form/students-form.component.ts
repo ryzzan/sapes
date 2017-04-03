@@ -263,8 +263,6 @@ export class StudentsFormComponent implements OnInit {
     value = value.replace(/[/ _)(.-]/g, '');
     this.corporateService.getStudent(value).subscribe(data => {
       feedback.close();
-      data = data.filter(student => student.courses.length > 0);
-
       let student = data[0];
       if(student.courses.length == 0) {
         return this.snackBar.open('Concluinte encontrado, porém sem curso vinculado','',{

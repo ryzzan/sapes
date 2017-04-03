@@ -264,7 +264,7 @@ export class StudentsFormComponent implements OnInit {
     this.corporateService.getStudent(value).subscribe(data => {
       feedback.close();
       let student = data[0];
-      if(student.courses.length != 1) {
+      if(student.courses.length > 1) {
         return this.chooseCourse(student, btnSearch);
       }
       if(btnSearch){

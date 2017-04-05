@@ -226,7 +226,7 @@
           </md-hint>
         </md-input-container>
         <md-autocomplete #autoCourse="mdAutocomplete" [displayWith]="displayAutocomplete">
-          <md-option *ngFor="let course of filteredCourses | async" [value]="course"  >
+          <md-option *ngFor="let course of filteredCourses | async" [value]="course">
             {{course.description}}
           </md-option>
         </md-autocomplete>

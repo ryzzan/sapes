@@ -193,4 +193,10 @@ export class StudentsListComponent implements OnInit {
   view(id: any): any {
     return  this.router.navigate(['/students/view', id]);
   }
+
+  focus() {
+    setTimeout(() => {
+      window.document.getElementById('search').focus();
+    }, 200) 
+  }
 }

@@ -137,7 +137,7 @@ export class CorporateService {
   }
 
   private getStudentUrl(identification, dr){
-    return this.url + "api-basi/v1/epmat/dr/"+dr+"/alunos/";
+    return this.url + "api-basi/v1/epmat/dr/"+dr+"/alunos/"+identification;
   }
 
 }

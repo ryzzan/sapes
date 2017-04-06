@@ -64,10 +64,10 @@
 .td-right.td-sort>a>md-icon{
   position: absolute;
   top: 25%;
-  left: 0;
+  right: -10px;
 }
 .td-right.td-sort>a>span{
-  padding-left: 24px;
+  padding-left: 0;
 }
 .md-icon-button{
   font-size: 1em;

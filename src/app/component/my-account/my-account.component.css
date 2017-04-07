@@ -1,0 +1,66 @@
+@media screen and (min-width: 1025px) {
+    md-card {
+        top: 100px;
+        width: 50%;
+        margin: auto;
+    }
+
+    .float-left {
+        float: left;
+        width: 40%;
+    }
+
+    .float-right {
+        float: right;
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+    md-card {
+        top: 100px;
+        width: 70%;
+        margin: auto;
+    }
+
+    .float-left {
+        float: left;
+        width: 40%;
+    }
+
+    .float-right {
+        float: right;
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    md-card {
+        top: 100px;
+        width: 80%;
+        margin: auto;
+    }
+
+    .float-left {
+        width: 100%;
+    }
+
+    .float-right {
+        width: 100%;
+    }
+}
+
+md-grid-tile {
+    left: 0;
+    margin-left: 0;
+    text-align: left;
+    background: pink; 
+}
+
+md-input-container {
+    width: 80%;
+}
+
+.clear-both {
+    clear: both;
+}

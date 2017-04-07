@@ -20,6 +20,7 @@ import { LoginGuard } from './shared/auth/login.guard';
 import { ApiService } from './shared/api.service';
 import { SharedModule } from './shared/shared.module';
 import { FirstAndLastNamePipe } from './pipes/first-and-last-name.pipe';
+import { MyAccountComponent } from './component/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FirstAndLastNamePipe } from './pipes/first-and-last-name.pipe';
     HomeComponent,
     NotFoundComponent,
     LoginComponent,
-    FirstAndLastNamePipe
+    FirstAndLastNamePipe,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
